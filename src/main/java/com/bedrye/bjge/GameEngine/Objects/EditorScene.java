@@ -1,14 +1,15 @@
-package com.bedrye.Objects;
+package com.bedrye.bjge.GameEngine.Objects;
 
 import com.almasb.fxgl.core.math.Vec3;
-import com.bedrye.bjge.GameEngine.Objects.Scene;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class GameScene extends Scene {
+public class EditorScene extends Scene{
+
+
     @Override
     public void initialize() {
-        System.out.println("Playing");
+        System.out.println("Editing");
     }
 
     @Override
@@ -18,8 +19,8 @@ public class GameScene extends Scene {
 
     @Override
     public void update() {
-        glClearColor(0.8f,0.3f,0.8f,1.0f);
+        glClearColor(0.3f,0.3f,0.3f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-    }
 
+    }
 }

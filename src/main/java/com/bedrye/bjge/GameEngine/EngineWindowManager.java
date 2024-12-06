@@ -1,5 +1,9 @@
 package com.bedrye.bjge.GameEngine;
 
+import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
+import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
+import com.bedrye.bjge.GameEngine.Objects.EditorScene;
+import com.bedrye.bjge.GameEngine.Objects.Scene;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -12,6 +16,7 @@ public class EngineWindowManager {
     private String projectName;
     private int height,width;
     private long windowAddress;
+    private Scene activeScene;
 
     private static EngineWindowManager engineWindowManager;
     private EngineWindowManager(){
@@ -49,6 +54,13 @@ public class EngineWindowManager {
             throw new IllegalStateException("Unable to create a window");
 
         }
+        glfwSetCursorPosCallback(windowAddress, MouseListener.getInstance()::mousePosCallback);
+        glfwSetMouseButtonCallback(windowAddress, MouseListener.getInstance()::mouseClickCallBack);
+        glfwSetScrollCallback(windowAddress, MouseListener.getInstance()::mouseScrollCallBack);
+        activeScene = new EditorScene();
+
+        glfwSetKeyCallback(windowAddress, KeyListener.getInstance()::keyPressCallback);
+
         glfwMakeContextCurrent(windowAddress);
         glfwSwapInterval(1);
         glfwShowWindow(windowAddress);
@@ -61,7 +73,10 @@ public class EngineWindowManager {
             glfwPollEvents();
             glClearColor(0.5f,0.5f,0.0f,1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
+
             glfwSwapBuffers(windowAddress);
+
+
         }
 
 
