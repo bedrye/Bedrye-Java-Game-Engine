@@ -1,5 +1,6 @@
 package com.bedrye.bjge.GameEngine;
 
+import com.bedrye.Objects.GameScene;
 import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
 import com.bedrye.bjge.GameEngine.Objects.EditorScene;
@@ -57,7 +58,8 @@ public class EngineWindowManager {
         glfwSetCursorPosCallback(windowAddress, MouseListener.getInstance()::mousePosCallback);
         glfwSetMouseButtonCallback(windowAddress, MouseListener.getInstance()::mouseClickCallBack);
         glfwSetScrollCallback(windowAddress, MouseListener.getInstance()::mouseScrollCallBack);
-        activeScene = new EditorScene();
+        activeScene = new GameScene();
+
 
         glfwSetKeyCallback(windowAddress, KeyListener.getInstance()::keyPressCallback);
 
@@ -65,14 +67,14 @@ public class EngineWindowManager {
         glfwSwapInterval(1);
         glfwShowWindow(windowAddress);
         GL.createCapabilities();
+        activeScene.initialize();
 
     }
     public void update(){
         while (!glfwWindowShouldClose(windowAddress)){
 
             glfwPollEvents();
-            glClearColor(0.5f,0.5f,0.0f,1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
+            activeScene.update();
 
             glfwSwapBuffers(windowAddress);
 

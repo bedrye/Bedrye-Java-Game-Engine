@@ -4,7 +4,7 @@ import com.almasb.fxgl.core.math.Vec3;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class EditorScene extends Scene{
+public final class EditorScene extends Scene{
 
 
     @Override
@@ -17,10 +17,12 @@ public class EditorScene extends Scene{
 
     }
 
+    //TODO
     @Override
     public void update() {
+
+
         glClearColor(0.3f,0.3f,0.3f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-
     }
 }

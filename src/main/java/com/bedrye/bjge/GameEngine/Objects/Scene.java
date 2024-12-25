@@ -6,6 +6,8 @@ import com.bedrye.Objects.Object3DAbstract;
 
 public abstract class Scene extends Object3DAbstract {
     private Camera camera;
+    private boolean initialized = false;
+
 
     public Scene(){
         this.camera = null;
@@ -20,4 +22,11 @@ public abstract class Scene extends Object3DAbstract {
     public abstract void update();
 
 
+    public void setInitialized(boolean initialized) {
+        this.initialized = initialized;
+    }
+
+    public boolean isInitialized() {
+        return initialized;
+    }
 }
