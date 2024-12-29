@@ -14,7 +14,7 @@ import javafx.scene.shape.Box;
 import javafx.stage.Stage;
 
 public class HelloApplication extends Application {
-    final Object3DAbstract gamescene = new GameScene();
+
     final Group root = new Group();
 
     @Override
@@ -22,8 +22,6 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(root, 1024, 768, true);
         scene.setFill(Color.GREY);
         root.getChildren().add(new PerspectiveCamera(true));
-        gamescene.addChild(new Object3D(new Box(),new PhongMaterial()));
-        gamescene.initialize();
         stage.setTitle("Molecule Sample Application");
         stage.setScene(scene);
 

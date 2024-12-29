@@ -3,10 +3,15 @@ package com.bedrye.bjge.GameEngine;
 import java.io.File;
 import java.io.IOException;
 
-public class EngineFileSystem {
+public final class EngineFileSystem {
     public EngineFileSystem(String string) {
         projectDir = new File(string);
         currentDir = new File(string);
+        getSubDirStructure();
+    }
+    public EngineFileSystem() {
+        projectDir = new File("Assets");
+        currentDir = new File("Assets");
         getSubDirStructure();
     }
 
@@ -23,6 +28,16 @@ public class EngineFileSystem {
 
     public void setCurrentDir(File currentDir) {
         this.currentDir = currentDir;
+    }
+
+    private void update(){
+
+
+    }
+    private void initialize(){
+
+
+
     }
 
     public void getSubDirStructure(){

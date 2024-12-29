@@ -6,14 +6,13 @@ import static org.lwjgl.opengl.GL20.glGetShaderInfoLog;
 
 public abstract class Shader {
 
+
     private String shader;
     private int shaderId;
 
 
-    public Shader(String path){
-
-
-
+    public Shader(String shader){
+        this.shader=shader;
 
     }
     public abstract void Compile();

@@ -6,8 +6,8 @@ import static org.lwjgl.opengl.GL20.*;
 public class VertexShader extends Shader {
 
 
-    public VertexShader(String path) {
-        super(path);
+    public VertexShader(String shader) {
+        super(shader);
 
     }
 
@@ -23,5 +23,6 @@ public class VertexShader extends Shader {
             return;
         }
     }
+
 }
 

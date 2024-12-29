@@ -1,57 +1,64 @@
 package com.bedrye.Objects;
 
-import com.almasb.fxgl.core.math.Vec3;
-import com.bedrye.Scripts.MainBehaviour;
+
+import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Object3DAbstract {
-    private Vec3 position;
-    private Vec3 rotation;
-    private Vec3 scale;
+
+    private Vector3f position;
+    private Vector3f rotation;
+    private Vector3f scale;
+    private Object3DAbstract parent;
+
+    public Object3DAbstract(Object3DAbstract parent){
+        this.parent=parent;
+    }
 
     private List<Object3DAbstract> childList;
 
     private List<MainBehaviour> scripts;
     public abstract void initialize();
-
-    public abstract void initialize(Vec3 position);
+    public abstract void initialize(Vector3f position);
+    public abstract void update();
 
     public Object3DAbstract(){
-        position= new Vec3(0,0,0);
-        rotation= new Vec3(0,0,0);
-        scale= new Vec3(1,1,1);
+        position= new Vector3f(0,0,0);
+        rotation= new Vector3f(0,0,0);
+        scale= new Vector3f(1,1,1);
         childList = new ArrayList<>();
         scripts = new ArrayList<>();
 
     }
 
-    public List<Object3DAbstract> getChildList() {
+    public final List<Object3DAbstract> getChildList() {
         return childList;
     }
-    public Vec3 getPosition() {
+    public final Vector3f getPosition() {
         return position;
     }
-    public void setPosition(Vec3 position) {
+    public void setPosition(Vector3f position) {
         this.position = position;
     }
-    public void setX(float x){
+    public final void setX(float x){
         this.position.x = x;
     }
-    public void setY(float y){
+    public final void setY(float y){
         this.position.y = y;
     }
-    public void setZ(float z){
+    public final void setZ(float z){
         this.position.z = z;
     }
-    public float getX(){
+    public final float getX(){
         return this.position.x;
     }
-    public float getY(){
+    public final float getY(){
         return this.position.y;
     }
-    public float getZ(){
+    public final float getZ(){
         return this.position.z;
     }
     public void addChild(Object3DAbstract child){
@@ -70,23 +77,33 @@ public abstract class Object3DAbstract {
     }
 
 
-    public Vec3 getRotation() {
+    public final Vector3f getRotation() {
         return rotation;
     }
 
-    public void setRotation(Vec3 rotation) {
+    public final void setRotation(Vector3f rotation) {
         this.rotation = rotation;
     }
 
-    public Vec3 getScale() {
+    public final Vector3f getScale() {
         return scale;
     }
 
-    public void setScale(Vec3 scale) {
+    public final void setScale(Vector3f scale) {
         this.scale = scale;
     }
-    public void addScript(MainBehaviour mainBehaviour){scripts.add(mainBehaviour);}
-    public void removeScript(MainBehaviour mainBehaviour){scripts.remove(mainBehaviour);}
-    public void removeScript(int mainBehaviour){scripts.remove(mainBehaviour);}
+    public final void addScript(MainBehaviour mainBehaviour){mainBehaviour.setGameObject(this);scripts.add(mainBehaviour); }
+    public final void removeScript(MainBehaviour mainBehaviour){scripts.remove(mainBehaviour);}
+    public final void removeScript(int mainBehaviour){scripts.remove(mainBehaviour);}
+    public final List<MainBehaviour> getScriptList(){
+        return scripts;
+    }
+    public final Object3DAbstract getParent() {
+        return parent;
+    }
+
+    public final void setParent(Object3DAbstract parent) {
+        this.parent = parent;
+    }
 
 }

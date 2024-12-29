@@ -3,12 +3,16 @@ package com.bedrye.bjge.GameEngine.Objects;
 import com.almasb.fxgl.core.math.Vec3;
 import com.bedrye.Objects.Camera;
 import com.bedrye.Objects.Object3DAbstract;
+import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;
 
-public abstract class Scene extends Object3DAbstract {
+import java.util.ArrayList;
+
+public abstract class Scene {
     private Camera camera;
     private boolean initialized = false;
+    private ArrayList<Object3DAbstract> gameObjects= new ArrayList<>();
 
-
+    private ShaderProgram shaderProgram;
     public Scene(){
         this.camera = null;
     }
@@ -29,4 +33,20 @@ public abstract class Scene extends Object3DAbstract {
     public boolean isInitialized() {
         return initialized;
     }
+
+    public ShaderProgram getShaderProgram() {
+        return shaderProgram;
+    }
+
+    public void setShaderProgram(ShaderProgram shaderProgram) {
+        this.shaderProgram = shaderProgram;
+    }
+
+    public abstract void initialize() ;
+
+
+    public ArrayList<Object3DAbstract> getGameObjects() {
+        return gameObjects;
+    }
+
 }

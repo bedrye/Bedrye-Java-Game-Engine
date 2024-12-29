@@ -6,6 +6,10 @@ module com.bedrye.multiplayershooter {
     requires org.lwjgl;
     requires org.lwjgl.glfw;
     requires org.lwjgl.opengl;
+    requires org.joml;
+    requires org.joml.primitives;
+    requires org.lwjgl.stb;
+
 
     opens com.bedrye.bjge to javafx.fxml;
     exports com.bedrye.bjge;
