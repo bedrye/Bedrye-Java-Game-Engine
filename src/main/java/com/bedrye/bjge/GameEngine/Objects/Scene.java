@@ -48,5 +48,13 @@ public abstract class Scene {
     public ArrayList<Object3DAbstract> getGameObjects() {
         return gameObjects;
     }
+    public final void addGameObject(Object3DAbstract gameObject){
+        if(isInitialized()){
+            gameObject.initialize();
+
+        }
+        gameObjects.add(gameObject);
+
+    }
 
 }

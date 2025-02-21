@@ -7,6 +7,7 @@ public abstract class MainBehaviour {
 
     public void start(){};
     public void update(){};
+    public void init(){};
 
     public Object3DAbstract getGameObject() {
         return gameObject;

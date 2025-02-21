@@ -17,6 +17,19 @@ public class EngineWindowManager {
     private String projectName;
     private int height,width;
     private long windowAddress;
+
+    public long getWindowAddress() {
+        return windowAddress;
+    }
+
+    public Scene getActiveScene() {
+        return activeScene;
+    }
+
+    public void setActiveScene(Scene activeScene) {
+        this.activeScene = activeScene;
+    }
+
     private Scene activeScene;
 
     private static EngineWindowManager engineWindowManager;
