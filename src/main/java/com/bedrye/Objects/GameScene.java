@@ -39,8 +39,8 @@ public class GameScene extends Scene {
         obj.addScript(new BJEMeshRenderer(new BJEMesh(vertexes,elements),new BJETexture("Assets\\logog.png")));
         Object3D obj2 = new Object3D();
         obj2.addScript(new BJEMeshRenderer(new BJEMesh(vertexes,elements),new BJETexture("Assets\\logog2.png")));
-        obj2.setLocalY(120f);
-        obj2.setLocalX(120f);
+        obj2.setLocalPosY(120f);
+        obj2.setLocalPosX(120f);
         obj.addScript(new PressMouse());
         obj.addChild(obj2);
         getGameObjects().add(obj);

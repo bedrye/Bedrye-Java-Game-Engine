@@ -6,12 +6,21 @@ public class GameEngineMain {
 
     private boolean isInGameMode;
 
-    public EngineFileSystem engineFileSystem;
+    public EngineWindowManager engineWindowManager;
+    private static GameEngineMain init;
+    public static GameEngineMain getInstance(){
+        if(init==null) init= new GameEngineMain();
+        return init;
+
+    }
+
     //private EngineEditorSystem engineEditorSystem;
 
-    public GameEngineMain() {
+    private GameEngineMain() {
         this.isInGameMode = false;
-            this.engineFileSystem = new EngineFileSystem("O:\\Tests");
+
+        engineWindowManager = new EngineWindowManager();
+        engineWindowManager.run();
         //this.engineEditorSystem = engineEditorSystem;
     }
 }

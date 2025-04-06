@@ -10,14 +10,13 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
-public class BJETexture {
+public class BJETexture extends BJEResource {
     private int textureID;
-    private String path;
     private boolean repeat=true;
     private boolean pixelate=true;
 
     public BJETexture(String path){
-        this.path=path;
+        super(path);
         textureID=glGenTextures();
         glBindTexture(GL_TEXTURE_2D,textureID);
         if(repeat) {

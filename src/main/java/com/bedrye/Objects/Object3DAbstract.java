@@ -51,30 +51,30 @@ public abstract class Object3DAbstract {
     }
     public final Vector3f getPosition(){
         return globalPosition;}
-    public final Vector3f getLocalPosition() {
+    public final Vector3f getLocalPos() {
         return position;
     }
-    public void setPosition(Vector3f position) {
+    public void setLocalPos(Vector3f position) {
         this.position = position;
         updateTransform();
     }
-    public final void setLocalX(float x){
+    public final void setLocalPosX(float x){
         this.position.x = x;
         updateTransform();
     }
-    public final void setLocalY(float y){
+    public final void setLocalPosY(float y){
         this.position.y = y;
         updateTransform();
     }
-    public final void setLocalZ(float z){
+    public final void setLocalPosZ(float z){
         this.position.z = z;
         updateTransform();
     }
-    public final float getGlobalX(){return position.x;}
-    public final float getGlobalY(){
+    public final float getLocalPosX(){return position.x;}
+    public final float getLocalPosY(){
         return position.y;
     }
-    public final float getGlobalZ(){
+    public final float getLocalPosZ(){
         return position.z;
     }
     public final void setRotationX(float x){
@@ -174,7 +174,7 @@ public abstract class Object3DAbstract {
     private void updateTransform(){
 
         transform.identity().
-                translate(new Vector3f(getGlobalX(), getGlobalY(), getGlobalZ())).
+                translate(new Vector3f(getLocalPosX(), getLocalPosY(), getLocalPosZ())).
                 rotateX((float)Math.toRadians(getRotationX())).
                 rotateY((float)Math.toRadians(getRotationY())).
                 rotateZ((float)Math.toRadians(getRotationZ())).

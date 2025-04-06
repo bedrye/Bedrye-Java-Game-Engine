@@ -32,16 +32,13 @@ public class EngineWindowManager {
 
     private Scene activeScene;
 
-    private static EngineWindowManager engineWindowManager;
-    private EngineWindowManager(){
+
+    public EngineWindowManager(){
         projectName = "Test";
         height = 1280;
         width=1920;
     }
-    public static EngineWindowManager getInstance(){
-        if(engineWindowManager==null){engineWindowManager = new EngineWindowManager();}
-        return engineWindowManager;
-    }
+
     public void run(){
 
         init();

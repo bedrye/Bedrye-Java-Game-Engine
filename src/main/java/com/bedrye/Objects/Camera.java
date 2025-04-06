@@ -51,8 +51,8 @@ public class Camera extends Object3DAbstract {
         Vector3f camFront = new Vector3f(0.0f,0.0f,-1.0f);
         Vector3f camTop = new Vector3f(0.0f,1.0f,0.0f);
         viewMatrix.identity();
-        viewMatrix.lookAt(new Vector3f(getGlobalX(), getGlobalY(),20.0f)
-                ,camFront.add(getGlobalX(), getGlobalY(),0.0f),camTop);
+        viewMatrix.lookAt(new Vector3f(getLocalPosX(), getLocalPosY(),20.0f)
+                ,camFront.add(getLocalPosX(), getLocalPosY(),0.0f),camTop);
     }
 
 
