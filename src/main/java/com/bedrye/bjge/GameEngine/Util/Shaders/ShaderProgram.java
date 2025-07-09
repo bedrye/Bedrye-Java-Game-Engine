@@ -1,5 +1,8 @@
 package com.bedrye.bjge.GameEngine.Util.Shaders;
 
+import com.bedrye.Objects.Light;
+import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
+import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -63,6 +66,23 @@ public abstract class ShaderProgram {
         glUniform1i(loc,i);
 
     }
+    public void createPointLightUniform(Light light) {
+        uploadVec3f(light.getColor(),light.getName()+ ".colour" );
+        uploadVec3f( light.getPosition(),light.getName() + ".position");
+        uploadFloat( light.getIntensity(), light.getName()+ ".intensity" );
+        Light.Attenuation att = light.getAttenuation();
+        uploadFloat( att.getConstant() ,light.getName() + ".att.constant");
+        uploadFloat(att.getLinear(),light.getName() + ".att.linear");
+        uploadFloat(att.getExponent(),light.getName() + ".att.exponent");
 
+    }
+    public void createMaterialUniform(BJEMaterial texture) {
+        uploadVec4f( texture.getAmbient(),"material.ambient" );
+        uploadVec4f( texture.getDiffuse(),"material.diffuse");
+        uploadVec4f( texture.getSpecular(), "material.specular" );
+        uploadFloat( texture.getReflectance() ,"material.reflectance");
+
+
+    }
 
 }

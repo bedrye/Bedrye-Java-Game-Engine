@@ -28,12 +28,18 @@ public class EngineWindowManager {
 
     public void setActiveScene(Scene activeScene) {
         this.activeScene = activeScene;
+        activeScene.initialize();
     }
 
     private Scene activeScene;
+    public static EngineWindowManager init;
+    public static EngineWindowManager getInstance(){
+        if(init==null) init= new EngineWindowManager();
+        return init;
 
+    }
 
-    public EngineWindowManager(){
+    private EngineWindowManager(){
         projectName = "Test";
         height = 1280;
         width=1920;
@@ -68,7 +74,7 @@ public class EngineWindowManager {
         glfwSetCursorPosCallback(windowAddress, MouseListener.getInstance()::mousePosCallback);
         glfwSetMouseButtonCallback(windowAddress, MouseListener.getInstance()::mouseClickCallBack);
         glfwSetScrollCallback(windowAddress, MouseListener.getInstance()::mouseScrollCallBack);
-        activeScene = new GameScene();
+
 
 
         glfwSetKeyCallback(windowAddress, KeyListener.getInstance()::keyPressCallback);
@@ -76,8 +82,11 @@ public class EngineWindowManager {
         glfwMakeContextCurrent(windowAddress);
         glfwSwapInterval(1);
         glfwShowWindow(windowAddress);
+
         GL.createCapabilities();
-        activeScene.initialize();
+        setActiveScene(new GameScene());
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
 
     }
     public void update(){

@@ -422,7 +422,7 @@ Event: 13.332 Thread 0x0000021aa367b670 1368       4       org.joml.Vector4f::<i
 Event: 13.333 Thread 0x0000021aa367b670 nmethod 1368 0x0000021a93914210 code [0x0000021a93914380, 0x0000021a93914420]
 Event: 13.333 Thread 0x0000021aa367b670 1369       4       org.joml.Vector4f::mul (7 bytes)
 Event: 13.336 Thread 0x0000021aa367b670 nmethod 1369 0x0000021a93914510 code [0x0000021a93914680, 0x0000021a93914860]
-Event: 13.457 Thread 0x0000021aa367b670 1370       4       com.bedrye.Objects.BJEMesh::setVertexesPosition (104 bytes)
+Event: 13.457 Thread 0x0000021aa367b670 1370       4       com.bedrye.bjge.GameEngine.Util.BJEMesh::setVertexesPosition (104 bytes)
 Event: 13.557 Thread 0x0000021aa367b670 nmethod 1370 0x0000021a93914a90 code [0x0000021a93914e00, 0x0000021a93916a20]
 Event: 13.882 Thread 0x0000021aa367b670 1371   !   4       org.lwjgl.opengl.GL20C::glGetUniformLocation (48 bytes)
 Event: 13.897 Thread 0x0000021aa367b670 nmethod 1371 0x0000021a93919410 code [0x0000021a93919600, 0x0000021a93919ce0]
@@ -476,19 +476,19 @@ Event: 1.083 Thread 0x0000021a83cfb1f0 Uncommon trap: reason=speculate_null_asse
 Event: 1.083 Thread 0x0000021a83cfb1f0 DEOPT PACKING pc=0x0000021a938e02ec sp=0x000000781ccfefb0
 Event: 1.083 Thread 0x0000021a83cfb1f0 DEOPT UNPACKING pc=0x0000021a932fd2a2 sp=0x000000781ccfef38 mode 2
 Event: 13.094 Thread 0x0000021a83cfb1f0 Uncommon trap: trap_request=0xffffffbe fr.pc=0x0000021a9391085c relative=0x00000000000012dc
-Event: 13.094 Thread 0x0000021a83cfb1f0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x0000021a9391085c method=com.bedrye.Objects.BJEMesh.setVertexesPosition(Lorg/joml/Matrix4f;)V @ 8 c2
+Event: 13.094 Thread 0x0000021a83cfb1f0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x0000021a9391085c method=com.bedrye.bjge.GameEngine.Util.BJEMesh.setVertexesPosition(Lorg/joml/Matrix4f;)V @ 8 c2
 Event: 13.094 Thread 0x0000021a83cfb1f0 DEOPT PACKING pc=0x0000021a9391085c sp=0x000000781ccfeec0
 Event: 13.094 Thread 0x0000021a83cfb1f0 DEOPT UNPACKING pc=0x0000021a932fd2a2 sp=0x000000781ccfee90 mode 2
 Event: 13.101 Thread 0x0000021a83cfb1f0 Uncommon trap: trap_request=0xffffffbe fr.pc=0x0000021a9391085c relative=0x00000000000012dc
-Event: 13.101 Thread 0x0000021a83cfb1f0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x0000021a9391085c method=com.bedrye.Objects.BJEMesh.setVertexesPosition(Lorg/joml/Matrix4f;)V @ 8 c2
+Event: 13.101 Thread 0x0000021a83cfb1f0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x0000021a9391085c method=com.bedrye.bjge.GameEngine.Util.BJEMesh.setVertexesPosition(Lorg/joml/Matrix4f;)V @ 8 c2
 Event: 13.101 Thread 0x0000021a83cfb1f0 DEOPT PACKING pc=0x0000021a9391085c sp=0x000000781ccfeec0
 Event: 13.101 Thread 0x0000021a83cfb1f0 DEOPT UNPACKING pc=0x0000021a932fd2a2 sp=0x000000781ccfee90 mode 2
 Event: 13.108 Thread 0x0000021a83cfb1f0 Uncommon trap: trap_request=0xffffffbe fr.pc=0x0000021a9391085c relative=0x00000000000012dc
-Event: 13.108 Thread 0x0000021a83cfb1f0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x0000021a9391085c method=com.bedrye.Objects.BJEMesh.setVertexesPosition(Lorg/joml/Matrix4f;)V @ 8 c2
+Event: 13.108 Thread 0x0000021a83cfb1f0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x0000021a9391085c method=com.bedrye.bjge.GameEngine.Util.BJEMesh.setVertexesPosition(Lorg/joml/Matrix4f;)V @ 8 c2
 Event: 13.108 Thread 0x0000021a83cfb1f0 DEOPT PACKING pc=0x0000021a9391085c sp=0x000000781ccfeec0
 Event: 13.108 Thread 0x0000021a83cfb1f0 DEOPT UNPACKING pc=0x0000021a932fd2a2 sp=0x000000781ccfee90 mode 2
 Event: 13.115 Thread 0x0000021a83cfb1f0 Uncommon trap: trap_request=0xffffffbe fr.pc=0x0000021a9391085c relative=0x00000000000012dc
-Event: 13.115 Thread 0x0000021a83cfb1f0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x0000021a9391085c method=com.bedrye.Objects.BJEMesh.setVertexesPosition(Lorg/joml/Matrix4f;)V @ 8 c2
+Event: 13.115 Thread 0x0000021a83cfb1f0 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x0000021a9391085c method=com.bedrye.bjge.GameEngine.Util.BJEMesh.setVertexesPosition(Lorg/joml/Matrix4f;)V @ 8 c2
 Event: 13.115 Thread 0x0000021a83cfb1f0 DEOPT PACKING pc=0x0000021a9391085c sp=0x000000781ccfeec0
 Event: 13.115 Thread 0x0000021a83cfb1f0 DEOPT UNPACKING pc=0x0000021a932fd2a2 sp=0x000000781ccfee90 mode 2
 

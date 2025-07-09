@@ -428,7 +428,7 @@ Event: 11.132 Thread 0x00000118491065e0 1427       4       java.nio.FloatBuffer:
 Event: 11.133 Thread 0x00000118491065e0 nmethod 1427 0x0000011873595f10 code [0x0000011873596080, 0x00000118735963a8]
 Event: 13.064 Thread 0x00000118491065e0 1428   !   4       org.lwjgl.opengl.GL15C::glGenBuffers (46 bytes)
 Event: 13.079 Thread 0x00000118491065e0 nmethod 1428 0x0000011873596690 code [0x0000011873596860, 0x0000011873596d50]
-Event: 13.295 Thread 0x00000118491065e0 1429       4       com.bedrye.Objects.BJEMesh::setVertexesPosition (104 bytes)
+Event: 13.295 Thread 0x00000118491065e0 1429       4       com.bedrye.bjge.GameEngine.Util.BJEMesh::setVertexesPosition (104 bytes)
 Event: 13.395 Thread 0x00000118491065e0 nmethod 1429 0x0000011873597310 code [0x0000011873597680, 0x0000011873599158]
 Event: 14.219 Thread 0x00000118491065e0 1430   !   4       org.lwjgl.opengl.GL20C::glGetUniformLocation (48 bytes)
 Event: 14.238 Thread 0x00000118491065e0 nmethod 1430 0x000001187359bb10 code [0x000001187359bd00, 0x000001187359c3e0]

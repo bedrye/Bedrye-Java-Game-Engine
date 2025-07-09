@@ -10,7 +10,6 @@ public class VertexShader extends Shader {
         super(shader);
 
     }
-
     @Override
     public void Compile() {
         setShaderId(glCreateShader(GL_VERTEX_SHADER));

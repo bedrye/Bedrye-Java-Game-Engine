@@ -1,6 +1,6 @@
 package com.bedrye.bjge.GameEngine.Objects;
 
-import com.almasb.fxgl.core.math.Vec3;
+
 import com.bedrye.Objects.Camera;
 import com.bedrye.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;

@@ -6,7 +6,7 @@ public class GameEngineMain {
 
     private boolean isInGameMode;
 
-    public EngineWindowManager engineWindowManager;
+
     private static GameEngineMain init;
     public static GameEngineMain getInstance(){
         if(init==null) init= new GameEngineMain();
@@ -19,8 +19,7 @@ public class GameEngineMain {
     private GameEngineMain() {
         this.isInGameMode = false;
 
-        engineWindowManager = new EngineWindowManager();
-        engineWindowManager.run();
+        EngineWindowManager.getInstance().run();
         //this.engineEditorSystem = engineEditorSystem;
     }
 }

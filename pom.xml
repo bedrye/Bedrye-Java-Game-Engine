@@ -29,32 +29,24 @@
     </dependencies>
   </dependencyManagement>
 
-  <dependencies>
+<dependencies>
     <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-controls</artifactId>
-      <version>20.0.1</version>
+        <groupId>io.github.spair</groupId>
+        <artifactId>imgui-java-binding</artifactId>
+        <version>1.89.0</version>
     </dependency>
     <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-fxml</artifactId>
-      <version>20.0.1</version>
+        <groupId>io.github.spair</groupId>
+        <artifactId>imgui-java-lwjgl3</artifactId>
+        <version>1.89.0</version>
     </dependency>
     <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-media</artifactId>
-      <version>20.0.1</version>
-    </dependency><dependency>
-      <groupId>com.github.almasb</groupId>
-      <artifactId>fxgl</artifactId>
-      <version>17.2</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.openjfx</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
+        <groupId>io.github.spair</groupId>
+        <artifactId>imgui-java-natives-windows-ft</artifactId>
+        <version>1.86.11</version>
     </dependency>
+
+
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -171,6 +163,11 @@
       <artifactId>joml-primitives</artifactId>
       <version>${joml-primitives.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.lwjgl</groupId>
+      <artifactId>lwjgl-bgfx</artifactId>
+    </dependency>
+
   </dependencies>
 
 
@@ -207,4 +204,13 @@
       </plugin>
     </plugins>
   </build>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>bintray-plugins</name>
+      <url>https://jcenter.bintray.com</url>
+    </repository>
+
+  </repositories>
 </project>

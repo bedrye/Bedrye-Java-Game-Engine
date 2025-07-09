@@ -42,7 +42,7 @@ public class Camera extends Object3DAbstract {
 
     private void changeProjection(){
         projectionMatrix.identity();
-        projectionMatrix.ortho(0.0f,32.0f*40.0f,0.0f,32.0f*21.0f,0.0f,2000.0f);
+        projectionMatrix.ortho(0.0f,40.0f,0.0f,21.0f,0.0f,2000.0f);
 
 
     }

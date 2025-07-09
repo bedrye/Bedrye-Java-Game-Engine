@@ -1,6 +1,7 @@
 package com.bedrye.bjge.GameEngine.Util;
 
-import javafx.scene.image.Image;
+
+import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 
 import java.nio.ByteBuffer;
@@ -10,13 +11,23 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
-public class BJETexture extends BJEResource {
-    private int textureID;
+public class BJETexture extends  BJEResource{
+
+
+    private transient  int textureID;
     private boolean repeat=true;
     private boolean pixelate=true;
 
-    public BJETexture(String path){
+    public BJETexture(String path) {
         super(path);
+
+
+    }
+
+
+    public void initialize(){
+
+
         textureID=glGenTextures();
         glBindTexture(GL_TEXTURE_2D,textureID);
         if(repeat) {
@@ -33,7 +44,7 @@ public class BJETexture extends BJEResource {
         ByteBuffer image = stbi_load(path,width,height,channel,0);
         if(image!=null){
             glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width.get(0),height.get(0),0,
-            GL_RGBA,GL_UNSIGNED_BYTE,image);
+                    GL_RGBA,GL_UNSIGNED_BYTE,image);
 
         }
         stbi_image_free(image);
@@ -46,4 +57,5 @@ public class BJETexture extends BJEResource {
         glBindTexture(GL_TEXTURE_2D,0);
 
     }
+
 }
