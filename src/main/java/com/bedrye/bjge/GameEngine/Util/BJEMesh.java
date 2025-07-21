@@ -8,6 +8,7 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 import org.lwjgl.assimp.*;
+import org.lwjgl.system.MemoryUtil;
 
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
@@ -15,6 +16,8 @@ import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
+import static org.lwjgl.system.MemoryUtil.memFree;
+
 //TODO BATCHING
 public class BJEMesh {
 
@@ -27,16 +30,10 @@ public class BJEMesh {
     public void setVertexesPosition(Matrix4f matrix4f) {
 
 
-        for (int i = 0; i < BJEVerteciesList.size()*BJEVertex.SIZE; i+=BJEVertex.SIZE) {
-            float[] buff = BJEVerteciesList.get(i/BJEVertex.SIZE).GetBuffer();
-            Matrix4f mat = new Matrix4f(matrix4f);
-            Vector4f vec4 = new Vector4f(buff[0],buff[1],buff[2],1.0f).mul(mat);
-            vertexes[i] = vec4.x;
-            vertexes[i+1] = vec4.y;
-            vertexes[i+2] = vec4.z;
-        }
 
-        setup();
+
+
+        upload();
     }
 
     public void setVertexes(float[] vertexes) {
@@ -55,27 +52,32 @@ public class BJEMesh {
 
     private int[] elements;
     private int vaoID, vboID,eboID, FaceBuffLen;
+    FloatBuffer vertBuff;
+    IntBuffer intBuffer;
 
-    public void setup(){
-        vaoID = glGenVertexArrays();
+    public void upload(){
+
+        //vaoID = glGenVertexArrays();
         glBindVertexArray(vaoID);
 
 
-        FloatBuffer vertBuff = BufferUtils.createFloatBuffer(vertexes.length);
+        vertBuff.clear();
         vertBuff.put(vertexes).flip();
 
-        vboID =glGenBuffers();
+        //vboID =glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, vboID);
-        glBufferData(GL_ARRAY_BUFFER,vertBuff,GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER,vertBuff,GL_DYNAMIC_DRAW);
 
-        IntBuffer intBuffer = BufferUtils.createIntBuffer(elements.length);
+
+        intBuffer.clear();
         intBuffer.put(elements).flip();
         glVertexAttribPointer(0,3,GL_FLOAT,true,7*4,0);
         glEnableVertexAttribArray(0);
 
-        eboID =glGenBuffers();
+        //eboID =glGenBuffers();
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,eboID);
+
         glBufferData(GL_ELEMENT_ARRAY_BUFFER,intBuffer,GL_DYNAMIC_DRAW);
 
         glVertexAttribPointer(0,3,GL_FLOAT,true,BJEVertex.SIZE*Float.BYTES,0);
@@ -89,6 +91,47 @@ public class BJEMesh {
         //Normal
         glVertexAttribPointer(3,3,GL_FLOAT,true,BJEVertex.SIZE*Float.BYTES,9* Float.BYTES);
         glEnableVertexAttribArray(3);
+
+    }
+    public void setup(){
+        vaoID = glGenVertexArrays();
+        glBindVertexArray(vaoID);
+
+
+        vertBuff = BufferUtils.createFloatBuffer(vertexes.length);
+        vertBuff.put(vertexes).flip();
+
+        vboID =glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER, vboID);
+        glBufferData(GL_ARRAY_BUFFER,vertBuff,GL_DYNAMIC_DRAW);
+
+
+        intBuffer = BufferUtils.createIntBuffer(elements.length);
+
+        intBuffer.put(elements).flip();
+        glVertexAttribPointer(0,3,GL_FLOAT,true,7*4,0);
+        glEnableVertexAttribArray(0);
+
+        eboID =glGenBuffers();
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,eboID);
+
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER,intBuffer,GL_DYNAMIC_DRAW);
+
+        glVertexAttribPointer(0,3,GL_FLOAT,true,BJEVertex.SIZE*Float.BYTES,0);
+        glEnableVertexAttribArray(0);
+        //Colors
+        glVertexAttribPointer(1,4,GL_FLOAT,true,BJEVertex.SIZE*Float.BYTES,3 * Float.BYTES);
+        glEnableVertexAttribArray(1);
+        //UV
+        glVertexAttribPointer(2,2,GL_FLOAT,true,BJEVertex.SIZE*Float.BYTES,7* Float.BYTES);
+        glEnableVertexAttribArray(2);
+        //Normal
+        glVertexAttribPointer(3,3,GL_FLOAT,true,BJEVertex.SIZE*Float.BYTES,9* Float.BYTES);
+        glEnableVertexAttribArray(3);
+
+
+
     }
     public BJEMesh(float[] vertices, int[] e){
 
@@ -178,24 +221,24 @@ public class BJEMesh {
 
 
         }*/
+        setup();
     }
     public void Draw(){
 
         glBindVertexArray(vaoID);
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
-        glTranslatef(10,10,10);
         glDrawElements(GL_TRIANGLES, FaceBuffLen,GL_UNSIGNED_INT,0);
 
     }
     public void Clear(){
 
 
-
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
 
         glBindVertexArray(0);
+        glDeleteBuffers(vboID);
 
 
     }

@@ -16,6 +16,15 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 public class EngineWindowManager {
     private String projectName;
     private int height,width;
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     private long windowAddress;
 
     public long getWindowAddress() {
@@ -71,6 +80,7 @@ public class EngineWindowManager {
             throw new IllegalStateException("Unable to create a window");
 
         }
+        glfwSetCursorEnterCallback(windowAddress, MouseListener.getInstance()::mouseEnterCallBack);
         glfwSetCursorPosCallback(windowAddress, MouseListener.getInstance()::mousePosCallback);
         glfwSetMouseButtonCallback(windowAddress, MouseListener.getInstance()::mouseClickCallBack);
         glfwSetScrollCallback(windowAddress, MouseListener.getInstance()::mouseScrollCallBack);
@@ -83,16 +93,22 @@ public class EngineWindowManager {
         glfwSwapInterval(1);
         glfwShowWindow(windowAddress);
 
+
         GL.createCapabilities();
+        glEnable(GL_DEPTH_TEST);
+        glClear( GL_DEPTH_BUFFER_BIT);
+
         setActiveScene(new GameScene());
         glEnable(GL_CULL_FACE);
-        glCullFace(GL_FRONT);
+        //glCullFace(GL_FRONT);
+
 
     }
     public void update(){
         while (!glfwWindowShouldClose(windowAddress)){
 
             glfwPollEvents();
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             activeScene.update();
 
             glfwSwapBuffers(windowAddress);

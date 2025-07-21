@@ -12,8 +12,10 @@ public final class MouseListener {
     private double posX,posY;
     private double lastPosX, lastPosY;
     private double scrollX, scrollY;
+    private boolean isInWindow;
 
     private boolean pressedMouseButtons[] = new boolean[3];
+
 
     private MouseListener(){
         posX=0;
@@ -23,12 +25,18 @@ public final class MouseListener {
         scrollX=0;
     }
     public void mousePosCallback(long windowAddress,double x,double y){
-        lastPosY= posY;
-        lastPosX= posX;
-        posX = x;
-        posY = y;
+
+            lastPosY = posY;
+            lastPosX = posX;
+        if(isInWindow) {
+            posX = x;
+            posY = y;
+        }
 
 
+    }
+    public void mouseEnterCallBack(long windowAddress,boolean entered){
+        isInWindow=entered;
     }
     public void mouseClickCallBack(long windowAddress,int button,int action,int mods){
         if(button<3) {

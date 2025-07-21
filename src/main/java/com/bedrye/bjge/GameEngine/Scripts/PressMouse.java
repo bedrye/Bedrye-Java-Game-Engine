@@ -9,8 +9,8 @@ public class PressMouse extends MainBehaviour {
     public void update(){
         if (MouseListener.getInstance().isHold(0)) {
             getGameObject().setRotationY(getGameObject().getRotationY() + 1);
-            getGameObject().setLocalPosX(getGameObject().getLocalPosX() +1 );
-            getGameObject().setRotationZ( getGameObject().getRotationZ() -1);
+
+
         }
 
     }

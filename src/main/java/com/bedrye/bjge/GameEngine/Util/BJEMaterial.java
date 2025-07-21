@@ -65,6 +65,9 @@ public class BJEMaterial {
         this.texture = texture;
 
     }
+    public boolean hasTexture(){
+        return texture!=null;
+    }
 
 
 

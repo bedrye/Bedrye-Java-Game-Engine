@@ -1,6 +1,7 @@
 package com.bedrye.Objects;
 
 
+import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -133,7 +134,8 @@ public abstract class Object3DAbstract {
         this.scale = scale;
         updateTransform();
     }
-    public final void addScript(MainBehaviour mainBehaviour){mainBehaviour.setGameObject(this);scripts.add(mainBehaviour); }
+    public final void addScript(MainBehaviour mainBehaviour){mainBehaviour.setGameObject(this);scripts.add(mainBehaviour);
+        mainBehaviour.onTransformChange();}
     public final <T extends MainBehaviour> void removeScript(Class<T> tClass){
         for (int i = 0; i < scripts.size(); i++) {
         MainBehaviour script = scripts.get(i);
@@ -178,14 +180,19 @@ public abstract class Object3DAbstract {
                 rotateX((float)Math.toRadians(getRotationX())).
                 rotateY((float)Math.toRadians(getRotationY())).
                 rotateZ((float)Math.toRadians(getRotationZ())).
-                scale(1);
+                scale(scale.x,scale.y,scale.z);
         if (getParent()!=null)
             transform.mulLocal(getParent().getTransformMatrix());
         transform.getTranslation(globalPosition);
+
         childList.forEach(Object3DAbstract::updateTransform);
+        scripts.forEach(MainBehaviour::onTransformChange);
     }
     public Matrix4f getTransformMatrix(){
         return transform;
+    }
+    public Matrix4f getModelViewMatrix(){
+        return  new Matrix4f(EngineWindowManager.getInstance().getActiveScene().getCamera().getViewMatrix()).mul(transform);
     }
 
 

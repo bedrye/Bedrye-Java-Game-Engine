@@ -15,14 +15,16 @@ public class BJEMeshRenderer extends MainBehaviour {
         this.mesh = mesh;
         this.material =material;
         material.getTexture().initialize();
+        mesh.setup();
     }
 
     @Override
     public void update() {
-        mesh.setVertexesPosition(getGameObject().getTransformMatrix());
+
 
         material.getTexture().Bind();
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().createMaterialUniform(material);
+        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getGameObject().getTransformMatrix(),"modelMatrix");
         mesh.Draw();
         mesh.Clear();
         material.getTexture().Unbind();
@@ -46,6 +48,11 @@ public class BJEMeshRenderer extends MainBehaviour {
     }
     public void setMesh(BJEResource resource) {
         mesh = new BJEMesh(resource);
+        mesh.setup();
     }
 
+    @Override
+    public void onTransformChange() {
+        mesh.setVertexesPosition(getGameObject().getModelViewMatrix());
+    }
 }

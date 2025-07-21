@@ -8,6 +8,7 @@ public abstract class MainBehaviour {
     public void start(){};
     public void update(){};
     public void init(){};
+    public void onTransformChange(){};
 
     public Object3DAbstract getGameObject() {
         return gameObject;
@@ -16,4 +17,5 @@ public abstract class MainBehaviour {
     public void setGameObject(Object3DAbstract gameObject) {
         this.gameObject = gameObject;
     }
+
 }
