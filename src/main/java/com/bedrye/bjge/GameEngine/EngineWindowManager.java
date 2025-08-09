@@ -5,8 +5,15 @@ import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
 import com.bedrye.bjge.GameEngine.Objects.EditorScene;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
+import com.bedrye.bjge.GameEngine.Util.TimeCounter;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.system.MemoryStack;
+
+import java.nio.IntBuffer;
+import java.util.Objects;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -17,6 +24,7 @@ public class EngineWindowManager {
     private String projectName;
     private int height,width;
 
+
     public int getHeight() {
         return height;
     }
@@ -26,6 +34,7 @@ public class EngineWindowManager {
     }
 
     private long windowAddress;
+    private BJEIMGUILayer bjeimguiLayer;
 
     public long getWindowAddress() {
         return windowAddress;
@@ -70,6 +79,10 @@ public class EngineWindowManager {
         if(!glfwInit()){
             throw new RuntimeException("Unable to setup GLFW");
         }
+        GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MAJOR, 3);
+        GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MINOR, 3);
+        GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_PROFILE, GLFW.GLFW_OPENGL_CORE_PROFILE);
+
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE,GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE,GLFW_TRUE);
@@ -80,6 +93,7 @@ public class EngineWindowManager {
             throw new IllegalStateException("Unable to create a window");
 
         }
+
         glfwSetCursorEnterCallback(windowAddress, MouseListener.getInstance()::mouseEnterCallBack);
         glfwSetCursorPosCallback(windowAddress, MouseListener.getInstance()::mousePosCallback);
         glfwSetMouseButtonCallback(windowAddress, MouseListener.getInstance()::mouseClickCallBack);
@@ -95,11 +109,16 @@ public class EngineWindowManager {
 
 
         GL.createCapabilities();
+        bjeimguiLayer = new BJEIMGUILayer(windowAddress);
+        bjeimguiLayer.init();
+
+
         glEnable(GL_DEPTH_TEST);
         glClear( GL_DEPTH_BUFFER_BIT);
 
         setActiveScene(new GameScene());
         glEnable(GL_CULL_FACE);
+
         //glCullFace(GL_FRONT);
 
 
@@ -108,9 +127,11 @@ public class EngineWindowManager {
         while (!glfwWindowShouldClose(windowAddress)){
 
             glfwPollEvents();
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            activeScene.update();
 
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            bjeimguiLayer.newFrame();
+            activeScene.update();
+            bjeimguiLayer.endFrame();
             glfwSwapBuffers(windowAddress);
 
 

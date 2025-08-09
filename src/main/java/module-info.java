@@ -8,6 +8,8 @@ module com.bedrye.multiplayershooter {
     requires org.joml.primitives;
     requires org.lwjgl.stb;
     requires org.lwjgl.assimp;
+    requires imgui.lwjgl3;
+    requires imgui.binding;
 
 
     opens com.bedrye.bjge to javafx.fxml;

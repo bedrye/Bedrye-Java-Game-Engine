@@ -69,7 +69,7 @@ public class GameScene extends Scene {
         getGameObjects().add(ambientLight);
         //ambientLight.addScript(new PressMouse());
         getGameObjects().add(directionalLight);
-
+        getGameObjects().add(new BJEUIObject());
         getGameObjects().forEach(Object3DAbstract::initialize);
         setInitialized(true);
 
