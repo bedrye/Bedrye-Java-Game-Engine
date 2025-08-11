@@ -51,7 +51,7 @@ public class GameScene extends Scene {
 
         obj2.addScript(new BJEMeshRenderer(new BJEMesh(new BJEResource("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png"))));
         obj2.addChild(obj);
-        obj2.addScript(new PressMouse());
+        //obj2.addScript(new PressMouse());
 
         obj.setLocalPosX(10);
         obj2.setLocalPosZ(-50);
@@ -60,7 +60,6 @@ public class GameScene extends Scene {
         obj4.setLocalPosY(1);
 
         obj.addChild(obj4);
-        obj.addScript(new PressMouse());
         obj.setScale(new Vector3f(0.5f,0.5f,0.5f));
         obj4.setScale(new Vector3f(0.2f,0.2f,0.2f));
         obj4.addScript(new BJEMeshRenderer(new BJEMesh(new BJEResource("O:\\GIt\\MultiplayerShooter\\Assets\\Kulka.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png"))));
@@ -69,7 +68,11 @@ public class GameScene extends Scene {
         getGameObjects().add(ambientLight);
         //ambientLight.addScript(new PressMouse());
         getGameObjects().add(directionalLight);
-        getGameObjects().add(new BJEUIObject());
+        BJEUIObject a = new BJEUIObject();
+        //a.mainBehaviour = new PressMouse();
+       a.setObject3DAbstract(obj2);
+        //obj2.addScript(a.mainBehaviour);
+        getGameObjects().add(a);
         getGameObjects().forEach(Object3DAbstract::initialize);
         setInitialized(true);
 
