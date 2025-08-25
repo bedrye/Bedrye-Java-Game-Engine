@@ -20,6 +20,11 @@ public final class EditorScene extends Scene{
 
     }
 
+    @Override
+    public void updateUILayer() {
+
+    }
+
 
     //TODO
     @Override

@@ -1,13 +1,21 @@
 package com.bedrye.bjge.GameEngine.Util;
 
+import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
+import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import org.joml.Vector4f;
 
-public class BJEMaterial {
+@InspectorVisible
+public class BJEMaterial{
+
 
     private Vector4f ambient;
+
     private Vector4f diffuse;
+
     private Vector4f specular;
+    @InspectorVisible
     private BJETexture texture;
+    @InspectorVisible
     private float reflectance;
     public Vector4f getAmbient() {
         return ambient;

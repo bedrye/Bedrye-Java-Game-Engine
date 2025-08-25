@@ -1,5 +1,6 @@
 package com.bedrye.bjge.GameEngine;
 
+import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
 import com.bedrye.bjge.GameEngine.Util.BJEMesh;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
@@ -8,7 +9,9 @@ import com.bedrye.bjge.GameEngine.Util.BJETexture;
 
 public class BJEMeshRenderer extends MainBehaviour {
 
+    @InspectorVisible
     private BJEMesh mesh;
+    @InspectorVisible
     private BJEMaterial material;
     public BJEMeshRenderer(BJEMesh mesh, BJEMaterial material){
         super();
@@ -55,4 +58,5 @@ public class BJEMeshRenderer extends MainBehaviour {
     public void onTransformChange() {
         mesh.setVertexesPosition(getGameObject().getModelViewMatrix());
     }
+
 }

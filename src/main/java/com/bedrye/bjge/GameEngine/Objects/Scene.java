@@ -56,5 +56,6 @@ public abstract class Scene {
         gameObjects.add(gameObject);
 
     }
+    public abstract void updateUILayer();
 
 }

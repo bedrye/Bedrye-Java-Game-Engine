@@ -1,10 +1,15 @@
 package com.bedrye.bjge.GameEngine;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEEditorViewport;
 import imgui.*;
 
 
+import imgui.flag.ImGuiCond;
 import imgui.flag.ImGuiConfigFlags;
+import imgui.flag.ImGuiStyleVar;
+import imgui.flag.ImGuiWindowFlags;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
+import imgui.type.ImBoolean;
 import org.lwjgl.glfw.GLFW;
 
 
@@ -23,6 +28,7 @@ public class BJEIMGUILayer {
 
         imGuiGlfw.init(windowPtr, true);
         imGuiGl3.init("#version 330");
+        ImGui.getIO().setConfigFlags(ImGuiConfigFlags.DockingEnable);
 
 
     }
@@ -34,11 +40,8 @@ public class BJEIMGUILayer {
     }
 
 
-    /**
-     * Method called in the end of the main cycle.
-     * It renders ImGui and swaps GLFW buffers to show an updated frame.
-     */
     public void endFrame() {
+        ImGui.end();
         ImGui.render();
         imGuiGl3.renderDrawData(ImGui.getDrawData());
 
@@ -52,9 +55,24 @@ public class BJEIMGUILayer {
 
     }
 
-    /**
-     * Method to destroy Dear ImGui context.
-     */
+    public void setupDockspace() {
+        int windowFlags = ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoDocking;
+
+        ImGui.setNextWindowPos(0.0f, 0.0f, ImGuiCond.Always);
+        ImGui.setNextWindowSize(EngineWindowManager.getInstance().getWidth(), EngineWindowManager.getInstance().getHeight());
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowRounding, 0.0f);
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowBorderSize, 0.0f);
+        windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse |
+                ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
+                ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
+
+        ImGui.begin("Dockspace", new ImBoolean(true), windowFlags);
+        ImGui.popStyleVar(2);
+
+        // Dockspace
+        ImGui.dockSpace(ImGui.getID("Dockspace"));
+
+    }
     protected void disposeImGui() {
         ImGui.destroyContext();
     }

@@ -44,6 +44,7 @@ public abstract class Object3DAbstract {
         scale= new Vector3f(1,1,1);
         childList = new ArrayList<>();
         scripts = new ArrayList<>();
+        name = this.getClass().getSimpleName();
 
     }
 
@@ -100,10 +101,27 @@ public abstract class Object3DAbstract {
         return this.rotation.z;
     }
     public void addChild(Object3DAbstract child){
-        if(!childList.contains(child)&&child!=this) {
+        if(!childList.contains(child)&&child!=this&&!isParent(child)) {
+            if(child.parent!=null) {
+                child.parent.getChildList().remove(child);
+            }
+            else {
+                EngineWindowManager.getInstance().getActiveScene().getGameObjects().remove(child);
+            }
             child.setParent(this);
             childList.add(child);
+            child.updateTransform();
+
         }
+    }
+    public boolean isParent(Object3DAbstract object3DAbstract){
+
+        if(object3DAbstract == this)
+            return true;
+        if(parent==null)
+            return false;
+        return this.parent.isParent(object3DAbstract);
+
     }
     public void removeChild(Object3DAbstract child){
         if(!childList.contains(child)) {
@@ -194,7 +212,12 @@ public abstract class Object3DAbstract {
     public Matrix4f getModelViewMatrix(){
         return  new Matrix4f(EngineWindowManager.getInstance().getActiveScene().getCamera().getViewMatrix()).mul(transform);
     }
+    public boolean hasChildren(){
+        return !childList.isEmpty();
 
+
+
+    }
 
 
 }

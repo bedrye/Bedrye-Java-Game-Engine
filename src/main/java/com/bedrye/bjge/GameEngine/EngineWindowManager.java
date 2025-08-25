@@ -5,6 +5,7 @@ import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
 import com.bedrye.bjge.GameEngine.Objects.EditorScene;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
+import com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer;
 import com.bedrye.bjge.GameEngine.Util.TimeCounter;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -35,6 +36,11 @@ public class EngineWindowManager {
 
     private long windowAddress;
     private BJEIMGUILayer bjeimguiLayer;
+    private BJEFrameBuffer bjeFrameBuffer;
+
+    public BJEFrameBuffer getBjeFrameBuffer() {
+        return bjeFrameBuffer;
+    }
 
     public long getWindowAddress() {
         return windowAddress;
@@ -59,7 +65,7 @@ public class EngineWindowManager {
 
     private EngineWindowManager(){
         projectName = "Test";
-        height = 1280;
+        height = 1080;
         width=1920;
     }
 
@@ -111,13 +117,14 @@ public class EngineWindowManager {
         GL.createCapabilities();
         bjeimguiLayer = new BJEIMGUILayer(windowAddress);
         bjeimguiLayer.init();
-
-
+        bjeFrameBuffer = new BJEFrameBuffer(getWidth(),getHeight());
+        glViewport(0,0,getWidth(),getHeight());
         glEnable(GL_DEPTH_TEST);
         glClear( GL_DEPTH_BUFFER_BIT);
 
         setActiveScene(new GameScene());
         glEnable(GL_CULL_FACE);
+        //glPolygonMode(GL_FRONT, GL_LINE);
 
         //glCullFace(GL_FRONT);
 
@@ -128,9 +135,14 @@ public class EngineWindowManager {
 
             glfwPollEvents();
 
+
+            bjeFrameBuffer.bind();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            bjeimguiLayer.newFrame();
             activeScene.update();
+            bjeFrameBuffer.unbind();
+            bjeimguiLayer.newFrame();
+            bjeimguiLayer.setupDockspace();
+            activeScene.updateUILayer();
             bjeimguiLayer.endFrame();
             glfwSwapBuffers(windowAddress);
 
@@ -138,6 +150,9 @@ public class EngineWindowManager {
         }
 
 
+    }
+    public float getTargetAspectRatio() {
+        return (float)width / height;
     }
 
 

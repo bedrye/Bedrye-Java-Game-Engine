@@ -20,4 +20,8 @@ module com.bedrye.multiplayershooter {
     opens com.bedrye.bjge.GameEngine to javafx.fxml;
     opens com.bedrye.bjge.GameEngine.Util to javafx.fxml;
     exports com.bedrye.bjge.GameEngine.Util;
+    exports com.bedrye.bjge.GameEngine.Objects.Editor.UI;
+    opens com.bedrye.bjge.GameEngine.Objects.Editor.UI to javafx.fxml;
+    exports com.bedrye.bjge.GameEngine.Objects;
+    opens com.bedrye.bjge.GameEngine.Objects to javafx.fxml;
 }

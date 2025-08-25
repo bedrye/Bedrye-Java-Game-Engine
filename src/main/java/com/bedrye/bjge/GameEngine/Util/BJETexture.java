@@ -1,6 +1,7 @@
 package com.bedrye.bjge.GameEngine.Util;
 
 
+import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 
@@ -11,15 +12,34 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
+@InspectorVisible
 public class BJETexture extends  BJEResource{
 
 
+    public int getTextureID() {
+        return textureID;
+    }
+
     private transient  int textureID;
+    @InspectorVisible
     private boolean repeat=true;
+    @InspectorVisible
     private boolean pixelate=true;
+    private int height,width;
 
     public BJETexture(String path) {
         super(path);
+
+
+    }
+    public BJETexture(int width,int height) {
+        super("INTERNAL");
+        textureID=glGenTextures();
+        glBindTexture(GL_TEXTURE_2D,textureID);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,width,height,0, GL_RGB,GL_UNSIGNED_BYTE,0);
+
 
 
     }

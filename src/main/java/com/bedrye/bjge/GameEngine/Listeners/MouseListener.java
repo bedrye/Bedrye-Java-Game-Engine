@@ -1,5 +1,7 @@
 package com.bedrye.bjge.GameEngine.Listeners;
 
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIWindow;
+
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
@@ -78,7 +80,7 @@ public final class MouseListener {
     }
 
     public double getChangeY() {
-        return lastPosY-posX;
+        return lastPosY-posY;
     }
 
     public double getScrollX() {
@@ -94,5 +96,18 @@ public final class MouseListener {
         return pressedMouseButtons[button];
         else throw new IndexOutOfBoundsException("Mouse button id is out of bounds [0,"
                 +pressedMouseButtons.length+"]");
+    }
+
+    public double getWindowPosX(BJEUIWindow window){
+        if( getPosX()>=window.getBounds().x&&getPosX()<=window.getBounds().z)
+            return getPosX()-window.getPosition().x;
+        return -1;
+
+    }
+    public double getWindowPosY(BJEUIWindow window){
+        if( getPosY()>=window.getBounds().y&&getPosY()<=window.getBounds().w)
+            return getPosY()-window.getPosition().y;
+        return -1;
+
     }
 }

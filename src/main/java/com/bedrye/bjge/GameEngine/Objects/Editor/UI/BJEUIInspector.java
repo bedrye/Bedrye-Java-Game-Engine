@@ -1,15 +1,17 @@
-package com.bedrye.Objects;
+package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
+import com.bedrye.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
+import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import imgui.ImGui;
 import imgui.type.*;
 import org.joml.Vector3f;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class BJEUIObject extends Object3DAbstract {
+public class BJEUIInspector extends BJEUIWindow  {
     int boolcount = 0;
     int intcount = 0;
     int floatcount = 0;
@@ -32,27 +34,22 @@ public class BJEUIObject extends Object3DAbstract {
         booleans.clear();
         ints.clear();
         floats.clear();
+        boolcount = 0;
+        intcount = 0;
+        floatcount = 0;
+        doublecount = 0;
+        stringcount = 0;
 
     }
 
-    @Override
-    public void initialize() {
 
-    }
-
-    @Override
-    public void initialize(Vector3f position) {
-
-    }
-
-    @Override
     public void update() {
         if(object3DAbstract !=null) {
             ImGui.begin("Inspector");
             try {
 
-
                 inspectTransform(object3DAbstract);
+
                 inspectObject(object3DAbstract);
 
 
@@ -66,14 +63,33 @@ public class BJEUIObject extends Object3DAbstract {
     }
     public void inspectObject(Object o) throws IllegalAccessException {
         Field[] fields = o.getClass().getFields();
+        ImGui.pushID(o.getClass().getSimpleName());
         for (Field field : fields) {
+
             if (field.getType().isAssignableFrom(MainBehaviour.class)) {
                 inspectObject(field.get(o));
 
             } else
                 fieldCheck(field,o);
                 }
+        Field[] fieldinvs = o.getClass().getDeclaredFields();
+
+        for (Field field : fieldinvs) {
+            if (!Modifier.isPublic(field.getModifiers())&&field.isAnnotationPresent(InspectorVisible.class)) {
+
+                field.setAccessible(true);
+                if (field.getType().isAnnotationPresent(InspectorVisible.class)) {
+                    inspectObject(field.get(o));
+
+
+                } else
+
+                    fieldCheck(field, o);
+            }
         }
+        ImGui.popID();
+        }
+
 
 
 
@@ -193,7 +209,31 @@ public class BJEUIObject extends Object3DAbstract {
         ImGui.inputFloat("Ys", floats.get(floatcount - 2));
         ImGui.inputFloat("Zs", floats.get(floatcount - 1));
         object.setScale(new Vector3f(floats.get(floatcount - 3).get(),floats.get(floatcount - 2).get(),floats.get(floatcount - 1).get()));
+        ImGui.text("Scripts");
+        int removeAt=0;
+        boolean remove =false;
+        for (MainBehaviour main: object.getScriptList()
+             ) {
+            try {
+                ImGui.pushID(main.getClass().getSimpleName());
+                ImGui.separator();
+                ImGui.text(main.getClass().getSimpleName());
+                inspectObject(main);
+                if(ImGui.button("-")) {
+                    remove = true;
+                    break;
+                }
+                removeAt++;
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+            finally {
+                ImGui.popID();
 
+            }
+        }
+        if(remove)
+            object.removeScript(removeAt);
 
 
     }

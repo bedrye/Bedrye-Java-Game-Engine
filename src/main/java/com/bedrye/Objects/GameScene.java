@@ -2,14 +2,15 @@ package com.bedrye.Objects;
 
 
 import com.bedrye.bjge.GameEngine.BJEMeshRenderer;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEEditorViewport;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIInspector;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
-import com.bedrye.bjge.GameEngine.Scripts.PressMouse;
 import com.bedrye.bjge.GameEngine.Scripts.SImpleCameraControl;
+import com.bedrye.bjge.GameEngine.Scripts.TestBehaviour;
 import com.bedrye.bjge.GameEngine.Util.*;
 import com.bedrye.bjge.GameEngine.Util.Shaders.BasicProgramShader;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
 
 
 import java.nio.file.Paths;
@@ -21,7 +22,10 @@ import static org.lwjgl.opengl.GL20.*;
 
 public class GameScene extends Scene {
 
-    private ArrayList<BJEVertex> vertexs = new ArrayList<>();
+    public BJEUIInspector inspector = new BJEUIInspector();
+    public BJEUISceneHierarchy sceneHierarchy = new BJEUISceneHierarchy();
+    public BJEEditorViewport bjeEditorViewport = new BJEEditorViewport();
+
 
     @Override
     public void initialize() {
@@ -34,6 +38,7 @@ public class GameScene extends Scene {
        */
         Camera camera = new Camera(null);
         setCamera(camera);
+
         DirectionalLight directionalLight = new DirectionalLight();
         directionalLight.setRotationY(90);
         camera.addScript(new SImpleCameraControl());
@@ -51,8 +56,9 @@ public class GameScene extends Scene {
 
         obj2.addScript(new BJEMeshRenderer(new BJEMesh(new BJEResource("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png"))));
         obj2.addChild(obj);
-        //obj2.addScript(new PressMouse());
 
+        //obj2.addScript(new PressMouse());
+        obj2.addScript(new TestBehaviour());
         obj.setLocalPosX(10);
         obj2.setLocalPosZ(-50);
         Object3D obj4 = new Object3D();
@@ -68,17 +74,26 @@ public class GameScene extends Scene {
         getGameObjects().add(ambientLight);
         //ambientLight.addScript(new PressMouse());
         getGameObjects().add(directionalLight);
-        BJEUIObject a = new BJEUIObject();
+        Object3D obj5 = new Object3D();
+        obj5.addScript(new BJEMeshRenderer(new BJEMesh(new BJEResource("O:\\GIt\\MultiplayerShooter\\Assets\\Kulka.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png"))));
         //a.mainBehaviour = new PressMouse();
-       a.setObject3DAbstract(obj2);
+        getGameObjects().add(obj5);
         //obj2.addScript(a.mainBehaviour);
-        getGameObjects().add(a);
+
         getGameObjects().forEach(Object3DAbstract::initialize);
         setInitialized(true);
 
 
+
     }
 
+    @Override
+    public void updateUILayer() {
+        sceneHierarchy.update();
+        inspector.update();
+        bjeEditorViewport.update();
+
+    }
 
 
     @Override
@@ -90,6 +105,8 @@ public class GameScene extends Scene {
         getShaderProgram().uploadInt(0,"texttr");
         glActiveTexture(GL_TEXTURE0);
         getCamera().update();
+
+
         //getShaderProgram().UploadMatrix(getCamera().getProjectionMatrix(),"projectionMatrix");
         //getShaderProgram().UploadMatrix(getCamera().getViewMatrix(),"viewMatrix");
         getShaderProgram().uploadVec3f(new Vector3f(0.3f,0.3f,0.5f),"ambientLight");
