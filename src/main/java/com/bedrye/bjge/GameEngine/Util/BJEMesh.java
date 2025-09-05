@@ -19,7 +19,7 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 import static org.lwjgl.system.MemoryUtil.memFree;
 
 //TODO BATCHING
-public class BJEMesh {
+public class BJEMesh extends BJEResource {
 
     private ArrayList<BJEVertex> BJEVerteciesList = new ArrayList<>();
 
@@ -135,7 +135,7 @@ public class BJEMesh {
     }
     public BJEMesh(float[] vertices, int[] e){
 
-
+        super("INTERNAL","INTERNAL");
         this.vertexes = vertices.clone();
         this.elements = e;
         FaceBuffLen =elements.length;
@@ -147,6 +147,7 @@ public class BJEMesh {
     }
     public BJEMesh(ArrayList<BJEVertex> verts ,int[] e){
 
+        super("INTERNAL","INTERNAL");
         BJEVerteciesList = verts;
         vertexes = new float[BJEVerteciesList.size()*BJEVertex.SIZE];
         for (int i = 0; i < BJEVerteciesList.size()*BJEVertex.SIZE; i+=BJEVertex.SIZE) {
@@ -169,7 +170,7 @@ public class BJEMesh {
         }
     }
     public BJEMesh(BJEResource resource){
-
+        super(resource.path,resource.getName());
         AIScene scene = Assimp.aiImportFile(resource.getPath(),Assimp.aiProcess_JoinIdenticalVertices|Assimp.aiProcess_Triangulate);
         assert scene!=null;
         AIMesh mesh = AIMesh.create(scene.mMeshes().get(0));

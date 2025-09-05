@@ -135,15 +135,15 @@ public class EngineWindowManager {
 
             glfwPollEvents();
 
-
-            bjeFrameBuffer.bind();
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            activeScene.update();
-            bjeFrameBuffer.unbind();
             bjeimguiLayer.newFrame();
             bjeimguiLayer.setupDockspace();
             activeScene.updateUILayer();
             bjeimguiLayer.endFrame();
+            bjeFrameBuffer.bind();
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            activeScene.update();
+            bjeFrameBuffer.unbind();
+
             glfwSwapBuffers(windowAddress);
 
 

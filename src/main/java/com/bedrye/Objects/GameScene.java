@@ -2,10 +2,12 @@ package com.bedrye.Objects;
 
 
 import com.bedrye.bjge.GameEngine.BJEMeshRenderer;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEAssetHierarchy;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEEditorViewport;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIInspector;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
+import com.bedrye.bjge.GameEngine.Scripts.PressMouse;
 import com.bedrye.bjge.GameEngine.Scripts.SImpleCameraControl;
 import com.bedrye.bjge.GameEngine.Scripts.TestBehaviour;
 import com.bedrye.bjge.GameEngine.Util.*;
@@ -25,6 +27,7 @@ public class GameScene extends Scene {
     public BJEUIInspector inspector = new BJEUIInspector();
     public BJEUISceneHierarchy sceneHierarchy = new BJEUISceneHierarchy();
     public BJEEditorViewport bjeEditorViewport = new BJEEditorViewport();
+    public BJEAssetHierarchy bjeAssetHierarchy;
 
 
     @Override
@@ -36,6 +39,7 @@ public class GameScene extends Scene {
         vertexs.add(new BJEVertex(new Vector3f(100.5f,100.5f,0.0f),new Vector4f(0.0f,0.5f,0.0f,1.0f),  new Vector2f(1.0f,1.0f),new Vector3f()));
         vertexs.add(new BJEVertex(new Vector3f(0.5f,100.5f,0.0f),new Vector4f(0.0f,0.5f,0.5f,1.0f),  new Vector2f(0.0f,1.0f),new Vector3f()));
        */
+        bjeAssetHierarchy= new BJEAssetHierarchy();
         Camera camera = new Camera(null);
         setCamera(camera);
 
@@ -50,15 +54,15 @@ public class GameScene extends Scene {
         Object3D obj = new Object3D();
         //Object3D obj3 = new Object3D();
 
-        obj.addScript(new BJEMeshRenderer(new BJEMesh(new BJEResource("O:\\GIt\\MultiplayerShooter\\Assets\\Kulka.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png"))));
+        obj.addScript(new BJEMeshRenderer(new BJEMesh(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\sphere.obj","sphere.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png","Egg.png"))));
         AmbientLight ambientLight = new AmbientLight();
         Object3D obj2 = new Object3D();
 
-        obj2.addScript(new BJEMeshRenderer(new BJEMesh(new BJEResource("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png"))));
-        obj2.addChild(obj);
+        obj2.addScript(new BJEMeshRenderer(new BJEMesh(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj","Cube.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png","Egg.png"))));
+        getGameObjects().add(obj);
 
         //obj2.addScript(new PressMouse());
-        obj2.addScript(new TestBehaviour());
+
         obj.setLocalPosX(10);
         obj2.setLocalPosZ(-50);
         Object3D obj4 = new Object3D();
@@ -68,14 +72,15 @@ public class GameScene extends Scene {
         obj.addChild(obj4);
         obj.setScale(new Vector3f(0.5f,0.5f,0.5f));
         obj4.setScale(new Vector3f(0.2f,0.2f,0.2f));
-        obj4.addScript(new BJEMeshRenderer(new BJEMesh(new BJEResource("O:\\GIt\\MultiplayerShooter\\Assets\\Kulka.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png"))));
+        obj4.addScript(new BJEMeshRenderer(new BJEMesh(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Kulka.obj","Kulka.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png","Egg.png"))));
         getGameObjects().add(obj2);
         //getGameObjects().add(obj3);
         getGameObjects().add(ambientLight);
         //ambientLight.addScript(new PressMouse());
         getGameObjects().add(directionalLight);
         Object3D obj5 = new Object3D();
-        obj5.addScript(new BJEMeshRenderer(new BJEMesh(new BJEResource("O:\\GIt\\MultiplayerShooter\\Assets\\Kulka.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png"))));
+        obj5.addScript(new BJEMeshRenderer(new BJEMesh(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Kulka.obj","Kulka.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png","Egg.png"))));
+        obj.addScript(new PressMouse());
         //a.mainBehaviour = new PressMouse();
         getGameObjects().add(obj5);
         //obj2.addScript(a.mainBehaviour);
@@ -92,6 +97,7 @@ public class GameScene extends Scene {
         sceneHierarchy.update();
         inspector.update();
         bjeEditorViewport.update();
+        bjeAssetHierarchy.update();
 
     }
 

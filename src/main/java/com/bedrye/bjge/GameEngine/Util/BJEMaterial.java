@@ -13,8 +13,8 @@ public class BJEMaterial{
     private Vector4f diffuse;
 
     private Vector4f specular;
-    @InspectorVisible
-    private BJETexture texture;
+
+    public BJETexture texture;
     @InspectorVisible
     private float reflectance;
     public Vector4f getAmbient() {

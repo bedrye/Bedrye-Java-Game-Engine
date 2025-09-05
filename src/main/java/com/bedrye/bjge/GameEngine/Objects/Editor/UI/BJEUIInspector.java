@@ -3,6 +3,8 @@ package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 import com.bedrye.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
+import com.bedrye.bjge.GameEngine.Util.BJEResource;
+import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import imgui.ImGui;
 import imgui.type.*;
 import org.joml.Vector3f;
@@ -17,7 +19,7 @@ public class BJEUIInspector extends BJEUIWindow  {
     int floatcount = 0;
     int doublecount = 0;
     int stringcount = 0;
-    public MainBehaviour mainBehaviour;
+
     public ArrayList<ImBoolean> booleans = new ArrayList<>();
     public ArrayList<ImInt> ints = new ArrayList<>();
     public ArrayList<ImFloat> floats = new ArrayList<>();
@@ -50,15 +52,17 @@ public class BJEUIInspector extends BJEUIWindow  {
 
                 inspectTransform(object3DAbstract);
 
-                inspectObject(object3DAbstract);
+                   inspectObject(object3DAbstract);
 
 
 
-            } catch (IllegalAccessException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
             ImGui.end();
+
+
         }
     }
     public void inspectObject(Object o) throws IllegalAccessException {
@@ -66,10 +70,35 @@ public class BJEUIInspector extends BJEUIWindow  {
         ImGui.pushID(o.getClass().getSimpleName());
         for (Field field : fields) {
 
-            if (field.getType().isAssignableFrom(MainBehaviour.class)) {
-                inspectObject(field.get(o));
+            if (MainBehaviour.class.isAssignableFrom(field.getType())) {
 
-            } else
+                inspectObject(field.get(o));
+            }
+            else if (BJEResource.class.isAssignableFrom(field.getType())) {
+
+                if (field.get(o) == null)
+                    ImGui.selectable(field.getName(), 50, 50);
+                else {
+                    ((BJEResource) field.get(o)).show();
+                    ((BJEResource) field.get(o)).hide();
+                    //ImGui.selectable(field.getName(), 50, 50);
+                }
+                if (ImGui.beginDragDropTarget()) {
+                    BJEResource payload = ImGui.acceptDragDropPayload("Resource");
+
+                    if (payload != null) {
+                        //((BJETexture) payload).initialize();
+                        field.set(o, payload);
+                    }
+
+
+
+                    ImGui.endDragDropTarget();
+                }
+
+            }
+
+            else
                 fieldCheck(field,o);
                 }
         Field[] fieldinvs = o.getClass().getDeclaredFields();
@@ -81,13 +110,16 @@ public class BJEUIInspector extends BJEUIWindow  {
                 if (field.getType().isAnnotationPresent(InspectorVisible.class)) {
                     inspectObject(field.get(o));
 
+                }
 
-                } else
+                else
 
                     fieldCheck(field, o);
             }
         }
-        ImGui.popID();
+
+            ImGui.popID();
+
         }
 
 

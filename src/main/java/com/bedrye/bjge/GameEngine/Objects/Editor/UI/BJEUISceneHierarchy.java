@@ -15,7 +15,6 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
 
     HashMap<Object3DAbstract,Object3DAbstract> changes = new HashMap<>();
-    //private  Object3DAbstract objectNode;
     public void update() {
         ImGui.begin("Hierarchy");
         int flag = ImGuiTreeNodeFlags.DefaultOpen;
@@ -57,6 +56,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
             }
             if (ImGui.beginDragDropTarget()) {
                 Object3DAbstract object3DAbstract1 = ImGui.acceptDragDropPayload("SceneHierarchy");
+
                     if(object3DAbstract1!=null)
                         changes.put(object3DAbstract,object3DAbstract1);
                     //object3DAbstract.addChild(object3DAbstract1);
@@ -70,8 +70,8 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
 
 
-            // Call ImGui::TreeNodeEx() recursively to populate each level of children
-            ImGui.treePop();  // This is required at the end of the if block
+
+            ImGui.treePop();
         }
 
 

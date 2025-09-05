@@ -1,7 +1,10 @@
 package com.bedrye.bjge.GameEngine.Util;
 
 
+import com.bedrye.Objects.GameScene;
+import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
+import imgui.ImGui;
 import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 
@@ -12,7 +15,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
-@InspectorVisible
+
 public class BJETexture extends  BJEResource{
 
 
@@ -21,24 +24,26 @@ public class BJETexture extends  BJEResource{
     }
 
     private transient  int textureID;
-    @InspectorVisible
+
     private boolean repeat=true;
-    @InspectorVisible
+
     private boolean pixelate=true;
     private int height,width;
 
-    public BJETexture(String path) {
-        super(path);
+    public BJETexture(String path,String name) {
+        super(path,name);
+        initialize();
 
 
     }
     public BJETexture(int width,int height) {
-        super("INTERNAL");
+        super("INTERNAL","INTERNAL");
         textureID=glGenTextures();
         glBindTexture(GL_TEXTURE_2D,textureID);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,width,height,0, GL_RGB,GL_UNSIGNED_BYTE,0);
+
 
 
 
@@ -78,4 +83,33 @@ public class BJETexture extends  BJEResource{
 
     }
 
+    @Override
+    public void show() {
+
+        ImGui.pushID(path);
+        ImGui.selectable(getName(),100,30);
+
+
+
+    }
+    @Override
+    public void DragStart() {
+        if (ImGui.beginDragDropSource())
+        {
+            ImGui.setDragDropPayload("Resource",this);
+            ImGui.text(getName());
+
+            ImGui.endDragDropSource();
+
+
+        }
+    }
+
+    @Override
+    public void hide() {
+        ImGui.sameLine();
+        ImGui.image(textureID,30,30);
+
+        super.hide();
+    }
 }

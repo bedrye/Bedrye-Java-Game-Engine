@@ -1,13 +1,25 @@
 package com.bedrye.bjge.GameEngine.Util;
 
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIDragSource;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIVisible;
+import imgui.ImGui;
+import imgui.flag.ImGuiDragDropFlags;
+
 import java.io.*;
 
-public class BJEResource implements Serializable {
+public abstract class BJEResource implements Serializable, BJEUIVisible, BJEUIDragSource {
     protected final String path;
+    private final String name;
 
-    public BJEResource(String path) {
-        this.path = path;
+    public String getName() {
+        return name;
     }
+
+    public BJEResource(String path, String name) {
+        this.path = path;
+        this.name = name;
+    }
+
 
     public String getPath() {
         return path;
@@ -28,6 +40,32 @@ public class BJEResource implements Serializable {
         objectOutputStream.writeObject(this);
         objectOutputStream.close();
         fos.close();
+    }
+
+    @Override
+    public void show() {
+        ImGui.pushID(path);
+        ImGui.selectable(name);
+
+
+
+    }
+
+    @Override
+    public void DragStart() {
+        if (ImGui.beginDragDropSource())
+        {
+            ImGui.setDragDropPayload("Resource",this);
+            ImGui.text(name);
+
+            ImGui.endDragDropSource();
+
+
+        }
+    }
+    @Override
+    public void hide() {
+        ImGui.popID();
     }
 
 }
