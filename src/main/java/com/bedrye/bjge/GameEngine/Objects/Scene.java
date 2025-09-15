@@ -44,7 +44,15 @@ public abstract class Scene {
 
     public abstract void initialize() ;
 
+    public void setAsParent(Object3DAbstract gameObject) {
+        if(!gameObjects.contains(gameObject)){
 
+            gameObjects.add(gameObject);
+
+            gameObject.getParent().getChildList().remove(gameObject);
+            gameObject.setParent(null);
+        }
+    }
     public ArrayList<Object3DAbstract> getGameObjects() {
         return gameObjects;
     }

@@ -1,17 +1,22 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
 import com.bedrye.Objects.Object3DAbstract;
+import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import com.bedrye.bjge.GameEngine.Util.BJEResource;
 import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import imgui.ImGui;
+import imgui.ImVec4;
 import imgui.type.*;
 import org.joml.Vector3f;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_DELETE;
 
 public class BJEUIInspector extends BJEUIWindow  {
     int boolcount = 0;
@@ -61,10 +66,15 @@ public class BJEUIInspector extends BJEUIWindow  {
             }
 
             ImGui.end();
+            if(KeyListener.getInstance().isKeyPressed(GLFW_KEY_DELETE)){
 
+                delete();
+
+                }
+            }
 
         }
-    }
+
     public void inspectObject(Object o) throws IllegalAccessException {
         Field[] fields = o.getClass().getFields();
         ImGui.pushID(o.getClass().getSimpleName());
@@ -178,6 +188,7 @@ public class BJEUIInspector extends BJEUIWindow  {
 
                 break;
             case "Vector3f":
+
                 ImGui.text(field.getType().getSimpleName() + " " + field.getName());
                 Vector3f vector3f = (Vector3f) field.get(object);
                     floatcount+=3;
@@ -186,6 +197,7 @@ public class BJEUIInspector extends BJEUIWindow  {
                         floats.add(new ImFloat(vector3f.y));
                         floats.add(new ImFloat(vector3f.z));
                     }
+
                     ImGui.inputFloat("x", floats.get(floatcount - 3));
                     ImGui.inputFloat("y", floats.get(floatcount - 2));
                     ImGui.inputFloat("z", floats.get(floatcount - 1));
@@ -269,4 +281,19 @@ public class BJEUIInspector extends BJEUIWindow  {
 
 
     }
+    public void delete(){
+
+        if(object3DAbstract!=null){
+            if(object3DAbstract.getParent()!=null) {
+                object3DAbstract.getParent().removeChild(object3DAbstract);
+            }
+            else
+                EngineWindowManager.getInstance().getActiveScene().getGameObjects().remove(object3DAbstract);
+
+            object3DAbstract=null;
+
+
+        }
+    }
 }
+

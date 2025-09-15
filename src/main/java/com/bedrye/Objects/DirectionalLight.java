@@ -46,8 +46,8 @@ public class DirectionalLight extends Light{
     @Override
     public void update() {
         getScriptList().forEach(MainBehaviour::update);
-        AxisAngle4f axisAngle4f = new AxisAngle4f();
-        getModelViewMatrix().getRotation(axisAngle4f);
+        //AxisAngle4f axisAngle4f = new AxisAngle4f();
+        //getModelViewMatrix().getRotation(axisAngle4f);
         direction = new Vector3f((float)Math.sin((float) Math.toRadians(getRotationY())),(float)Math.cos((float) Math.toRadians(getRotationY())),0);
         //System.out.println(direction.y);
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().createDirectionalLightUniform(this);

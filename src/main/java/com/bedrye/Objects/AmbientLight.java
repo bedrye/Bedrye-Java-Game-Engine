@@ -10,7 +10,7 @@ public class AmbientLight extends Light {
 
     public AmbientLight() {
         super();
-        this.setName("pointLight");
+        this.setName("AmbientLight");
         setColor(new Vector3f(0.3f,0.3f,0.3f));
         intensity = 1;
         attenuation =  new Attenuation(0, 0, 1);
@@ -50,7 +50,7 @@ public class AmbientLight extends Light {
 
     @Override
     public void update() {
-
+        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(getColor(),"ambientLight");
     }
     public static class Attenuation {
 

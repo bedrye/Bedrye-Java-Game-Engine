@@ -2,6 +2,7 @@ package com.bedrye.Objects;
 
 
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIVisible;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -124,7 +125,7 @@ public abstract class Object3DAbstract {
 
     }
     public void removeChild(Object3DAbstract child){
-        if(!childList.contains(child)) {
+        if(childList.contains(child)) {
             child.setParent(null);
             childList.remove(child);
         }

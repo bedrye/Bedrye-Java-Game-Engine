@@ -3,6 +3,7 @@ package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 import com.bedrye.Objects.GameScene;
 import com.bedrye.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
 import imgui.ImGui;
 import imgui.flag.ImGuiTreeNodeFlags;
 import org.joml.Vector3f;
@@ -21,15 +22,29 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         if (ImGui.treeNodeEx("root", flag))
         {
 
+
+            if (ImGui.beginDragDropTarget()) {
+                Object3DAbstract object3DAbstract1 = ImGui.acceptDragDropPayload("SceneHierarchy");
+
+                if (object3DAbstract1 != null)
+                    EngineWindowManager.getInstance().getActiveScene().setAsParent(object3DAbstract1);
+                //object3DAbstract.addChild(object3DAbstract1);
+
+
+                ImGui.endDragDropTarget();
+            }
             for (Object3DAbstract object3DAbstract : EngineWindowManager.getInstance().getActiveScene().getGameObjects())
                 AddTreeNode(object3DAbstract);
 
 
+
             ImGui.treePop();
+
         }
         ImGui.end();
         changes.forEach((k, v) -> k.addChild(v));
         changes.clear();
+
 
     }
     public void AddTreeNode(Object3DAbstract object3DAbstract){
@@ -38,7 +53,10 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         {
             flag |= ImGuiTreeNodeFlags.Leaf;
         }
-
+        if (object3DAbstract==((GameScene)EngineWindowManager.getInstance().getActiveScene()).inspector.getObject3DAbstract())
+        {
+            flag |= ImGuiTreeNodeFlags.Selected;
+        }
         if (ImGui.treeNodeEx( object3DAbstract.hashCode(),flag,object3DAbstract.getName()))
         {
             if (ImGui.isItemClicked())
@@ -73,6 +91,14 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
             ImGui.treePop();
         }
+
+
+    }
+    public void AddNewObject(){
+
+
+
+
 
 
     }

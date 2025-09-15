@@ -23,12 +23,12 @@ public class BJETexture extends  BJEResource{
         return textureID;
     }
 
-    private transient  int textureID;
+    protected transient  int textureID;
 
-    private boolean repeat=true;
+    protected boolean repeat=true;
 
-    private boolean pixelate=true;
-    private int height,width;
+    protected boolean pixelate=true;
+    protected int height,width;
 
     public BJETexture(String path,String name) {
         super(path,name);

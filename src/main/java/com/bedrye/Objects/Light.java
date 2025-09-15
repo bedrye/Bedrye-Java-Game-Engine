@@ -4,7 +4,7 @@ import org.joml.Vector3f;
 
 public abstract class Light extends Object3DAbstract{
 
-    private Vector3f color;
+    public Vector3f color;
 
     public Vector3f getColor() {
         return color;

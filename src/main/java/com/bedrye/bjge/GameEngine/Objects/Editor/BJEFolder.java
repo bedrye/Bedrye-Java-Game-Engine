@@ -2,10 +2,7 @@ package com.bedrye.bjge.GameEngine.Objects.Editor;
 
 import com.bedrye.Objects.GameScene;
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.Util.BJEMesh;
-import com.bedrye.bjge.GameEngine.Util.BJEObjFile;
-import com.bedrye.bjge.GameEngine.Util.BJEResource;
-import com.bedrye.bjge.GameEngine.Util.BJETexture;
+import com.bedrye.bjge.GameEngine.Util.*;
 import imgui.ImGui;
 
 import java.io.File;
@@ -40,11 +37,17 @@ public class BJEFolder extends BJEResource {
                 if(index > 0) {
                     ext = fileName.substring(index + 1);
                 }
-                if ( ext.equals("png")|| ext.equals("jpg")) {
+                if ( ext.equals("png")) {
 
                     bjeResource = new BJETexture(file.getPath(),file.getName());
                     structure.put(bjeResource.getPath(), bjeResource);
                     continue;
+                }
+                if (ext.equals("jpg")){
+                    bjeResource = new BJEJPGTexture(file.getPath(),file.getName());
+                    structure.put(bjeResource.getPath(), bjeResource);
+                    continue;
+
                 }
 
                 if ( ext.equals("obj")) {

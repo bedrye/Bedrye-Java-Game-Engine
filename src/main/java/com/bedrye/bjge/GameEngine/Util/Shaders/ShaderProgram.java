@@ -88,13 +88,7 @@ public abstract class ShaderProgram {
 
 
     }
-    public void createDirectionalLightTest() {
-        uploadVec3f(new Vector3f(1.0f,1f,1f), "directionalLight.colour" );
-        uploadVec3f( new Vector3f(0f,1f,0f),  "directionalLight.position");
-        uploadFloat( 10f, "directionalLight.intensity" );
 
-
-    }
     public void createPointLightUniform(AmbientLight ambientLight) {
         uploadVec3f(ambientLight.getColor(), ambientLight.getName()+ ".colour" );
         uploadVec3f( ambientLight.getPosition(), ambientLight.getName() + ".position");
