@@ -32,7 +32,25 @@ public class BJEEditorViewport  extends BJEUIWindow {
 
 
 
+
+
+
             ImGui.end();
+            if (ImGui.beginMainMenuBar()) {
+                if (ImGui.beginMenu("File")) {
+                    if (ImGui.menuItem("Create")) {
+                    }
+                    if (ImGui.menuItem("Open", "Ctrl+O")) {
+                    }
+                    if (ImGui.menuItem("Save", "Ctrl+S")) {
+                    }
+                    if (ImGui.menuItem("Save as..")) {
+                    }
+                    ImGui.endMenu();
+                }
+                ImGui.endMainMenuBar();
+            }
+
         }
 
 
@@ -46,7 +64,6 @@ public class BJEEditorViewport  extends BJEUIWindow {
             float aspectWidth = windowSize.x;
             float aspectHeight = aspectWidth / EngineWindowManager.getInstance().getTargetAspectRatio();
             if (aspectHeight > windowSize.y) {
-                // We must switch to pillarbox mode
                 aspectHeight = windowSize.y;
                 aspectWidth = aspectHeight * EngineWindowManager.getInstance().getTargetAspectRatio();
             }

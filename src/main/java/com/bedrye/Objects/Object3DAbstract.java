@@ -219,6 +219,18 @@ public abstract class Object3DAbstract {
 
 
     }
+    public void delete(){
+            if(getParent()!=null) {
+                getParent().removeChild(this);
+            }
+            else
+                EngineWindowManager.getInstance().getActiveScene().getGameObjects().remove(this);
+
+        ((GameScene)EngineWindowManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(null);
 
 
-}
+        }
+    }
+
+
+

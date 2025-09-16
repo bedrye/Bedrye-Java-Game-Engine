@@ -68,7 +68,7 @@ public class BJEUIInspector extends BJEUIWindow  {
             ImGui.end();
             if(KeyListener.getInstance().isKeyPressed(GLFW_KEY_DELETE)){
 
-                delete();
+                object3DAbstract.delete();
 
                 }
             }
@@ -281,19 +281,7 @@ public class BJEUIInspector extends BJEUIWindow  {
 
 
     }
-    public void delete(){
-
-        if(object3DAbstract!=null){
-            if(object3DAbstract.getParent()!=null) {
-                object3DAbstract.getParent().removeChild(object3DAbstract);
-            }
-            else
-                EngineWindowManager.getInstance().getActiveScene().getGameObjects().remove(object3DAbstract);
-
-            object3DAbstract=null;
 
 
-        }
-    }
 }
 

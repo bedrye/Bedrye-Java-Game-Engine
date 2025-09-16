@@ -16,12 +16,12 @@ out vec3 fVertexNormal;
 out vec3 fVertexPos;
 
 void main(){
-        fColor=ShColor;
-        fTextureCoords=ShTextureCoords;
-        vec4 mvPose = viewMatrix*modelMatrix* vec4(ShPos,1.0);
-        gl_Position = projectionMatrix* mvPose;
-        fVertexNormal = normalize(viewMatrix*modelMatrix * vec4(ShVertexNormal, 0.0)).xyz;
-        fVertexPos = mvPose.xyz;
+        fColor = ShColor;
+        fTextureCoords = ShTextureCoords;
+        vec4 worldPos = modelMatrix * vec4(ShPos, 1.0);
+        fVertexPos = worldPos.xyz;
+        fVertexNormal = normalize(mat3(modelMatrix) * ShVertexNormal);
+        gl_Position = projectionMatrix * viewMatrix * worldPos;
 }
 #section fragment
 #version 330 core
@@ -77,16 +77,16 @@ void setupColours(Material material, vec2 textCoord)
 
 }
 
+
 vec4 calcDirLight(vec3 light_colour, float light_intensity, vec3 position, vec3 to_light_dir, vec3 normal)
 {
         vec4 diffuseColour = vec4(0, 0, 0, 0);
         vec4 specColour = vec4(0, 0, 0, 0);
-
-        // Diffuse Light
+        
         float diffuseFactor = max(dot(normal, to_light_dir), 0.0);
         diffuseColour = diffuseC * vec4(light_colour, 1.0) * light_intensity * diffuseFactor;
 
-        // Specular Light
+
         vec3 camera_direction = normalize(camera_pos-position);
         vec3 from_light_dir = -to_light_dir;
         vec3 reflected_light = normalize(reflect(from_light_dir , normal));

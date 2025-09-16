@@ -37,8 +37,6 @@ l
 .src/main/java/com/bedrye/Objects/Object3D.java,3\2\323b450fa97d6dfa188841186bf83e795a223711
 u
 Esrc/main/java/com/bedrye/bjge/GameEngine/Listeners/MouseListener.java,0\c\0c9c519d87e411adaf2da1a3e7d20f9dea6a5cf2
-y
-Isrc/main/java/com/bedrye/bjge/GameEngine/Objects/Editor/Prefabs/Cube.java,a\3\a30309d15db8b182d559ffb76b2a6e2e0775f92c
 [
 +src/main/java/com/bedrye/Objects/Light.java,4\5\45ebbc509f0d1932875c9f20ef50600ec2b03cf6
 \
@@ -57,5 +55,3 @@ f
 6src/main/java/com/bedrye/bjge/GameEngine/TestMain.java,4\3\43af2e30a5399ac0adc5f1ef8e78942ec473ff6a
 {
 Ksrc/main/java/com/bedrye/bjge/GameEngine/Objects/Editor/UI/BJEUIWindow.java,b\0\b00e71f53d601b815f3ed7f46f5a8e0915bd3a91
-Å
-Qsrc/main/java/com/bedrye/bjge/GameEngine/Objects/Editor/UI/BJEEditorViewport.java,4\0\40c739d84772e8eee3bd87d1f2134d8ef55237d1

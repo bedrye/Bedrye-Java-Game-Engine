@@ -7,11 +7,11 @@ import com.bedrye.bjge.GameEngine.Util.BJEMesh;
 import com.bedrye.bjge.GameEngine.Util.BJEObjFile;
 import com.bedrye.bjge.GameEngine.Util.BJETexture;
 
-public class Cube extends Object3D {
+public class Sphere extends Object3D {
 
-    public Cube(){
+    public Sphere(){
         super();
-        addScript(new BJEMeshRenderer(new BJEMesh(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj","Cube.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png","Egg.png"))));
+        addScript(new BJEMeshRenderer(new BJEMesh(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Sphere.obj","Sphere.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png","Egg.png"))));
 
 
     }
