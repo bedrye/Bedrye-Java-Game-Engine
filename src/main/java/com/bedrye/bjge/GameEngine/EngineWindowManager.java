@@ -6,13 +6,24 @@ import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
 import com.bedrye.bjge.GameEngine.Objects.EditorScene;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
 import com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer;
+import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fDeserializer;
+import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fSerializer;
+import com.bedrye.bjge.GameEngine.Util.Serialization.Vector4fDeserializer;
+import com.bedrye.bjge.GameEngine.Util.Serialization.Vector4fSerializer;
 import com.bedrye.bjge.GameEngine.Util.TimeCounter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.joml.Vector3f;
+import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.IntBuffer;
 import java.util.Objects;
 
@@ -25,6 +36,8 @@ public class EngineWindowManager {
     private String projectName;
     private int height,width;
 
+    ObjectMapper mapper = new ObjectMapper();
+    SimpleModule module = new SimpleModule();
 
     public int getHeight() {
         return height;
@@ -81,6 +94,14 @@ public class EngineWindowManager {
         glfwSetErrorCallback(null).free();
     }
     public void init(){
+
+        module.addSerializer(Vector3f.class, new Vector3fSerializer());
+        module.addDeserializer(Vector3f.class, new Vector3fDeserializer());
+        module.addSerializer(Vector4f.class, new Vector4fSerializer());
+        module.addDeserializer(Vector4f.class, new Vector4fDeserializer());
+        mapper.registerModule(module);
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
         GLFWErrorCallback.createPrint(System.err).set();
         if(!glfwInit()){
             throw new RuntimeException("Unable to setup GLFW");
@@ -155,5 +176,20 @@ public class EngineWindowManager {
         return (float)width / height;
     }
 
-
+    public void save(){
+        File file = new File("Assets\\game.json");
+        try {
+            mapper.writeValue(file, getActiveScene());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void load(){
+        File file = new File("Assets\\game.json");
+        try {
+            setActiveScene(mapper.readValue(file, Scene.class));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

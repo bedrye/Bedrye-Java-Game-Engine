@@ -2,6 +2,8 @@ package com.bedrye.Objects;
 
 
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joml.Vector3f;
 
 public class AmbientLight extends Light {
@@ -57,8 +59,8 @@ public class AmbientLight extends Light {
         private float constant;
         private float exponent;
         private float linear;
-
-        public Attenuation(float constant, float linear, float exponent) {
+        @JsonCreator
+        public Attenuation(@JsonProperty("constant") float constant,@JsonProperty("linear") float linear, @JsonProperty("exponent")float exponent) {
             this.constant = constant;
             this.linear = linear;
             this.exponent = exponent;

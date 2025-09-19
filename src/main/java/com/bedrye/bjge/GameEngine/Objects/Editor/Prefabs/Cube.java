@@ -11,7 +11,7 @@ public class Cube extends Object3D {
 
     public Cube(){
         super();
-        addScript(new BJEMeshRenderer(new BJEMesh(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj","Cube.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png","Egg.png"))));
+        addScript(new BJEMeshRenderer(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj","Cube.obj"),new BJETexture("Assets\\Egg.png","Egg.png")));
 
 
     }

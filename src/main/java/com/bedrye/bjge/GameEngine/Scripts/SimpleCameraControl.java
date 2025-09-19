@@ -5,7 +5,7 @@ import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class SImpleCameraControl extends MainBehaviour{
+public class SimpleCameraControl extends MainBehaviour{
 
     @Override
     public void update() {

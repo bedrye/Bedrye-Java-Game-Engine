@@ -1,5 +1,6 @@
 package com.bedrye.bjge.GameEngine.Util;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.joml.*;
 import org.lwjgl.BufferUtils;
 
@@ -19,14 +20,16 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 import static org.lwjgl.system.MemoryUtil.memFree;
 
 //TODO BATCHING
-public class BJEMesh extends BJEResource {
-
+public class BJEMesh {
+    private BJEResource resource;
+    @JsonIgnore
     private ArrayList<BJEVertex> BJEVerteciesList = new ArrayList<>();
+    @JsonIgnore
 
     public float[] getVertexes() {
         return vertexes;
     }
-
+    @JsonIgnore
     public void setVertexesPosition(Matrix4f matrix4f) {
 
 
@@ -35,24 +38,27 @@ public class BJEMesh extends BJEResource {
 
         upload();
     }
-
+    @JsonIgnore
     public void setVertexes(float[] vertexes) {
         this.vertexes = vertexes;
     }
-
+    @JsonIgnore
     public int[] getElements() {
         return elements;
     }
-
+    @JsonIgnore
     public void setElements(int[] elements) {
         this.elements = elements;
     }
-
+    @JsonIgnore
     private float[] vertexes;
-
+    @JsonIgnore
     private int[] elements;
+    @JsonIgnore
     private int vaoID, vboID,eboID, FaceBuffLen;
+    @JsonIgnore
     FloatBuffer vertBuff;
+    @JsonIgnore
     IntBuffer intBuffer;
 
     public void upload(){
@@ -134,8 +140,6 @@ public class BJEMesh extends BJEResource {
 
     }
     public BJEMesh(float[] vertices, int[] e){
-
-        super("INTERNAL","INTERNAL");
         this.vertexes = vertices.clone();
         this.elements = e;
         FaceBuffLen =elements.length;
@@ -147,7 +151,7 @@ public class BJEMesh extends BJEResource {
     }
     public BJEMesh(ArrayList<BJEVertex> verts ,int[] e){
 
-        super("INTERNAL","INTERNAL");
+
         BJEVerteciesList = verts;
         vertexes = new float[BJEVerteciesList.size()*BJEVertex.SIZE];
         for (int i = 0; i < BJEVerteciesList.size()*BJEVertex.SIZE; i+=BJEVertex.SIZE) {
@@ -170,7 +174,8 @@ public class BJEMesh extends BJEResource {
         }
     }
     public BJEMesh(BJEResource resource){
-        super(resource.path,resource.getName());
+        //super(resource.path,resource.getName());
+        this.resource = resource;
         AIScene scene = Assimp.aiImportFile(resource.getPath(),Assimp.aiProcess_JoinIdenticalVertices|Assimp.aiProcess_Triangulate);
         assert scene!=null;
         AIMesh mesh = AIMesh.create(scene.mMeshes().get(0));
@@ -245,5 +250,11 @@ public class BJEMesh extends BJEResource {
     }
 
 
+    public BJEResource getResource() {
+        return resource;
+    }
 
+    public void setResource(BJEResource resource) {
+        this.resource = resource;
+    }
 }

@@ -1,9 +1,10 @@
 package com.bedrye.bjge.GameEngine.Util;
 
 
-import com.bedrye.Objects.GameScene;
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import imgui.ImGui;
 import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
@@ -18,19 +19,21 @@ import static org.lwjgl.stb.STBImage.stbi_load;
 
 public class BJETexture extends  BJEResource{
 
-
+    @JsonIgnore
     public int getTextureID() {
         return textureID;
     }
-
+    @JsonIgnore
     protected transient  int textureID;
 
     protected boolean repeat=true;
 
     protected boolean pixelate=true;
+    @JsonIgnore
     protected int height,width;
 
-    public BJETexture(String path,String name) {
+    @JsonCreator
+    public BJETexture(@JsonProperty("path")String path, @JsonProperty("name")String name) {
         super(path,name);
         initialize();
 
@@ -66,7 +69,7 @@ public class BJETexture extends  BJEResource{
         IntBuffer height = BufferUtils.createIntBuffer(1);
         IntBuffer width = BufferUtils.createIntBuffer(1);
         IntBuffer channel = BufferUtils.createIntBuffer(1);
-        ByteBuffer image = stbi_load(path,width,height,channel,0);
+        ByteBuffer image = stbi_load(getPath(),width,height,channel,0);
         if(image!=null){
             glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width.get(0),height.get(0),0,
                     GL_RGBA,GL_UNSIGNED_BYTE,image);
@@ -86,7 +89,7 @@ public class BJETexture extends  BJEResource{
     @Override
     public void show() {
 
-        ImGui.pushID(path);
+        ImGui.pushID(getPath());
         ImGui.selectable(getName(),100,30);
 
 

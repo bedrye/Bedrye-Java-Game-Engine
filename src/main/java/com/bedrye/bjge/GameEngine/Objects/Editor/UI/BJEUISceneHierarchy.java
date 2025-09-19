@@ -1,5 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
+import com.bedrye.Objects.AmbientLight;
+import com.bedrye.Objects.DirectionalLight;
 import com.bedrye.Objects.GameScene;
 import com.bedrye.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
@@ -49,6 +51,18 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
                     if (ImGui.menuItem("Sphere")){
                         ob = new Sphere();
                     }
+                    if (ImGui.beginMenu("Lights"))
+                    {
+                        if (ImGui.menuItem("Ambient")){
+                            ob = new AmbientLight();
+                        }
+
+                        if (ImGui.menuItem("Directional")){
+                            ob = new DirectionalLight();
+                        }
+                        ImGui.endMenu();
+                    }
+
                     if(ob!=null){
                         EngineWindowManager.getInstance().getActiveScene().addGameObject(ob);
 
@@ -124,6 +138,17 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
                     if (ImGui.menuItem("Sphere")){
                         ob = new Sphere();
+                    }
+                    if (ImGui.beginMenu("Lights"))
+                    {
+                        if (ImGui.menuItem("Ambient")){
+                            ob = new AmbientLight();
+                        }
+
+                        if (ImGui.menuItem("Directional")){
+                            ob = new DirectionalLight();
+                        }
+                        ImGui.endMenu();
                     }
                     if(ob!=null){
                         object3DAbstract.addChild(ob);

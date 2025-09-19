@@ -2,16 +2,31 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 import com.bedrye.Objects.Camera;
+import com.bedrye.Objects.GameScene;
 import com.bedrye.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.ArrayList;
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS, // store actual subclass type
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
+@JsonSubTypes({
+        // register concrete subclasses of Scene
+        @JsonSubTypes.Type(value = EditorScene.class),
+        @JsonSubTypes.Type(value = GameScene.class)
+})
 
 public abstract class Scene {
     private Camera camera;
     private boolean initialized = false;
     private ArrayList<Object3DAbstract> gameObjects= new ArrayList<>();
 
+    @JsonIgnore
     private ShaderProgram shaderProgram;
     public Scene(){
         this.camera = null;

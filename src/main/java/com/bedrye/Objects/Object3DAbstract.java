@@ -4,11 +4,24 @@ package com.bedrye.Objects;
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIVisible;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.UUIDGenerator.class,
+        property = "@id"
+)
 
 public abstract class Object3DAbstract {
 
@@ -18,6 +31,7 @@ public abstract class Object3DAbstract {
     private Vector3f scale;
     private Object3DAbstract parent;
     private String name;
+    @JsonIgnore
     private Matrix4f transform = new Matrix4f();
 
 
@@ -26,14 +40,12 @@ public abstract class Object3DAbstract {
         rotation= new Vector3f(0,0,0);
         globalPosition = new Vector3f(0,0,0);
         scale= new Vector3f(1,1,1);
-        childList = new ArrayList<>();
-        scripts = new ArrayList<>();
         this.parent=parent;
     }
 
-    private List<Object3DAbstract> childList;
+    private List<Object3DAbstract> childList =new ArrayList<>();
 
-    private List<MainBehaviour> scripts;
+    private List<MainBehaviour> scripts =new ArrayList<>();
     public abstract void initialize();
     public abstract void initialize(Vector3f position);
     public abstract void update();
@@ -43,8 +55,6 @@ public abstract class Object3DAbstract {
         rotation= new Vector3f(0,0,0);
         globalPosition = new Vector3f(0,0,0);
         scale= new Vector3f(1,1,1);
-        childList = new ArrayList<>();
-        scripts = new ArrayList<>();
         name = this.getClass().getSimpleName();
 
     }
@@ -207,9 +217,11 @@ public abstract class Object3DAbstract {
         childList.forEach(Object3DAbstract::updateTransform);
         scripts.forEach(MainBehaviour::onTransformChange);
     }
+    @JsonIgnore
     public Matrix4f getTransformMatrix(){
         return transform;
     }
+    @JsonIgnore
     public Matrix4f getModelViewMatrix(){
         return  new Matrix4f(EngineWindowManager.getInstance().getActiveScene().getCamera().getViewMatrix()).mul(transform);
     }

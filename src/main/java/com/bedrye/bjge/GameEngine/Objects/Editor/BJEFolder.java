@@ -18,7 +18,7 @@ public class BJEFolder extends BJEResource {
     public BJEFolder Parent;
     public void init(BJEFolder parent){
         this.Parent =parent;
-        File a =  new File(path);
+        File a =  new File(getPath());
         for (File file: a.listFiles()) {
 
             if(!structure.containsKey(file.getPath())) {
@@ -79,8 +79,8 @@ public class BJEFolder extends BJEResource {
     @Override
     public void show(){
 
-        ImGui.pushID(path);
-        ImGui.selectable(path);
+        ImGui.pushID(getPath());
+        ImGui.selectable(getPath());
         if (ImGui.isItemClicked())
         {
             ((GameScene) EngineWindowManager.getInstance().getActiveScene()).bjeAssetHierarchy.setSelectedFolder(this);

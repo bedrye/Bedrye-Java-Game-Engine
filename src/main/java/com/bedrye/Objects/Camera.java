@@ -2,18 +2,24 @@ package com.bedrye.Objects;
 
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 public class Camera extends Object3DAbstract {
+    @JsonIgnore
     private Matrix4f projectionMatrix,viewMatrix;
-
+    @JsonIgnore
     public Matrix4f getProjectionMatrix() {
         return projectionMatrix;
     }
+    @JsonIgnore
     public Matrix4f getViewMatrix() {
 
         return viewMatrix;
+    }
+    public Camera(){
+        super();
     }
 
     public Camera(Object3DAbstract parent) {

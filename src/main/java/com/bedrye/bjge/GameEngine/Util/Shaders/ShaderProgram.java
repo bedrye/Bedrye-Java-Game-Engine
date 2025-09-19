@@ -89,6 +89,7 @@ public abstract class ShaderProgram {
 
     }
 
+
     public void createPointLightUniform(AmbientLight ambientLight) {
         uploadVec3f(ambientLight.getColor(), ambientLight.getName()+ ".colour" );
         uploadVec3f( ambientLight.getPosition(), ambientLight.getName() + ".position");

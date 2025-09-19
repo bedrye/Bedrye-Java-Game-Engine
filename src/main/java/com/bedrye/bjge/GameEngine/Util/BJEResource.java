@@ -2,20 +2,32 @@ package com.bedrye.bjge.GameEngine.Util;
 
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIDragSource;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIVisible;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import imgui.ImGui;
 import imgui.flag.ImGuiDragDropFlags;
 
 import java.io.*;
-
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS, // store the concrete class name in JSON
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
 public abstract class BJEResource implements Serializable, BJEUIVisible, BJEUIDragSource {
-    protected final String path;
+    private final String path;
     private final String name;
 
     public String getName() {
         return name;
     }
 
-    public BJEResource(String path, String name) {
+    public BJEResource(){
+        path="INTERNAL";
+        name="INTERNAL";
+    }
+    @JsonCreator
+    public BJEResource(@JsonProperty("path") String path, @JsonProperty("name")String name) {
         this.path = path;
         this.name = name;
     }

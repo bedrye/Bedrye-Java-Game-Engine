@@ -1,0 +1,373 @@
+{
+  "@class" : "com.bedrye.Objects.GameScene",
+  "camera" : {
+    "@class" : "com.bedrye.Objects.Camera",
+    "@id" : "260bd47a-368a-4e0e-9429-2b3d6a9d5f9a",
+    "position" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "rotation" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scale" : {
+      "x" : 1.0,
+      "y" : 1.0,
+      "z" : 1.0
+    },
+    "parent" : null,
+    "name" : null,
+    "childList" : [ ],
+    "localPosZ" : 0.0,
+    "localPosY" : 0.0,
+    "rotationY" : 0.0,
+    "rotationX" : 0.0,
+    "localPosX" : 0.0,
+    "rotationZ" : 0.0,
+    "localPos" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scriptList" : [ {
+      "@class" : "com.bedrye.bjge.GameEngine.Scripts.SimpleCameraControl",
+      "@id" : "5995cf65-f021-4650-942a-02dcfd520699",
+      "gameObject" : "260bd47a-368a-4e0e-9429-2b3d6a9d5f9a"
+    } ]
+  },
+  "initialized" : true,
+  "gameObjects" : [ {
+    "@class" : "com.bedrye.Objects.Object3D",
+    "@id" : "5b7ffa6e-4d29-4eb7-b900-d98b604e99a8",
+    "position" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "rotation" : {
+      "x" : 0.0,
+      "y" : 20.0,
+      "z" : 0.0
+    },
+    "scale" : {
+      "x" : 1.0,
+      "y" : 1.0,
+      "z" : 1.0
+    },
+    "parent" : null,
+    "name" : "Object3D",
+    "childList" : [ {
+      "@class" : "com.bedrye.Objects.Object3D",
+      "@id" : "815fd40e-47cf-4c82-9fe9-a3a63338c062",
+      "position" : {
+        "x" : -1.7101007,
+        "y" : 1.0,
+        "z" : -4.698463
+      },
+      "rotation" : {
+        "x" : 0.0,
+        "y" : 0.0,
+        "z" : 0.0
+      },
+      "scale" : {
+        "x" : 0.2,
+        "y" : 0.2,
+        "z" : 0.2
+      },
+      "parent" : "5b7ffa6e-4d29-4eb7-b900-d98b604e99a8",
+      "name" : "Object3D",
+      "childList" : [ ],
+      "localPosZ" : -5.0,
+      "localPosY" : 1.0,
+      "rotationY" : 0.0,
+      "rotationX" : 0.0,
+      "localPosX" : 0.0,
+      "rotationZ" : 0.0,
+      "localPos" : {
+        "x" : 0.0,
+        "y" : 1.0,
+        "z" : -5.0
+      },
+      "scriptList" : [ {
+        "@class" : "com.bedrye.bjge.GameEngine.BJEMeshRenderer",
+        "@id" : "0a82a423-9d55-401f-bf2f-f897fe722afa",
+        "gameObject" : "815fd40e-47cf-4c82-9fe9-a3a63338c062",
+        "mesh" : {
+          "resource" : {
+            "path" : "O:\\GIt\\MultiplayerShooter\\Assets\\Kulka.obj",
+            "name" : "Kulka.obj"
+          }
+        },
+        "material" : {
+          "ambient" : {
+            "x" : 1.0,
+            "y" : 1.0,
+            "z" : 1.0,
+            "w" : 1.0
+          },
+          "diffuse" : {
+            "x" : 1.0,
+            "y" : 1.0,
+            "z" : 1.0,
+            "w" : 1.0
+          },
+          "specular" : {
+            "x" : 1.0,
+            "y" : 1.0,
+            "z" : 1.0,
+            "w" : 1.0
+          },
+          "texture" : {
+            "path" : "Assets\\Egg.png",
+            "name" : "Egg.png"
+          },
+          "reflectance" : 0.5
+        }
+      } ]
+    } ],
+    "localPosZ" : 0.0,
+    "localPosY" : 0.0,
+    "rotationY" : 20.0,
+    "rotationX" : 0.0,
+    "localPosX" : 0.0,
+    "rotationZ" : 0.0,
+    "localPos" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scriptList" : [ {
+      "@class" : "com.bedrye.bjge.GameEngine.BJEMeshRenderer",
+      "@id" : "b901a345-29d3-4292-b32e-bc1d351d43e1",
+      "gameObject" : "5b7ffa6e-4d29-4eb7-b900-d98b604e99a8",
+      "mesh" : {
+        "resource" : {
+          "path" : "O:\\GIt\\MultiplayerShooter\\Assets\\sphere.obj",
+          "name" : "sphere.obj"
+        }
+      },
+      "material" : {
+        "ambient" : {
+          "x" : 1.0,
+          "y" : 1.0,
+          "z" : 1.0,
+          "w" : 1.0
+        },
+        "diffuse" : {
+          "x" : 1.0,
+          "y" : 1.0,
+          "z" : 1.0,
+          "w" : 1.0
+        },
+        "specular" : {
+          "x" : 1.0,
+          "y" : 1.0,
+          "z" : 1.0,
+          "w" : 1.0
+        },
+        "texture" : {
+          "path" : "Assets\\Egg.png",
+          "name" : "Egg.png"
+        },
+        "reflectance" : 0.5
+      }
+    }, {
+      "@class" : "com.bedrye.bjge.GameEngine.Scripts.PressMouse",
+      "@id" : "3f529475-ed72-43c1-a86f-baba68d5b100",
+      "gameObject" : "5b7ffa6e-4d29-4eb7-b900-d98b604e99a8",
+      "move" : 1
+    } ]
+  }, {
+    "@class" : "com.bedrye.Objects.Object3D",
+    "@id" : "6fa803fe-3984-48bd-b959-317e45a7ec58",
+    "position" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : -50.0
+    },
+    "rotation" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scale" : {
+      "x" : 1.0,
+      "y" : 1.0,
+      "z" : 1.0
+    },
+    "parent" : null,
+    "name" : "Object3D",
+    "childList" : [ ],
+    "localPosZ" : -50.0,
+    "localPosY" : 0.0,
+    "rotationY" : 0.0,
+    "rotationX" : 0.0,
+    "localPosX" : 0.0,
+    "rotationZ" : 0.0,
+    "localPos" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : -50.0
+    },
+    "scriptList" : [ {
+      "@class" : "com.bedrye.bjge.GameEngine.BJEMeshRenderer",
+      "@id" : "61eaec01-4f14-4253-9429-cfdd7b6fb31e",
+      "gameObject" : "6fa803fe-3984-48bd-b959-317e45a7ec58",
+      "mesh" : {
+        "resource" : {
+          "path" : "O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj",
+          "name" : "Cube.obj"
+        }
+      },
+      "material" : {
+        "ambient" : {
+          "x" : 1.0,
+          "y" : 1.0,
+          "z" : 1.0,
+          "w" : 1.0
+        },
+        "diffuse" : {
+          "x" : 1.0,
+          "y" : 1.0,
+          "z" : 1.0,
+          "w" : 1.0
+        },
+        "specular" : {
+          "x" : 1.0,
+          "y" : 1.0,
+          "z" : 1.0,
+          "w" : 1.0
+        },
+        "texture" : {
+          "path" : "Assets\\Egg.png",
+          "name" : "Egg.png"
+        },
+        "reflectance" : 0.5
+      }
+    } ]
+  }, {
+    "@class" : "com.bedrye.Objects.DirectionalLight",
+    "@id" : "366e1884-40c6-455b-8a65-6effee3b5b3b",
+    "position" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "rotation" : {
+      "x" : 0.0,
+      "y" : 90.0,
+      "z" : 0.0
+    },
+    "scale" : {
+      "x" : 1.0,
+      "y" : 1.0,
+      "z" : 1.0
+    },
+    "parent" : null,
+    "name" : "DirectionalLight",
+    "childList" : [ ],
+    "color" : {
+      "x" : 1.0,
+      "y" : 1.0,
+      "z" : 1.0
+    },
+    "direction" : {
+      "x" : 1.0,
+      "y" : -4.371139E-8,
+      "z" : 0.0
+    },
+    "intensity" : 1.0,
+    "localPosZ" : 0.0,
+    "localPosY" : 0.0,
+    "rotationY" : 90.0,
+    "rotationX" : 0.0,
+    "localPosX" : 0.0,
+    "rotationZ" : 0.0,
+    "localPos" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scriptList" : [ ]
+  }, {
+    "@class" : "com.bedrye.Objects.Object3D",
+    "@id" : "3d9fb3b6-c30f-4c49-b4a1-c6a116a06982",
+    "position" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "rotation" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scale" : {
+      "x" : 1.0,
+      "y" : 1.0,
+      "z" : 1.0
+    },
+    "parent" : null,
+    "name" : "Object3D",
+    "childList" : [ ],
+    "localPosZ" : 0.0,
+    "localPosY" : 0.0,
+    "rotationY" : 0.0,
+    "rotationX" : 0.0,
+    "localPosX" : 0.0,
+    "rotationZ" : 0.0,
+    "localPos" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scriptList" : [ ]
+  }, {
+    "@class" : "com.bedrye.Objects.AmbientLight",
+    "@id" : "4416847d-847b-420b-887c-b952a83b785c",
+    "position" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "rotation" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scale" : {
+      "x" : 1.0,
+      "y" : 1.0,
+      "z" : 1.0
+    },
+    "parent" : null,
+    "name" : "AmbientLight",
+    "childList" : [ ],
+    "color" : {
+      "x" : 0.3,
+      "y" : 0.3,
+      "z" : 0.3
+    },
+    "intensity" : 1.0,
+    "attenuation" : {
+      "constant" : 0.0,
+      "exponent" : 1.0,
+      "linear" : 0.0
+    },
+    "localPosZ" : 0.0,
+    "localPosY" : 0.0,
+    "rotationY" : 0.0,
+    "rotationX" : 0.0,
+    "localPosX" : 0.0,
+    "rotationZ" : 0.0,
+    "localPos" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scriptList" : [ ]
+  } ]
+}

@@ -34,7 +34,7 @@ public class BJEJPGTexture extends BJETexture{
         IntBuffer height = BufferUtils.createIntBuffer(1);
         IntBuffer width = BufferUtils.createIntBuffer(1);
         IntBuffer channel = BufferUtils.createIntBuffer(1);
-        ByteBuffer image = stbi_load(path,width,height,channel,0);
+        ByteBuffer image = stbi_load(getPath(),width,height,channel,0);
         if(image!=null){
             glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,width.get(0),height.get(0),0,
                     GL_RGB,GL_UNSIGNED_BYTE,image);
