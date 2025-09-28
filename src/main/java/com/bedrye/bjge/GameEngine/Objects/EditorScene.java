@@ -1,7 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects;
 
 
-import com.bedrye.Objects.GameScene;
+
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.GameEngineMain;
 import com.bedrye.bjge.GameEngine.Listeners.MouseListener;

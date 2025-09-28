@@ -2,15 +2,15 @@
   "@class" : "com.bedrye.bjge.GameEngine.Objects.GameScene",
   "camera" : {
     "@class" : "com.bedrye.bjge.GameEngine.Objects.Camera",
-    "@id" : "13ad7ccb-b1fa-46c3-8159-955e2c5ac590",
+    "@id" : "80e90426-8b43-4413-b966-7406f7707d7c",
     "position" : {
-      "x" : 114.075005,
-      "y" : 110.621,
-      "z" : 112.914276
+      "x" : 203.84735,
+      "y" : 20.549372,
+      "z" : -20.645836
     },
     "rotation" : {
-      "x" : 47.200005,
-      "y" : -40.500023,
+      "x" : 2.8999994,
+      "y" : -103.6001,
       "z" : 0.0
     },
     "scale" : {
@@ -21,27 +21,27 @@
     "parent" : null,
     "name" : null,
     "childList" : [ ],
-    "rotationY" : -40.500023,
-    "localPosX" : 114.075005,
-    "localPosY" : 110.621,
-    "localPosZ" : 112.914276,
-    "rotationX" : 47.200005,
+    "rotationY" : -103.6001,
+    "localPosX" : 203.84735,
+    "localPosY" : 20.549372,
+    "localPosZ" : -20.645836,
+    "rotationX" : 2.8999994,
     "rotationZ" : 0.0,
     "scriptList" : [ {
       "@class" : "com.bedrye.bjge.GameEngine.Scripts.SimpleCameraControl",
-      "@id" : "916e22f0-0034-41cb-8d75-f3764edf9f77",
-      "gameObject" : "13ad7ccb-b1fa-46c3-8159-955e2c5ac590"
+      "@id" : "b63596f3-a4e6-4824-aba9-8d1792d883a3",
+      "gameObject" : "80e90426-8b43-4413-b966-7406f7707d7c"
     } ],
     "localPos" : {
-      "x" : 114.075005,
-      "y" : 110.621,
-      "z" : 112.914276
+      "x" : 203.84735,
+      "y" : 20.549372,
+      "z" : -20.645836
     }
   },
   "initialized" : true,
   "gameObjects" : [ {
     "@class" : "com.bedrye.bjge.GameEngine.Objects.Object3D",
-    "@id" : "5dbb27ff-99d5-4cdb-a2df-af1ece200200",
+    "@id" : "932067ac-7fac-48bf-bc1b-88d88dea71b8",
     "position" : {
       "x" : 0.0,
       "y" : 0.0,
@@ -68,7 +68,7 @@
     "rotationZ" : 0.0,
     "scriptList" : [ {
       "@class" : "com.bedrye.bjge.GameEngine.BJEMeshRenderer",
-      "@id" : "dfd47132-919c-4810-8db7-1fb1e589f237",
+      "@id" : "6a5dd9c6-fa8f-4f74-9d8d-dbfcabc1cefd",
       "meshRes" : {
         "@class" : "com.bedrye.bjge.GameEngine.Util.BJEObjFile",
         "path" : "O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj",
@@ -79,7 +79,7 @@
         "path" : "Assets\\Egg.png",
         "name" : "Egg.png"
       },
-      "gameObject" : "5dbb27ff-99d5-4cdb-a2df-af1ece200200"
+      "gameObject" : "932067ac-7fac-48bf-bc1b-88d88dea71b8"
     } ],
     "localPos" : {
       "x" : 0.0,
@@ -88,7 +88,7 @@
     }
   }, {
     "@class" : "com.bedrye.bjge.GameEngine.Objects.AmbientLight",
-    "@id" : "451f6ec3-e8d8-4426-8017-4505ed41f7a0",
+    "@id" : "d4cf3a95-c1cf-48a0-94ca-f2cfeca945de",
     "position" : {
       "x" : 0.0,
       "y" : 0.0,
@@ -127,6 +127,53 @@
     "scriptList" : [ ],
     "localPos" : {
       "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    }
+  }, {
+    "@class" : "com.bedrye.bjge.GameEngine.Objects.Object3D",
+    "@id" : "a3f7bb11-c09d-454e-b71d-ad15b1d80811",
+    "position" : {
+      "x" : 50.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "rotation" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scale" : {
+      "x" : 10.0,
+      "y" : 10.0,
+      "z" : 10.0
+    },
+    "parent" : null,
+    "name" : "Sphere",
+    "childList" : [ ],
+    "rotationY" : 0.0,
+    "localPosX" : 50.0,
+    "localPosY" : 0.0,
+    "localPosZ" : 0.0,
+    "rotationX" : 0.0,
+    "rotationZ" : 0.0,
+    "scriptList" : [ {
+      "@class" : "com.bedrye.bjge.GameEngine.BJEMeshRenderer",
+      "@id" : "471d2d25-f459-40ff-adc0-dd8498bc6b1b",
+      "meshRes" : {
+        "@class" : "com.bedrye.bjge.GameEngine.Util.BJEObjFile",
+        "path" : "O:\\GIt\\MultiplayerShooter\\Assets\\Sphere.obj",
+        "name" : "Sphere.obj"
+      },
+      "texture" : {
+        "@class" : "com.bedrye.bjge.GameEngine.Util.BJETexture",
+        "path" : "O:\\GIt\\MultiplayerShooter\\Assets\\logog2.png",
+        "name" : "logog2.png"
+      },
+      "gameObject" : "a3f7bb11-c09d-454e-b71d-ad15b1d80811"
+    } ],
+    "localPos" : {
+      "x" : 50.0,
       "y" : 0.0,
       "z" : 0.0
     }

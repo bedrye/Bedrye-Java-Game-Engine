@@ -1,7 +1,8 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.Prefabs;
 
-import com.bedrye.Objects.Object3D;
+
 import com.bedrye.bjge.GameEngine.BJEMeshRenderer;
+import com.bedrye.bjge.GameEngine.Objects.Object3D;
 import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
 import com.bedrye.bjge.GameEngine.Util.BJEMesh;
 import com.bedrye.bjge.GameEngine.Util.BJEObjFile;

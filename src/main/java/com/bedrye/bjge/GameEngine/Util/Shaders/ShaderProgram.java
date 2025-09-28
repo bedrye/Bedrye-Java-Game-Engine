@@ -1,7 +1,8 @@
 package com.bedrye.bjge.GameEngine.Util.Shaders;
 
-import com.bedrye.Objects.AmbientLight;
-import com.bedrye.Objects.DirectionalLight;
+
+import com.bedrye.bjge.GameEngine.Objects.AmbientLight;
+import com.bedrye.bjge.GameEngine.Objects.DirectionalLight;
 import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;

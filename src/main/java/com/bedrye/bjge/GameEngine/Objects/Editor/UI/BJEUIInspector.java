@@ -1,18 +1,17 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
-import com.bedrye.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import com.bedrye.bjge.GameEngine.Util.BJEResource;
-import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import imgui.ImGui;
-import imgui.ImVec4;
 import imgui.type.*;
 import org.joml.Vector3f;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
@@ -25,11 +24,11 @@ public class BJEUIInspector extends BJEUIWindow  {
     int doublecount = 0;
     int stringcount = 0;
 
-    public ArrayList<ImBoolean> booleans = new ArrayList<>();
-    public ArrayList<ImInt> ints = new ArrayList<>();
-    public ArrayList<ImFloat> floats = new ArrayList<>();
-    public ArrayList<ImDouble> doubles = new ArrayList<>();
-    public ArrayList<ImString> strings = new ArrayList<>();
+    private ArrayList<ImBoolean> booleans = new ArrayList<>();
+    private ArrayList<ImInt> ints = new ArrayList<>();
+    private ArrayList<ImFloat> floats = new ArrayList<>();
+    private ArrayList<ImDouble> doubles = new ArrayList<>();
+    private ArrayList<ImString> strings = new ArrayList<>();
     private Object3DAbstract object3DAbstract;
 
     public Object3DAbstract getObject3DAbstract() {
@@ -278,7 +277,32 @@ public class BJEUIInspector extends BJEUIWindow  {
         }
         if(remove)
             object.removeScript(removeAt);
+        if (ImGui.button("+",40,20)){
 
+            ImGui.openPopup("addPopup");
+
+
+        }
+        if (ImGui.beginPopup("addPopup")){
+            for (MainBehaviour beh: EngineWindowManager.getInstance().getBjeResourceManager().getScripts()
+                 ) {
+                if (ImGui.button(beh.getClass().getSimpleName())) {
+                    try {
+                        object.addScript(beh.getClass().getConstructor().newInstance());
+                    } catch (InstantiationException e) {
+                        throw new RuntimeException(e);
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    } catch (InvocationTargetException e) {
+                        throw new RuntimeException(e);
+                    } catch (NoSuchMethodException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            ImGui.endPopup();
+        }
 
     }
 

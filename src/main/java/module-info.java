@@ -1,4 +1,4 @@
-module com.bedrye.multiplayershooter {
+module com.bedrye.bjge {
 
 
     requires org.lwjgl;
@@ -13,17 +13,20 @@ module com.bedrye.multiplayershooter {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.core;
+    requires java.compiler;
+    requires java.desktop;
 
-
+    opens com.bedrye.bjge to com.fasterxml.jackson.databind;
+    opens com.bedrye.bjge.GameEngine to com.fasterxml.jackson.databind;
     opens com.bedrye.bjge.GameEngine.Util to com.fasterxml.jackson.databind;
     opens com.bedrye.bjge.GameEngine.Scripts to com.fasterxml.jackson.databind;
-    opens com.bedrye.Objects to com.fasterxml.jackson.databind;
     opens com.bedrye.bjge.GameEngine.Objects to com.fasterxml.jackson.databind;
-    exports com.bedrye.bjge;
-    exports com.bedrye.Objects;
+    opens com.bedrye.bjge.GameEngine.Objects.Editor.Prefabs to com.fasterxml.jackson.databind;
+    exports com.bedrye.bjge.GameEngine.Objects;
     exports com.bedrye.bjge.GameEngine;
     exports com.bedrye.bjge.GameEngine.Util;
     exports com.bedrye.bjge.GameEngine.Objects.Editor.UI;
-    opens com.bedrye.bjge.GameEngine.Objects.Editor.UI to javafx.fxml;
+
+
 
 }

@@ -1,6 +1,6 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
-import com.bedrye.Objects.GameScene;
+
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.Objects.Editor.BJEFolder;
 import com.bedrye.bjge.GameEngine.Util.BJEResource;

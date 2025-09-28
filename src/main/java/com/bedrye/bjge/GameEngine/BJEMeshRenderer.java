@@ -1,5 +1,6 @@
 package com.bedrye.bjge.GameEngine;
 
+
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
 import com.bedrye.bjge.GameEngine.Util.BJEMesh;
@@ -11,16 +12,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BJEMeshRenderer extends MainBehaviour {
-
-    public BJEResource meshRes;
-
-    public BJETexture texture;
+    @InspectorVisible
+    private BJEResource meshRes;
+    @InspectorVisible
+    private BJETexture texture;
     @JsonIgnore
     private BJEMesh mesh;
     @JsonIgnore
     private BJEMaterial material;
 
+    public BJEMeshRenderer(){
+        super();
 
+
+    }
     public BJEMeshRenderer(BJEMesh mesh, BJEMaterial material){
         super();
         this.mesh = mesh;
@@ -42,8 +47,10 @@ public class BJEMeshRenderer extends MainBehaviour {
     }
     @Override
     public void update() {
-
-
+        if(texture==null||mesh==null)
+            return;
+        if(mesh.getResource()!=meshRes)
+            setMesh(meshRes);
         texture.Bind();
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().createMaterialUniform(material);
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getGameObject().getTransformMatrix(),"modelMatrix");

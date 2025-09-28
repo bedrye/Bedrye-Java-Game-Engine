@@ -42,12 +42,13 @@ public class BJEEditorViewport  extends BJEUIWindow {
                     if (ImGui.menuItem("Create")) {
                     }
                     if (ImGui.menuItem("Open", "Ctrl+O")) {
-                        EngineWindowManager.getInstance().load();
+                        EngineWindowManager.getInstance().loadFromFile();
                     }
                     if (ImGui.menuItem("Save", "Ctrl+S")) {
                         EngineWindowManager.getInstance().save();
                     }
                     if (ImGui.menuItem("Save as..")) {
+                        EngineWindowManager.getInstance().saveAs();
                     }
                     ImGui.endMenu();
                 }

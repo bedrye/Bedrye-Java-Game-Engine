@@ -1,9 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects;
 
 
-import com.bedrye.Objects.Camera;
-import com.bedrye.Objects.GameScene;
-import com.bedrye.Objects.Object3DAbstract;
+
 import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;

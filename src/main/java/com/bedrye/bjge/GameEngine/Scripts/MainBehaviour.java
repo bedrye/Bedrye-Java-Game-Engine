@@ -1,6 +1,6 @@
 package com.bedrye.bjge.GameEngine.Scripts;
 
-import com.bedrye.Objects.Object3DAbstract;
+import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

@@ -1,20 +1,19 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
-import com.bedrye.Objects.AmbientLight;
-import com.bedrye.Objects.DirectionalLight;
-import com.bedrye.Objects.GameScene;
-import com.bedrye.Objects.Object3DAbstract;
+
+import com.bedrye.bjge.GameEngine.BJEMeshRenderer;
+import com.bedrye.bjge.GameEngine.Objects.*;
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
-import com.bedrye.bjge.GameEngine.Objects.Editor.Prefabs.Cube;
 import com.bedrye.bjge.GameEngine.Objects.Editor.Prefabs.Sphere;
+import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
+import com.bedrye.bjge.GameEngine.Util.BJEMesh;
+import com.bedrye.bjge.GameEngine.Util.BJEObjFile;
+import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import imgui.ImGui;
 import imgui.flag.ImGuiTreeNodeFlags;
-import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class BJEUISceneHierarchy extends BJEUIWindow{
 
@@ -38,18 +37,19 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
                 ImGui.endDragDropTarget();
             }
-            if (ImGui.beginPopupContextItem("context_menu")) // unique identifier
+            if (ImGui.beginPopupContextItem("context_menu"))
             {
                 if (ImGui.beginMenu("Add"))
                 {
                     Object3DAbstract ob=null;
 
                     if (ImGui.menuItem("Cube")){
-                        ob = new Cube();
+                        ob = createCube();
                     }
 
                     if (ImGui.menuItem("Sphere")){
-                        ob = new Sphere();
+                        ob = createCube();
+
                     }
                     if (ImGui.beginMenu("Lights"))
                     {
@@ -133,11 +133,11 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
                     Object3DAbstract ob=null;
 
                         if (ImGui.menuItem("Cube")){
-                            ob = new Cube();
+                            ob = createCube();
                         }
 
                     if (ImGui.menuItem("Sphere")){
-                        ob = new Sphere();
+                        ob = createSphere();
                     }
                     if (ImGui.beginMenu("Lights"))
                     {
@@ -175,12 +175,21 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
 
     }
-    public void AddNewObject(){
-
-
-
-
+    private Object3D createCube(){
+        Object3D ob = new Object3D();
+        ob.setName("Cube");
+        ob.addScript(new BJEMeshRenderer(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj","Cube.obj"),new BJETexture("Assets\\Egg.png","Egg.png")));
+        return  ob;
 
 
     }
+
+    private Object3D createSphere(){
+        Object3D ob = new Object3D();
+        ob.setName("Sphere");
+        ob.addScript(new BJEMeshRenderer(new BJEMesh(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Sphere.obj","Sphere.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png","Egg.png"))));
+
+        return ob;
+    }
+
 }

@@ -1,31 +1,35 @@
 package com.bedrye.bjge.GameEngine;
 
-import com.bedrye.Objects.GameScene;
+
 import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
-import com.bedrye.bjge.GameEngine.Objects.EditorScene;
+import com.bedrye.bjge.GameEngine.Objects.Editor.BJEFileSystem;
+import com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager;
+
+import com.bedrye.bjge.GameEngine.Objects.GameScene;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
 import com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fDeserializer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fSerializer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector4fDeserializer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector4fSerializer;
-import com.bedrye.bjge.GameEngine.Util.TimeCounter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+
+
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
-import org.lwjgl.system.MemoryStack;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
+import java.awt.*;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
-import java.nio.IntBuffer;
-import java.util.Objects;
+
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -36,8 +40,8 @@ public class EngineWindowManager {
     private String projectName;
     private int height,width;
 
-    ObjectMapper mapper = new ObjectMapper();
-    SimpleModule module = new SimpleModule();
+    private ObjectMapper mapper = new ObjectMapper();
+    private SimpleModule module = new SimpleModule();
 
     public int getHeight() {
         return height;
@@ -50,6 +54,8 @@ public class EngineWindowManager {
     private long windowAddress;
     private BJEIMGUILayer bjeimguiLayer;
     private BJEFrameBuffer bjeFrameBuffer;
+    private BJEFileSystem bjeFileSystem;
+    private BJEResourceManager bjeResourceManager;
 
     public BJEFrameBuffer getBjeFrameBuffer() {
         return bjeFrameBuffer;
@@ -69,7 +75,7 @@ public class EngineWindowManager {
     }
 
     private Scene activeScene;
-    public static EngineWindowManager init;
+    private static EngineWindowManager init;
     public static EngineWindowManager getInstance(){
         if(init==null) init= new EngineWindowManager();
         return init;
@@ -92,14 +98,22 @@ public class EngineWindowManager {
 
         glfwTerminate();
         glfwSetErrorCallback(null).free();
+
     }
     public void init(){
-
+        bjeResourceManager = new BJEResourceManager();
+        bjeFileSystem = new BJEFileSystem("Assets\\scripts");
+        try {
+            bjeFileSystem.startWatcher();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         module.addSerializer(Vector3f.class, new Vector3fSerializer());
         module.addDeserializer(Vector3f.class, new Vector3fDeserializer());
         module.addSerializer(Vector4f.class, new Vector4fSerializer());
         module.addDeserializer(Vector4f.class, new Vector4fDeserializer());
         mapper.registerModule(module);
+        System.out.println("Jackson loaded: " + mapper);
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         GLFWErrorCallback.createPrint(System.err).set();
@@ -184,12 +198,68 @@ public class EngineWindowManager {
             throw new RuntimeException(e);
         }
     }
-    public void load(){
-        File file = new File("Assets\\game.json");
+    public void loadFromFile(){
+        FileDialog dialog = getFileDialog();
+
+        String dir = dialog.getDirectory();
+        String file = dialog.getFile();
+
+
+        if (file != null) {
+            File selected = new File(dir, file);
+            System.out.println("Selected: " + selected.getAbsolutePath());
+            load(selected);
+        }
+
+
+    }
+    public void load(File file){
+
         try {
             setActiveScene(mapper.readValue(file, Scene.class));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    public BJEResourceManager getBjeResourceManager() {
+        return bjeResourceManager;
+    }
+
+    private FileDialog getFileDialog() {
+        FileDialog dialog = new FileDialog((Frame) null, "Select File to Open");
+        dialog.setMode(FileDialog.LOAD);
+        dialog.setVisible(true);
+        dialog.setMultipleMode(false);
+        dialog.setFilenameFilter(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(".json");
+            }
+        });
+        return dialog;
+    }
+    public void saveAs(){
+        FileDialog dialog = new FileDialog((Frame) null, "Save Scene", FileDialog.SAVE);
+        dialog.setFile("scene.json");
+        dialog.setVisible(true);
+
+        if (dialog.getFile() != null) {
+            File file = new File(dialog.getDirectory(), dialog.getFile());
+            try (FileWriter writer = new FileWriter(file)) {
+                mapper.writerWithDefaultPrettyPrinter().writeValue(writer, getActiveScene());
+                System.out.println("Scene saved to: " + file.getAbsolutePath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Save canceled.");
+        }
+
+
+    }
+    public void InEngineRun(){
+
+    }
 }
+
