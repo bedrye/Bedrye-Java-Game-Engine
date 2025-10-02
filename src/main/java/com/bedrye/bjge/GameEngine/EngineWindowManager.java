@@ -3,10 +3,11 @@ package com.bedrye.bjge.GameEngine;
 
 import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
+import com.bedrye.bjge.GameEngine.Objects.BJEGameScene;
 import com.bedrye.bjge.GameEngine.Objects.Editor.BJEFileSystem;
 import com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager;
 
-import com.bedrye.bjge.GameEngine.Objects.GameScene;
+import com.bedrye.bjge.GameEngine.Objects.BJEEditorScene;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
 import com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fDeserializer;
@@ -56,6 +57,7 @@ public class EngineWindowManager {
     private BJEFrameBuffer bjeFrameBuffer;
     private BJEFileSystem bjeFileSystem;
     private BJEResourceManager bjeResourceManager;
+    private boolean isInEditMode=true;
 
     public BJEFrameBuffer getBjeFrameBuffer() {
         return bjeFrameBuffer;
@@ -157,7 +159,7 @@ public class EngineWindowManager {
         glEnable(GL_DEPTH_TEST);
         glClear( GL_DEPTH_BUFFER_BIT);
 
-        setActiveScene(new GameScene());
+        setActiveScene(new BJEEditorScene());
         glEnable(GL_CULL_FACE);
         //glPolygonMode(GL_FRONT, GL_LINE);
 
@@ -258,8 +260,14 @@ public class EngineWindowManager {
 
 
     }
-    public void InEngineRun(){
 
+    public boolean isInEditMode() {
+        return isInEditMode;
+    }
+
+    public void InEngineRun(){
+        isInEditMode=false;
+        setActiveScene(new BJEGameScene((BJEEditorScene) getActiveScene()));
     }
 }
 

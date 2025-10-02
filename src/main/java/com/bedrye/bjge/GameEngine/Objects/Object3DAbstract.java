@@ -238,7 +238,7 @@ public abstract class Object3DAbstract {
             else
                 EngineWindowManager.getInstance().getActiveScene().getGameObjects().remove(this);
 
-        ((GameScene)EngineWindowManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(null);
+        ((BJEEditorScene)EngineWindowManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(null);
 
 
         }

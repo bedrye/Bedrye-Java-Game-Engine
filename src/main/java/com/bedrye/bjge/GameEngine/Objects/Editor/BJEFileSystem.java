@@ -1,7 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor;
 
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.GameEngineMain;
+
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 
 import java.io.File;

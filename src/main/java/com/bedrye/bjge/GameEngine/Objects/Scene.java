@@ -15,8 +15,8 @@ import java.util.ArrayList;
 )
 @JsonSubTypes({
         // register concrete subclasses of Scene
-        @JsonSubTypes.Type(value = EditorScene.class),
-        @JsonSubTypes.Type(value = GameScene.class)
+        @JsonSubTypes.Type(value = BJEGameScene.class),
+        @JsonSubTypes.Type(value = BJEEditorScene.class)
 })
 
 public abstract class Scene {
@@ -38,6 +38,9 @@ public abstract class Scene {
     }
     public abstract void update();
 
+    public void setGameObjects(ArrayList<Object3DAbstract> gameObjects) {
+        this.gameObjects = gameObjects;
+    }
 
     public void setInitialized(boolean initialized) {
         this.initialized = initialized;

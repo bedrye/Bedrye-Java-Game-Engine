@@ -60,8 +60,6 @@ public class Camera extends Object3DAbstract {
 
     private void changeProjection(){
         projectionMatrix.identity();
-        //projectionMatrix.ortho(-400.0f,400f,-210.0f,210.0f,0.0f,1000.0f);
-        //System.out.println((float)EngineWindowManager.getInstance().getWidth()/EngineWindowManager.getInstance().getHeight());
         projectionMatrix.setPerspective((float) Math.toRadians(60.0f), (float)EngineWindowManager.getInstance().getWidth()/EngineWindowManager.getInstance().getHeight(),1f,1000.0f);
 
 

@@ -24,7 +24,6 @@ public class Object3D extends Object3DAbstract {
 
     @Override
     public void update() {
-        //getBjeTransform().getWorldMatrix();
         getScriptList().forEach(MainBehaviour::update);
         getChildList().forEach(Object3DAbstract::update);
 

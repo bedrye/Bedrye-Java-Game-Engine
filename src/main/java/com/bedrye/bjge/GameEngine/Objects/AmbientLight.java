@@ -42,7 +42,7 @@ public class AmbientLight extends Light {
     @Override
     public void initialize() {
 
-        //EngineWindowManager.getInstance().getActiveScene().getShaderProgram().createPointLightUniform(this);
+
     }
 
     @Override

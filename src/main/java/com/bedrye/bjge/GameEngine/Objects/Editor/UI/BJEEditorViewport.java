@@ -1,8 +1,6 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.GameEngineMain;
-import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
 import imgui.ImGui;
 import imgui.ImVec2;
 import imgui.flag.ImGuiWindowFlags;
@@ -39,8 +37,6 @@ public class BJEEditorViewport  extends BJEUIWindow {
             ImGui.end();
             if (ImGui.beginMainMenuBar()) {
                 if (ImGui.beginMenu("File")) {
-                    if (ImGui.menuItem("Create")) {
-                    }
                     if (ImGui.menuItem("Open", "Ctrl+O")) {
                         EngineWindowManager.getInstance().loadFromFile();
                     }
@@ -49,6 +45,16 @@ public class BJEEditorViewport  extends BJEUIWindow {
                     }
                     if (ImGui.menuItem("Save as..")) {
                         EngineWindowManager.getInstance().saveAs();
+                    }
+                    ImGui.endMenu();
+                }
+
+                if (ImGui.beginMenu("Run")) {
+                    if (ImGui.menuItem("Editor", "Ctrl+R")) {
+                        EngineWindowManager.getInstance().InEngineRun();
+                    }
+                    if (ImGui.menuItem("Compile", "Ctrl+I")) {
+                        EngineWindowManager.getInstance().save();
                     }
                     ImGui.endMenu();
                 }

@@ -2,23 +2,28 @@ package com.bedrye.bjge.GameEngine.Objects.Editor;
 
 
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.Objects.GameScene;
+import com.bedrye.bjge.GameEngine.Objects.BJEEditorScene;
 import com.bedrye.bjge.GameEngine.Util.*;
 import imgui.ImGui;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BJEFolder extends BJEResource {
     public BJEFolder(String path,String name) {
         super(path,name);
-        //init(null);
+
     }
     private HashMap<String,BJEResource> structure = new HashMap<>();
-    public BJEFolder Parent;
+
+    public BJEFolder getParent() {
+        return parent;
+    }
+
+
+    private BJEFolder parent;
     public void init(BJEFolder parent){
-        this.Parent =parent;
+        this.parent =parent;
         File a =  new File(getPath());
         for (File file: a.listFiles()) {
 
@@ -31,42 +36,46 @@ public class BJEFolder extends BJEResource {
 
                     continue;
                 }
-                String fileName = file.getName();
-                System.out.println(fileName);
-                int index = fileName.lastIndexOf('.');
-                String ext= "";
-                if(index > 0) {
-                    ext = fileName.substring(index + 1);
-                }
+                String ext = getExtention(file);
                 if ( ext.equals("png")) {
 
                     bjeResource = new BJETexture(file.getPath(),file.getName());
                     structure.put(bjeResource.getPath(), bjeResource);
-                    continue;
+
                 }
-                if (ext.equals("jpg")){
+                else if (ext.equals("jpg")){
                     bjeResource = new BJEJPGTexture(file.getPath(),file.getName());
                     structure.put(bjeResource.getPath(), bjeResource);
-                    continue;
+
 
                 }
 
-                if ( ext.equals("obj")) {
+                else if ( ext.equals("obj")) {
                     bjeResource = new BJEObjFile(file.getPath(),file.getName());
                     structure.put(bjeResource.getPath(), bjeResource);
-                    continue;
-                }
 
-                bjeResource = new BJEObjFile(file.getPath(),file.getName());
-                structure.put(bjeResource.getPath(), bjeResource);
+                }
+                else {
+                    bjeResource = new BJETextFile(file.getPath(), file.getName());
+                    structure.put(bjeResource.getPath(), bjeResource);
+                }
             }
 
         }
 
 
     }
+    private String getExtention(File file){
+        String fileName = file.getName();
+        int index = fileName.lastIndexOf('.');
+        String ext= "";
+        if(index > 0) {
+            ext = fileName.substring(index + 1);
+        }
+        return ext;
 
-    public void showContents(){
+    }
+ public void showContents(){
         for (var resource: structure.values()) {
             resource.show();
             resource.DragStart();
@@ -84,7 +93,7 @@ public class BJEFolder extends BJEResource {
         ImGui.selectable(getPath());
         if (ImGui.isItemClicked())
         {
-            ((GameScene) EngineWindowManager.getInstance().getActiveScene()).bjeAssetHierarchy.setSelectedFolder(this);
+            ((BJEEditorScene) EngineWindowManager.getInstance().getActiveScene()).bjeAssetHierarchy.setSelectedFolder(this);
         }
 
 

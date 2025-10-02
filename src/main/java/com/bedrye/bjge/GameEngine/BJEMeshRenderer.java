@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BJEMeshRenderer extends MainBehaviour {
-    @InspectorVisible
-    private BJEResource meshRes;
-    @InspectorVisible
-    private BJETexture texture;
+
+    public BJEResource meshRes;
+
+    public BJETexture texture;
     @JsonIgnore
     private BJEMesh mesh;
     @JsonIgnore

@@ -33,7 +33,7 @@ C  [igxelpicd64.dll+0x16fa6]
 
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 J 1669  org.lwjgl.opengl.GL11C.glClear(I)V org.lwjgl.opengl@3.3.4+7 (0 bytes) @ 0x0000023c8fef5d19 [0x0000023c8fef5cc0+0x0000000000000059]
-J 1900 c2 com.bedrye.bjge.GameEngine.Objects.GameScene.update()V com.bedrye.bjge (79 bytes) @ 0x0000023c8ff254d8 [0x0000023c8ff25460+0x0000000000000078]
+J 1900 c2 com.bedrye.bjge.GameEngine.Objects.BJEEditorScene.update()V com.bedrye.bjge (79 bytes) @ 0x0000023c8ff254d8 [0x0000023c8ff25460+0x0000000000000078]
 j  com.bedrye.bjge.GameEngine.EngineWindowManager.update()V+58 com.bedrye.bjge
 j  com.bedrye.bjge.GameEngine.EngineWindowManager.run()V+5 com.bedrye.bjge
 j  com.bedrye.bjge.TestMain.main([Ljava/lang/String;)V+3 com.bedrye.bjge
@@ -64,7 +64,7 @@ R8 =0x0000000000000004 is an unknown value
 R9 =0x0000005eeb8ff000 is pointing into the stack for thread: 0x0000023cf757aae0
 R10=0x0000000000000780 is an unknown value
 R11=0x0000023c8ff25480 is at entry_point+32 in (nmethod*)0x0000023c8ff25210
-Compiled method (c2)  119588 1900       4       com.bedrye.bjge.GameEngine.Objects.GameScene::update (79 bytes)
+Compiled method (c2)  119588 1900       4       com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update (79 bytes)
  total in heap  [0x0000023c8ff25210,0x0000023c8ff25c08] = 2552
  relocation     [0x0000023c8ff25370,0x0000023c8ff25440] = 208
  constants      [0x0000023c8ff25440,0x0000023c8ff25460] = 32
@@ -237,7 +237,7 @@ Compiled method (n/a)  119616 1669     n 0       org.lwjgl.opengl.GL11C::glClear
 [/MachCode]
 
 
-Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objects.GameScene::update (79 bytes)
+Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update (79 bytes)
  total in heap  [0x0000023c8ff25210,0x0000023c8ff25c08] = 2552
  relocation     [0x0000023c8ff25370,0x0000023c8ff25440] = 208
  constants      [0x0000023c8ff25440,0x0000023c8ff25460] = 32
@@ -293,7 +293,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
   0x0000023c8ff254c0: ; ImmutableOopMap {[0]=Oop }
                       ;*invokestatic glClearColor {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL11::glClearColor@4 (line 1022)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@7 (line 72)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@7 (line 72)
   0x0000023c8ff254c0: 9c51 feff 
 
   0x0000023c8ff254c4: ;   {other}
@@ -305,7 +305,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
   0x0000023c8ff254d4: ; ImmutableOopMap {[0]=Oop }
                       ;*invokestatic glClear {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL11::glClear@1 (line 992)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@13 (line 74)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@13 (line 74)
   0x0000023c8ff254d4: 0808 fdff 
 
   0x0000023c8ff254d8: ;   {other}
@@ -321,7 +321,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
                       ;*invokestatic glUseProgram {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL20::glUseProgram@1 (line 398)
                       ; - com.bedrye.bjge.GameEngine.Util.Shaders.BasicProgramShader::Run@4 (line 39)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@20 (line 75)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@20 (line 75)
   0x0000023c8ff254f0: ec6f fcff 
 
   0x0000023c8ff254f4: ;   {other}
@@ -336,7 +336,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
   0x0000023c8ff2551c: ; ImmutableOopMap {[0]=Oop }
                       ;*invokevirtual getKey {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram::uploadInt@2 (line 81)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@30 (line 76)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@30 (line 76)
   0x0000023c8ff2551c: a061 feff 
 
   0x0000023c8ff25520: ;   {other}
@@ -349,7 +349,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
                       ;*invokestatic glUniform1i {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL20::glUniform1i@2 (line 487)
                       ; - com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram::uploadInt@8 (line 82)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@30 (line 76)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@30 (line 76)
   0x0000023c8ff25530: ac0b fdff 
 
   0x0000023c8ff25534: ;   {other}
@@ -361,7 +361,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
   0x0000023c8ff25544: ; ImmutableOopMap {[0]=Oop }
                       ;*invokestatic glActiveTexture {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL13::glActiveTexture@1 (line 570)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@35 (line 77)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@35 (line 77)
   0x0000023c8ff25544: 1895 fcff 
 
   0x0000023c8ff25548: ;   {other}
@@ -372,7 +372,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000023c8ff25568: ; ImmutableOopMap {[0]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@42 (line 78)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@42 (line 78)
   0x0000023c8ff25568: 54d3 ffff 
 
   0x0000023c8ff2556c: ;   {other}
@@ -387,7 +387,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
   0x0000023c8ff25594: ; ImmutableOopMap {[0]=Oop }
                       ;*invokevirtual getKey {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram::uploadFloat@2 (line 76)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@56 (line 83)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@56 (line 83)
   0x0000023c8ff25594: 2861 feff 
 
   0x0000023c8ff25598: ;   {other}
@@ -403,7 +403,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
                       ;*invokestatic glUniform1f {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL20::glUniform1f@2 (line 425)
                       ; - com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram::uploadFloat@11 (line 77)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@56 (line 83)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@56 (line 83)
   0x0000023c8ff255ac: 3059 feff 
 
   0x0000023c8ff255b0: ;   {other}
@@ -419,7 +419,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
                       ;*invokestatic glUseProgram {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL20::glUseProgram@1 (line 398)
                       ; - com.bedrye.bjge.GameEngine.Util.Shaders.BasicProgramShader::Clear@1 (line 62)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@75 (line 86)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@75 (line 86)
   0x0000023c8ff255dc: 006f fcff 
 
   0x0000023c8ff255e0: ;   {other}
@@ -433,7 +433,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000023c8ff25604: ; ImmutableOopMap {}
                       ;*invokevirtual uploadInt {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@30 (line 76)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@30 (line 76)
   0x0000023c8ff25604: f826 9eff 
 
   0x0000023c8ff25608: ;   {other}
@@ -444,7 +444,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000023c8ff25618: ; ImmutableOopMap {}
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@42 (line 78)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@42 (line 78)
   0x0000023c8ff25618: e426 9eff 
 
   0x0000023c8ff2561c: ;   {other}
@@ -455,7 +455,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000023c8ff2562c: ; ImmutableOopMap {}
                       ;*invokevirtual uploadFloat {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@56 (line 83)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@56 (line 83)
   0x0000023c8ff2562c: d026 9eff 
 
   0x0000023c8ff25630: ;   {other}
@@ -466,7 +466,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000023c8ff25640: ; ImmutableOopMap {}
                       ;*invokevirtual Clear {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@75 (line 86)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@75 (line 86)
   0x0000023c8ff25640: bc26 9eff 
 
   0x0000023c8ff25644: ;   {other}
@@ -479,7 +479,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
   0x0000023c8ff2566c: ; ImmutableOopMap {[0]=Oop [8]=NarrowOop [12]=NarrowOop }
                       ;*if_icmpge {reexecute=1 rethrow=0 return_oop=0}
                       ; - (reexecute) java.util.ArrayList::forEach@36 (line 1595)
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@68 (line 84)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@68 (line 84)
   0x0000023c8ff2566c: 9026 9eff 
 
   0x0000023c8ff25670: ;   {other}
@@ -494,7 +494,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000023c8ff256b8: ; ImmutableOopMap {}
                       ;*invokevirtual Run {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@20 (line 75)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@20 (line 75)
   0x0000023c8ff256b8: 4426 9eff 
 
   0x0000023c8ff256bc: ;   {other}
@@ -505,7 +505,7 @@ Compiled method (c2)  119621 1900       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000023c8ff256cc: ; ImmutableOopMap {}
                       ;*invokevirtual forEach {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.Objects.GameScene::update@68 (line 84)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@68 (line 84)
   0x0000023c8ff256cc: 3026 9eff 
 
   0x0000023c8ff256d0: ;   {other}
@@ -849,7 +849,7 @@ CodeHeap 'non-nmethods': size=5760Kb used=2922Kb max_used=2962Kb free=2837Kb
  full_count=0
 
 Compilation events (20 events):
-Event: 48.159 Thread 0x0000023c993ca4b0 1904       4       com.bedrye.bjge.GameEngine.Objects.GameScene::updateUILayer (29 bytes)
+Event: 48.159 Thread 0x0000023c993ca4b0 1904       4       com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer (29 bytes)
 Event: 48.176 Thread 0x0000023c993ca4b0 nmethod 1904 0x0000023c8ff27890 code [0x0000023c8ff27c80, 0x0000023c8ff28d68]
 Event: 48.176 Thread 0x0000023c993ca4b0 1905       4       com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update (242 bytes)
 Event: 48.178 Thread 0x0000023c993ca4b0 nmethod 1905 0x0000023c8ff2a190 code [0x0000023c8ff2a360, 0x0000023c8ff2a590]

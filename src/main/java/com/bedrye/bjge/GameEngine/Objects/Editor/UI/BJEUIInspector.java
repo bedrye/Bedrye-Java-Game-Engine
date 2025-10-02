@@ -13,7 +13,7 @@ import org.joml.Vector3f;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
+import java.util.*;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_DELETE;
 
@@ -55,8 +55,7 @@ public class BJEUIInspector extends BJEUIWindow  {
             try {
 
                 inspectTransform(object3DAbstract);
-
-                   inspectObject(object3DAbstract);
+                openPopup();
 
 
 
@@ -74,64 +73,56 @@ public class BJEUIInspector extends BJEUIWindow  {
 
         }
 
+        private List<Field> joinArrays(Field[] f1,Field[] fp2){
+
+
+            List<Field> n = new ArrayList<>();
+            for (Field field: fp2) {
+                if (!Modifier.isPublic(field.getModifiers())
+                        && field.isAnnotationPresent(InspectorVisible.class)) {
+                        field.setAccessible(true);
+                        n.add(field);
+                    }
+
+            }
+            Collections.addAll(n,f1);
+            return n;
+        }
     public void inspectObject(Object o) throws IllegalAccessException {
-        Field[] fields = o.getClass().getFields();
+        List<Field> fields = joinArrays(o.getClass().getFields(), o.getClass().getDeclaredFields());
+
+
         ImGui.pushID(o.getClass().getSimpleName());
         for (Field field : fields) {
 
             if (MainBehaviour.class.isAssignableFrom(field.getType())) {
-
-                inspectObject(field.get(o));
-            }
-            else if (BJEResource.class.isAssignableFrom(field.getType())) {
-
+                    inspectObject(field.get(o));
+            } else if (BJEResource.class.isAssignableFrom(field.getType())) {
                 if (field.get(o) == null)
                     ImGui.selectable(field.getName(), 50, 50);
                 else {
                     ((BJEResource) field.get(o)).show();
                     ((BJEResource) field.get(o)).hide();
-                    //ImGui.selectable(field.getName(), 50, 50);
+
                 }
                 if (ImGui.beginDragDropTarget()) {
-                    BJEResource payload = ImGui.acceptDragDropPayload("Resource");
-
-                    if (payload != null) {
-                        //((BJETexture) payload).initialize();
-                        field.set(o, payload);
-                    }
-
+                    acceptPayload(field,o,"Resource");
 
 
                     ImGui.endDragDropTarget();
                 }
 
-            }
 
-            else
-                fieldCheck(field,o);
-                }
-        Field[] fieldinvs = o.getClass().getDeclaredFields();
 
-        for (Field field : fieldinvs) {
-            if (!Modifier.isPublic(field.getModifiers())&&field.isAnnotationPresent(InspectorVisible.class)) {
-
-                field.setAccessible(true);
-                if (field.getType().isAnnotationPresent(InspectorVisible.class)) {
-                    inspectObject(field.get(o));
-
-                }
-
-                else
-
+            } else
                     fieldCheck(field, o);
             }
-        }
-
-            ImGui.popID();
-
-        }
 
 
+
+        ImGui.popID();
+
+    }
 
 
 
@@ -253,20 +244,22 @@ public class BJEUIInspector extends BJEUIWindow  {
         ImGui.inputFloat("Zs", floats.get(floatcount - 1));
         object.setScale(new Vector3f(floats.get(floatcount - 3).get(),floats.get(floatcount - 2).get(),floats.get(floatcount - 1).get()));
         ImGui.text("Scripts");
-        int removeAt=0;
-        boolean remove =false;
-        for (MainBehaviour main: object.getScriptList()
-             ) {
+        Iterator<MainBehaviour> i = object.getScriptList().iterator();
+        int count = 0;
+        while (i.hasNext())
+             {
+                 MainBehaviour main = i.next();
             try {
-                ImGui.pushID(main.getClass().getSimpleName());
+                ImGui.pushID(main.getClass().getSimpleName()+count);
+                count++;
                 ImGui.separator();
                 ImGui.text(main.getClass().getSimpleName());
                 inspectObject(main);
+
                 if(ImGui.button("-")) {
-                    remove = true;
-                    break;
+                    i.remove();
                 }
-                removeAt++;
+
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
@@ -275,8 +268,12 @@ public class BJEUIInspector extends BJEUIWindow  {
 
             }
         }
-        if(remove)
-            object.removeScript(removeAt);
+
+
+
+    }
+
+    private void openPopup(){
         if (ImGui.button("+",40,20)){
 
             ImGui.openPopup("addPopup");
@@ -284,18 +281,13 @@ public class BJEUIInspector extends BJEUIWindow  {
 
         }
         if (ImGui.beginPopup("addPopup")){
-            for (MainBehaviour beh: EngineWindowManager.getInstance().getBjeResourceManager().getScripts()
-                 ) {
+            for (MainBehaviour beh: EngineWindowManager.getInstance().getBjeResourceManager().getScripts().values()
+            ) {
                 if (ImGui.button(beh.getClass().getSimpleName())) {
                     try {
-                        object.addScript(beh.getClass().getConstructor().newInstance());
-                    } catch (InstantiationException e) {
-                        throw new RuntimeException(e);
-                    } catch (IllegalAccessException e) {
-                        throw new RuntimeException(e);
-                    } catch (InvocationTargetException e) {
-                        throw new RuntimeException(e);
-                    } catch (NoSuchMethodException e) {
+                        getObject3DAbstract().addScript(beh.getClass().getConstructor().newInstance());
+                    } catch (InstantiationException | InvocationTargetException | IllegalAccessException |
+                             NoSuchMethodException e) {
                         throw new RuntimeException(e);
                     }
                 }
@@ -303,9 +295,17 @@ public class BJEUIInspector extends BJEUIWindow  {
 
             ImGui.endPopup();
         }
-
     }
 
+    private void acceptPayload(Field field,Object o,String name) throws IllegalAccessException {
 
+        BJEResource payload = ImGui.acceptDragDropPayload(name);
+
+        if (payload != null) {
+
+            field.set(o, payload);
+        }
+
+    }
 }
 

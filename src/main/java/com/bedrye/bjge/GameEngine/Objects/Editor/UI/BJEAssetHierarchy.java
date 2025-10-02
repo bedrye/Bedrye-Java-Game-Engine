@@ -1,30 +1,28 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+
 import com.bedrye.bjge.GameEngine.Objects.Editor.BJEFolder;
-import com.bedrye.bjge.GameEngine.Util.BJEResource;
 import imgui.ImGui;
 
-import java.util.ArrayList;
 
 public class BJEAssetHierarchy extends BJEUIWindow {
     public BJEFolder getSelectedFolder() {
-        return SelectedFolder;
+        return selectedFolder;
     }
 
     public void setSelectedFolder(BJEFolder selectedFolder) {
-        SelectedFolder = selectedFolder;
+        this.selectedFolder = selectedFolder;
     }
 
-    private BJEFolder SelectedFolder = new BJEFolder("O:\\GIt\\MultiplayerShooter\\Assets","Assets");
+    private BJEFolder selectedFolder = new BJEFolder("O:\\GIt\\MultiplayerShooter\\Assets","Assets");
 
     public BJEAssetHierarchy(){
-        SelectedFolder.init(null);
+        selectedFolder.init(null);
     }
     public void goBack(){
-        if(SelectedFolder.Parent!=null)
-            SelectedFolder= SelectedFolder.Parent;
+        if(selectedFolder.getParent() !=null)
+            selectedFolder = selectedFolder.getParent();
 
 
     }
@@ -37,7 +35,7 @@ public class BJEAssetHierarchy extends BJEUIWindow {
         {
             goBack();
         }
-        SelectedFolder.showContents();
+        selectedFolder.showContents();
         ImGui.end();
 
     }
