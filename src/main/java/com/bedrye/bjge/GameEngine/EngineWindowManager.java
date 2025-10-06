@@ -57,6 +57,8 @@ public class EngineWindowManager {
     private BJEFrameBuffer bjeFrameBuffer;
     private BJEFileSystem bjeFileSystem;
     private BJEResourceManager bjeResourceManager;
+
+
     private boolean isInEditMode=true;
 
     public BJEFrameBuffer getBjeFrameBuffer() {
@@ -77,6 +79,7 @@ public class EngineWindowManager {
     }
 
     private Scene activeScene;
+    private BJEEditorScene editorScene;
     private static EngineWindowManager init;
     public static EngineWindowManager getInstance(){
         if(init==null) init= new EngineWindowManager();
@@ -158,8 +161,8 @@ public class EngineWindowManager {
         glViewport(0,0,getWidth(),getHeight());
         glEnable(GL_DEPTH_TEST);
         glClear( GL_DEPTH_BUFFER_BIT);
-
-        setActiveScene(new BJEEditorScene());
+        editorScene = new BJEEditorScene();
+        setActiveScene(editorScene);
         glEnable(GL_CULL_FACE);
         //glPolygonMode(GL_FRONT, GL_LINE);
 
@@ -218,7 +221,8 @@ public class EngineWindowManager {
     public void load(File file){
 
         try {
-            setActiveScene(mapper.readValue(file, Scene.class));
+            editorScene = (BJEEditorScene) mapper.readValue(file, Scene.class);
+            setActiveScene(editorScene);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -267,7 +271,11 @@ public class EngineWindowManager {
 
     public void InEngineRun(){
         isInEditMode=false;
-        setActiveScene(new BJEGameScene((BJEEditorScene) getActiveScene()));
+        setActiveScene(new BJEGameScene(editorScene));
+    }
+    public void InEngineStop(){
+        isInEditMode=true;
+        setActiveScene(editorScene);
     }
 }
 

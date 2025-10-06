@@ -1,6 +1,7 @@
 package com.bedrye.bjge.GameEngine;
 
 
+import com.bedrye.bjge.GameEngine.Util.Annotation.EditorBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
 import com.bedrye.bjge.GameEngine.Util.BJEMesh;
@@ -10,7 +11,7 @@ import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+@EditorBehaviour
 public class BJEMeshRenderer extends MainBehaviour {
 
     public BJEResource meshRes;

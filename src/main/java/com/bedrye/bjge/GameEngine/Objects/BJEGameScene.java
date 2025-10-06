@@ -21,16 +21,14 @@ public final class BJEGameScene extends Scene{
     @Override
     public void initialize() {
         System.out.println("Game");
-        Camera camera = new Camera(null);
-        setCamera(camera);
 
-        camera.addScript(new SimpleCameraControl());
 
 
         setShaderProgram(new BasicProgramShader(Paths.get("Assets\\Shaders\\SimpleBuiltInShader.glsl")));
         getShaderProgram().Compile();
 
-        getGameObjects().forEach(Object3DAbstract::initialize);
+        getGameObjects().forEach(Object3DAbstract::gameInitialize);
+        if(getCamera()==null) setCamera(new Camera(null));
     }
 
     @Override
@@ -51,7 +49,7 @@ public final class BJEGameScene extends Scene{
         getCamera().update();
         getShaderProgram().uploadFloat(10f,"specularPower");
 
-        getGameObjects().forEach(Object3DAbstract::update);
+        getGameObjects().forEach(Object3DAbstract::gameUpdate);
 
         getShaderProgram().Clear();
 

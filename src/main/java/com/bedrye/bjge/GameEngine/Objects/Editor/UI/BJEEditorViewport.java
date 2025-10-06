@@ -10,7 +10,6 @@ public class BJEEditorViewport  extends BJEUIWindow {
 
 
 
-
         public void update() {
             ImGui.begin("Game Viewport", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse);
 
@@ -48,16 +47,21 @@ public class BJEEditorViewport  extends BJEUIWindow {
                     }
                     ImGui.endMenu();
                 }
+                if(EngineWindowManager.getInstance().isInEditMode()) {
+                    if (ImGui.menuItem("Run")) {
 
-                if (ImGui.beginMenu("Run")) {
-                    if (ImGui.menuItem("Editor", "Ctrl+R")) {
                         EngineWindowManager.getInstance().InEngineRun();
+
                     }
-                    if (ImGui.menuItem("Compile", "Ctrl+I")) {
-                        EngineWindowManager.getInstance().save();
-                    }
-                    ImGui.endMenu();
                 }
+                else {
+                    if (ImGui.menuItem("Stop")) {
+
+                        EngineWindowManager.getInstance().InEngineStop();
+
+                    }
+
+                    }
                 ImGui.endMainMenuBar();
             }
 

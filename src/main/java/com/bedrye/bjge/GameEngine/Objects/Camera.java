@@ -24,6 +24,7 @@ public class Camera extends Object3DAbstract {
         super();
     }
 
+
     public Camera(Object3DAbstract parent) {
         super(parent);
 

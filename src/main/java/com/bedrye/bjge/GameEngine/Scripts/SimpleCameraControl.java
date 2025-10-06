@@ -2,9 +2,10 @@ package com.bedrye.bjge.GameEngine.Scripts;
 
 import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
+import com.bedrye.bjge.GameEngine.Util.Annotation.EditorBehaviour;
 
 import static org.lwjgl.glfw.GLFW.*;
-
+@EditorBehaviour
 public class SimpleCameraControl extends MainBehaviour{
 
     @Override

@@ -1,16 +1,16 @@
 {
-  "@class" : "com.bedrye.bjge.GameEngine.Objects.GameScene",
+  "@class" : "com.bedrye.bjge.GameEngine.Objects.BJEEditorScene",
   "camera" : {
     "@class" : "com.bedrye.bjge.GameEngine.Objects.Camera",
-    "@id" : "61642300-e07a-48db-be93-aa4330b3c98e",
+    "@id" : "15251e76-733d-4b71-9634-dff89aa2e8ac",
     "position" : {
-      "x" : 27.27152,
-      "y" : 68.18233,
-      "z" : 77.796555
+      "x" : 34.145218,
+      "y" : 0.0,
+      "z" : 248.11014
     },
     "rotation" : {
-      "x" : 20.600008,
-      "y" : -0.5,
+      "x" : 0.0,
+      "y" : 1.2000002,
       "z" : 0.0
     },
     "scale" : {
@@ -21,31 +21,31 @@
     "parent" : null,
     "name" : null,
     "childList" : [ ],
-    "localPosY" : 68.18233,
-    "localPosX" : 27.27152,
-    "rotationX" : 20.600008,
-    "rotationY" : -0.5,
-    "localPosZ" : 77.796555,
+    "rotationX" : 0.0,
+    "localPosY" : 0.0,
+    "localPosZ" : 248.11014,
+    "rotationY" : 1.2000002,
+    "localPosX" : 34.145218,
+    "localPos" : {
+      "x" : 34.145218,
+      "y" : 0.0,
+      "z" : 248.11014
+    },
     "rotationZ" : 0.0,
     "scriptList" : [ {
       "@class" : "com.bedrye.bjge.GameEngine.Scripts.SimpleCameraControl",
-      "@id" : "25778836-c190-4907-a954-fc8517d1db22",
-      "gameObject" : "61642300-e07a-48db-be93-aa4330b3c98e"
-    } ],
-    "localPos" : {
-      "x" : 27.27152,
-      "y" : 68.18233,
-      "z" : 77.796555
-    }
+      "@id" : "816be31f-f584-411e-af67-5d50684b5a31",
+      "gameObject" : "15251e76-733d-4b71-9634-dff89aa2e8ac"
+    } ]
   },
   "initialized" : true,
   "gameObjects" : [ {
     "@class" : "com.bedrye.bjge.GameEngine.Objects.Object3D",
-    "@id" : "4f28b7f5-d5cd-43ff-9a82-6ed6688e08dd",
+    "@id" : "ecd1cd29-50d3-4e61-9a8b-cfd9b8228937",
     "position" : {
       "x" : 0.0,
-      "y" : 0.0,
-      "z" : 0.0
+      "y" : 9.0,
+      "z" : 9.0
     },
     "rotation" : {
       "x" : 0.0,
@@ -60,25 +60,35 @@
     "parent" : null,
     "name" : "Cube",
     "childList" : [ ],
-    "localPosY" : 0.0,
-    "localPosX" : 0.0,
     "rotationX" : 0.0,
+    "localPosY" : 9.0,
+    "localPosZ" : 9.0,
     "rotationY" : 0.0,
-    "localPosZ" : 0.0,
+    "localPosX" : 0.0,
+    "localPos" : {
+      "x" : 0.0,
+      "y" : 9.0,
+      "z" : 9.0
+    },
     "rotationZ" : 0.0,
     "scriptList" : [ {
       "@class" : "com.bedrye.bjge.GameEngine.BJEMeshRenderer",
-      "@id" : "d2b7dda1-f1ce-4cf7-a944-ee22fe7cd238",
-      "gameObject" : "4f28b7f5-d5cd-43ff-9a82-6ed6688e08dd"
-    } ],
-    "localPos" : {
-      "x" : 0.0,
-      "y" : 0.0,
-      "z" : 0.0
-    }
+      "@id" : "0e8ac7b8-f592-4af4-96e2-8858a77ef140",
+      "meshRes" : {
+        "@class" : "com.bedrye.bjge.GameEngine.Util.BJEObjFile",
+        "path" : "O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj",
+        "name" : "Cube.obj"
+      },
+      "texture" : {
+        "@class" : "com.bedrye.bjge.GameEngine.Util.BJETexture",
+        "path" : "Assets\\Egg.png",
+        "name" : "Egg.png"
+      },
+      "gameObject" : "ecd1cd29-50d3-4e61-9a8b-cfd9b8228937"
+    } ]
   }, {
-    "@class" : "com.bedrye.bjge.GameEngine.Objects.DirectionalLight",
-    "@id" : "77914783-3234-4358-a03f-0d1c2de1bd12",
+    "@class" : "com.bedrye.bjge.GameEngine.Objects.AmbientLight",
+    "@id" : "d30300f7-2d9b-495f-b784-15df64d5ba30",
     "position" : {
       "x" : 0.0,
       "y" : 0.0,
@@ -95,30 +105,67 @@
       "z" : 1.0
     },
     "parent" : null,
-    "name" : "DirectionalLight",
+    "name" : "AmbientLight",
     "childList" : [ ],
     "color" : {
-      "x" : 1.0,
-      "y" : 1.0,
-      "z" : 1.0
-    },
-    "direction" : {
-      "x" : 0.0,
-      "y" : 1.0,
-      "z" : 0.0
+      "x" : 0.3,
+      "y" : 0.3,
+      "z" : 0.3
     },
     "intensity" : 1.0,
-    "localPosY" : 0.0,
-    "localPosX" : 0.0,
+    "attenuation" : {
+      "constant" : 0.0,
+      "linear" : 0.0,
+      "exponent" : 1.0
+    },
     "rotationX" : 0.0,
-    "rotationY" : 0.0,
+    "localPosY" : 0.0,
     "localPosZ" : 0.0,
-    "rotationZ" : 0.0,
-    "scriptList" : [ ],
+    "rotationY" : 0.0,
+    "localPosX" : 0.0,
     "localPos" : {
       "x" : 0.0,
       "y" : 0.0,
       "z" : 0.0
-    }
+    },
+    "rotationZ" : 0.0,
+    "scriptList" : [ ]
+  }, {
+    "@class" : "com.bedrye.bjge.GameEngine.Objects.BJECameraStart",
+    "@id" : "d0e5c5dc-ef03-47e2-b19f-506211903564",
+    "position" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 90.0
+    },
+    "rotation" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 0.0
+    },
+    "scale" : {
+      "x" : 1.0,
+      "y" : 1.0,
+      "z" : 1.0
+    },
+    "parent" : null,
+    "name" : "BJECameraStart",
+    "childList" : [ ],
+    "rotationX" : 0.0,
+    "localPosY" : 0.0,
+    "localPosZ" : 90.0,
+    "rotationY" : 0.0,
+    "localPosX" : 0.0,
+    "localPos" : {
+      "x" : 0.0,
+      "y" : 0.0,
+      "z" : 90.0
+    },
+    "rotationZ" : 0.0,
+    "scriptList" : [ {
+      "@class" : "com.bedrye.bjge.GameEngine.Scripts.SimpleCameraControl",
+      "@id" : "7408ac61-f26b-45ba-8a55-cfc8ee0164c1",
+      "gameObject" : "d0e5c5dc-ef03-47e2-b19f-506211903564"
+    } ]
   } ]
 }

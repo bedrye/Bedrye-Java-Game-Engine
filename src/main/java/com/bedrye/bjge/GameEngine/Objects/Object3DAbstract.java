@@ -242,7 +242,14 @@ public abstract class Object3DAbstract {
 
 
         }
+        public void gameUpdate(){
+        update();
+        }
+    public void gameInitialize(){
+        initialize();
     }
+
+}
 
 
 

@@ -5,8 +5,6 @@ q
 Asrc/main/java/com/bedrye/bjge/GameEngine/Util/Shaders/Shader.java,8\0\800012639c892b1d0825f6b35ae2f645df43c356
 ?
 Assets/bool.txt,5\e\5e462eec6ac78ee3c6282d05c5214e4cf9d6b123
-p
-@src/main/java/com/bedrye/bjge/GameEngine/Util/BJEShowFields.java,0\c\0c39063bcd8e9d19669d9fc0e8edc385d3e1df32
 ƒ
 Ssrc/main/java/com/bedrye/bjge/GameEngine/Util/Serialization/Vector3fSerializer.java,a\2\a2cfeacb60a09e078c9ce80dde6e5205dc323acf
 ƒ
@@ -15,8 +13,6 @@ Ssrc/main/java/com/bedrye/bjge/GameEngine/Util/Serialization/Vector4fSerializer.
 Usrc/main/java/com/bedrye/bjge/GameEngine/Util/Serialization/Vector4fDeserializer.java,d\a\da356d43bbbadd5ef02dae42a8c534b736d47a7a
 …
 Usrc/main/java/com/bedrye/bjge/GameEngine/Util/Serialization/Vector3fDeserializer.java,3\3\3393cfbf474cb435d304aa9bb0d8e89196b784e4
-p
-@src/main/java/com/bedrye/bjge/GameEngine/Scripts/PressMouse.java,9\f\9f6a43115551dbea8d752fc99efb9dc0701d3675
 @
 Assets/game.jsom,7\1\710de8d978b2b92906e85b9ec0cca472178d9af3
 @
@@ -35,3 +31,17 @@ x
 Hsrc/main/java/com/bedrye/bjge/GameEngine/Util/Shaders/ShaderProgram.java,0\7\07375655d895d9f621c6c2ab8e66f783c76c9a0c
 n
 >src/main/java/com/bedrye/bjge/GameEngine/Util/TimeCounter.java,8\5\85f7f3e3bbbb5b08f9320ae605b942c35b96f645
+v
+Fsrc/main/java/com/bedrye/bjge/GameEngine/Objects/Editor/BJEFolder.java,f\9\f9990002333a4956eece8f368273a35b50392390
+z
+Jsrc/main/java/com/bedrye/bjge/GameEngine/Objects/Editor/BJEFileSystem.java,d\8\d8c60e089f6a74a4253a537aad7e2b4f37643bd1
+s
+Csrc/main/java/com/bedrye/bjge/GameEngine/Scripts/TestBehaviour.java,9\6\96c7a3a7b34c8ef628d64463d397c1a956f812f9
+v
+Fsrc/main/java/com/bedrye/bjge/GameEngine/Objects/DirectionalLight.java,a\3\a371293d9b2de8ce83040e822f5a6ea979bf0978
+ƒ
+Ssrc/main/java/com/bedrye/bjge/GameEngine/Objects/Editor/UI/BJEUISceneHierarchy.java,7\3\7366225e7036c826672192fa194032088cb5900d
+~
+Nsrc/main/java/com/bedrye/bjge/GameEngine/Util/Annotation/InspectorVisible.java,e\d\ed121403e2850a7be19895e6bc440a5847f17348
+s
+Csrc/main/java/com/bedrye/bjge/GameEngine/Scripts/MainBehaviour.java,d\8\d83b0c23dc2753db9d287bc19696b097b59625e5
