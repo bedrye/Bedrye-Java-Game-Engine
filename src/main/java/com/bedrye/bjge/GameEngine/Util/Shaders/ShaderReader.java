@@ -13,7 +13,6 @@ public class ShaderReader {
             index = string.indexOf("#section",endl)+9;
             endl = string.indexOf("\r\n",index);
             String pattern = string.substring(index,endl).trim().toLowerCase();
-            System.out.println(split[i]);
             shaders.add(getShaderType(pattern,split[i]));
         }
         return shaders ;

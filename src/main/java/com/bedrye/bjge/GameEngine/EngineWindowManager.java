@@ -55,7 +55,6 @@ public class EngineWindowManager {
     private long windowAddress;
     private BJEIMGUILayer bjeimguiLayer;
     private BJEFrameBuffer bjeFrameBuffer;
-    private BJEFileSystem bjeFileSystem;
     private BJEResourceManager bjeResourceManager;
 
 
@@ -106,13 +105,7 @@ public class EngineWindowManager {
 
     }
     public void init(){
-        bjeResourceManager = new BJEResourceManager();
-        bjeFileSystem = new BJEFileSystem("Assets\\scripts");
-        try {
-            bjeFileSystem.startWatcher();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
         module.addSerializer(Vector3f.class, new Vector3fSerializer());
         module.addDeserializer(Vector3f.class, new Vector3fDeserializer());
         module.addSerializer(Vector4f.class, new Vector4fSerializer());
@@ -161,6 +154,12 @@ public class EngineWindowManager {
         glViewport(0,0,getWidth(),getHeight());
         glEnable(GL_DEPTH_TEST);
         glClear( GL_DEPTH_BUFFER_BIT);
+        try {
+            bjeResourceManager = new BJEResourceManager("Assets");
+            bjeResourceManager.init();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         editorScene = new BJEEditorScene();
         setActiveScene(editorScene);
         glEnable(GL_CULL_FACE);

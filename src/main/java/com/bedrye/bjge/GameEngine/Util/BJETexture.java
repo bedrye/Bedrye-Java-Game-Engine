@@ -55,7 +55,6 @@ public class BJETexture extends  BJEResource{
 
     public void initialize(){
 
-
         textureID=glGenTextures();
         glBindTexture(GL_TEXTURE_2D,textureID);
         if(repeat) {

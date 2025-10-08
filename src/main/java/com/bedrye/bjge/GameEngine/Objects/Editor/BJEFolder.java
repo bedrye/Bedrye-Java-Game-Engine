@@ -36,29 +36,12 @@ public class BJEFolder extends BJEResource {
 
                     continue;
                 }
-                String ext = getExtention(file);
-                if ( ext.equals("png")) {
 
-                    bjeResource = new BJETexture(file.getPath(),file.getName());
-                    structure.put(bjeResource.getPath(), bjeResource);
+                if(EngineWindowManager.getInstance().getBjeResourceManager().getByName(file.getName())==null)
+                    bjeResource = new BJETextFile(file.getPath(),file.getName());
+                    else bjeResource = EngineWindowManager.getInstance().getBjeResourceManager().getByName(file.getName());
+                structure.put(bjeResource.getPath(), bjeResource);
 
-                }
-                else if (ext.equals("jpg")){
-                    bjeResource = new BJEJPGTexture(file.getPath(),file.getName());
-                    structure.put(bjeResource.getPath(), bjeResource);
-
-
-                }
-
-                else if ( ext.equals("obj")) {
-                    bjeResource = new BJEObjFile(file.getPath(),file.getName());
-                    structure.put(bjeResource.getPath(), bjeResource);
-
-                }
-                else {
-                    bjeResource = new BJETextFile(file.getPath(), file.getName());
-                    structure.put(bjeResource.getPath(), bjeResource);
-                }
             }
 
         }
