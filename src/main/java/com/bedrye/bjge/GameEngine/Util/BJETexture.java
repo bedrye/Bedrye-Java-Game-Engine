@@ -9,12 +9,13 @@ import imgui.ImGui;
 import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.stb.STBImage.stbi_image_free;
-import static org.lwjgl.stb.STBImage.stbi_load;
+import static org.lwjgl.stb.STBImage.*;
 
 
 public class BJETexture extends  BJEResource{
@@ -26,6 +27,7 @@ public class BJETexture extends  BJEResource{
     @JsonIgnore
     protected transient  int textureID;
 
+
     protected boolean repeat=true;
 
     protected boolean pixelate=true;
@@ -35,7 +37,14 @@ public class BJETexture extends  BJEResource{
     @JsonCreator
     public BJETexture(@JsonProperty("path")String path, @JsonProperty("name")String name) {
         super(path,name);
-        initialize();
+        if(path.equals("INTERNAL"))
+            try {
+                loadFromStream(getClass().getResourceAsStream("/Internal/"+name));
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to load texture from InputStream: " + name, e);
+            }
+        else
+            initialize();
 
 
     }
@@ -52,9 +61,36 @@ public class BJETexture extends  BJEResource{
 
     }
 
+    private void loadFromStream(InputStream inputStream) throws IOException {
 
+        byte[] data = inputStream.readAllBytes();
+        ByteBuffer imageBuffer = BufferUtils.createByteBuffer(data.length);
+        imageBuffer.put(data);
+        imageBuffer.flip();
+
+        IntBuffer w = BufferUtils.createIntBuffer(1);
+        IntBuffer h = BufferUtils.createIntBuffer(1);
+        IntBuffer comp = BufferUtils.createIntBuffer(1);
+
+        ByteBuffer image = stbi_load_from_memory(imageBuffer, w, h, comp, 4);
+        if (image == null) {
+            throw new RuntimeException("[BJE] Failed to decode image: " + stbi_failure_reason());
+        }
+
+        width = w.get(0);
+        height = h.get(0);
+
+        textureID=glGenTextures();
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0,
+                GL_RGBA, GL_UNSIGNED_BYTE, image);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+        stbi_image_free(image);
+    }
     public void initialize(){
-
         textureID=glGenTextures();
         glBindTexture(GL_TEXTURE_2D,textureID);
         if(repeat) {
@@ -89,7 +125,9 @@ public class BJETexture extends  BJEResource{
     public void show() {
 
         ImGui.pushID(getPath());
-        ImGui.selectable(getName(),100,30);
+        ImGui.image(textureID,12,12);
+        ImGui.sameLine();
+        ImGui.selectable(getName());
 
 
 
@@ -107,11 +145,5 @@ public class BJETexture extends  BJEResource{
         }
     }
 
-    @Override
-    public void hide() {
-        ImGui.sameLine();
-        ImGui.image(textureID,30,30);
 
-        super.hide();
-    }
 }

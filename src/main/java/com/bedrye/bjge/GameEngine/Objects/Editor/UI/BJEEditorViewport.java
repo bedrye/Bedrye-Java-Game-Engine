@@ -1,6 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import imgui.ImGui;
 import imgui.ImVec2;
 import imgui.flag.ImGuiWindowFlags;
@@ -40,27 +41,40 @@ public class BJEEditorViewport  extends BJEUIWindow {
                         EngineWindowManager.getInstance().loadFromFile();
                     }
                     if (ImGui.menuItem("Save", "Ctrl+S")) {
-                        EngineWindowManager.getInstance().save();
+                        EngineWindowManager.getInstance().CreateWorkSpace();
                     }
                     if (ImGui.menuItem("Save as..")) {
                         EngineWindowManager.getInstance().saveAs();
                     }
                     ImGui.endMenu();
                 }
+
                 if(EngineWindowManager.getInstance().isInEditMode()) {
-                    if (ImGui.menuItem("Run")) {
+                    if (ImGui.menuItem("  Run")) {
 
                         EngineWindowManager.getInstance().InEngineRun();
 
                     }
+
+                    ImGui.sameLine(ImGui.getCursorPosX() - ImGui.getFontSize() * 2-32);
+                    float origin =ImGui.getCursorPosY();
+                    ImGui.setCursorPosY(origin + 3);
+                    ImGui.image(((BJETexture)EngineWindowManager.getInstance().getBjeResourceManager().getByName("runbutton.png")).getTextureID(),12,12);
+                    ImGui.setCursorPosY(origin );
+                    ImGui.newLine();
                 }
                 else {
-                    if (ImGui.menuItem("Stop")) {
+                    if (ImGui.menuItem(" Stop")) {
 
                         EngineWindowManager.getInstance().InEngineStop();
 
                     }
-
+                    ImGui.sameLine(ImGui.getCursorPosX() - ImGui.getFontSize() * 2-34);
+                    float origin =ImGui.getCursorPosY();
+                    ImGui.setCursorPosY(origin + 3);
+                    ImGui.image(((BJETexture)EngineWindowManager.getInstance().getBjeResourceManager().getByName("stopbutton.png")).getTextureID(),12,12);
+                    ImGui.setCursorPosY(origin );
+                    ImGui.newLine();
                     }
                 ImGui.endMainMenuBar();
             }

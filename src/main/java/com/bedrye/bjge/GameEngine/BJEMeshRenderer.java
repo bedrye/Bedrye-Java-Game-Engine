@@ -33,7 +33,7 @@ public class BJEMeshRenderer extends MainBehaviour {
         this.material =material;
         this.texture=material.getTexture();
         this.meshRes=mesh.getResource();
-        material.getTexture().initialize();
+        //material.getTexture().initialize();
         mesh.setup();
     }
     @JsonCreator
@@ -43,7 +43,7 @@ public class BJEMeshRenderer extends MainBehaviour {
         this.meshRes=meshRes;
         this.mesh = new BJEMesh(meshRes);
         this.material = new BJEMaterial(texture);
-        material.getTexture().initialize();
+        //material.getTexture().initialize();
         mesh.setup();
     }
     @Override

@@ -4,7 +4,6 @@ package com.bedrye.bjge.GameEngine;
 import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Listeners.MouseListener;
 import com.bedrye.bjge.GameEngine.Objects.BJEGameScene;
-import com.bedrye.bjge.GameEngine.Objects.Editor.BJEFileSystem;
 import com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager;
 
 import com.bedrye.bjge.GameEngine.Objects.BJEEditorScene;
@@ -30,6 +29,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.nio.file.Files;
 
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -182,7 +182,7 @@ public class EngineWindowManager {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             activeScene.update();
             bjeFrameBuffer.unbind();
-
+            bjeResourceManager.update();
             glfwSwapBuffers(windowAddress);
 
 
@@ -232,8 +232,7 @@ public class EngineWindowManager {
     }
 
     private FileDialog getFileDialog() {
-        FileDialog dialog = new FileDialog((Frame) null, "Select File to Open");
-        dialog.setMode(FileDialog.LOAD);
+        FileDialog dialog = new FileDialog((Frame) null, "Select File to Open",FileDialog.LOAD);
         dialog.setVisible(true);
         dialog.setMultipleMode(false);
         dialog.setFilenameFilter(new FilenameFilter() {
@@ -263,7 +262,38 @@ public class EngineWindowManager {
 
 
     }
+    private void setWorkSpace(String path){
+        bjeResourceManager.stop();
+        try {
+            bjeResourceManager = new BJEResourceManager(path);
+            bjeResourceManager.init();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+    }
+    public void CreateWorkSpace() {
+        FileDialog dialog = new FileDialog((Frame) null, "Select where you want to create a new project", FileDialog.SAVE);
+
+        dialog.setFile("New Project");
+
+        dialog.setVisible(true);
+        dialog.setMultipleMode(false);
+
+        if (dialog.getFile() != null) {
+            File newDir = new File(dialog.getDirectory()+ dialog.getFile()+"/Assets/scripts");
+            if (!newDir.exists()) {
+                try {
+                    Files.createDirectories(newDir.toPath());
+                    System.out.println("[BJE] Created workspace: " + dialog.getDirectory()+ dialog.getFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
+            }
+            setWorkSpace(dialog.getDirectory()+ dialog.getFile());
+        }
+    }
     public boolean isInEditMode() {
         return isInEditMode;
     }

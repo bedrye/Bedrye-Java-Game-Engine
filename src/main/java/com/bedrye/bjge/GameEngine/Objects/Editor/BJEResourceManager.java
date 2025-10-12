@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,6 +20,7 @@ import java.util.concurrent.Executors;
 public class BJEResourceManager {
 
     private HashMap<String ,MainBehaviour> scripts = new HashMap<>();
+    private Set<Path> listToAdd  = new ConcurrentSkipListSet<>();
     private Map<String , BJEResource> resources  = new ConcurrentHashMap<>();
 
     public HashMap<String, MainBehaviour> getScripts() {
@@ -37,21 +39,26 @@ public class BJEResourceManager {
     public Path getAssetsPath() {
         return assetsPath;
     }
-
+    private BJEFolder currentPath;
     private final Path assetsPath;
     private final ExecutorService watchThread;
 
     private boolean running = true;
 
     public BJEResourceManager(String assetDir) throws IOException {
+
         scripts.put(SimpleCameraControl.class.getName(),new SimpleCameraControl());
         scripts.put(BJEMeshRenderer.class.getName(),new BJEMeshRenderer());
         scripts.put(TestBehaviour.class.getName(),new TestBehaviour());
         scripts.put(Box3DCollider.class.getName(),new Box3DCollider());
-
-
+        resources.put("INTERNAL\\folderbutton.png",new BJETexture("INTERNAL","folderbutton.png"));
+        resources.put("INTERNAL\\runbutton.png",new BJETexture("INTERNAL","runbutton.png"));
+        resources.put("INTERNAL\\stopbutton.png",new BJETexture("INTERNAL","stopbutton.png"));
+        resources.put("INTERNAL\\3dobjectIcon.png",new BJETexture("INTERNAL","3dobjectIcon.png"));
+        resources.put("INTERNAL\\whitetexture.png",new BJETexture("INTERNAL","whitetexture.png"));
 
         this.assetsPath = Paths.get(assetDir);
+        this.currentPath = new BJEFolder(assetDir,"Assets");
         if (!Files.exists(assetsPath)) {
             Files.createDirectories(assetsPath);
         }
@@ -72,7 +79,11 @@ public class BJEResourceManager {
 
         startWatching();
     }
+    public void update(){
+        listToAdd.forEach(this::loadResource);
+        listToAdd.clear();
 
+    }
     private void loadAllResources() throws IOException {
         Files.walk(assetsPath)
                 .filter(Files::isRegularFile)
@@ -82,7 +93,6 @@ public class BJEResourceManager {
     private void loadResource(Path path) {
         String ext = getFileExtension(path);
         String name = path.getFileName().toString();
-
         try {
             BJEResource resource = switch (ext.toLowerCase()) {
                 case "obj" -> new BJEObjFile(path.toString(), name);
@@ -133,14 +143,16 @@ public class BJEResourceManager {
                     Path fullPath = dir.resolve(filename);
 
                     if (kind == StandardWatchEventKinds.ENTRY_CREATE) {
-                        loadResource(fullPath);
+                        listToAdd.add(fullPath);
+
+
                     } else if (kind == StandardWatchEventKinds.ENTRY_MODIFY) {
                         reloadResource(fullPath);
                     } else if (kind == StandardWatchEventKinds.ENTRY_DELETE) {
                         removeResource(fullPath);
                     }
-                }
 
+                }
                 key.reset();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -151,7 +163,7 @@ public class BJEResourceManager {
 
     private void reloadResource(Path path) {
         System.out.println("[BJE] Reloading resource: " + path);
-        loadResource(path);
+        listToAdd.add(path);
     }
 
     private void removeResource(Path path) {

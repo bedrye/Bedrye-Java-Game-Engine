@@ -62,6 +62,7 @@ in vec3 fVertexPos;
 out vec4 color;
 
 
+
 void setupColours(Material material, vec2 textCoord)
 {
         if(material.hasTexture == 1){

@@ -73,7 +73,11 @@ public class BJEFolder extends BJEResource {
     public void show(){
 
         ImGui.pushID(getPath());
+        ImGui.image(((BJETexture)EngineWindowManager.getInstance().getBjeResourceManager().getByName("folderbutton.png")).getTextureID(),12,12);
+        ImGui.sameLine();
         ImGui.selectable(getPath());
+
+
         if (ImGui.isItemClicked())
         {
             ((BJEEditorScene) EngineWindowManager.getInstance().getActiveScene()).bjeAssetHierarchy.setSelectedFolder(this);

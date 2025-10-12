@@ -106,7 +106,9 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
     private Object3D createCube(){
         Object3D ob = new Object3D();
         ob.setName("Cube");
-        ob.addScript(new BJEMeshRenderer(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj","Cube.obj"),new BJETexture("Assets\\Egg.png","Egg.png")));
+        ob.addScript(new BJEMeshRenderer(
+                new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj","Cube.obj"),
+                (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
         return  ob;
 
 
