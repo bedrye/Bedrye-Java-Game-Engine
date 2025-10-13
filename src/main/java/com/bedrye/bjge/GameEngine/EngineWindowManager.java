@@ -9,6 +9,7 @@ import com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager;
 import com.bedrye.bjge.GameEngine.Objects.BJEEditorScene;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
 import com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer;
+import com.bedrye.bjge.GameEngine.Util.BJEProject;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fDeserializer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fSerializer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector4fDeserializer;
@@ -38,7 +39,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class EngineWindowManager {
-    private String projectName;
+
     private int height,width;
 
     private ObjectMapper mapper = new ObjectMapper();
@@ -76,18 +77,26 @@ public class EngineWindowManager {
         this.activeScene = activeScene;
         activeScene.initialize();
     }
+    private String getProjectName(){
 
+        if(hasProject())
+            return project.getName();
+        else return  "No Project Selected";
+    }
     private Scene activeScene;
     private BJEEditorScene editorScene;
+    private BJEProject project;
     private static EngineWindowManager init;
     public static EngineWindowManager getInstance(){
         if(init==null) init= new EngineWindowManager();
         return init;
 
     }
+    public boolean hasProject(){
+        return  project!=null;
 
+    }
     private EngineWindowManager(){
-        projectName = "Test";
         height = 1080;
         width=1920;
     }
@@ -127,7 +136,7 @@ public class EngineWindowManager {
         glfwWindowHint(GLFW_RESIZABLE,GLFW_TRUE);
 
 
-        windowAddress = glfwCreateWindow(width,height,projectName, NULL,NULL);
+        windowAddress = glfwCreateWindow(width,height,getProjectName(), NULL,NULL);
         if(windowAddress == NULL){
             throw new IllegalStateException("Unable to create a window");
 
@@ -194,15 +203,15 @@ public class EngineWindowManager {
         return (float)width / height;
     }
 
-    public void save(){
-        File file = new File("Assets\\game.json");
+    public void saveScene(){
+        File file = new File("Assets\\game.bjes");
         try {
-            mapper.writeValue(file, getActiveScene());
+            mapper.writeValue(file, editorScene);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public void loadFromFile(){
+    public void loadSceneFromFile(){
         FileDialog dialog = getFileDialog();
 
         String dir = dialog.getDirectory();
@@ -212,12 +221,12 @@ public class EngineWindowManager {
         if (file != null) {
             File selected = new File(dir, file);
             System.out.println("Selected: " + selected.getAbsolutePath());
-            load(selected);
+            loadScene(selected);
         }
 
 
     }
-    public void load(File file){
+    public void loadScene(File file){
 
         try {
             editorScene = (BJEEditorScene) mapper.readValue(file, Scene.class);
@@ -238,20 +247,20 @@ public class EngineWindowManager {
         dialog.setFilenameFilter(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
-                return name.endsWith(".json");
+                return name.endsWith(".bjes");
             }
         });
         return dialog;
     }
-    public void saveAs(){
+    public void saveSceneAs(){
         FileDialog dialog = new FileDialog((Frame) null, "Save Scene", FileDialog.SAVE);
-        dialog.setFile("scene.json");
+        dialog.setFile("scene.bjes");
         dialog.setVisible(true);
 
         if (dialog.getFile() != null) {
             File file = new File(dialog.getDirectory(), dialog.getFile());
             try (FileWriter writer = new FileWriter(file)) {
-                mapper.writerWithDefaultPrettyPrinter().writeValue(writer, getActiveScene());
+                mapper.writerWithDefaultPrettyPrinter().writeValue(writer, editorScene);
                 System.out.println("Scene saved to: " + file.getAbsolutePath());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -262,17 +271,38 @@ public class EngineWindowManager {
 
 
     }
-    private void setWorkSpace(String path){
+    private void setWorkSpace(String path,String projectName){
         bjeResourceManager.stop();
         try {
-            bjeResourceManager = new BJEResourceManager(path);
+            project = new BJEProject(path,projectName);
+            GLFW.glfwSetWindowTitle(getWindowAddress(), getProjectName());
+            bjeResourceManager = new BJEResourceManager(path+"/Assets");
             bjeResourceManager.init();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
     }
-    public void CreateWorkSpace() {
+    public void loadWorkSpace() {
+        FileDialog dialog = new FileDialog((Frame) null, "Select file to Open",FileDialog.LOAD);
+        dialog.setVisible(true);
+        dialog.setMultipleMode(false);
+        dialog.setFilenameFilter(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(".bjep");
+            }
+        });
+
+        String dir = dialog.getDirectory();
+        String file = dialog.getFile();
+
+        if (file != null) {
+            System.out.println("[BJE] Selected workspace: " + dir+file);
+            setWorkSpace(dir,file);
+        }
+    }
+    public void createWorkSpace() {
         FileDialog dialog = new FileDialog((Frame) null, "Select where you want to create a new project", FileDialog.SAVE);
 
         dialog.setFile("New Project");
@@ -282,16 +312,19 @@ public class EngineWindowManager {
 
         if (dialog.getFile() != null) {
             File newDir = new File(dialog.getDirectory()+ dialog.getFile()+"/Assets/scripts");
+            File file = new File(dialog.getDirectory()+ dialog.getFile(),dialog.getFile()+".bjep");
+
             if (!newDir.exists()) {
                 try {
                     Files.createDirectories(newDir.toPath());
+                    file.createNewFile();
                     System.out.println("[BJE] Created workspace: " + dialog.getDirectory()+ dialog.getFile());
                 } catch (IOException e) {
                     e.printStackTrace();
                     return;
                 }
             }
-            setWorkSpace(dialog.getDirectory()+ dialog.getFile());
+            setWorkSpace(dialog.getDirectory()+ dialog.getFile(),dialog.getFile());
         }
     }
     public boolean isInEditMode() {

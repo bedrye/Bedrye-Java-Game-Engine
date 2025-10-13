@@ -12,10 +12,10 @@ public class BJEObjFile extends BJEResource{
     @Override
     public void show() {
 
-        ImGui.pushID(getPath());
+        ImGui.pushID(getName());
         ImGui.image(((BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("3dobjectIcon.png")).getTextureID(), 12, 12);
         ImGui.sameLine();
-        ImGui.selectable(getPath());
+        ImGui.selectable(getName());
     }
 
 

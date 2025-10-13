@@ -2,27 +2,19 @@ package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
 
 
+import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.GameEngineMain;
 import com.bedrye.bjge.GameEngine.Objects.Editor.BJEFolder;
 import imgui.ImGui;
 
 
 public class BJEAssetHierarchy extends BJEUIWindow {
-    public BJEFolder getSelectedFolder() {
-        return selectedFolder;
-    }
 
-    public void setSelectedFolder(BJEFolder selectedFolder) {
-        this.selectedFolder = selectedFolder;
-    }
 
-    private BJEFolder selectedFolder = new BJEFolder("O:\\GIt\\MultiplayerShooter\\Assets","Assets");
-
-    public BJEAssetHierarchy(){
-        selectedFolder.init(null);
-    }
     public void goBack(){
+        BJEFolder selectedFolder = EngineWindowManager.getInstance().getBjeResourceManager().getCurrentPath();
         if(selectedFolder.getParent() !=null)
-            selectedFolder = selectedFolder.getParent();
+            EngineWindowManager.getInstance().getBjeResourceManager().setCurrentPath(selectedFolder.getParent());
 
 
     }
@@ -35,7 +27,7 @@ public class BJEAssetHierarchy extends BJEUIWindow {
         {
             goBack();
         }
-        selectedFolder.showContents();
+        EngineWindowManager.getInstance().getBjeResourceManager().getCurrentPath().showContents();
         ImGui.end();
 
     }

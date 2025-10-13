@@ -36,21 +36,31 @@ public class BJEEditorViewport  extends BJEUIWindow {
 
             ImGui.end();
             if (ImGui.beginMainMenuBar()) {
-                if (ImGui.beginMenu("File")) {
+                if (ImGui.beginMenu("Project")) {
+                    if (ImGui.menuItem("New" )) {
+                        EngineWindowManager.getInstance().createWorkSpace();
+                    }
+                    if (ImGui.menuItem("Load" )) {
+                        EngineWindowManager.getInstance().loadWorkSpace();
+                    }
+
+                    ImGui.endMenu();
+                }
+                if (ImGui.beginMenu("Scene",EngineWindowManager.getInstance().hasProject())) {
                     if (ImGui.menuItem("Open", "Ctrl+O")) {
-                        EngineWindowManager.getInstance().loadFromFile();
+                        EngineWindowManager.getInstance().loadSceneFromFile();
                     }
                     if (ImGui.menuItem("Save", "Ctrl+S")) {
-                        EngineWindowManager.getInstance().CreateWorkSpace();
+                        EngineWindowManager.getInstance().saveScene();
                     }
                     if (ImGui.menuItem("Save as..")) {
-                        EngineWindowManager.getInstance().saveAs();
+                        EngineWindowManager.getInstance().saveSceneAs();
                     }
                     ImGui.endMenu();
                 }
 
                 if(EngineWindowManager.getInstance().isInEditMode()) {
-                    if (ImGui.menuItem("  Run")) {
+                    if (ImGui.menuItem("  Run",null,null,EngineWindowManager.getInstance().hasProject())) {
 
                         EngineWindowManager.getInstance().InEngineRun();
 

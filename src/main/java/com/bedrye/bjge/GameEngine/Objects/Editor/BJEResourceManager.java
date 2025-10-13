@@ -39,6 +39,15 @@ public class BJEResourceManager {
     public Path getAssetsPath() {
         return assetsPath;
     }
+
+    public BJEFolder getCurrentPath() {
+        return currentPath;
+    }
+
+    public void setCurrentPath(BJEFolder currentPath) {
+        this.currentPath = currentPath;
+    }
+
     private BJEFolder currentPath;
     private final Path assetsPath;
     private final ExecutorService watchThread;
@@ -56,12 +65,14 @@ public class BJEResourceManager {
         resources.put("INTERNAL\\stopbutton.png",new BJETexture("INTERNAL","stopbutton.png"));
         resources.put("INTERNAL\\3dobjectIcon.png",new BJETexture("INTERNAL","3dobjectIcon.png"));
         resources.put("INTERNAL\\whitetexture.png",new BJETexture("INTERNAL","whitetexture.png"));
-
+        resources.put("INTERNAL\\textbutton.png",new BJETexture("INTERNAL","textbutton.png"));
+        resources.put("INTERNAL\\scenebutton.png",new BJETexture("INTERNAL","scenebutton.png"));
         this.assetsPath = Paths.get(assetDir);
-        this.currentPath = new BJEFolder(assetDir,"Assets");
+
         if (!Files.exists(assetsPath)) {
             Files.createDirectories(assetsPath);
         }
+        this.currentPath = new BJEFolder( Paths.get(assetDir).toString(),"Assets");
 
         this.watchService = FileSystems.getDefault().newWatchService();
         this.watchThread = Executors.newSingleThreadExecutor(r -> {
@@ -74,9 +85,8 @@ public class BJEResourceManager {
     }
     public void  init() throws IOException {
 
-
         loadAllResources();
-
+        currentPath.init(null);
         startWatching();
     }
     public void update(){
@@ -99,13 +109,12 @@ public class BJEResourceManager {
                 case "png" -> new BJETexture(path.toString(), name);
                 case "jpg", "jpeg" -> new BJEJPGTexture(path.toString(), name);
                 case "java" -> new BJEScriptResource(path.toString(), name);
-                default -> null;
+                case "bjes" -> new BJESceneFile(path.toString(), name);
+                default -> new BJETextFile(path.toString(), name);
             };
-
-            if (resource != null) {
                 resources.put(path.toString(), resource);
                 System.out.println("[BJE] Loaded resource: " + path);
-            }
+
         } catch (Exception e) {
             System.err.println("[BJE] Failed to load resource " + path + ": " + e.getMessage());
         }
