@@ -248,6 +248,7 @@ public abstract class Object3DAbstract {
     public void gameInitialize(){
         initialize();
     }
+    public final void removeScript(MainBehaviour mainBehaviour){scripts.remove(mainBehaviour);}
 
 }
 

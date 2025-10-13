@@ -43,7 +43,13 @@ public class BJEEditorViewport  extends BJEUIWindow {
                     if (ImGui.menuItem("Load" )) {
                         EngineWindowManager.getInstance().loadWorkSpace();
                     }
-
+                    ImGui.separator();
+                    if (ImGui.menuItem("Undo", null,null, EngineWindowManager.getInstance().getBjeCommandManager().canUndo())) {
+                        EngineWindowManager.getInstance().getBjeCommandManager().undo();
+                    }
+                    if (ImGui.menuItem("Redo",null,null, EngineWindowManager.getInstance().getBjeCommandManager().canRedo())) {
+                        EngineWindowManager.getInstance().getBjeCommandManager().redo();
+                    }
                     ImGui.endMenu();
                 }
                 if (ImGui.beginMenu("Scene",EngineWindowManager.getInstance().hasProject())) {

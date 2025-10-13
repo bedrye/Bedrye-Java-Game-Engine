@@ -8,6 +8,7 @@ import com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager;
 
 import com.bedrye.bjge.GameEngine.Objects.BJEEditorScene;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
+import com.bedrye.bjge.GameEngine.Util.BJECommandManager;
 import com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer;
 import com.bedrye.bjge.GameEngine.Util.BJEProject;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fDeserializer;
@@ -58,8 +59,12 @@ public class EngineWindowManager {
     private BJEFrameBuffer bjeFrameBuffer;
     private BJEResourceManager bjeResourceManager;
 
+    private BJECommandManager bjeCommandManager;
 
     private boolean isInEditMode=true;
+    public BJECommandManager getBjeCommandManager() {
+        return bjeCommandManager;
+    }
 
     public BJEFrameBuffer getBjeFrameBuffer() {
         return bjeFrameBuffer;
@@ -86,6 +91,7 @@ public class EngineWindowManager {
     private Scene activeScene;
     private BJEEditorScene editorScene;
     private BJEProject project;
+
     private static EngineWindowManager init;
     public static EngineWindowManager getInstance(){
         if(init==null) init= new EngineWindowManager();
@@ -169,9 +175,12 @@ public class EngineWindowManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        bjeCommandManager = new BJECommandManager(10);
         editorScene = new BJEEditorScene();
+
         setActiveScene(editorScene);
         glEnable(GL_CULL_FACE);
+
         //glPolygonMode(GL_FRONT, GL_LINE);
 
         //glCullFace(GL_FRONT);
@@ -229,7 +238,8 @@ public class EngineWindowManager {
     public void loadScene(File file){
 
         try {
-            editorScene = (BJEEditorScene) mapper.readValue(file, Scene.class);
+
+            setEditorScene((BJEEditorScene) mapper.readValue(file, Scene.class));
             setActiveScene(editorScene);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -278,6 +288,7 @@ public class EngineWindowManager {
             GLFW.glfwSetWindowTitle(getWindowAddress(), getProjectName());
             bjeResourceManager = new BJEResourceManager(path+"/Assets");
             bjeResourceManager.init();
+            bjeCommandManager.clear();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -338,6 +349,11 @@ public class EngineWindowManager {
     public void InEngineStop(){
         isInEditMode=true;
         setActiveScene(editorScene);
+    }
+    public void setEditorScene(BJEEditorScene bjeEditorScene){
+        bjeCommandManager.clear();
+        this.editorScene = bjeEditorScene;
+
     }
 }
 

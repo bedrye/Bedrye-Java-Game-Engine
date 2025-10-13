@@ -6,6 +6,9 @@ import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import com.bedrye.bjge.GameEngine.Util.BJEResource;
+import com.bedrye.bjge.GameEngine.Util.Commands.ObjectAddScriptCommand;
+import com.bedrye.bjge.GameEngine.Util.Commands.ObjectRemoveScriptCommand;
+import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
 import imgui.ImGui;
 import imgui.type.*;
 import org.joml.Vector3f;
@@ -30,6 +33,7 @@ public class BJEUIInspector extends BJEUIWindow  {
     private ArrayList<ImDouble> doubles = new ArrayList<>();
     private ArrayList<ImString> strings = new ArrayList<>();
     private Object3DAbstract object3DAbstract;
+    private ICommand command;
 
     public Object3DAbstract getObject3DAbstract() {
         return object3DAbstract;
@@ -69,6 +73,10 @@ public class BJEUIInspector extends BJEUIWindow  {
                 object3DAbstract.delete();
 
                 }
+            if(command!=null) {
+                EngineWindowManager.getInstance().getBjeCommandManager().executeCommand(command);
+                command = null;
+            }
             }
 
         }
@@ -257,7 +265,7 @@ public class BJEUIInspector extends BJEUIWindow  {
                 inspectObject(main);
 
                 if(ImGui.button("-")) {
-                    i.remove();
+                    command = new ObjectRemoveScriptCommand(main,object);
                 }
 
             } catch (IllegalAccessException e) {
@@ -285,7 +293,8 @@ public class BJEUIInspector extends BJEUIWindow  {
             ) {
                 if (ImGui.button(beh.getClass().getSimpleName())) {
                     try {
-                        getObject3DAbstract().addScript(beh.getClass().getConstructor().newInstance());
+                        command = new ObjectAddScriptCommand(beh.getClass().getConstructor().newInstance(),getObject3DAbstract());
+
                     } catch (InstantiationException | InvocationTargetException | IllegalAccessException |
                              NoSuchMethodException e) {
                         throw new RuntimeException(e);

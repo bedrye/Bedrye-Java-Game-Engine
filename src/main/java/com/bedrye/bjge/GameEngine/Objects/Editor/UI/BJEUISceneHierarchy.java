@@ -8,6 +8,8 @@ import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
 import com.bedrye.bjge.GameEngine.Util.BJEMesh;
 import com.bedrye.bjge.GameEngine.Util.BJEObjFile;
 import com.bedrye.bjge.GameEngine.Util.BJETexture;
+import com.bedrye.bjge.GameEngine.Util.Commands.ObjectDeleteCommand;
+import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
 import imgui.ImGui;
 import imgui.flag.ImGuiTreeNodeFlags;
 
@@ -18,7 +20,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
 
     HashMap<Object3DAbstract,Object3DAbstract> changes = new HashMap<>();
-    ArrayList<Object3DAbstract> toDelete =new ArrayList<>();
+    ICommand command ;
     public void update() {
         ImGui.begin("Hierarchy");
         int flag = ImGuiTreeNodeFlags.DefaultOpen;
@@ -51,9 +53,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
         changes.clear();
 
-        toDelete.forEach(k -> k.delete());
 
-        toDelete.clear();
 
     }
     public void addTreeNode(Object3DAbstract object3DAbstract){
@@ -165,7 +165,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
             }
             if (ImGui.menuItem("Delete",null,false,object3DAbstract!=null))
             {
-                toDelete.add(object3DAbstract);
+                command = new ObjectDeleteCommand(object3DAbstract);
             }
             ImGui.endPopup();
         }
