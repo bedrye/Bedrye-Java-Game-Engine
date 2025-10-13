@@ -4,6 +4,7 @@ package com.bedrye.bjge.GameEngine.Objects;
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
+import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -22,10 +23,15 @@ public class Camera extends Object3DAbstract {
     }
     public Camera(){
         super();
+        projectionMatrix=new Matrix4f();
+        viewMatrix=new Matrix4f();
+        changeProjection();
+        compViewMatrix();
+
     }
 
 
-    public Camera(Object3DAbstract parent) {
+    public Camera(IGameSpace parent) {
         super(parent);
 
         projectionMatrix=new Matrix4f();

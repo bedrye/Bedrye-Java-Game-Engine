@@ -3,7 +3,9 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.GameEngineMain;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
+import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -23,23 +25,24 @@ import java.util.List;
         property = "@id"
 )
 
-public abstract class Object3DAbstract {
+public abstract class Object3DAbstract implements IGameSpace {
 
     private Vector3f position;
     private Vector3f globalPosition;
     private Vector3f rotation;
     private Vector3f scale;
-    private Object3DAbstract parent;
+    private IGameSpace parent;
     private String name;
     @JsonIgnore
     private Matrix4f transform = new Matrix4f();
 
 
-    public Object3DAbstract(Object3DAbstract parent){
+    public Object3DAbstract(IGameSpace parent){
         position= new Vector3f(0,0,0);
         rotation= new Vector3f(0,0,0);
         globalPosition = new Vector3f(0,0,0);
         scale= new Vector3f(1,1,1);
+        name = this.getClass().getSimpleName();
         this.parent=parent;
     }
 
@@ -51,11 +54,8 @@ public abstract class Object3DAbstract {
     public abstract void update();
 
     public Object3DAbstract(){
-        position= new Vector3f(0,0,0);
-        rotation= new Vector3f(0,0,0);
-        globalPosition = new Vector3f(0,0,0);
-        scale= new Vector3f(1,1,1);
-        name = this.getClass().getSimpleName();
+        this(EngineWindowManager.getInstance().getActiveScene());
+
 
     }
 
@@ -111,14 +111,10 @@ public abstract class Object3DAbstract {
     public final float getRotationZ(){
         return this.rotation.z;
     }
-    public void addChild(Object3DAbstract child){
+    public void addChildObject(Object3DAbstract child){
         if(!childList.contains(child)&&child!=this&&!isParent(child)) {
-            if(child.parent!=null) {
-                child.parent.getChildList().remove(child);
-            }
-            else {
-                EngineWindowManager.getInstance().getActiveScene().getGameObjects().remove(child);
-            }
+                child.parent.removeChildObject(child);
+
             child.setParent(this);
             childList.add(child);
             child.updateTransform();
@@ -129,14 +125,14 @@ public abstract class Object3DAbstract {
 
         if(object3DAbstract == this)
             return true;
-        if(parent==null)
+        if(parent.isFinal())
             return false;
-        return this.parent.isParent(object3DAbstract);
+        return ((Object3DAbstract) this.parent).isParent(object3DAbstract);
 
     }
-    public void removeChild(Object3DAbstract child){
+    public void removeChildObject(Object3DAbstract child){
         if(childList.contains(child)) {
-            child.setParent(null);
+
             childList.remove(child);
         }
     }
@@ -178,7 +174,7 @@ public abstract class Object3DAbstract {
     public final List<MainBehaviour> getScriptList(){
         return scripts;
     }
-    public final Object3DAbstract getParent() {
+    public final IGameSpace getParent() {
         return parent;
     }
     public final <T extends MainBehaviour> T getScript(Class<T> tClass){
@@ -191,8 +187,9 @@ public abstract class Object3DAbstract {
 
     }
 
-    public final void setParent(Object3DAbstract parent) {
+    public final void setParent(IGameSpace parent) {
         this.parent = parent;
+        updateTransform();
     }
 
     public String getName() {
@@ -210,8 +207,8 @@ public abstract class Object3DAbstract {
                 rotateY((float)Math.toRadians(getRotationY())).
                 rotateZ((float)Math.toRadians(getRotationZ())).
                 scale(scale.x,scale.y,scale.z);
-        if (getParent()!=null)
-            transform.mulLocal(getParent().getTransformMatrix());
+        if (!getParent().isFinal())
+            transform.mulLocal(((Object3DAbstract) getParent()).getTransformMatrix());
         transform.getTranslation(globalPosition);
 
         childList.forEach(Object3DAbstract::updateTransform);
@@ -233,10 +230,10 @@ public abstract class Object3DAbstract {
     }
     public void delete(){
             if(getParent()!=null) {
-                getParent().removeChild(this);
+                getParent().removeChildObject(this);
             }
             else
-                EngineWindowManager.getInstance().getActiveScene().getGameObjects().remove(this);
+                EngineWindowManager.getInstance().getActiveScene().getChildList().remove(this);
 
         ((BJEEditorScene)EngineWindowManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(null);
 
@@ -249,7 +246,10 @@ public abstract class Object3DAbstract {
         initialize();
     }
     public final void removeScript(MainBehaviour mainBehaviour){scripts.remove(mainBehaviour);}
-
+    @JsonIgnore
+    public final boolean isFinal(){
+        return false;
+    }
 }
 
 

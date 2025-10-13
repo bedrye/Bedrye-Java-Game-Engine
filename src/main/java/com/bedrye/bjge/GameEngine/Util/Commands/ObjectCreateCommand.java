@@ -4,26 +4,26 @@ import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 
-public class ObjectDeleteCommand implements ICommand {
+public class ObjectCreateCommand implements ICommand {
 
     private Object3DAbstract selectedObject;
     private IGameSpace parent;
 
-    public ObjectDeleteCommand(Object3DAbstract selectedObject) {
+    public ObjectCreateCommand( IGameSpace parent ,Object3DAbstract selectedObject) {
         this.selectedObject = selectedObject;
-        this.parent = selectedObject.getParent();
+        this.parent = parent;
 
 
     }
 
     @Override
     public void exec() {
-        parent.removeChildObject(selectedObject);
+        parent.addChildObject(selectedObject);
     }
 
     @Override
     public void undo() {
-        parent.addChildObject(selectedObject);
+        parent.removeChildObject(selectedObject);
     }
 }
 

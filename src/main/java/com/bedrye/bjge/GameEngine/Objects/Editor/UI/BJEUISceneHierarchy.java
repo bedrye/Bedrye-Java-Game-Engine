@@ -8,12 +8,15 @@ import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
 import com.bedrye.bjge.GameEngine.Util.BJEMesh;
 import com.bedrye.bjge.GameEngine.Util.BJEObjFile;
 import com.bedrye.bjge.GameEngine.Util.BJETexture;
+import com.bedrye.bjge.GameEngine.Util.Commands.ObjectChangeParentCommand;
+import com.bedrye.bjge.GameEngine.Util.Commands.ObjectCreateCommand;
 import com.bedrye.bjge.GameEngine.Util.Commands.ObjectDeleteCommand;
+import com.bedrye.bjge.GameEngine.Util.Commands.ObjectSelectCommand;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
+import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 import imgui.ImGui;
 import imgui.flag.ImGuiTreeNodeFlags;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BJEUISceneHierarchy extends BJEUIWindow{
@@ -27,7 +30,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         if (ImGui.treeNodeEx("root", flag))
         {
 
-            showContextMenu(null);
+            showContextMenu(EngineWindowManager.getInstance().getActiveScene());
             if (ImGui.beginDragDropTarget()) {
                 Object3DAbstract object3DAbstract1 = ImGui.acceptDragDropPayload("SceneHierarchy");
 
@@ -40,7 +43,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
 
             }
-            for (Object3DAbstract object3DAbstract : EngineWindowManager.getInstance().getActiveScene().getGameObjects())
+            for (Object3DAbstract object3DAbstract : EngineWindowManager.getInstance().getActiveScene().getChildList())
                 addTreeNode(object3DAbstract);
 
 
@@ -49,7 +52,11 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
         }
         ImGui.end();
-        changes.forEach((k, v) -> k.addChild(v));
+        if(command!=null) {
+            EngineWindowManager.getInstance().getBjeCommandManager().executeCommand(command);
+            command=null;
+        }
+          changes.forEach((k, v) -> k.addChildObject(v));
 
         changes.clear();
 
@@ -70,7 +77,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         {
             if (ImGui.isItemClicked())
             {
-                ((BJEEditorScene)EngineWindowManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(object3DAbstract);
+               command = new ObjectSelectCommand(object3DAbstract);
             }
             if (ImGui.beginDragDropSource())
             {
@@ -85,7 +92,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
                 Object3DAbstract object3DAbstract1 = ImGui.acceptDragDropPayload("SceneHierarchy");
 
                     if(object3DAbstract1!=null)
-                        changes.put(object3DAbstract,object3DAbstract1);
+                        command = new ObjectChangeParentCommand(object3DAbstract,object3DAbstract1);
 
 
 
@@ -121,7 +128,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
         return ob;
     }
-    private void showContextMenu(Object3DAbstract object3DAbstract){
+    private void showContextMenu(IGameSpace object3DAbstract){
 
         if (ImGui.beginPopupContextItem("context_menu")) {
             if (ImGui.beginMenu("Add")) {
@@ -150,12 +157,8 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
                 }
                 if (ob != null) {
-                    if(object3DAbstract==null) {
-                        EngineWindowManager.getInstance().getActiveScene().addGameObject(ob);
-                    }
-                    else {
-                        changes.put(object3DAbstract,ob);
-                    }
+                    command = new ObjectCreateCommand(object3DAbstract,ob);
+
                 }
 
 
@@ -163,9 +166,9 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
 
             }
-            if (ImGui.menuItem("Delete",null,false,object3DAbstract!=null))
+            if (ImGui.menuItem("Delete",null,false,!object3DAbstract.isFinal()))
             {
-                command = new ObjectDeleteCommand(object3DAbstract);
+                command = new ObjectDeleteCommand((Object3DAbstract) object3DAbstract);
             }
             ImGui.endPopup();
         }

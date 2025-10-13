@@ -3,7 +3,6 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEEditorViewport;
-import com.bedrye.bjge.GameEngine.Scripts.SimpleCameraControl;
 import com.bedrye.bjge.GameEngine.Util.Shaders.BasicProgramShader;
 
 import java.nio.file.Paths;
@@ -16,7 +15,7 @@ public final class BJEGameScene extends Scene{
 
     public BJEEditorViewport bjeEditorViewport = new BJEEditorViewport();
     public BJEGameScene(BJEEditorScene scene){
-        setGameObjects(scene.getGameObjects());
+        setGameObjects(scene.getChildList());
     }
     @Override
     public void initialize() {
@@ -27,7 +26,7 @@ public final class BJEGameScene extends Scene{
         setShaderProgram(new BasicProgramShader(Paths.get("Assets\\Shaders\\SimpleBuiltInShader.glsl")));
         getShaderProgram().Compile();
 
-        getGameObjects().forEach(Object3DAbstract::gameInitialize);
+        getChildList().forEach(Object3DAbstract::gameInitialize);
         if(getCamera()==null) setCamera(new Camera(null));
     }
 
@@ -49,7 +48,7 @@ public final class BJEGameScene extends Scene{
         getCamera().update();
         getShaderProgram().uploadFloat(10f,"specularPower");
 
-        getGameObjects().forEach(Object3DAbstract::gameUpdate);
+        getChildList().forEach(Object3DAbstract::gameUpdate);
 
         getShaderProgram().Clear();
 

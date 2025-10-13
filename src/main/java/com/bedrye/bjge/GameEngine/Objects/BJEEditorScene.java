@@ -34,7 +34,7 @@ public class BJEEditorScene extends Scene {
 
 
         bjeAssetHierarchy= new BJEAssetHierarchy();
-        Camera camera = new Camera(null);
+        Camera camera = new Camera();
         setCamera(camera);
 
         camera.addScript(new SimpleCameraControl());
@@ -43,7 +43,7 @@ public class BJEEditorScene extends Scene {
         setShaderProgram(new BasicProgramShader(Paths.get("Assets\\Shaders\\SimpleBuiltInShader.glsl")));
         getShaderProgram().Compile();
 
-        getGameObjects().forEach(Object3DAbstract::initialize);
+        getChildList().forEach(Object3DAbstract::initialize);
         setInitialized(true);
 
 
@@ -72,7 +72,7 @@ public class BJEEditorScene extends Scene {
         glActiveTexture(GL_TEXTURE0);
         getCamera().update();
         getShaderProgram().uploadFloat(10f,"specularPower");
-        getGameObjects().forEach(Object3DAbstract::update);
+        getChildList().forEach(Object3DAbstract::update);
 
         getShaderProgram().Clear();
 
