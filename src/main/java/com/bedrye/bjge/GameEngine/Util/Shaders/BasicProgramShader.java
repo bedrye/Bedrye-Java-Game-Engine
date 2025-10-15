@@ -3,13 +3,16 @@ package com.bedrye.bjge.GameEngine.Util.Shaders;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.FloatBuffer;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
+import static java.lang.System.in;
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 
 import static org.lwjgl.opengl.GL20.*;
@@ -19,18 +22,33 @@ public class BasicProgramShader extends ShaderProgram {
     private FragmentShader fragmentShader;
 
 
-    public BasicProgramShader(Path path){
-        super(path);
-        try {
-            String text= new String(Files.readAllBytes(path));
+    public BasicProgramShader(String string,String name){
+        super(string,name);
+        String text ="";
+        if (string.equals("INTERNAL")) {
+            text = readInternal("/Internal/"+name);
             ArrayList<Shader> shaders = ShaderReader.getShadersFromString(text);
             vertexShader = (VertexShader) shaders.get(0);
             fragmentShader = (FragmentShader) shaders.get(1);
-
-
-        }catch (IOException e){
-            e.printStackTrace();
         }
+        else {
+            Path path = Path.of(string);
+            try {
+            text= new String(Files.readAllBytes(path));
+                System.out.println(text);
+                ArrayList<Shader> shaders = ShaderReader.getShadersFromString(text);
+                vertexShader = (VertexShader) shaders.get(0);
+                fragmentShader = (FragmentShader) shaders.get(1);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+        }
+
+
+
+
+
 
     }
 
@@ -62,8 +80,18 @@ public class BasicProgramShader extends ShaderProgram {
         glUseProgram(0);
     }
 
+    private String readInternal(String internalPath) {
+        try (InputStream in = getClass().getResourceAsStream(internalPath)) {
+            if (in == null) {
+                throw new FileNotFoundException("Internal resource not found: " + internalPath);
+            }
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
+                return reader.lines().collect(Collectors.joining("\r\n"));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load internal resource: " + internalPath, e);
+        }
 
-
-
+    }
 
 }

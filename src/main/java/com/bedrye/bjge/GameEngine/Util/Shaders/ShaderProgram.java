@@ -4,6 +4,8 @@ package com.bedrye.bjge.GameEngine.Util.Shaders;
 import com.bedrye.bjge.GameEngine.Objects.AmbientLight;
 import com.bedrye.bjge.GameEngine.Objects.DirectionalLight;
 import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
+import com.bedrye.bjge.GameEngine.Util.BJEResource;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -17,11 +19,10 @@ import java.util.Map;
 
 import static org.lwjgl.opengl.GL20.*;
 
-public abstract class ShaderProgram {
+public abstract class ShaderProgram extends BJEResource {
     private int programId;
     private Map<String,Integer> uploadedStuff;
-    public ShaderProgram(Path path){
-
+    public ShaderProgram(@JsonProperty("path")String path, @JsonProperty("name")String name) {
 
     }
 

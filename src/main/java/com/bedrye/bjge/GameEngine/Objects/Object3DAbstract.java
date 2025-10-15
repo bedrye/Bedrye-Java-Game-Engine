@@ -250,6 +250,14 @@ public abstract class Object3DAbstract implements IGameSpace {
     public final boolean isFinal(){
         return false;
     }
+    public void render(){
+        scripts.forEach(MainBehaviour::render);
+
+    }
+    public void fixedUpdate(){
+        scripts.forEach(MainBehaviour::fixedUpdate);
+
+    }
 }
 
 

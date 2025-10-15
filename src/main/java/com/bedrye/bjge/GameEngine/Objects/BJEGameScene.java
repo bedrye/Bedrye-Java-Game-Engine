@@ -2,8 +2,10 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 
+import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEEditorViewport;
 import com.bedrye.bjge.GameEngine.Util.Shaders.BasicProgramShader;
+import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;
 
 import java.nio.file.Paths;
 
@@ -23,7 +25,7 @@ public final class BJEGameScene extends Scene{
 
 
 
-        setShaderProgram(new BasicProgramShader(Paths.get("Assets\\Shaders\\SimpleBuiltInShader.glsl")));
+        setShaderProgram((BasicProgramShader) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\SimpleBuiltInShader.glsl"));
         getShaderProgram().Compile();
 
         getChildList().forEach(Object3DAbstract::gameInitialize);

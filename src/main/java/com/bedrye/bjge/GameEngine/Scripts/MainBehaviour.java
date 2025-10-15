@@ -20,6 +20,7 @@ public abstract class MainBehaviour {
     public void start(){};
     public void update(){};
     public void init(){};
+    public void render(){};
     public void onTransformChange(){};
 
     public Object3DAbstract getGameObject() {
@@ -29,5 +30,6 @@ public abstract class MainBehaviour {
     public void setGameObject(Object3DAbstract gameObject) {
         this.gameObject = gameObject;
     }
+    public void fixedUpdate(){}
 
 }

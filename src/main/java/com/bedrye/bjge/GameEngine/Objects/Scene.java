@@ -98,4 +98,14 @@ public abstract class Scene implements IGameSpace {
     }
     public final boolean hasChildren() {return !gameObjects.isEmpty();}
 
+    public void render(){
+        getChildList().forEach(Object3DAbstract::render);
+    }
+    public void fixedUpdate(){
+        getChildList().forEach(Object3DAbstract::fixedUpdate);
+    }
+    public void renderGizmos(){
+
+    }
+
 }

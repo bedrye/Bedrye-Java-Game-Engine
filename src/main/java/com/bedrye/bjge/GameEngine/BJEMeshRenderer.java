@@ -47,7 +47,7 @@ public class BJEMeshRenderer extends MainBehaviour {
         mesh.setup();
     }
     @Override
-    public void update() {
+    public void render() {
         if(texture==null||mesh==null)
             return;
         if(mesh.getResource()!=meshRes)

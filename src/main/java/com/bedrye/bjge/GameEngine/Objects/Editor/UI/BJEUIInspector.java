@@ -6,6 +6,7 @@ import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import com.bedrye.bjge.GameEngine.Util.BJEResource;
+import com.bedrye.bjge.GameEngine.Util.Commands.ObjectFieldChangeCommand;
 import com.bedrye.bjge.GameEngine.Util.Commands.ObjectAddScriptCommand;
 import com.bedrye.bjge.GameEngine.Util.Commands.ObjectRemoveScriptCommand;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
@@ -59,6 +60,7 @@ public class BJEUIInspector extends BJEUIWindow  {
             try {
 
                 inspectTransform(object3DAbstract);
+
                 openPopup();
 
 
@@ -144,7 +146,9 @@ public class BJEUIInspector extends BJEUIWindow  {
                     booleans.add(new ImBoolean(field.getBoolean(object)));
 
                 ImGui.checkbox(field.getType().getSimpleName() + " " + field.getName(), booleans.get(boolcount - 1));
-                field.setBoolean(object, booleans.get(boolcount - 1).get());
+                if(field.getBoolean(object)!= booleans.get(boolcount - 1).get() ){
+                    command = new ObjectFieldChangeCommand<>(field, object, booleans.get(boolcount - 1).get());
+                }
 
                 break;
 
@@ -154,7 +158,9 @@ public class BJEUIInspector extends BJEUIWindow  {
                     ints.add(new ImInt(field.getInt(object)));
 
                 ImGui.inputInt(field.getType().getSimpleName() + " " + field.getName(), ints.get(intcount - 1));
-                field.setInt(object, ints.get(intcount - 1).get());
+                if(field.getInt(object)!= ints.get(intcount - 1).get() ){
+                    command = new ObjectFieldChangeCommand<>(field, object, ints.get(intcount - 1).get());
+                }
 
                 break;
 
@@ -164,7 +170,10 @@ public class BJEUIInspector extends BJEUIWindow  {
                     floats.add(new ImFloat(field.getFloat(object)));
 
                 ImGui.inputFloat(field.getType().getSimpleName() + " " + field.getName(), floats.get(floatcount - 1));
-                field.setFloat(object, floats.get(floatcount - 1).get());
+                if(field.getFloat(object)!= floats.get(floatcount - 1).get() ){
+                    command = new ObjectFieldChangeCommand<>(field,object,floats.get(floatcount - 1).get());
+                }
+                //field.setFloat(object, floats.get(floatcount - 1).get());
 
                 break;
             case "double":
@@ -173,7 +182,9 @@ public class BJEUIInspector extends BJEUIWindow  {
                     doubles.add(new ImDouble(field.getDouble(object)));
 
                 ImGui.inputDouble(field.getType().getSimpleName() + " " + field.getName(), doubles.get(doublecount - 1));
-                field.setDouble(object, doubles.get(doublecount - 1).get());
+                if(field.getDouble(object)!= doubles.get(doublecount - 1).get() ){
+                    command = new ObjectFieldChangeCommand<>(field, object, doubles.get(doublecount - 1).get());
+                }
 
                 break;
             case "String":
@@ -182,11 +193,12 @@ public class BJEUIInspector extends BJEUIWindow  {
                     strings.add(new ImString((String) field.get(object)));
 
                 ImGui.inputText(field.getType().getSimpleName() + " " + field.getName(), strings.get(stringcount - 1));
-                field.set(object, strings.get(stringcount - 1).get());
-
+                if(!field.get(object).equals(strings.get(stringcount - 1).get()) ){
+                    command = new ObjectFieldChangeCommand<>(field, object, strings.get(stringcount - 1).get());
+                }
                 break;
             case "Vector3f":
-
+                ImGui.pushID(field.getName());
                 ImGui.text(field.getType().getSimpleName() + " " + field.getName());
                 Vector3f vector3f = (Vector3f) field.get(object);
                     floatcount+=3;
@@ -195,12 +207,14 @@ public class BJEUIInspector extends BJEUIWindow  {
                         floats.add(new ImFloat(vector3f.y));
                         floats.add(new ImFloat(vector3f.z));
                     }
-
                     ImGui.inputFloat("x", floats.get(floatcount - 3));
                     ImGui.inputFloat("y", floats.get(floatcount - 2));
                     ImGui.inputFloat("z", floats.get(floatcount - 1));
-                    vector3f = new Vector3f(floats.get(floatcount - 3).get(),floats.get(floatcount - 2).get(),floats.get(floatcount - 1).get());
-                    field.set(object, vector3f);
+                    if(vector3f.x != floats.get(floatcount - 3).get()||vector3f.y!=floats.get(floatcount - 2).get()||vector3f.z!=floats.get(floatcount - 1).get()){
+                        Vector3f newVec = new Vector3f( floats.get(floatcount - 3).get(),floats.get(floatcount - 2).get(),floats.get(floatcount - 1).get()) ;
+                        command = new ObjectFieldChangeCommand<>(field,object,newVec);
+                    }
+                ImGui.popID();
 
             break;
             default:
@@ -251,6 +265,11 @@ public class BJEUIInspector extends BJEUIWindow  {
         ImGui.inputFloat("Ys", floats.get(floatcount - 2));
         ImGui.inputFloat("Zs", floats.get(floatcount - 1));
         object.setScale(new Vector3f(floats.get(floatcount - 3).get(),floats.get(floatcount - 2).get(),floats.get(floatcount - 1).get()));
+        try {
+            inspectObject(object3DAbstract);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
         ImGui.text("Scripts");
         Iterator<MainBehaviour> i = object.getScriptList().iterator();
         int count = 0;
@@ -306,13 +325,13 @@ public class BJEUIInspector extends BJEUIWindow  {
         }
     }
 
-    private void acceptPayload(Field field,Object o,String name) throws IllegalAccessException {
+    private void acceptPayload(Field field,Object o,String name) {
 
         BJEResource payload = ImGui.acceptDragDropPayload(name);
 
         if (payload != null) {
 
-            field.set(o, payload);
+            command = new ObjectFieldChangeCommand<>(field,o,payload);
         }
 
     }

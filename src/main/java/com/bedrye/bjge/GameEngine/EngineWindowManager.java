@@ -17,6 +17,7 @@ import com.bedrye.bjge.GameEngine.Util.Serialization.Vector4fDeserializer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector4fSerializer;
 
 
+import com.bedrye.bjge.GameEngine.Util.TimeCounter;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
@@ -42,6 +43,11 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 public class EngineWindowManager {
 
     private int height,width;
+    private final double fixedTimeStamp = 5;
+
+    public double getFixedTimeStamp() {
+        return fixedTimeStamp;
+    }
 
     private ObjectMapper mapper = new ObjectMapper();
     private SimpleModule module = new SimpleModule();
@@ -188,18 +194,33 @@ public class EngineWindowManager {
 
     }
     public void update(){
+        double previous = TimeCounter.getRunTimeMiliSec();
+        double lag = 0.0F;
+
         while (!glfwWindowShouldClose(windowAddress)){
 
             glfwPollEvents();
-
+            double current = TimeCounter.getRunTimeMiliSec();
+            double elapsed = current - previous;
+            previous = current;
+            lag += elapsed;
             bjeimguiLayer.newFrame();
             bjeimguiLayer.setupDockspace();
             activeScene.updateUILayer();
             bjeimguiLayer.endFrame();
+
             bjeFrameBuffer.bind();
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            while (lag >= fixedTimeStamp) {
+                activeScene.fixedUpdate();
+                lag -= fixedTimeStamp;
+            }
             activeScene.update();
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            activeScene.render();
             bjeFrameBuffer.unbind();
+
+
             bjeResourceManager.update();
             glfwSwapBuffers(windowAddress);
 

@@ -22,7 +22,6 @@ import java.util.HashMap;
 public class BJEUISceneHierarchy extends BJEUIWindow{
 
 
-    HashMap<Object3DAbstract,Object3DAbstract> changes = new HashMap<>();
     ICommand command ;
     public void update() {
         ImGui.begin("Hierarchy");
@@ -56,9 +55,6 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
             EngineWindowManager.getInstance().getBjeCommandManager().executeCommand(command);
             command=null;
         }
-          changes.forEach((k, v) -> k.addChildObject(v));
-
-        changes.clear();
 
 
 
@@ -124,7 +120,8 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
     private Object3D createSphere(){
         Object3D ob = new Object3D();
         ob.setName("Sphere");
-        ob.addScript(new BJEMeshRenderer(new BJEMesh(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Sphere.obj","Sphere.obj")),new BJEMaterial(new BJETexture("Assets\\Egg.png","Egg.png"))));
+        ob.addScript(new BJEMeshRenderer(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Sphere.obj","Sphere.obj"),
+                (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
 
         return ob;
     }

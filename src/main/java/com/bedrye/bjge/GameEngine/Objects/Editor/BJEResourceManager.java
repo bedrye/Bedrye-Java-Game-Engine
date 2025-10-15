@@ -1,11 +1,9 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor;
 
 import com.bedrye.bjge.GameEngine.BJEMeshRenderer;
-import com.bedrye.bjge.GameEngine.Scripts.Box3DCollider;
-import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
-import com.bedrye.bjge.GameEngine.Scripts.SimpleCameraControl;
-import com.bedrye.bjge.GameEngine.Scripts.TestBehaviour;
+import com.bedrye.bjge.GameEngine.Scripts.*;
 import com.bedrye.bjge.GameEngine.Util.*;
+import com.bedrye.bjge.GameEngine.Util.Shaders.BasicProgramShader;
 
 
 import java.io.IOException;
@@ -60,6 +58,7 @@ public class BJEResourceManager {
         scripts.put(BJEMeshRenderer.class.getName(),new BJEMeshRenderer());
         scripts.put(TestBehaviour.class.getName(),new TestBehaviour());
         scripts.put(Box3DCollider.class.getName(),new Box3DCollider());
+        scripts.put(BJERigidBody.class.getName(),new BJERigidBody());
         resources.put("INTERNAL\\folderbutton.png",new BJETexture("INTERNAL","folderbutton.png"));
         resources.put("INTERNAL\\runbutton.png",new BJETexture("INTERNAL","runbutton.png"));
         resources.put("INTERNAL\\stopbutton.png",new BJETexture("INTERNAL","stopbutton.png"));
@@ -67,12 +66,14 @@ public class BJEResourceManager {
         resources.put("INTERNAL\\whitetexture.png",new BJETexture("INTERNAL","whitetexture.png"));
         resources.put("INTERNAL\\textbutton.png",new BJETexture("INTERNAL","textbutton.png"));
         resources.put("INTERNAL\\scenebutton.png",new BJETexture("INTERNAL","scenebutton.png"));
+        resources.put("INTERNAL\\SimpleGizmoShader.glsl",new BasicProgramShader("INTERNAL","SimpleGizmoShader.glsl"));
+        resources.put("INTERNAL\\SimpleBuiltInShader.glsl",new BasicProgramShader("INTERNAL","SimpleBuiltInShader.glsl"));
         this.assetsPath = Paths.get(assetDir);
 
         if (!Files.exists(assetsPath)) {
             Files.createDirectories(assetsPath);
         }
-        this.currentPath = new BJEFolder( Paths.get(assetDir).toString(),"Assets");
+        this.currentPath = new BJEFolder( assetsPath.toString(),"Assets");
 
         this.watchService = FileSystems.getDefault().newWatchService();
         this.watchThread = Executors.newSingleThreadExecutor(r -> {
@@ -93,6 +94,7 @@ public class BJEResourceManager {
         listToAdd.forEach(this::loadResource);
         listToAdd.clear();
 
+
     }
     private void loadAllResources() throws IOException {
         Files.walk(assetsPath)
@@ -110,6 +112,7 @@ public class BJEResourceManager {
                 case "jpg", "jpeg" -> new BJEJPGTexture(path.toString(), name);
                 case "java" -> new BJEScriptResource(path.toString(), name);
                 case "bjes" -> new BJESceneFile(path.toString(), name);
+                case "glsl" -> new BasicProgramShader(path.toString(), name);
                 default -> new BJETextFile(path.toString(), name);
             };
                 resources.put(path.toString(), resource);

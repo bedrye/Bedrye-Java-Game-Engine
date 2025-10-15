@@ -59,7 +59,7 @@ public class BJEIMGUILayer {
         int windowFlags = ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoDocking;
 
         ImGui.setNextWindowPos(0.0f, 0.0f, ImGuiCond.Always);
-        ImGui.setNextWindowSize(EngineWindowManager.getInstance().getWidth(), EngineWindowManager.getInstance().getHeight());
+        ImGui.setNextWindowSize(EngineWindowManager.getInstance().getWidth(), EngineWindowManager.getInstance().getHeight()-80);
         ImGui.pushStyleVar(ImGuiStyleVar.WindowRounding, 0.0f);
         ImGui.pushStyleVar(ImGuiStyleVar.WindowBorderSize, 0.0f);
         windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse |
@@ -69,7 +69,6 @@ public class BJEIMGUILayer {
         ImGui.begin("Dockspace", new ImBoolean(true), windowFlags);
         ImGui.popStyleVar(2);
 
-        // Dockspace
         ImGui.dockSpace(ImGui.getID("Dockspace"));
 
     }
