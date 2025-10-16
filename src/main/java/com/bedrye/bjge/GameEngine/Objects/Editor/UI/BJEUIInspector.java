@@ -118,7 +118,7 @@ public class BJEUIInspector extends BJEUIWindow  {
                 }
                 if (ImGui.beginDragDropTarget()) {
 
-                    acceptPayload(field,o,"Resource");
+                    acceptPayload(field,o,((BJEResource) field.get(o)).getPayloadName());
 
 
                     ImGui.endDragDropTarget();

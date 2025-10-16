@@ -67,7 +67,7 @@ public abstract class BJEResource implements Serializable, BJEUIVisible, BJEUIDr
     public void DragStart() {
         if (ImGui.beginDragDropSource())
         {
-            ImGui.setDragDropPayload("Resource",this);
+            ImGui.setDragDropPayload(getPayloadName(),this);
             ImGui.text(name);
 
             ImGui.endDragDropSource();
@@ -78,6 +78,11 @@ public abstract class BJEResource implements Serializable, BJEUIVisible, BJEUIDr
     @Override
     public void hide() {
         ImGui.popID();
+    }
+
+    @Override
+    public String getPayloadName(){
+        return getClass().getSimpleName();
     }
 
 }

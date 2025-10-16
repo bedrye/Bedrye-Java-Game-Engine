@@ -136,7 +136,7 @@ public class BJETexture extends  BJEResource{
     public void DragStart() {
         if (ImGui.beginDragDropSource())
         {
-            ImGui.setDragDropPayload("Resource",this);
+            ImGui.setDragDropPayload(getPayloadName(),this);
             ImGui.text(getName());
 
             ImGui.endDragDropSource();
