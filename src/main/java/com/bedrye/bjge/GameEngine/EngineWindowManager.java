@@ -8,16 +8,13 @@ import com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager;
 
 import com.bedrye.bjge.GameEngine.Objects.BJEEditorScene;
 import com.bedrye.bjge.GameEngine.Objects.Scene;
-import com.bedrye.bjge.GameEngine.Util.BJECommandManager;
-import com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer;
-import com.bedrye.bjge.GameEngine.Util.BJEProject;
+import com.bedrye.bjge.GameEngine.Util.*;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fDeserializer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector3fSerializer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector4fDeserializer;
 import com.bedrye.bjge.GameEngine.Util.Serialization.Vector4fSerializer;
 
 
-import com.bedrye.bjge.GameEngine.Util.TimeCounter;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
@@ -67,7 +64,13 @@ public class EngineWindowManager {
 
     private BJECommandManager bjeCommandManager;
 
+
+    private BJEShortcutManager bjeShortcutManager;
+
     private boolean isInEditMode=true;
+    public BJEShortcutManager getBjeShortcutManager() {
+        return bjeShortcutManager;
+    }
     public BJECommandManager getBjeCommandManager() {
         return bjeCommandManager;
     }
@@ -182,6 +185,7 @@ public class EngineWindowManager {
             throw new RuntimeException(e);
         }
         bjeCommandManager = new BJECommandManager(10);
+        bjeShortcutManager= new BJEShortcutManager();
         editorScene = new BJEEditorScene();
 
         setActiveScene(editorScene);
@@ -210,6 +214,7 @@ public class EngineWindowManager {
             bjeimguiLayer.endFrame();
 
             bjeFrameBuffer.bind();
+            KeyListener.getInstance().goThrough();
             while (lag >= fixedTimeStamp) {
                 activeScene.fixedUpdate();
                 lag -= fixedTimeStamp;

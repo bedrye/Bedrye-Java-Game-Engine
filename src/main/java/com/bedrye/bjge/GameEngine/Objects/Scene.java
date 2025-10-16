@@ -113,7 +113,7 @@ public abstract class Scene implements IGameSpace {
 
     }
     public void preRender(){
-        glClearColor(0.8f,0.8f,0.8f,1.0f);
+
 
         glClear(GL_COLOR_BUFFER_BIT);
         getShaderProgram().Run();
@@ -121,5 +121,6 @@ public abstract class Scene implements IGameSpace {
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(new Vector3f(),"ambientLight");
         glActiveTexture(GL_TEXTURE0);
         getChildList().forEach(Object3DAbstract::preRender);
+
     }
 }

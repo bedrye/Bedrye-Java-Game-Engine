@@ -37,7 +37,7 @@ public class BJEEditorScene extends Scene {
     @Override
     public void initialize() {
 
-        System.out.println("Editor");
+        System.out.println("[BJE] Editor");
 
 
         bjeAssetHierarchy= new BJEAssetHierarchy();
@@ -97,13 +97,14 @@ public class BJEEditorScene extends Scene {
     }
     @Override
     public void renderGizmos() {
-
+        glDisable(GL_DEPTH_TEST);
         gizmoshader.Run();
         if(inspector.getObject3DAbstract()!=null) {
             float dist = getCamera().getLocalPos().distance(inspector.getObject3DAbstract().getLocalPos());
             bjeGizmo.draw(getCamera().getProjectionMatrix(), getCamera().getViewMatrix(), inspector.getObject3DAbstract().getTransformMatrix(), gizmoshader);
         }
             gizmoshader.Clear();
+        glEnable(GL_DEPTH_TEST);
     }
 
 }

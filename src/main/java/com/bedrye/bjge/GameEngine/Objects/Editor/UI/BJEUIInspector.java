@@ -71,11 +71,7 @@ public class BJEUIInspector extends BJEUIWindow  {
             }
 
             ImGui.end();
-            if(KeyListener.getInstance().isKeyPressed(GLFW_KEY_DELETE)){
 
-                object3DAbstract.delete();
-
-                }
             if(command!=null) {
                 EngineWindowManager.getInstance().getBjeCommandManager().executeCommand(command);
                 command = null;

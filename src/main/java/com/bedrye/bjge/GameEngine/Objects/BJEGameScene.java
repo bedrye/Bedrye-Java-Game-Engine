@@ -21,7 +21,7 @@ public final class BJEGameScene extends Scene{
     }
     @Override
     public void initialize() {
-        System.out.println("Game");
+        System.out.println("[BJE] Game");
 
 
 
@@ -38,21 +38,33 @@ public final class BJEGameScene extends Scene{
     }
 
 
-    //TODO
     @Override
     public void update() {
-        glClearColor(0.8f,0.8f,0.8f,1.0f);
 
-        glClear(GL_COLOR_BUFFER_BIT);
-        getShaderProgram().Run();
 
-        glActiveTexture(GL_TEXTURE0);
-        getCamera().update();
-        getShaderProgram().uploadFloat(10f,"specularPower");
 
+
+        getCamera().gameUpdate();
         getChildList().forEach(Object3DAbstract::gameUpdate);
 
-        getShaderProgram().Clear();
+
+
+
 
     }
+
+    @Override
+    public void render(){
+
+        getCamera().render();
+        glActiveTexture(GL_TEXTURE0);
+        getShaderProgram().uploadFloat(10f,"specularPower");
+        getChildList().forEach(Object3DAbstract::render);
+
+        getShaderProgram().Clear();
+        renderGizmos();
+    }
+    @Override
+    public void renderGizmos() {}
+
 }

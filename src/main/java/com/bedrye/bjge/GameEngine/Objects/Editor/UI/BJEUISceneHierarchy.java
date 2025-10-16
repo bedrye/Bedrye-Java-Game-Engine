@@ -110,7 +110,28 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         Object3D ob = new Object3D();
         ob.setName("Cube");
         ob.addScript(new BJEMeshRenderer(
-                new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Cube.obj","Cube.obj"),
+                (BJEObjFile) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\cube.obj"),
+                (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
+        return  ob;
+
+
+    }
+    private Object3D createPlane(){
+        Object3D ob = new Object3D();
+        ob.setName("Plane");
+        ob.addScript(new BJEMeshRenderer(
+                (BJEObjFile) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\plane.obj"),
+                (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
+        return  ob;
+
+
+    }
+
+    private Object3D createCylinder(){
+        Object3D ob = new Object3D();
+        ob.setName("Cylinder");
+        ob.addScript(new BJEMeshRenderer(
+                (BJEObjFile) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\cylinder.obj"),
                 (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
         return  ob;
 
@@ -120,7 +141,8 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
     private Object3D createSphere(){
         Object3D ob = new Object3D();
         ob.setName("Sphere");
-        ob.addScript(new BJEMeshRenderer(new BJEObjFile("O:\\GIt\\MultiplayerShooter\\Assets\\Sphere.obj","Sphere.obj"),
+        ob.addScript(new BJEMeshRenderer(
+                (BJEObjFile) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\sphere.obj"),
                 (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
 
         return ob;
@@ -139,6 +161,14 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
                     ob = createSphere();
 
                 }
+                if (ImGui.menuItem("Plane")) {
+                    ob = createPlane();
+
+                }
+                if (ImGui.menuItem("Cylinder")) {
+                    ob = createCylinder();
+
+                }
                 if (ImGui.beginMenu("Lights")) {
                     if (ImGui.menuItem("Ambient")) {
                         ob = new AmbientLight();
@@ -151,6 +181,10 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
                 }
                 if (ImGui.menuItem("Camera")) {
                     ob = new BJECameraStart();
+
+                }
+                if (ImGui.menuItem("SkyColor")) {
+                    ob = new SkyColor();
 
                 }
                 if (ob != null) {

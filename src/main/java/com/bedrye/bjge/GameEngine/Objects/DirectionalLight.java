@@ -47,7 +47,7 @@ public class DirectionalLight extends Light {
     public void update() {
         getScriptList().forEach(MainBehaviour::update);
 
-        direction = new Vector3f((float)Math.sin((float) Math.toRadians(getRotationY())),(float)Math.cos((float) Math.toRadians(getRotationY())),0);
+        direction = new Vector3f((float)Math.sin((float) Math.toRadians(-getRotationZ())),(float)Math.cos((float) Math.toRadians(-getRotationZ())),0);
 
     }
     @Override

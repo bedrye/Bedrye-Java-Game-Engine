@@ -1,0 +1,2912 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa47cc6fa6, pid=29484, tid=30092
+#
+# JRE version: OpenJDK Runtime Environment (21.0.1+12) (build 21.0.1+12-29)
+# Java VM: OpenJDK 64-Bit Server VM (21.0.1+12-29, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# Problematic frame:
+# C  [igxelpicd64.dll+0x16fa6]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -javaagent:C:\IntelliJ IDEA Community Edition 2021.3.2\IntelliJ IDEA Community Edition 2023.2.1\lib\idea_rt.jar=58008:C:\IntelliJ IDEA Community Edition 2021.3.2\IntelliJ IDEA Community Edition 2023.2.1\bin -Dfile.encoding=windows-1252 -Dsun.stdout.encoding=windows-1252 -Dsun.stderr.encoding=windows-1252 --module-path=C:\Users\stas2\.m2\repository\io\github\spair\imgui-java-binding\1.89.0\imgui-java-binding-1.89.0.jar;C:\Users\stas2\.m2\repository\io\github\spair\imgui-java-lwjgl3\1.89.0\imgui-java-lwjgl3-1.89.0.jar;C:\Users\stas2\.m2\repository\org\joml\joml-primitives\1.10.0\joml-primitives-1.10.0.jar;C:\Users\stas2\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.2\jackson-databind-2.17.2.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl\3.3.4\lwjgl-3.3.4.jar;C:\Users\stas2\.m2\repository\org\joml\joml\1.10.7\joml-1.10.7.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-opengl\3.3.4\lwjgl-opengl-3.3.4.jar;O:\GIt\MultiplayerShooter\target\classes;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-vulkan\3.3.4\lwjgl-vulkan-3.3.4.jar;C:\Users\stas2\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.2\jackson-annotations-2.17.2.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-stb\3.3.4\lwjgl-stb-3.3.4.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-glfw\3.3.4\lwjgl-glfw-3.3.4.jar;C:\Users\stas2\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.2\jackson-core-2.17.2.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-assimp\3.3.4\lwjgl-assimp-3.3.4.jar -Djdk.module.main=com.bedrye.bjge com.bedrye.bjge/com.bedrye.bjge.TestMain
+
+Host: 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz, 12 cores, 15G,  Windows 11 , 64 bit Build 26100 (10.0.26100.6725)
+Time: Thu Oct 16 19:48:54 2025 FLE Summer Time elapsed time: 237.062285 seconds (0d 0h 3m 57s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000020ad73dbef0):  JavaThread "main"             [_thread_in_native, id=30092, stack(0x0000007d70200000,0x0000007d70300000) (1024K)]
+
+Stack: [0x0000007d70200000,0x0000007d70300000],  sp=0x0000007d702ff320,  free space=1020k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [igxelpicd64.dll+0x16fa6]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J 2785  org.lwjgl.opengl.GL11C.glClear(I)V org.lwjgl.opengl@3.3.4+7 (0 bytes) @ 0x0000020ae9764899 [0x0000020ae9764840+0x0000000000000059]
+J 3104 c2 com.bedrye.bjge.GameEngine.Objects.Scene.preRender()V com.bedrye.bjge (77 bytes) @ 0x0000020ae97aecf8 [0x0000020ae97aec80+0x0000000000000078]
+J 3120% c1 com.bedrye.bjge.GameEngine.EngineWindowManager.update()V com.bedrye.bjge (149 bytes) @ 0x0000020ae20af58c [0x0000020ae20ae4c0+0x00000000000010cc]
+j  com.bedrye.bjge.GameEngine.EngineWindowManager.run()V+5 com.bedrye.bjge
+j  com.bedrye.bjge.TestMain.main([Ljava/lang/String;)V+3 com.bedrye.bjge
+v  ~StubRoutines::call_stub 0x0000020ae90c10e7
+
+siginfo: EXCEPTION_ACCESS_VIOLATION (0xc0000005), writing address 0x0000020ac3040000
+
+
+Registers:
+RAX=0x00000000680b0000, RBX=0x0000020afdd36490, RCX=0x0000020ac3040000, RDX=0x00007ffa48bc7e00
+RSP=0x0000007d702ff320, RBP=0x0000007d702ff450, RSI=0x0000000000000000, RDI=0x0000020afdd01680
+R8 =0x0000000000000004, R9 =0x0000007d702ff500, R10=0x0000000000000780, R11=0x0000007d702ff4e0
+R12=0x0000000000000000, R13=0x0000000000004000, R14=0x0000000000000001, R15=0x0000020ad73dbef0
+RIP=0x00007ffa47cc6fa6, EFLAGS=0x0000000000010202
+
+
+Register to memory mapping:
+
+RAX=0x00000000680b0000 is an unknown value
+RBX=0x0000020afdd36490 points into unknown readable memory: 0x0000000000000000 | 00 00 00 00 00 00 00 00
+RCX=0x0000020ac3040000 is an unknown value
+RDX=0x00007ffa48bc7e00 igxelpicd64.dll
+RSP=0x0000007d702ff320 is pointing into the stack for thread: 0x0000020ad73dbef0
+RBP=0x0000007d702ff450 is pointing into the stack for thread: 0x0000020ad73dbef0
+RSI=0x0 is null
+RDI=0x0000020afdd01680 points into unknown readable memory: 0x0000020afdc80040 | 40 00 c8 fd 0a 02 00 00
+R8 =0x0000000000000004 is an unknown value
+R9 =0x0000007d702ff500 is pointing into the stack for thread: 0x0000020ad73dbef0
+R10=0x0000000000000780 is an unknown value
+R11=0x0000007d702ff4e0 is pointing into the stack for thread: 0x0000020ad73dbef0
+R12=0x0 is null
+R13=0x0000000000004000 is an unknown value
+R14=0x0000000000000001 is an unknown value
+R15=0x0000020ad73dbef0 is a thread
+
+Top of Stack: (sp=0x0000007d702ff320)
+0x0000007d702ff320:   0000000000000000 3f80000000000000
+0x0000007d702ff330:   3ff0000000000000 0000000000000700
+0x0000007d702ff340:   0000b3fc7e0c22fe 00007ffa47de5722
+0x0000007d702ff350:   0000000000000700 0000020afdefa878
+0x0000007d702ff360:   0000000000000700 0000000000004fd7
+0x0000007d702ff370:   0000020afdd01680 0000000000000000
+0x0000007d702ff380:   0000007d702ff490 00007ffa47de5d08
+0x0000007d702ff390:   00000001fdc3fd70 0000000000000000
+0x0000007d702ff3a0:   00004000fdd01680 0000078000000438
+0x0000007d702ff3b0:   0000007d702ff500 0000020afdd02e50
+0x0000007d702ff3c0:   0000000000000001 2000000080000000
+0x0000007d702ff3d0:   0000410000000000 0000000000000000
+0x0000007d702ff3e0:   0000410000000000 0000020afe1fa5a0
+0x0000007d702ff3f0:   0000000000000000 0000000000000001
+0x0000007d702ff400:   0000000000000001 0000000000000000
+0x0000007d702ff410:   0000b3fc00000000 0000000000000000
+0x0000007d702ff420:   0000043800000780 0000020afdc3fd70
+0x0000007d702ff430:   0000007d702ff418 0000007d702ff470
+0x0000007d702ff440:   000000003f4ccccd 0000000000000000
+0x0000007d702ff450:   000000003f4ccccd 0000000000000000
+0x0000007d702ff460:   000000003f4ccccd 0000000000000000
+0x0000007d702ff470:   0000b3fc7e0c231e 0000000000000000
+0x0000007d702ff480:   0000000000000000 0000000000000000
+0x0000007d702ff490:   0000000080000000 0000000000000000
+0x0000007d702ff4a0:   0000020ad73dbef0 0000007d702ff570
+0x0000007d702ff4b0:   0000000000000001 0000000000000000
+0x0000007d702ff4c0:   0000020afdd36d90 0000000000000000
+0x0000007d702ff4d0:   0000007d702ff580 00007ffa47de5081
+0x0000007d702ff4e0:   0000020afdd01680 0000020afdd01680
+0x0000007d702ff4f0:   0000000000000000 0000000000004000
+0x0000007d702ff500:   0000000000000000 0000043800000780
+0x0000007d702ff510:   0000020a81006400 0000020ae9764930 
+
+Instructions: (pc=0x00007ffa47cc6fa6)
+0x00007ffa47cc6ea6:   49 83 e2 f0 48 c1 e8 04 49 03 ca 49 03 d2 48 83
+0x00007ffa47cc6eb6:   f8 07 77 31 83 f8 04 0f 85 fd 00 00 00 f3 0f 6f
+0x00007ffa47cc6ec6:   42 c0 f3 0f 7f 41 c0 f3 0f 6f 42 d0 f3 0f 7f 41
+0x00007ffa47cc6ed6:   d0 f3 0f 6f 42 e0 f3 0f 7f 41 e0 f3 0f 6f 42 f0
+0x00007ffa47cc6ee6:   f3 0f 7f 41 f0 0f 28 3c 24 4d 2b c2 0f 28 74 24
+0x00007ffa47cc6ef6:   10 4d 85 c0 0f 84 63 ff ff ff 49 8b c0 48 83 e0
+0x00007ffa47cc6f06:   fc 48 03 c8 48 03 d0 49 8b c0 48 c1 e8 02 48 83
+0x00007ffa47cc6f16:   e8 01 74 18 48 83 e8 01 74 0c 48 83 f8 01 75 12
+0x00007ffa47cc6f26:   8b 42 f4 89 41 f4 8b 42 f8 89 41 f8 8b 42 fc 89
+0x00007ffa47cc6f36:   41 fc 41 f6 c0 01 0f 85 ea 01 00 00 41 f6 c0 02
+0x00007ffa47cc6f46:   0f 84 17 ff ff ff 0f b7 02 66 89 01 e9 0c ff ff
+0x00007ffa47cc6f56:   ff f6 c1 01 74 0e 0f b6 02 49 ff c8 88 01 48 ff
+0x00007ffa47cc6f66:   c1 48 ff c2 f6 c1 02 0f 84 33 fe ff ff 0f b7 02
+0x00007ffa47cc6f76:   49 83 e8 02 66 89 01 48 83 c1 02 48 83 c2 02 e9
+0x00007ffa47cc6f86:   1c fe ff ff 49 83 f8 01 0f 84 8e 01 00 00 49 83
+0x00007ffa47cc6f96:   f8 02 74 b2 49 83 f8 03 0f 84 51 02 00 00 8b 02
+0x00007ffa47cc6fa6:   89 01 48 83 c4 28 c3 0f b6 02 49 ff c8 88 01 48
+0x00007ffa47cc6fb6:   ff c1 48 ff c2 e9 99 fe ff ff ff c8 83 f8 06 0f
+0x00007ffa47cc6fc6:   87 20 ff ff ff 4c 8d 0d 2e 90 fe ff 41 8b 84 81
+0x00007ffa47cc6fd6:   48 72 01 00 49 03 c1 ff e0 f3 0f 6f 42 a0 f3 0f
+0x00007ffa47cc6fe6:   7f 41 a0 f3 0f 6f 42 b0 f3 0f 7f 41 b0 e9 cb fe
+0x00007ffa47cc6ff6:   ff ff 4d 8b c8 49 c1 e9 07 49 6b c1 80 4c 03 c0
+0x00007ffa47cc7006:   f3 0f 6f 02 48 83 ea 80 48 83 e9 80 f3 0f 6f 4a
+0x00007ffa47cc7016:   90 f3 0f 6f 52 a0 f3 0f 6f 5a b0 f3 0f 6f 62 c0
+0x00007ffa47cc7026:   f3 0f 6f 6a d0 f3 0f 6f 72 e0 f3 0f 6f 7a f0 f3
+0x00007ffa47cc7036:   0f 7f 41 80 f3 0f 7f 49 90 f3 0f 7f 51 a0 f3 0f
+0x00007ffa47cc7046:   7f 59 b0 f3 0f 7f 61 c0 f3 0f 7f 69 d0 f3 0f 7f
+0x00007ffa47cc7056:   71 e0 f3 0f 7f 79 f0 49 83 e9 01 0f 84 39 fe ff
+0x00007ffa47cc7066:   ff eb 9d 49 81 f8 80 00 00 00 0f 83 c9 00 00 00
+0x00007ffa47cc7076:   4d 8b d0 49 8b c0 49 83 e2 f0 48 c1 e8 04 49 03
+0x00007ffa47cc7086:   ca 49 03 d2 48 83 f8 07 0f 87 57 fe ff ff 83 f8
+0x00007ffa47cc7096:   07 0f 85 15 01 00 00 f3 0f 6f 42 90 f3 0f 7f 41 
+
+
+Stack slot to memory mapping:
+
+stack at sp + 0 slots: 0x0 is null
+stack at sp + 1 slots: 0x3f80000000000000 is an unknown value
+stack at sp + 2 slots: 0x3ff0000000000000 is an unknown value
+stack at sp + 3 slots: 0x0000000000000700 is an unknown value
+stack at sp + 4 slots: 0x0000b3fc7e0c22fe is an unknown value
+stack at sp + 5 slots: 0x00007ffa47de5722 igxelpicd64.dll
+stack at sp + 6 slots: 0x0000000000000700 is an unknown value
+stack at sp + 7 slots: 0x0000020afdefa878 points into unknown readable memory: 0x00007ffa4879d090 | 90 d0 79 48 fa 7f 00 00
+
+
+Compiled method (n/a)  237118 2785     n 0       org.lwjgl.opengl.GL11C::glClear (native)
+ total in heap  [0x0000020ae9764690,0x0000020ae9764a60] = 976
+ relocation     [0x0000020ae97647f0,0x0000020ae9764828] = 56
+ main code      [0x0000020ae9764840,0x0000020ae9764a54] = 532
+ stub code      [0x0000020ae9764a54,0x0000020ae9764a58] = 4
+ oops           [0x0000020ae9764a58,0x0000020ae9764a60] = 8
+
+[Constant Pool (empty)]
+
+[MachCode]
+[Entry Point]
+  # {method} {0x0000020af99fddf8} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11C'
+  # parm0:    rdx       = int
+  #           [sp+0x70]  (sp of caller)
+  0x0000020ae9764840: 448b 5208 | 49bb 0000 | 0080 0a02 | 0000 4d03 | d349 3bc2 | 0f84 0600 
+
+  0x0000020ae9764858: ;   {runtime_call ic_miss_stub}
+  0x0000020ae9764858: 0000 e921 | a19a ff90 
+[Verified Entry Point]
+  0x0000020ae9764860: 8984 2400 | 80ff ff55 | 488b ec48 | 83ec 6090 | 4181 7f20 | 0300 0000 
+
+  0x0000020ae9764878: ;   {runtime_call StubRoutines (final stubs)}
+  0x0000020ae9764878: 7405 e881 | 1999 ff4c 
+
+  0x0000020ae9764880: ;   {oop(a 'java/lang/Class'{0x00000007038ded60} = 'org/lwjgl/opengl/GL11C')}
+  0x0000020ae9764880: 8bc2 49be | 60ed 8d03 | 0700 0000 | 4c89 7424 | 504c 8d74 | 2450 498b | d6c5 f877 
+
+  0x0000020ae976489c: ;   {internal_word}
+  0x0000020ae976489c: 49ba 9948 | 76e9 0a02 | 0000 4d89 | 97a0 0300 | 0049 89a7 | 9803 0000 
+
+  0x0000020ae97648b4: ;   {external_word}
+  0x0000020ae97648b4: 49ba c925 | f529 fa7f | 0000 4180 | 3a00 0f84 | 4a00 0000 
+
+  0x0000020ae97648c8: ;   {metadata({method} {0x0000020af99fddf8} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11C')}
+  0x0000020ae97648c8: 5241 5048 | baf0 dd9f | f90a 0200 | 0049 8bcf | 4883 ec20 | 40f6 c40f | 0f84 1900 | 0000 4883 
+  0x0000020ae97648e8: ;   {runtime_call}
+  0x0000020ae97648e8: ec08 48b8 | 30eb a529 | fa7f 0000 | ffd0 4883 | c408 e90c 
+
+  0x0000020ae97648fc: ;   {runtime_call}
+  0x0000020ae97648fc: 0000 0048 | b830 eba5 | 29fa 7f00 | 00ff d048 | 83c4 2041 | 585a 498d | 8fb8 0300 | 0041 c787 
+  0x0000020ae976491c: 4c04 0000 | 0400 0000 
+
+  0x0000020ae9764924: ;   {runtime_call}
+  0x0000020ae9764924: 48b8 d0d1 | 9cef f97f | 0000 ffd0 | c5f8 7741 | c787 4c04 | 0000 0500 | 0000 f083 | 4424 c000 
+  0x0000020ae9764944: 493b af50 | 0400 000f | 870e 0000 | 0041 83bf | 4804 0000 | 000f 8423 | 0000 00c5 | f877 498b 
+  0x0000020ae9764964: cf4c 8be4 | 4883 ec20 | 4883 e4f0 
+
+  0x0000020ae9764970: ;   {runtime_call}
+  0x0000020ae9764970: 48b8 c0be | 7129 fa7f | 0000 ffd0 | 498b e44d | 33e4 41c7 | 874c 0400 | 0008 0000 | 0041 83bf 
+  0x0000020ae9764990: c804 0000 | 020f 8494 
+
+  0x0000020ae9764998: ;   {external_word}
+  0x0000020ae9764998: 0000 0049 | bac9 25f5 | 29fa 7f00 | 0041 803a | 000f 8444 
+
+  0x0000020ae97649ac: ;   {metadata({method} {0x0000020af99fddf8} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11C')}
+  0x0000020ae97649ac: 0000 0048 | baf0 dd9f | f90a 0200 | 0049 8bcf | 4883 ec20 | 40f6 c40f | 0f84 1900 | 0000 4883 
+  0x0000020ae97649cc: ;   {runtime_call}
+  0x0000020ae97649cc: ec08 48b8 | 30eb a529 | fa7f 0000 | ffd0 4883 | c408 e90c 
+
+  0x0000020ae97649e0: ;   {runtime_call}
+  0x0000020ae97649e0: 0000 0048 | b830 eba5 | 29fa 7f00 | 00ff d048 | 83c4 2049 | c787 9803 | 0000 0000 | 0000 49c7 
+  0x0000020ae9764a00: 87a0 0300 | 0000 0000 | 00c5 f877 | 498b 8f28 | 0400 00c7 | 8100 0100 | 0000 0000 | 00c9 4983 
+  0x0000020ae9764a20: 7f08 000f | 8501 0000 
+
+  0x0000020ae9764a28: ;   {runtime_call StubRoutines (initial stubs)}
+  0x0000020ae9764a28: 00c3 e9d1 | c495 ffc5 | f877 4c8b | e448 83ec | 2048 83e4 
+
+  0x0000020ae9764a3c: ;   {runtime_call}
+  0x0000020ae9764a3c: f048 b860 | 23a6 29fa | 7f00 00ff | d049 8be4 | 4d33 e4e9 | 47ff ffff 
+[Stub Code]
+  0x0000020ae9764a54: f4f4 f4f4 
+[/MachCode]
+
+
+Compiled method (c2)  237125 3104       4       com.bedrye.bjge.GameEngine.Objects.Scene::preRender (77 bytes)
+ total in heap  [0x0000020ae97aea10,0x0000020ae97af5c8] = 3000
+ relocation     [0x0000020ae97aeb70,0x0000020ae97aec48] = 216
+ constants      [0x0000020ae97aec60,0x0000020ae97aec80] = 32
+ main code      [0x0000020ae97aec80,0x0000020ae97aeff8] = 888
+ stub code      [0x0000020ae97aeff8,0x0000020ae97af088] = 144
+ oops           [0x0000020ae97af088,0x0000020ae97af0b8] = 48
+ metadata       [0x0000020ae97af0b8,0x0000020ae97af170] = 184
+ scopes data    [0x0000020ae97af170,0x0000020ae97af328] = 440
+ scopes pcs     [0x0000020ae97af328,0x0000020ae97af498] = 368
+ dependencies   [0x0000020ae97af498,0x0000020ae97af4c0] = 40
+ handler table  [0x0000020ae97af4c0,0x0000020ae97af598] = 216
+ nul chk table  [0x0000020ae97af598,0x0000020ae97af5c8] = 48
+
+
+[Constant Pool]
+             Address          hex4                    hex8      
+  0x0000020ae97aec60:   0x3f4ccccd      0x3f8000003f4ccccd      
+  0x0000020ae97aec64:   0x3f800000                              
+  0x0000020ae97aec68:   0xf4f4f4f4      0xf4f4f4f4f4f4f4f4      
+  0x0000020ae97aec6c:   0xf4f4f4f4                              
+  0x0000020ae97aec70:   0xf4f4f4f4      0xf4f4f4f4f4f4f4f4      
+  0x0000020ae97aec74:   0xf4f4f4f4                              
+  0x0000020ae97aec78:   0xf4f4f4f4      0xf4f4f4f4f4f4f4f4      
+  0x0000020ae97aec7c:   0xf4f4f4f4                              
+
+[MachCode]
+[Entry Point]
+  # {method} {0x0000020af9419250} 'preRender' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Scene'
+  #           [sp+0x40]  (sp of caller)
+  0x0000020ae97aec80: ;   {no_reloc}
+  0x0000020ae97aec80: 448b 5208 | 49bb 0000 | 0080 0a02 | 0000 4d03 | d349 3bc2 
+
+  0x0000020ae97aec94: ;   {runtime_call ic_miss_stub}
+  0x0000020ae97aec94: 0f85 e6fc | 95ff 6690 | 0f1f 4000 
+[Verified Entry Point]
+  0x0000020ae97aeca0: 8984 2400 | 80ff ff55 | 4883 ec30 | 4181 7f20 | 0300 0000 | 0f85 3003 | 0000 4889 
+
+  0x0000020ae97aecbc: ;   {section_word}
+  0x0000020ae97aecbc: 1424 c5fa | 101d 9eff 
+
+  0x0000020ae97aecc4: ;   {section_word}
+  0x0000020ae97aecc4: ffff c5fa | 1005 92ff 
+
+  0x0000020ae97aeccc: ;   {section_word}
+  0x0000020ae97aeccc: ffff c5fa | 100d 8aff 
+
+  0x0000020ae97aecd4: ;   {section_word}
+  0x0000020ae97aecd4: ffff c5fa | 1015 82ff 
+
+  0x0000020ae97aecdc: ;   {static_call}
+  0x0000020ae97aecdc: ffff 90e8 
+
+  0x0000020ae97aece0: ; ImmutableOopMap {[0]=Oop }
+                      ;*invokestatic glClearColor {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glClearColor@4 (line 1022)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@7 (line 116)
+  0x0000020ae97aece0: 7c09 feff 
+
+  0x0000020ae97aece4: ;   {other}
+  0x0000020ae97aece4: 0f1f 8400 | d402 0000 | ba00 4000 
+
+  0x0000020ae97aecf0: ;   {static_call}
+  0x0000020ae97aecf0: 0066 90e8 
+
+  0x0000020ae97aecf4: ; ImmutableOopMap {[0]=Oop }
+                      ;*invokestatic glClear {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glClear@1 (line 992)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@13 (line 118)
+  0x0000020ae97aecf4: 685b fbff 
+
+  0x0000020ae97aecf8: ;   {other}
+  0x0000020ae97aecf8: 0f1f 8400 | e802 0001 | 4c8b 1424 | 458b 5218 
+
+  0x0000020ae97aed08: ; implicit exception: dispatches to 0x0000020ae97aef38
+  0x0000020ae97aed08: 438b 54d4 
+
+  0x0000020ae97aed0c: ;   {static_call}
+  0x0000020ae97aed0c: 1466 90e8 
+
+  0x0000020ae97aed10: ; ImmutableOopMap {[0]=Oop }
+                      ;*invokestatic glUseProgram {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL20::glUseProgram@1 (line 398)
+                      ; - com.bedrye.bjge.GameEngine.Util.Shaders.BasicProgramShader::Run@4 (line 56)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@20 (line 119)
+  0x0000020ae97aed10: 4c79 faff 
+
+  0x0000020ae97aed14: ;   {other}
+  0x0000020ae97aed14: 0f1f 8400 | 0403 0002 | 4c8b 1424 | 458b 5218 | 4585 d20f | 8470 0100 | 004b 8d14 
+
+  0x0000020ae97aed30: ;   {oop("directionalLight.intensity"{0x00000007048023b8})}
+  0x0000020ae97aed30: d449 b8b8 | 2380 0407 
+
+  0x0000020ae97aed38: ;   {optimized virtual_call}
+  0x0000020ae97aed38: 0000 00e8 
+
+  0x0000020ae97aed3c: ; ImmutableOopMap {[0]=Oop }
+                      ;*invokevirtual getKey {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram::uploadFloat@2 (line 77)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@33 (line 120)
+  0x0000020ae97aed3c: 800e feff 
+
+  0x0000020ae97aed40: ;   {other}
+  0x0000020ae97aed40: 0f1f 8400 | 3003 0003 | 8bd0 c5f8 
+
+  0x0000020ae97aed4c: ;   {static_call}
+  0x0000020ae97aed4c: 57c0 90e8 
+
+  0x0000020ae97aed50: ; ImmutableOopMap {[0]=Oop }
+                      ;*invokestatic glUniform1f {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL20::glUniform1f@2 (line 425)
+                      ; - com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram::uploadFloat@11 (line 78)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@33 (line 120)
+  0x0000020ae97aed50: 8cb2 fbff 
+
+  0x0000020ae97aed54: ;   {other}
+  0x0000020ae97aed54: 0f1f 8400 | 4403 0004 
+
+  0x0000020ae97aed5c: ;   {oop(a 'java/lang/Class'{0x00000007038011b0} = 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae97aed5c: 49ba b011 | 8003 0700 | 0000 418b | 6a70 458b | 5cec 4447 | 8b54 dc18 | 4585 d20f | 8433 0100 
+  0x0000020ae97aed7c: 004b 8d14 
+
+  0x0000020ae97aed80: ;   {oop("ambientLight"{0x0000000704802308})}
+  0x0000020ae97aed80: d449 b808 | 2380 0407 
+
+  0x0000020ae97aed88: ;   {optimized virtual_call}
+  0x0000020ae97aed88: 0000 00e8 
+
+  0x0000020ae97aed8c: ; ImmutableOopMap {[0]=Oop }
+                      ;*invokevirtual getKey {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram::uploadVec3f@2 (line 67)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@54 (line 121)
+  0x0000020ae97aed8c: 300e feff 
+
+  0x0000020ae97aed90: ;   {other}
+  0x0000020ae97aed90: 0f1f 8400 | 8003 0005 | 8bd0 c5f8 | 57c0 c5f0 | 57c9 c5e8 
+
+  0x0000020ae97aeda4: ;   {static_call}
+  0x0000020ae97aeda4: 57d2 90e8 
+
+  0x0000020ae97aeda8: ; ImmutableOopMap {[0]=Oop }
+                      ;*invokestatic glUniform3f {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL20::glUniform3f@4 (line 456)
+                      ; - com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram::uploadVec3f@19 (line 68)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@54 (line 121)
+  0x0000020ae97aeda8: b45e fbff 
+
+  0x0000020ae97aedac: ;   {other}
+  0x0000020ae97aedac: 0f1f 8400 | 9c03 0006 | bac0 8400 
+
+  0x0000020ae97aedb8: ;   {static_call}
+  0x0000020ae97aedb8: 0066 90e8 
+
+  0x0000020ae97aedbc: ; ImmutableOopMap {[0]=Oop }
+                      ;*invokestatic glActiveTexture {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL13::glActiveTexture@1 (line 570)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@59 (line 122)
+  0x0000020ae97aedbc: a085 faff 
+
+  0x0000020ae97aedc0: ;   {other}
+  0x0000020ae97aedc0: 0f1f 8400 | b003 0007 | 4c8b 1424 | 418b 6a14 
+
+  0x0000020ae97aedd0: ; implicit exception: dispatches to 0x0000020ae97aef60
+  0x0000020ae97aedd0: 458b 5cec 
+
+  0x0000020ae97aedd4: ;   {metadata('java/util/ArrayList')}
+  0x0000020ae97aedd4: 0841 81fb | 48ad 0b00 | 0f85 e200 | 0000 4d8d | 1cec 418b | 7b0c 418b | 4b10 458b | 4b14 448b 
+  0x0000020ae97aedf4: d745 33c0 | 443b c17c | 1c44 3bd7 | 0f85 d200 | 0000 4883 
+
+  0x0000020ae97aee08: ;   {poll_return}
+  0x0000020ae97aee08: c430 5d49 | 3ba7 5004 | 0000 0f87 | bc01 0000 | c347 8b54 | cc0c 453b | c20f 83c9 | 0000 0089 
+  0x0000020ae97aee28: 0c24 897c | 2404 498b | eb4f 8d14 | cc44 894c | 2408 478b | 5c82 104c | 8954 2410 | 4489 4424 
+  0x0000020ae97aee48: 0c4d 8bc3 | 49c1 e003 
+
+  0x0000020ae97aee50: ;   {oop(a 'com/bedrye/bjge/GameEngine/Objects/Scene$$Lambda+0x0000020a811e6978'{0x0000000704807108})}
+  0x0000020ae97aee50: 48ba 0871 | 8004 0700 
+
+  0x0000020ae97aee58: ;   {optimized virtual_call}
+  0x0000020ae97aee58: 0000 90e8 
+
+  0x0000020ae97aee5c: ; ImmutableOopMap {rbp=Oop [8]=NarrowOop [16]=Oop }
+                      ;*invokeinterface accept {reexecute=0 rethrow=0 return_oop=0}
+                      ; - java.util.ArrayList::forEach@46 (line 1596)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@71 (line 123)
+  0x0000020ae97aee5c: 2000 96ff 
+
+  0x0000020ae97aee60: ;   {other}
+  0x0000020ae97aee60: 0f1f 8400 | 5004 0008 | 4c8b dd45 | 8b53 0c44 | 8b44 240c | 41ff c04d | 8b8f 5804 
+
+  0x0000020ae97aee7c: ; ImmutableOopMap {r11=Oop [8]=NarrowOop [16]=Oop }
+                      ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) java.util.ArrayList::forEach@54 (line 1595)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@71 (line 123)
+                      ;   {poll}
+  0x0000020ae97aee7c: 0000 4185 | 0144 3b54 | 2404 0f85 | 8c00 0000 | 8b7c 2404 | 8b0c 2444 | 8b4c 2408 | e95b ffff 
+  0x0000020ae97aee9c: ffba f6ff 
+
+  0x0000020ae97aeea0: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aeea0: ffff 90e8 
+
+  0x0000020ae97aeea4: ; ImmutableOopMap {}
+                      ;*invokevirtual uploadFloat {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@33 (line 120)
+  0x0000020ae97aeea4: 588e 96ff 
+
+  0x0000020ae97aeea8: ;   {other}
+  0x0000020ae97aeea8: 0f1f 8400 | 9804 000a | baf6 ffff 
+
+  0x0000020ae97aeeb4: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aeeb4: ff66 90e8 
+
+  0x0000020ae97aeeb8: ; ImmutableOopMap {}
+                      ;*invokevirtual uploadVec3f {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@54 (line 121)
+  0x0000020ae97aeeb8: 448e 96ff 
+
+  0x0000020ae97aeebc: ;   {other}
+  0x0000020ae97aeebc: 0f1f 8400 | ac04 000b | bade ffff 
+
+  0x0000020ae97aeec8: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aeec8: ff66 90e8 
+
+  0x0000020ae97aeecc: ; ImmutableOopMap {rbp=NarrowOop }
+                      ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@71 (line 123)
+  0x0000020ae97aeecc: 308e 96ff 
+
+  0x0000020ae97aeed0: ;   {other}
+  0x0000020ae97aeed0: 0f1f 8400 | c004 000c | ba45 ffff | ff41 8bea 
+
+  0x0000020ae97aeee0: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aeee0: 893c 24e8 
+
+  0x0000020ae97aeee4: ; ImmutableOopMap {}
+                      ;*if_icmpeq {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) java.util.ArrayList::forEach@62 (line 1597)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@71 (line 123)
+  0x0000020ae97aeee4: 188e 96ff 
+
+  0x0000020ae97aeee8: ;   {other}
+  0x0000020ae97aeee8: 0f1f 8400 | d804 000d | bae4 ffff | ff8b ef89 | 0c24 4489 | 4424 084c | 895c 2410 | 4489 4c24 
+  0x0000020ae97aef08: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aef08: 1866 90e8 
+
+  0x0000020ae97aef0c: ; ImmutableOopMap {[16]=Oop [24]=NarrowOop }
+                      ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                      ; - java.util.ArrayList::elementAt@2 (line 416)
+                      ; - java.util.ArrayList::forEach@43 (line 1596)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@71 (line 123)
+  0x0000020ae97aef0c: f08d 96ff 
+
+  0x0000020ae97aef10: ;   {other}
+  0x0000020ae97aef10: 0f1f 8400 | 0005 000e | ba45 ffff | ff8b 6c24 | 0444 8914 | 244c 895c 
+
+  0x0000020ae97aef28: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aef28: 2408 90e8 
+
+  0x0000020ae97aef2c: ; ImmutableOopMap {[8]=Oop }
+                      ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) java.util.ArrayList::forEach@29 (line 1595)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@71 (line 123)
+  0x0000020ae97aef2c: d08d 96ff 
+
+  0x0000020ae97aef30: ;   {other}
+  0x0000020ae97aef30: 0f1f 8400 | 2005 000f | baf6 ffff 
+
+  0x0000020ae97aef3c: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aef3c: ff66 90e8 
+
+  0x0000020ae97aef40: ; ImmutableOopMap {}
+                      ;*invokevirtual Run {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@20 (line 119)
+  0x0000020ae97aef40: bc8d 96ff 
+
+  0x0000020ae97aef44: ;   {other}
+  0x0000020ae97aef44: 0f1f 8400 | 3405 0010 | baf6 ffff 
+
+  0x0000020ae97aef50: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aef50: ff66 90e8 
+
+  0x0000020ae97aef54: ; ImmutableOopMap {}
+                      ;*invokevirtual getShaderProgram {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@42 (line 121)
+  0x0000020ae97aef54: a88d 96ff 
+
+  0x0000020ae97aef58: ;   {other}
+  0x0000020ae97aef58: 0f1f 8400 | 4805 0011 | baf6 ffff 
+
+  0x0000020ae97aef64: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aef64: ff66 90e8 
+
+  0x0000020ae97aef68: ; ImmutableOopMap {}
+                      ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@71 (line 123)
+  0x0000020ae97aef68: 948d 96ff 
+
+  0x0000020ae97aef6c: ;   {other}
+  0x0000020ae97aef6c: 0f1f 8400 | 5c05 0012 | ba45 ffff 
+
+  0x0000020ae97aef78: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aef78: ff66 90e8 
+
+  0x0000020ae97aef7c: ; ImmutableOopMap {rbp=NarrowOop [0]=Oop }
+                      ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@3 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@36 (line 121)
+  0x0000020ae97aef7c: 808d 96ff 
+
+  0x0000020ae97aef80: ;   {other}
+  0x0000020ae97aef80: 0f1f 8400 | 7005 0013 | 488b d0eb | 2648 8bd0 | eb21 488b | d0eb 1c48 | 8bd0 eb17 | 488b d0eb 
+  0x0000020ae97aefa0: 1248 8bd0 | eb0d 488b | d0eb 0848 | 8bd0 eb03 | 488b d048 | 83c4 305d 
+
+  0x0000020ae97aefb8: ;   {runtime_call _rethrow_Java}
+  0x0000020ae97aefb8: e943 a3a4 | ffba f6ff | ffff 418b 
+
+  0x0000020ae97aefc4: ;   {runtime_call UncommonTrapBlob}
+  0x0000020ae97aefc4: e866 90e8 
+
+  0x0000020ae97aefc8: ; ImmutableOopMap {}
+                      ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                      ; - java.util.ArrayList::elementAt@2 (line 416)
+                      ; - java.util.ArrayList::forEach@43 (line 1596)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@71 (line 123)
+  0x0000020ae97aefc8: 348d 96ff 
+
+  0x0000020ae97aefcc: ;   {other}
+  0x0000020ae97aefcc: 0f1f 8400 | bc05 0014 
+
+  0x0000020ae97aefd4: ;   {internal_word}
+  0x0000020ae97aefd4: 49ba 0bee | 7ae9 0a02 | 0000 4d89 | 9768 0400 
+
+  0x0000020ae97aefe4: ;   {runtime_call SafepointBlob}
+  0x0000020ae97aefe4: 00e9 967b 
+
+  0x0000020ae97aefe8: ;   {runtime_call StubRoutines (final stubs)}
+  0x0000020ae97aefe8: 96ff e811 | 7294 ffe9 | c6fc ffff | f4f4 f4f4 
+[Stub Code]
+  0x0000020ae97aeff8: ;   {no_reloc}
+  0x0000020ae97aeff8: 48bb 0000 | 0000 0000 
+
+  0x0000020ae97af000: ;   {runtime_call}
+  0x0000020ae97af000: 0000 e9fb 
+
+  0x0000020ae97af004: ;   {static_stub}
+  0x0000020ae97af004: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x0000020ae97af010: ;   {runtime_call}
+  0x0000020ae97af010: 00e9 fbff 
+
+  0x0000020ae97af014: ;   {static_stub}
+  0x0000020ae97af014: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x0000020ae97af020: ;   {runtime_call}
+  0x0000020ae97af020: e9fb ffff 
+
+  0x0000020ae97af024: ;   {static_stub}
+  0x0000020ae97af024: ff48 bb00 | 0000 0000 
+
+  0x0000020ae97af02c: ;   {runtime_call}
+  0x0000020ae97af02c: 0000 00e9 | fbff ffff 
+
+  0x0000020ae97af034: ;   {static_stub}
+  0x0000020ae97af034: 48bb 0000 | 0000 0000 
+
+  0x0000020ae97af03c: ;   {runtime_call}
+  0x0000020ae97af03c: 0000 e9fb 
+
+  0x0000020ae97af040: ;   {static_stub}
+  0x0000020ae97af040: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x0000020ae97af04c: ;   {runtime_call}
+  0x0000020ae97af04c: 00e9 fbff 
+
+  0x0000020ae97af050: ;   {static_stub}
+  0x0000020ae97af050: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x0000020ae97af05c: ;   {runtime_call}
+  0x0000020ae97af05c: e9fb ffff 
+
+  0x0000020ae97af060: ;   {static_stub}
+  0x0000020ae97af060: ff48 bb00 | 0000 0000 
+
+  0x0000020ae97af068: ;   {runtime_call}
+  0x0000020ae97af068: 0000 00e9 | fbff ffff 
+[Exception Handler]
+  0x0000020ae97af070: ;   {runtime_call ExceptionBlob}
+  0x0000020ae97af070: e98b f0a3 | ffe8 0000 | 0000 4883 
+
+  0x0000020ae97af07c: ;   {runtime_call DeoptimizationBlob}
+  0x0000020ae97af07c: 2c24 05e9 | 9c8f 96ff | f4f4 f4f4 
+[/MachCode]
+
+
+Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.EngineWindowManager::update @ 73 (149 bytes)
+ total in heap  [0x0000020ae20adf90,0x0000020ae20b1088] = 12536
+ relocation     [0x0000020ae20ae0f0,0x0000020ae20ae470] = 896
+ constants      [0x0000020ae20ae480,0x0000020ae20ae4c0] = 64
+ main code      [0x0000020ae20ae4c0,0x0000020ae20b0218] = 7512
+ stub code      [0x0000020ae20b0218,0x0000020ae20b03c8] = 432
+ oops           [0x0000020ae20b03c8,0x0000020ae20b03f0] = 40
+ metadata       [0x0000020ae20b03f0,0x0000020ae20b0548] = 344
+ scopes data    [0x0000020ae20b0548,0x0000020ae20b09f8] = 1200
+ scopes pcs     [0x0000020ae20b09f8,0x0000020ae20b0f68] = 1392
+ dependencies   [0x0000020ae20b0f68,0x0000020ae20b0fa8] = 64
+ nul chk table  [0x0000020ae20b0fa8,0x0000020ae20b1088] = 224
+
+
+[Constant Pool]
+             Address          hex4                    hex8      
+  0x0000020ae20ae480:   0x9266b800      0x42c86ecc9266b800      
+  0x0000020ae20ae484:   0x42c86ecc                              
+  0x0000020ae20ae488:   0x00000000      0x412e848000000000      
+  0x0000020ae20ae48c:   0x412e8480                              
+  0x0000020ae20ae490:   0x00000000      0x0000000000000000      
+  0x0000020ae20ae494:   0x00000000                              
+  0x0000020ae20ae498:   0x9266b800      0x42c86ecc9266b800      
+  0x0000020ae20ae49c:   0x42c86ecc                              
+  0x0000020ae20ae4a0:   0x00000000      0x412e848000000000      
+  0x0000020ae20ae4a4:   0x412e8480                              
+  0x0000020ae20ae4a8:   0x00000000      0x4014000000000000      
+  0x0000020ae20ae4ac:   0x40140000                              
+  0x0000020ae20ae4b0:   0x00000000      0x4014000000000000      
+  0x0000020ae20ae4b4:   0x40140000                              
+  0x0000020ae20ae4b8:   0xf4f4f4f4      0xf4f4f4f4f4f4f4f4      
+  0x0000020ae20ae4bc:   0xf4f4f4f4                              
+
+[MachCode]
+[Entry Point]
+  # {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager'
+  0x0000020ae20ae4c0: ;   {no_reloc}
+  0x0000020ae20ae4c0: 448b 5208 | 49bb 0000 | 0080 0a02 | 0000 4d03 | d34c 3bd0 
+
+  0x0000020ae20ae4d4: ;   {runtime_call ic_miss_stub}
+  0x0000020ae20ae4d4: 0f85 a604 | 0607 660f | 1f44 0000 
+[Verified Entry Point]
+  0x0000020ae20ae4e0: 8984 2400 | 80ff ff55 | 4881 ec30 | 0100 0090 | 4181 7f20 | 0300 0000 
+
+  0x0000020ae20ae4f8: ;   {runtime_call StubRoutines (final stubs)}
+  0x0000020ae20ae4f8: 7405 e801 
+
+  0x0000020ae20ae4fc: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20ae4fc: 7d04 0748 | be38 b73d | fa0a 0200 | 008b becc | 0000 0083 | c702 89be | cc00 0000 | 81e7 fe07 
+  0x0000020ae20ae51c: 0000 83ff | 000f 84f2 | 1700 0048 | 8994 2498 
+
+  0x0000020ae20ae52c: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20ae52c: 0000 0048 | be38 b73d | fa0a 0200 | 0048 8386 | 1001 0000 
+
+  0x0000020ae20ae540: ;   {metadata(method data for {method} {0x0000020afa3860e8} 'getRunTimeMiliSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20ae540: 0148 be78 | cc3b fa0a | 0200 008b | becc 0000 | 0083 c702 | 89be cc00 | 0000 81e7 | feff 1f00 
+  0x0000020ae20ae560: 83ff 000f | 84d1 1700 
+
+  0x0000020ae20ae568: ;   {metadata(method data for {method} {0x0000020afa3860e8} 'getRunTimeMiliSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20ae568: 0048 be78 | cc3b fa0a | 0200 0048 | 8386 1001 
+
+  0x0000020ae20ae578: ;   {metadata(method data for {method} {0x0000020afa386048} 'getRunTimeNanoSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20ae578: 0000 0148 | bed0 cd3b | fa0a 0200 | 008b becc | 0000 0083 | c702 89be | cc00 0000 | 81e7 feff 
+  0x0000020ae20ae598: 1f00 83ff | 000f 84b8 
+
+  0x0000020ae20ae5a0: ;   {metadata(method data for {method} {0x0000020afa386048} 'getRunTimeNanoSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20ae5a0: 1700 0048 | bed0 cd3b | fa0a 0200 | 0048 8386 | 1001 0000 
+
+  0x0000020ae20ae5b4: ;   {runtime_call}
+  0x0000020ae20ae5b4: 0148 b8a0 | 3b9f 29fa | 7f00 00ff 
+
+  0x0000020ae20ae5c0: ;   {other}
+  0x0000020ae20ae5c0: d00f 1f84 | 0000 0000 | 00c4 e1fb 
+
+  0x0000020ae20ae5cc: ;   {section_word}
+  0x0000020ae20ae5cc: 2ac0 c5fb | 5c05 aafe 
+
+  0x0000020ae20ae5d4: ;   {section_word}
+  0x0000020ae20ae5d4: ffff c5fb | 5e05 aafe | ffff 488b | 9424 9800 
+
+  0x0000020ae20ae5e4: ;   {section_word}
+  0x0000020ae20ae5e4: 0000 c5fb | 100d a2fe | ffff 6690 | c5fb 118c | 24f0 0000 | 00c5 fb11 | 8424 e800 | 0000 488b 
+  0x0000020ae20ae604: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20ae604: 7218 48bf | 38b7 3dfa | 0a02 0000 | 4883 8720 | 0100 0001 | 4889 9424 | a000 0000 | 488b d60f 
+  0x0000020ae20ae624: ;   {static_call}
+  0x0000020ae20ae624: 1f40 00e8 
+
+  0x0000020ae20ae628: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokestatic glfwWindowShouldClose {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@10 (line 204)
+  0x0000020ae20ae628: f4d1 6e07 
+
+  0x0000020ae20ae62c: ;   {other}
+  0x0000020ae20ae62c: 0f1f 8400 | 9c06 0000 
+
+  0x0000020ae20ae634: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20ae634: 83f8 0048 | ba38 b73d | fa0a 0200 | 0048 be30 | 0100 0000 | 0000 000f | 850a 0000 | 0048 be40 
+  0x0000020ae20ae654: 0100 0000 | 0000 0048 | 8b3c 3248 | 8d7f 0148 | 893c 320f | 85f0 1500 
+
+  0x0000020ae20ae66c: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20ae66c: 0048 be38 | b73d fa0a | 0200 0048 | 8386 5001 
+
+  0x0000020ae20ae67c: ;   {metadata(method data for {method} {0x0000020af97a2c40} 'glfwPollEvents' '()V' in 'org/lwjgl/glfw/GLFW')}
+  0x0000020ae20ae67c: 0000 0148 | beb8 e93b | fa0a 0200 | 008b becc | 0000 0083 | c702 89be | cc00 0000 | 81e7 feff 
+  0x0000020ae20ae69c: 1f00 83ff | 000f 84da 
+
+  0x0000020ae20ae6a4: ;   {metadata(method data for {method} {0x0000020af97a2c40} 'glfwPollEvents' '()V' in 'org/lwjgl/glfw/GLFW')}
+  0x0000020ae20ae6a4: 1600 0048 | beb8 e93b | fa0a 0200 | 0048 8386 | 1001 0000 | 0148 bae0 | 85a3 eff9 | 7f00 000f 
+  0x0000020ae20ae6c4: ;   {static_call}
+  0x0000020ae20ae6c4: 1f40 00e8 
+
+  0x0000020ae20ae6c8: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokestatic invokeV {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.glfw.GLFW::glfwPollEvents@5 (line 3501)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@16 (line 206)
+  0x0000020ae20ae6c8: 949c 6b07 
+
+  0x0000020ae20ae6cc: ;   {other}
+  0x0000020ae20ae6cc: 0f1f 8400 | 3c07 0001 
+
+  0x0000020ae20ae6d4: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20ae6d4: 48be 38b7 | 3dfa 0a02 | 0000 4883 | 8660 0100 
+
+  0x0000020ae20ae6e4: ;   {metadata(method data for {method} {0x0000020afa3860e8} 'getRunTimeMiliSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20ae6e4: 0001 48be | 78cc 3bfa | 0a02 0000 | 8bbe cc00 | 0000 83c7 | 0289 becc | 0000 0081 | e7fe ff1f 
+  0x0000020ae20ae704: 0083 ff00 | 0f84 9416 
+
+  0x0000020ae20ae70c: ;   {metadata(method data for {method} {0x0000020afa3860e8} 'getRunTimeMiliSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20ae70c: 0000 48be | 78cc 3bfa | 0a02 0000 | 4883 8610 | 0100 0001 
+
+  0x0000020ae20ae720: ;   {metadata(method data for {method} {0x0000020afa386048} 'getRunTimeNanoSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20ae720: 48be d0cd | 3bfa 0a02 | 0000 8bbe | cc00 0000 | 83c7 0289 | becc 0000 | 0081 e7fe | ff1f 0083 
+  0x0000020ae20ae740: ff00 0f84 | 7b16 0000 
+
+  0x0000020ae20ae748: ;   {metadata(method data for {method} {0x0000020afa386048} 'getRunTimeNanoSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20ae748: 48be d0cd | 3bfa 0a02 | 0000 4883 | 8610 0100 
+
+  0x0000020ae20ae758: ;   {runtime_call}
+  0x0000020ae20ae758: 0001 48b8 | a03b 9f29 | fa7f 0000 
+
+  0x0000020ae20ae764: ;   {other}
+  0x0000020ae20ae764: ffd0 0f1f | 8400 0000 | 0000 c4e1 
+
+  0x0000020ae20ae770: ;   {section_word}
+  0x0000020ae20ae770: fb2a c0c5 | fb5c 051d 
+
+  0x0000020ae20ae778: ;   {section_word}
+  0x0000020ae20ae778: fdff ffc5 | fb5e 051d | fdff ffc5 | fb11 8424 | 0001 0000 | c5f9 28c8 | c5f3 5c8c | 24e8 0000 
+  0x0000020ae20ae798: 00c5 fb10 | 9424 f000 | 0000 c5eb | 58d1 c5fb | 1194 24f8 | 0000 0048 | 8b94 24a0 | 0000 008b 
+  0x0000020ae20ae7b8: 7230 48c1 | e603 483b | 0648 8bfe 
+
+  0x0000020ae20ae7c4: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20ae7c4: 48bb 38b7 | 3dfa 0a02 
+
+  0x0000020ae20ae7cc: ;   {metadata('com/bedrye/bjge/GameEngine/BJEIMGUILayer')}
+  0x0000020ae20ae7cc: 0000 49ba | 2086 0b81 | 0a02 0000 | 4c89 9380 | 0100 0048 | 8383 8801 
+
+  0x0000020ae20ae7e4: ;   {metadata(method data for {method} {0x0000020af987d840} 'newFrame' '()V' in 'com/bedrye/bjge/GameEngine/BJEIMGUILayer')}
+  0x0000020ae20ae7e4: 0000 0148 | bf10 eb3b | fa0a 0200 | 008b 9fcc | 0000 0083 | c302 899f | cc00 0000 | 81e3 feff 
+  0x0000020ae20ae804: 1f00 83fb | 000f 84da | 1500 008b | 7e0c 48c1 | e703 483b | 0748 8bdf 
+
+  0x0000020ae20ae81c: ;   {metadata(method data for {method} {0x0000020af987d840} 'newFrame' '()V' in 'com/bedrye/bjge/GameEngine/BJEIMGUILayer')}
+  0x0000020ae20ae81c: 48b8 10eb | 3bfa 0a02 | 0000 4883 | 8028 0100 | 0001 4889 | 9424 a000 | 0000 488b | d748 89b4 
+  0x0000020ae20ae83c: 24a8 0000 | 0066 0f1f 
+
+  0x0000020ae20ae844: ;   {optimized virtual_call}
+  0x0000020ae20ae844: 4400 00e8 
+
+  0x0000020ae20ae848: ; ImmutableOopMap {[160]=Oop [168]=Oop }
+                      ;*invokevirtual newFrame {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@4 (line 36)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+  0x0000020ae20ae848: f4f0 7007 
+
+  0x0000020ae20ae84c: ;   {other}
+  0x0000020ae20ae84c: 0f1f 8400 | bc08 0002 | 488b b424 | a800 0000 | 8b56 1848 | c1e2 0348 | 3b02 488b 
+
+  0x0000020ae20ae868: ;   {metadata(method data for {method} {0x0000020af987d840} 'newFrame' '()V' in 'com/bedrye/bjge/GameEngine/BJEIMGUILayer')}
+  0x0000020ae20ae868: f248 bf10 | eb3b fa0a | 0200 0048 | 8387 6001 
+
+  0x0000020ae20ae878: ;   {metadata(method data for {method} {0x0000020af98973a8} 'newFrame' '()V' in 'imgui/gl3/ImGuiImplGl3')}
+  0x0000020ae20ae878: 0000 0148 | bed0 f13b | fa0a 0200 | 008b becc | 0000 0083 | c702 89be | cc00 0000 | 81e7 feff 
+  0x0000020ae20ae898: 1f00 83ff | 000f 8471 | 1500 008b | 720c 48c1 | e603 8b76 | 1883 fe00 
+
+  0x0000020ae20ae8b0: ;   {metadata(method data for {method} {0x0000020af98973a8} 'newFrame' '()V' in 'imgui/gl3/ImGuiImplGl3')}
+  0x0000020ae20ae8b0: 48be d0f1 | 3bfa 0a02 | 0000 48bf | 1001 0000 | 0000 0000 | 0f85 0a00 | 0000 48bf | 2001 0000 
+  0x0000020ae20ae8d0: 0000 0000 | 488b 1c3e | 488d 5b01 | 4889 1c3e | 0f85 3600 | 0000 488b 
+
+  0x0000020ae20ae8e8: ;   {metadata(method data for {method} {0x0000020af98973a8} 'newFrame' '()V' in 'imgui/gl3/ImGuiImplGl3')}
+  0x0000020ae20ae8e8: f248 bfd0 | f13b fa0a 
+
+  0x0000020ae20ae8f0: ;   {metadata('imgui/gl3/ImGuiImplGl3')}
+  0x0000020ae20ae8f0: 0200 0049 | bac8 ce0b | 810a 0200 | 004c 8997 | 4001 0000 | 4883 8748 | 0100 0001 
+
+  0x0000020ae20ae90c: ;   {optimized virtual_call}
+  0x0000020ae20ae90c: 6666 90e8 
+
+  0x0000020ae20ae910: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokevirtual createDeviceObjects {reexecute=0 rethrow=0 return_oop=0}
+                      ; - imgui.gl3.ImGuiImplGl3::newFrame@11 (line 338)
+                      ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@11 (line 37)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+  0x0000020ae20ae910: 6c05 0607 
+
+  0x0000020ae20ae914: ;   {other}
+  0x0000020ae20ae914: 0f1f 8400 | 8409 0003 
+
+  0x0000020ae20ae91c: ;   {metadata(method data for {method} {0x0000020af987d840} 'newFrame' '()V' in 'com/bedrye/bjge/GameEngine/BJEIMGUILayer')}
+  0x0000020ae20ae91c: 48be 10eb | 3bfa 0a02 | 0000 4883 | 8680 0100 
+
+  0x0000020ae20ae92c: ;   {metadata(method data for {method} {0x0000020af98ad010} 'newFrame' '()V' in 'imgui/ImGui')}
+  0x0000020ae20ae92c: 0001 48be | e0fb 3bfa | 0a02 0000 | 8bbe cc00 | 0000 83c7 | 0289 becc | 0000 0081 | e7fe ff1f 
+  0x0000020ae20ae94c: 0083 ff00 | 0f84 e414 
+
+  0x0000020ae20ae954: ;   {metadata(method data for {method} {0x0000020af98ad010} 'newFrame' '()V' in 'imgui/ImGui')}
+  0x0000020ae20ae954: 0000 48be | e0fb 3bfa | 0a02 0000 | 4883 8610 | 0100 0001 | 0f1f 8000 
+
+  0x0000020ae20ae96c: ;   {static_call}
+  0x0000020ae20ae96c: 0000 00e8 
+
+  0x0000020ae20ae970: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokestatic nNewFrame {reexecute=0 rethrow=0 return_oop=0}
+                      ; - imgui.ImGui::newFrame@0 (line 248)
+                      ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@14 (line 38)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+  0x0000020ae20ae970: ecae 6c07 
+
+  0x0000020ae20ae974: ;   {other}
+  0x0000020ae20ae974: 0f1f 8400 | e409 0004 | 488b 9424 | a000 0000 | 8b72 3048 | c1e6 0348 | 3b06 488b 
+
+  0x0000020ae20ae990: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20ae990: fe48 bb38 | b73d fa0a 
+
+  0x0000020ae20ae998: ;   {metadata('com/bedrye/bjge/GameEngine/BJEIMGUILayer')}
+  0x0000020ae20ae998: 0200 0049 | ba20 860b | 810a 0200 | 004c 8993 | b801 0000 | 4883 83c0 | 0100 0001 | 4889 9424 
+  0x0000020ae20ae9b8: a000 0000 
+
+  0x0000020ae20ae9bc: ;   {optimized virtual_call}
+  0x0000020ae20ae9bc: 488b d6e8 
+
+  0x0000020ae20ae9c0: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokevirtual setupDockspace {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@49 (line 212)
+  0x0000020ae20ae9c0: fc27 6f07 
+
+  0x0000020ae20ae9c4: ;   {other}
+  0x0000020ae20ae9c4: 0f1f 8400 | 340a 0005 | 488b 9424 | a000 0000 | 8b72 4448 | c1e6 0348 | 89b4 24b0 | 0000 0048 
+  0x0000020ae20ae9e4: 3b06 488b 
+
+  0x0000020ae20ae9e8: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20ae9e8: fe48 bb38 | b73d fa0a 
+
+  0x0000020ae20ae9f0: ;   {metadata('com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20ae9f0: 0200 0049 | ba00 6400 | 810a 0200 | 004c 8993 | f001 0000 | 4883 83f8 | 0100 0001 
+
+  0x0000020ae20aea0c: ;   {metadata(method data for {method} {0x0000020af941a0a8} 'updateUILayer' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20aea0c: 48bf a003 | 3cfa 0a02 | 0000 8b9f | cc00 0000 | 83c3 0289 | 9fcc 0000 | 0081 e3fe | ff1f 0083 
+  0x0000020ae20aea2c: fb00 0f84 | 3114 0000 | 8b7e 2048 | c1e7 0348 | 3b07 488b 
+
+  0x0000020ae20aea40: ;   {metadata(method data for {method} {0x0000020af941a0a8} 'updateUILayer' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20aea40: df48 b8a0 | 033c fa0a | 0200 0048 | 8380 2801 | 0000 0148 | 8994 24a0 | 0000 0048 
+
+  0x0000020ae20aea5c: ;   {optimized virtual_call}
+  0x0000020ae20aea5c: 8bd7 90e8 
+
+  0x0000020ae20aea60: ; ImmutableOopMap {[160]=Oop [176]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@4 (line 62)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+  0x0000020ae20aea60: dcf2 6f07 
+
+  0x0000020ae20aea64: ;   {other}
+  0x0000020ae20aea64: 0f1f 8400 | d40a 0006 | 488b b424 | b000 0000 | 8b56 1c48 | c1e2 0348 | 3b02 488b 
+
+  0x0000020ae20aea80: ;   {metadata(method data for {method} {0x0000020af941a0a8} 'updateUILayer' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20aea80: fa48 bba0 | 033c fa0a | 0200 0048 | 8383 6001 | 0000 010f 
+
+  0x0000020ae20aea94: ;   {optimized virtual_call}
+  0x0000020ae20aea94: 1f40 00e8 
+
+  0x0000020ae20aea98: ; ImmutableOopMap {[160]=Oop [176]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@11 (line 63)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+  0x0000020ae20aea98: a4d7 7007 
+
+  0x0000020ae20aea9c: ;   {other}
+  0x0000020ae20aea9c: 0f1f 8400 | 0c0b 0007 | 488b b424 | b000 0000 | 8b56 2448 | c1e2 0348 | 3b02 488b 
+
+  0x0000020ae20aeab8: ;   {metadata(method data for {method} {0x0000020af941a0a8} 'updateUILayer' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20aeab8: fa48 bba0 | 033c fa0a | 0200 0048 | 8383 9801 | 0000 010f 
+
+  0x0000020ae20aeacc: ;   {optimized virtual_call}
+  0x0000020ae20aeacc: 1f40 00e8 
+
+  0x0000020ae20aead0: ; ImmutableOopMap {[160]=Oop [176]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@18 (line 64)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+  0x0000020ae20aead0: ac3e 7007 
+
+  0x0000020ae20aead4: ;   {other}
+  0x0000020ae20aead4: 0f1f 8400 | 440b 0008 | 488b b424 | b000 0000 | 8b56 3048 | c1e2 0348 | 3b02 488b 
+
+  0x0000020ae20aeaf0: ;   {metadata(method data for {method} {0x0000020af941a0a8} 'updateUILayer' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20aeaf0: f248 bfa0 | 033c fa0a | 0200 0048 | 8387 d001 | 0000 010f 
+
+  0x0000020ae20aeb04: ;   {optimized virtual_call}
+  0x0000020ae20aeb04: 1f40 00e8 
+
+  0x0000020ae20aeb08: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@25 (line 66)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+  0x0000020ae20aeb08: d4da 7007 
+
+  0x0000020ae20aeb0c: ;   {other}
+  0x0000020ae20aeb0c: 0f1f 8400 | 7c0b 0009 | 488b 9424 | a000 0000 | 8b72 3048 | c1e6 0348 | 3b06 488b 
+
+  0x0000020ae20aeb28: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20aeb28: fe48 bb38 | b73d fa0a 
+
+  0x0000020ae20aeb30: ;   {metadata('com/bedrye/bjge/GameEngine/BJEIMGUILayer')}
+  0x0000020ae20aeb30: 0200 0049 | ba20 860b | 810a 0200 | 004c 8993 | 2802 0000 | 4883 8330 | 0200 0001 | 4889 9424 
+  0x0000020ae20aeb50: a000 0000 
+
+  0x0000020ae20aeb54: ;   {optimized virtual_call}
+  0x0000020ae20aeb54: 488b d6e8 
+
+  0x0000020ae20aeb58: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokevirtual endFrame {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@63 (line 214)
+  0x0000020ae20aeb58: 4417 7007 
+
+  0x0000020ae20aeb5c: ;   {other}
+  0x0000020ae20aeb5c: 0f1f 8400 | cc0b 000a | 488b 9424 | a000 0000 | 448b 4234 | 49c1 e003 
+
+  0x0000020ae20aeb74: ; implicit exception: dispatches to 0x0000020ae20afe9f
+  0x0000020ae20aeb74: 493b 0049 
+
+  0x0000020ae20aeb78: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20aeb78: 8bf0 48bf | 38b7 3dfa | 0a02 0000 
+
+  0x0000020ae20aeb84: ;   {metadata('com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
+  0x0000020ae20aeb84: 49ba 006c | 0c81 0a02 | 0000 4c89 | 9760 0200 | 0048 8387 | 6802 0000 
+
+  0x0000020ae20aeb9c: ;   {metadata(method data for {method} {0x0000020af9a09de8} 'bind' '()V' in 'com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
+  0x0000020ae20aeb9c: 0148 be40 | 7e3c fa0a | 0200 008b | becc 0000 | 0083 c702 | 89be cc00 | 0000 81e7 | feff 1f00 
+  0x0000020ae20aebbc: 83ff 000f | 84df 1200 | 0045 8b40 
+
+  0x0000020ae20aebc8: ;   {metadata(method data for {method} {0x0000020af9a09de8} 'bind' '()V' in 'com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
+  0x0000020ae20aebc8: 0c48 be40 | 7e3c fa0a | 0200 0048 | 8386 1001 
+
+  0x0000020ae20aebd8: ;   {metadata(method data for {method} {0x0000020af99912e8} 'glBindFramebuffer' '(II)V' in 'org/lwjgl/opengl/GL30')}
+  0x0000020ae20aebd8: 0000 0148 | be88 d13b | fa0a 0200 | 008b becc | 0000 0083 | c702 89be | cc00 0000 | 81e7 feff 
+  0x0000020ae20aebf8: 1f00 83ff | 000f 84c2 
+
+  0x0000020ae20aec00: ;   {metadata(method data for {method} {0x0000020af99912e8} 'glBindFramebuffer' '(II)V' in 'org/lwjgl/opengl/GL30')}
+  0x0000020ae20aec00: 1200 0048 | be88 d13b | fa0a 0200 | 0048 8386 | 1001 0000 | 0148 8994 | 24a0 0000 | 00ba 408d 
+  0x0000020ae20aec20: 0000 0f1f 
+
+  0x0000020ae20aec24: ;   {static_call}
+  0x0000020ae20aec24: 4400 00e8 
+
+  0x0000020ae20aec28: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokestatic glBindFramebuffer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL30::glBindFramebuffer@2 (line 1619)
+                      ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::bind@6 (line 33)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@70 (line 216)
+  0x0000020ae20aec28: 349f 6b07 
+
+  0x0000020ae20aec2c: ;   {other}
+  0x0000020ae20aec2c: 0f1f 8400 | 9c0c 000b | c5fb 1094 | 24f8 0000 | 00c5 fb10 | 8424 0001 | 0000 488b | 9424 a000 
+  0x0000020ae20aec4c: 0000 c5fb | 1184 2420 | 0100 00e9 | 7b03 0000 | 0f1f 4000 
+
+  0x0000020ae20aec60: ; implicit exception: dispatches to 0x0000020ae20afee6
+  0x0000020ae20aec60: 448b 4244 | 49c1 e003 
+
+  0x0000020ae20aec68: ; implicit exception: dispatches to 0x0000020ae20afeeb
+  0x0000020ae20aec68: 493b 0049 
+
+  0x0000020ae20aec6c: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20aec6c: 8bf0 48bf | 38b7 3dfa | 0a02 0000 | 8b76 0849 | ba00 0000 | 800a 0200 | 0049 03f2 | 483b b7b8 
+  0x0000020ae20aec8c: 0200 0075 | 0d48 8387 | c002 0000 | 01e9 6000 | 0000 483b | b7c8 0200 | 0075 0d48 | 8387 d002 
+  0x0000020ae20aecac: 0000 01e9 | 4a00 0000 | 4883 bfb8 | 0200 0000 | 7517 4889 | b7b8 0200 | 0048 c787 | c002 0000 
+  0x0000020ae20aeccc: 0100 0000 | e929 0000 | 0048 83bf | c802 0000 | 0075 1748 | 89b7 c802 | 0000 48c7 | 87d0 0200 
+  0x0000020ae20aecec: 0001 0000 | 00e9 0800 | 0000 4883 | 87a8 0200 
+
+  0x0000020ae20aecfc: ;   {metadata(method data for {method} {0x0000020af94190b0} 'fixedUpdate' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Scene')}
+  0x0000020ae20aecfc: 0001 48be | 0080 3bfa | 0a02 0000 | 8bbe cc00 | 0000 83c7 | 0289 becc | 0000 0081 | e7fe ff1f 
+  0x0000020ae20aed1c: 0083 ff00 | 0f84 ca11 | 0000 498b 
+
+  0x0000020ae20aed28: ;   {metadata(method data for {method} {0x0000020af94190b0} 'fixedUpdate' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Scene')}
+  0x0000020ae20aed28: f048 bf00 | 803b fa0a | 0200 008b | 7608 49ba | 0000 0080 | 0a02 0000 | 4903 f248 | 3bb7 2001 
+  0x0000020ae20aed48: 0000 750d | 4883 8728 | 0100 0001 | e960 0000 | 0048 3bb7 | 3001 0000 | 750d 4883 | 8738 0100 
+  0x0000020ae20aed68: 0001 e94a | 0000 0048 | 83bf 2001 | 0000 0075 | 1748 89b7 | 2001 0000 | 48c7 8728 | 0100 0001 
+  0x0000020ae20aed88: 0000 00e9 | 2900 0000 | 4883 bf30 | 0100 0000 | 7517 4889 | b730 0100 | 0048 c787 | 3801 0000 
+  0x0000020ae20aeda8: 0100 0000 | e908 0000 | 0048 8387 | 1001 0000 | 0141 8b70 | 1448 c1e6 
+
+  0x0000020ae20aedc0: ;   {metadata(method data for {method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20aedc0: 0349 b800 | 1e2b f90a | 0200 004d | 8d80 e801 
+
+  0x0000020ae20aedd0: ;   {oop(a 'java/lang/invoke/BoundMethodHandle$Species_L'{0x0000000704800048})}
+  0x0000020ae20aedd0: 0000 48bf | 4800 8004 | 0700 0000 | 488b df48 | 85db 7504 | 4983 0801 
+
+  0x0000020ae20aede8: ;   {metadata(method data for {method} {0x0000020af94190b0} 'fixedUpdate' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Scene')}
+  0x0000020ae20aede8: 49b8 0080 | 3bfa 0a02 | 0000 4983 | 8048 0100 
+
+  0x0000020ae20aedf8: ;   {metadata(method data for {method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20aedf8: 0001 49b8 | 001e 2bf9 | 0a02 0000 | 418b 98cc | 0000 0083 | c302 4189 | 98cc 0000 | 0081 e3fe 
+  0x0000020ae20aee18: ff1f 0083 | fb00 0f84 | ed10 0000 
+
+  0x0000020ae20aee24: ;   {metadata(method data for {method} {0x0000020af9400a28} 'invoke' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/LambdaForm$MH+0x0000020a81000800')}
+  0x0000020ae20aee24: 49b8 480c | 40f9 0a02 | 0000 4d8d | 80a0 0100 | 0048 85ff | 7504 4983 
+
+  0x0000020ae20aee3c: ;   {metadata(method data for {method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20aee3c: 0801 49b8 | 001e 2bf9 | 0a02 0000 | 4983 8048 | 0100 0001 
+
+  0x0000020ae20aee50: ;   {metadata(method data for {method} {0x0000020af9400a28} 'invoke' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/LambdaForm$MH+0x0000020a81000800')}
+  0x0000020ae20aee50: 49b8 480c | 40f9 0a02 | 0000 418b | b8cc 0000 | 0083 c702 | 4189 b8cc | 0000 0081 | e7fe ff1f 
+  0x0000020ae20aee70: 0083 ff00 | 0f84 b810 
+
+  0x0000020ae20aee78: ;   {metadata(method data for {method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20aee78: 0000 49b8 | 001e 2bf9 | 0a02 0000 | 4d8d 8080 
+
+  0x0000020ae20aee88: ;   {oop(a 'com/bedrye/bjge/GameEngine/Objects/Scene$$Lambda+0x0000020a811e6ff8'{0x0000000704800070})}
+  0x0000020ae20aee88: 0100 0048 | bf70 0080 | 0407 0000 | 0048 8bdf | 4885 db75 | 0449 8308 
+
+  0x0000020ae20aeea0: ;   {metadata(method data for {method} {0x0000020af94190b0} 'fixedUpdate' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Scene')}
+  0x0000020ae20aeea0: 0149 b800 | 803b fa0a | 0200 004d | 8d80 5801 | 0000 488b | df48 85db | 7504 4983 | 0801 483b 
+  0x0000020ae20aeec0: 064c 8bc6 
+
+  0x0000020ae20aeec4: ;   {metadata(method data for {method} {0x0000020af94190b0} 'fixedUpdate' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Scene')}
+  0x0000020ae20aeec4: 48bb 0080 | 3bfa 0a02 | 0000 458b | 4008 49ba | 0000 0080 | 0a02 0000 | 4d03 c24c | 3b83 7801 
+  0x0000020ae20aeee4: 0000 750d | 4883 8380 | 0100 0001 | e960 0000 | 004c 3b83 | 8801 0000 | 750d 4883 | 8390 0100 
+  0x0000020ae20aef04: 0001 e94a | 0000 0048 | 83bb 7801 | 0000 0075 | 174c 8983 | 7801 0000 | 48c7 8380 | 0100 0001 
+  0x0000020ae20aef24: 0000 00e9 | 2900 0000 | 4883 bb88 | 0100 0000 | 7517 4c89 | 8388 0100 | 0048 c783 | 9001 0000 
+  0x0000020ae20aef44: 0100 0000 | e908 0000 | 0048 8383 | 6801 0000 | 014c 8bc7 | 4889 9424 | a000 0000 | 488b d666 
+  0x0000020ae20aef64: 9048 b848 | ad0b 800a 
+
+  0x0000020ae20aef6c: ;   {virtual_call}
+  0x0000020ae20aef6c: 0200 00e8 
+
+  0x0000020ae20aef70: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@9 (line 110)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+  0x0000020ae20aef70: cc25 6e07 
+
+  0x0000020ae20aef74: ;   {other}
+  0x0000020ae20aef74: 0f1f 8400 | e40f 000c | c5fb 1094 | 2418 0100 
+
+  0x0000020ae20aef84: ;   {section_word}
+  0x0000020ae20aef84: 00c5 eb5c | 151b f5ff 
+
+  0x0000020ae20aef8c: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20aef8c: ff48 ba38 | b73d fa0a | 0200 008b | b2d0 0000 | 0083 c602 | 89b2 d000 | 0000 81e6 | fe3f 0000 
+  0x0000020ae20aefac: 83fe 000f | 84a3 0f00 | 004d 8b97 
+
+  0x0000020ae20aefb8: ; ImmutableOopMap {[160]=Oop }
+                      ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@94 (line 219)
+  0x0000020ae20aefb8: 5804 0000 
+
+  0x0000020ae20aefbc: ;   {poll}
+  0x0000020ae20aefbc: 4185 0248 | ba38 b73d | fa0a 0200 | 00ff 82e0 | 0200 0048 | 8b94 24a0 
+
+  0x0000020ae20aefd4: ;   {section_word}
+  0x0000020ae20aefd4: 0000 00c5 | fb10 0dd1 | f4ff ffc5 | f92e d141 | b8ff ffff | ff0f 8a15 | 0000 000f | 820f 0000 
+  0x0000020ae20aeff4: 0041 b800 | 0000 000f | 8403 0000 | 0049 ffc0 | 4183 f800 
+
+  0x0000020ae20af008: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20af008: 49b8 38b7 | 3dfa 0a02 | 0000 48be | 9802 0000 | 0000 0000 | 0f8d 0a00 | 0000 48be | 8802 0000 
+  0x0000020ae20af028: 0000 0000 | 498b 3c30 | 488d 7f01 | 4989 3c30 | c5fb 1194 | 2418 0100 | 000f 8d19 | fcff ff8b 
+  0x0000020ae20af048: 7244 48c1 | e603 483b | 0648 8bfe 
+
+  0x0000020ae20af054: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20af054: 48bb 38b7 | 3dfa 0a02 
+
+  0x0000020ae20af05c: ;   {metadata('com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20af05c: 0000 49ba | 0064 0081 | 0a02 0000 | 4c89 9308 | 0300 0048 | 8383 1003 
+
+  0x0000020ae20af074: ;   {metadata(method data for {method} {0x0000020af941a168} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20af074: 0000 0148 | bf40 e43c | fa0a 0200 | 008b 9fcc | 0000 0083 | c302 899f | cc00 0000 | 81e3 feff 
+  0x0000020ae20af094: 1f00 83fb | 000f 84e4 | 0e00 0048 
+
+  0x0000020ae20af0a0: ;   {metadata(method data for {method} {0x0000020af941a168} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20af0a0: 8bfe 48bb | 40e4 3cfa | 0a02 0000 | 8b7f 0849 | ba00 0000 | 800a 0200 | 0049 03fa | 483b bb20 
+  0x0000020ae20af0c0: 0100 0075 | 0d48 8383 | 2801 0000 | 01e9 6000 | 0000 483b | bb30 0100 | 0075 0d48 | 8383 3801 
+  0x0000020ae20af0e0: 0000 01e9 | 4a00 0000 | 4883 bb20 | 0100 0000 | 7517 4889 | bb20 0100 | 0048 c783 | 2801 0000 
+  0x0000020ae20af100: 0100 0000 | e929 0000 | 0048 83bb | 3001 0000 | 0075 1748 | 89bb 3001 | 0000 48c7 | 8338 0100 
+  0x0000020ae20af120: 0001 0000 | 00e9 0800 | 0000 4883 | 8310 0100 | 0001 8b7e | 1048 c1e7 | 0348 3b07 
+
+  0x0000020ae20af13c: ;   {metadata(method data for {method} {0x0000020af941a168} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20af13c: 488b df48 | b840 e43c | fa0a 0200 | 0048 8380 | 6001 0000 
+
+  0x0000020ae20af150: ;   {metadata(method data for {method} {0x0000020afa0e1b48} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Camera')}
+  0x0000020ae20af150: 0148 bb90 | e63c fa0a | 0200 008b | 83cc 0000 | 0083 c002 | 8983 cc00 | 0000 25fe | ff1f 0083 
+  0x0000020ae20af170: f800 0f84 | 310e 0000 
+
+  0x0000020ae20af178: ;   {metadata(method data for {method} {0x0000020afa0e1b48} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Camera')}
+  0x0000020ae20af178: 488b df48 | b890 e63c | fa0a 0200 | 0048 8380 | 1001 0000 | 0148 8994 | 24a0 0000 | 0048 8bd7 
+  0x0000020ae20af198: 4889 b424 | c800 0000 | 4889 bc24 | c000 0000 | 0f1f 8000 
+
+  0x0000020ae20af1ac: ;   {optimized virtual_call}
+  0x0000020ae20af1ac: 0000 00e8 
+
+  0x0000020ae20af1b0: ; ImmutableOopMap {[160]=Oop [192]=Oop [200]=Oop }
+                      ;*invokevirtual changeProjection {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@1 (line 47)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+  0x0000020ae20af1b0: ccbf 6e07 
+
+  0x0000020ae20af1b4: ;   {other}
+  0x0000020ae20af1b4: 0f1f 8400 | 2412 000e | 488b bc24 | c000 0000 
+
+  0x0000020ae20af1c4: ;   {metadata(method data for {method} {0x0000020afa0e1b48} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Camera')}
+  0x0000020ae20af1c4: 48ba 90e6 | 3cfa 0a02 | 0000 4883 | 8248 0100 | 0001 488b | 9424 c000 
+
+  0x0000020ae20af1dc: ;   {optimized virtual_call}
+  0x0000020ae20af1dc: 0000 90e8 
+
+  0x0000020ae20af1e0: ; ImmutableOopMap {[160]=Oop [192]=Oop [200]=Oop }
+                      ;*invokevirtual compViewMatrix {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@5 (line 48)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+  0x0000020ae20af1e0: 1cf1 6e07 
+
+  0x0000020ae20af1e4: ;   {other}
+  0x0000020ae20af1e4: 0f1f 8400 | 5412 000f | 488b bc24 | c000 0000 
+
+  0x0000020ae20af1f4: ;   {metadata(method data for {method} {0x0000020afa0e1b48} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Camera')}
+  0x0000020ae20af1f4: 48ba 90e6 | 3cfa 0a02 | 0000 4883 | 8280 0100 | 0001 488b | 9424 c000 
+
+  0x0000020ae20af20c: ;   {optimized virtual_call}
+  0x0000020ae20af20c: 0000 90e8 
+
+  0x0000020ae20af210: ; ImmutableOopMap {[160]=Oop [200]=Oop }
+                      ;*invokespecial update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@9 (line 50)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+  0x0000020ae20af210: ecbb 7007 
+
+  0x0000020ae20af214: ;   {other}
+  0x0000020ae20af214: 0f1f 8400 | 8412 0010 | 488b b424 | c800 0000 
+
+  0x0000020ae20af224: ;   {metadata(method data for {method} {0x0000020af941a168} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20af224: 49b8 40e4 | 3cfa 0a02 | 0000 8b76 | 0849 ba00 | 0000 800a | 0200 0049 | 03f2 493b | b090 0100 
+  0x0000020ae20af244: 0075 0d49 | 8380 9801 | 0000 01e9 | 6000 0000 | 493b b0a0 | 0100 0075 | 0d49 8380 | a801 0000 
+  0x0000020ae20af264: 01e9 4a00 | 0000 4983 | b890 0100 | 0000 7517 | 4989 b090 | 0100 0049 | c780 9801 | 0000 0100 
+  0x0000020ae20af284: 0000 e929 | 0000 0049 | 83b8 a001 | 0000 0075 | 1749 89b0 | a001 0000 | 49c7 80a8 | 0100 0001 
+  0x0000020ae20af2a4: 0000 00e9 | 0800 0000 | 4983 8080 | 0100 0001 | 488b b424 | c800 0000 | 8b56 1448 
+
+  0x0000020ae20af2c0: ;   {metadata(method data for {method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20af2c0: c1e2 0349 | b800 1e2b | f90a 0200 | 004d 8d80 | e801 0000 
+
+  0x0000020ae20af2d4: ;   {oop(a 'java/lang/invoke/BoundMethodHandle$Species_L'{0x0000000704800080})}
+  0x0000020ae20af2d4: 48be 8000 | 8004 0700 | 0000 488b | fe48 85ff | 7504 4983 
+
+  0x0000020ae20af2e8: ;   {metadata(method data for {method} {0x0000020af941a168} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20af2e8: 0801 49b8 | 40e4 3cfa | 0a02 0000 | 4983 80b8 | 0100 0001 
+
+  0x0000020ae20af2fc: ;   {metadata(method data for {method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20af2fc: 49b8 001e | 2bf9 0a02 | 0000 418b | b8cc 0000 | 0083 c702 | 4189 b8cc | 0000 0081 | e7fe ff1f 
+  0x0000020ae20af31c: 0083 ff00 | 0f84 a40c 
+
+  0x0000020ae20af324: ;   {metadata(method data for {method} {0x0000020af9400a28} 'invoke' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/LambdaForm$MH+0x0000020a81000800')}
+  0x0000020ae20af324: 0000 49b8 | 480c 40f9 | 0a02 0000 | 4d8d 80a0 | 0100 0048 | 85f6 7504 | 4983 0801 
+
+  0x0000020ae20af340: ;   {metadata(method data for {method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20af340: 49b8 001e | 2bf9 0a02 | 0000 4983 | 8048 0100 
+
+  0x0000020ae20af350: ;   {metadata(method data for {method} {0x0000020af9400a28} 'invoke' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/LambdaForm$MH+0x0000020a81000800')}
+  0x0000020ae20af350: 0001 49b8 | 480c 40f9 | 0a02 0000 | 418b b0cc | 0000 0083 | c602 4189 | b0cc 0000 | 0081 e6fe 
+  0x0000020ae20af370: ff1f 0083 | fe00 0f84 | 6f0c 0000 
+
+  0x0000020ae20af37c: ;   {metadata(method data for {method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20af37c: 49b8 001e | 2bf9 0a02 | 0000 4d8d | 8080 0100 
+
+  0x0000020ae20af38c: ;   {oop(a 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene$$Lambda+0x0000020a811e6750'{0x00000007048000a8})}
+  0x0000020ae20af38c: 0048 bea8 | 0080 0407 | 0000 0048 | 8bfe 4885 | ff75 0449 
+
+  0x0000020ae20af3a0: ;   {metadata(method data for {method} {0x0000020af941a168} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20af3a0: 8308 0149 | b840 e43c | fa0a 0200 | 004d 8d80 | c801 0000 | 488b fe48 | 85ff 7504 | 4983 0801 
+  0x0000020ae20af3c0: ; implicit exception: dispatches to 0x0000020ae20b000c
+  0x0000020ae20af3c0: 483b 024c 
+
+  0x0000020ae20af3c4: ;   {metadata(method data for {method} {0x0000020af941a168} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20af3c4: 8bc2 48bf | 40e4 3cfa | 0a02 0000 | 458b 4008 | 49ba 0000 | 0080 0a02 | 0000 4d03 | c24c 3b87 
+  0x0000020ae20af3e4: e801 0000 | 750d 4883 | 87f0 0100 | 0001 e960 | 0000 004c | 3b87 f801 | 0000 750d | 4883 8700 
+  0x0000020ae20af404: 0200 0001 | e94a 0000 | 0048 83bf | e801 0000 | 0075 174c | 8987 e801 | 0000 48c7 | 87f0 0100 
+  0x0000020ae20af424: 0001 0000 | 00e9 2900 | 0000 4883 | bff8 0100 | 0000 7517 | 4c89 87f8 | 0100 0048 | c787 0002 
+  0x0000020ae20af444: 0000 0100 | 0000 e908 | 0000 0048 | 8387 d801 | 0000 014c | 8bc6 6666 | 9048 b848 | ad0b 800a 
+  0x0000020ae20af464: ;   {virtual_call}
+  0x0000020ae20af464: 0200 00e8 
+
+  0x0000020ae20af468: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@16 (line 79)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+  0x0000020ae20af468: d420 6e07 
+
+  0x0000020ae20af46c: ;   {other}
+  0x0000020ae20af46c: 0f1f 8400 | dc14 0011 
+
+  0x0000020ae20af474: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20af474: 48ba 38b7 | 3dfa 0a02 | 0000 4883 | 8230 0300 
+
+  0x0000020ae20af484: ;   {metadata(method data for {method} {0x0000020af99c90c0} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11')}
+  0x0000020ae20af484: 0001 48ba | 80a4 3bfa | 0a02 0000 | 8bb2 cc00 | 0000 83c6 | 0289 b2cc | 0000 0081 | e6fe ff1f 
+  0x0000020ae20af4a4: 0083 fe00 | 0f84 630b 
+
+  0x0000020ae20af4ac: ;   {metadata(method data for {method} {0x0000020af99c90c0} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11')}
+  0x0000020ae20af4ac: 0000 48ba | 80a4 3bfa | 0a02 0000 | 4883 8210 | 0100 0001 | ba00 4100 
+
+  0x0000020ae20af4c4: ;   {static_call}
+  0x0000020ae20af4c4: 0066 90e8 
+
+  0x0000020ae20af4c8: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokestatic glClear {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glClear@1 (line 992)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@107 (line 222)
+  0x0000020ae20af4c8: 9453 6b07 
+
+  0x0000020ae20af4cc: ;   {other}
+  0x0000020ae20af4cc: 0f1f 8400 | 3c15 0012 | 488b 9424 | a000 0000 | 8b72 4448 | c1e6 0348 | 3b06 488b 
+
+  0x0000020ae20af4e8: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20af4e8: fe48 bb38 | b73d fa0a | 0200 008b | 7f08 49ba | 0000 0080 | 0a02 0000 | 4903 fa48 | 3bbb 5003 
+  0x0000020ae20af508: 0000 750d | 4883 8358 | 0300 0001 | e960 0000 | 0048 3bbb | 6003 0000 | 750d 4883 | 8368 0300 
+  0x0000020ae20af528: 0001 e94a | 0000 0048 | 83bb 5003 | 0000 0075 | 1748 89bb | 5003 0000 | 48c7 8358 | 0300 0001 
+  0x0000020ae20af548: 0000 00e9 | 2900 0000 | 4883 bb60 | 0300 0000 | 7517 4889 | bb60 0300 | 0048 c783 | 6803 0000 
+  0x0000020ae20af568: 0100 0000 | e908 0000 | 0048 8383 | 4003 0000 | 0148 8994 | 24a0 0000 | 0048 8bd6 
+
+  0x0000020ae20af584: ;   {optimized virtual_call}
+  0x0000020ae20af584: 6666 90e8 
+
+  0x0000020ae20af588: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokevirtual preRender {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@114 (line 223)
+  0x0000020ae20af588: 14f7 6f07 
+
+  0x0000020ae20af58c: ;   {other}
+  0x0000020ae20af58c: 0f1f 8400 | fc15 0013 | 488b 9424 | a000 0000 | 8b72 4448 | c1e6 0348 | 3b06 488b 
+
+  0x0000020ae20af5a8: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20af5a8: fe48 bb38 | b73d fa0a 
+
+  0x0000020ae20af5b0: ;   {metadata('com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20af5b0: 0200 0049 | ba00 6400 | 810a 0200 | 004c 8993 | 8803 0000 | 4883 8390 | 0300 0001 | 4889 9424 
+  0x0000020ae20af5d0: a000 0000 
+
+  0x0000020ae20af5d4: ;   {optimized virtual_call}
+  0x0000020ae20af5d4: 488b d6e8 
+
+  0x0000020ae20af5d8: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokevirtual render {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@121 (line 224)
+  0x0000020ae20af5d8: e473 7007 
+
+  0x0000020ae20af5dc: ;   {other}
+  0x0000020ae20af5dc: 0f1f 8400 | 4c16 0014 | 488b 9424 | a000 0000 | 448b 4234 | 49c1 e003 
+
+  0x0000020ae20af5f4: ; implicit exception: dispatches to 0x0000020ae20b003c
+                      ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20af5f4: 493b 0048 | be38 b73d | fa0a 0200 
+
+  0x0000020ae20af600: ;   {metadata('com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
+  0x0000020ae20af600: 0049 ba00 | 6c0c 810a | 0200 004c | 8996 c003 | 0000 4883 | 86c8 0300 
+
+  0x0000020ae20af618: ;   {metadata(method data for {method} {0x0000020af9a09e98} 'unbind' '()V' in 'com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
+  0x0000020ae20af618: 0001 49b8 | 78f6 3cfa | 0a02 0000 | 418b b0cc | 0000 0083 | c602 4189 | b0cc 0000 | 0081 e6fe 
+  0x0000020ae20af638: ff1f 0083 | fe00 0f84 | fd09 0000 
+
+  0x0000020ae20af644: ;   {metadata(method data for {method} {0x0000020af9a09e98} 'unbind' '()V' in 'com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
+  0x0000020ae20af644: 49b8 78f6 | 3cfa 0a02 | 0000 4983 | 8010 0100 
+
+  0x0000020ae20af654: ;   {metadata(method data for {method} {0x0000020af99912e8} 'glBindFramebuffer' '(II)V' in 'org/lwjgl/opengl/GL30')}
+  0x0000020ae20af654: 0001 49b8 | 88d1 3bfa | 0a02 0000 | 418b b0cc | 0000 0083 | c602 4189 | b0cc 0000 | 0081 e6fe 
+  0x0000020ae20af674: ff1f 0083 | fe00 0f84 | e209 0000 
+
+  0x0000020ae20af680: ;   {metadata(method data for {method} {0x0000020af99912e8} 'glBindFramebuffer' '(II)V' in 'org/lwjgl/opengl/GL30')}
+  0x0000020ae20af680: 49b8 88d1 | 3bfa 0a02 | 0000 4983 | 8010 0100 | 0001 4889 | 9424 a000 | 0000 ba40 | 8d00 0041 
+  0x0000020ae20af6a0: b800 0000 
+
+  0x0000020ae20af6a4: ;   {static_call}
+  0x0000020ae20af6a4: 0066 90e8 
+
+  0x0000020ae20af6a8: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokestatic glBindFramebuffer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL30::glBindFramebuffer@2 (line 1619)
+                      ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::unbind@3 (line 37)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@128 (line 226)
+  0x0000020ae20af6a8: b494 6b07 
+
+  0x0000020ae20af6ac: ;   {other}
+  0x0000020ae20af6ac: 0f1f 8400 | 1c17 0015 | 488b 9424 | a000 0000 | 8b72 3848 | c1e6 0348 | 89b4 24d8 | 0000 0048 
+  0x0000020ae20af6cc: 3b06 4c8b 
+
+  0x0000020ae20af6d0: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20af6d0: c648 bf38 | b73d fa0a 
+
+  0x0000020ae20af6d8: ;   {metadata('com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager')}
+  0x0000020ae20af6d8: 0200 0049 | ba08 570c | 810a 0200 | 004c 8997 | f803 0000 | 4883 8700 | 0400 0001 
+
+  0x0000020ae20af6f4: ;   {metadata(method data for {method} {0x0000020af9a489c8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager')}
+  0x0000020ae20af6f4: 49b8 d8f7 | 3cfa 0a02 | 0000 418b | b8cc 0000 | 0083 c702 | 4189 b8cc | 0000 0081 | e7fe ff1f 
+  0x0000020ae20af714: 0083 ff00 | 0f84 6a09 | 0000 8b7e | 1448 c1e7 
+
+  0x0000020ae20af724: ;   {metadata(method data for {method} {0x0000020a800b0170} 'linkToTargetMethod' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20af724: 0349 b8c8 | 3a36 f90a | 0200 004d | 8d80 0002 
+
+  0x0000020ae20af734: ;   {oop(a 'java/lang/invoke/DirectMethodHandle$Constructor'{0x00000007048000b8})}
+  0x0000020ae20af734: 0000 48bb | b800 8004 | 0700 0000 | 488b c348 | 85c0 7505 | 4983 4810 
+
+  0x0000020ae20af74c: ;   {metadata(method data for {method} {0x0000020af9a489c8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager')}
+  0x0000020ae20af74c: 0149 b8d8 | f73c fa0a | 0200 0049 | 8380 1001 
+
+  0x0000020ae20af75c: ;   {metadata(method data for {method} {0x0000020a800b0170} 'linkToTargetMethod' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20af75c: 0000 0149 | b8c8 3a36 | f90a 0200 | 0041 8b80 | cc00 0000 | 83c0 0241 | 8980 cc00 | 0000 25fe 
+  0x0000020ae20af77c: ff1f 0083 | f800 0f84 | 2109 0000 
+
+  0x0000020ae20af788: ;   {metadata(method data for {method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20af788: 49b8 b034 | 36f9 0a02 | 0000 4d8d | 8040 0200 | 0048 8bc3 | 4885 c075 | 0449 8308 
+
+  0x0000020ae20af7a4: ;   {metadata(method data for {method} {0x0000020a800b0170} 'linkToTargetMethod' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20af7a4: 0149 b8c8 | 3a36 f90a | 0200 0049 | 8380 4801 
+
+  0x0000020ae20af7b4: ;   {metadata(method data for {method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20af7b4: 0000 0149 | b8b0 3436 | f90a 0200 | 0041 8b80 | cc00 0000 | 83c0 0241 | 8980 cc00 | 0000 25fe 
+  0x0000020ae20af7d4: ff1f 0083 | f800 0f84 | ea08 0000 
+
+  0x0000020ae20af7e0: ;   {metadata(method data for {method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20af7e0: 49b8 b034 | 36f9 0a02 | 0000 4d8d | 8020 0100 | 0048 8bc3 | 4885 c075 | 0549 8348 
+
+  0x0000020ae20af7fc: ;   {metadata(method data for {method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20af7fc: 0801 49b8 | b034 36f9 | 0a02 0000 | 4983 8010 | 0100 0001 
+
+  0x0000020ae20af810: ;   {metadata(method data for {method} {0x0000020a800a2c70} 'allocateInstance' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle')}
+  0x0000020ae20af810: 49b8 b0ea | 33f9 0a02 | 0000 418b | 80cc 0000 | 0083 c002 | 4189 80cc | 0000 0025 | feff 1f00 
+  0x0000020ae20af830: 83f8 000f | 84b2 0800 
+
+  0x0000020ae20af838: ;   {oop(a 'jdk/internal/misc/Unsafe'{0x00000007038002f8})}
+  0x0000020ae20af838: 0048 b8f8 | 0280 0307 | 0000 004c 
+
+  0x0000020ae20af844: ;   {metadata(method data for {method} {0x0000020a800a2c70} 'allocateInstance' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle')}
+  0x0000020ae20af844: 8bc0 48b9 | b0ea 33f9 | 0a02 0000 | 4883 8148 | 0100 0001 
+
+  0x0000020ae20af858: ;   {oop(a 'java/lang/Class'{0x00000007048000e8} = 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager$$Lambda+0x0000020a811e6dc8')}
+  0x0000020ae20af858: 49b8 e800 | 8004 0700 | 0000 4889 | 9424 a000 | 0000 488b | d048 89bc | 24e0 0000 | 0048 899c 
+  0x0000020ae20af878: 24d0 0000 
+
+  0x0000020ae20af87c: ;   {optimized virtual_call}
+  0x0000020ae20af87c: 0066 90e8 
+
+  0x0000020ae20af880: ; ImmutableOopMap {[160]=Oop [208]=Oop [216]=Oop [224]=Oop }
+                      ;*invokevirtual allocateInstance {reexecute=0 rethrow=0 return_oop=0}
+                      ; - java.lang.invoke.DirectMethodHandle::allocateInstance@12 (line 501)
+                      ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@1
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20af880: 5c77 6107 
+
+  0x0000020ae20af884: ;   {other}
+  0x0000020ae20af884: 0f1f 8400 | f418 0016 
+
+  0x0000020ae20af88c: ;   {metadata(method data for {method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20af88c: 49b8 b034 | 36f9 0a02 | 0000 4d8d | 8030 0100 | 0048 8bd0 | 4885 d275 | 0449 8308 
+
+  0x0000020ae20af8a8: ;   {metadata(method data for {method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20af8a8: 0149 b8b0 | 3436 f90a | 0200 004d | 8d80 5001 | 0000 488b | 9c24 d000 | 0000 488b | d348 85d2 
+  0x0000020ae20af8c8: 7505 4983 
+
+  0x0000020ae20af8cc: ;   {metadata(method data for {method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20af8cc: 4808 0149 | b8b0 3436 | f90a 0200 | 0049 8380 | 4001 0000 
+
+  0x0000020ae20af8e0: ;   {metadata(method data for {method} {0x0000020a800a3718} 'constructorMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle')}
+  0x0000020ae20af8e0: 0149 b870 | ec33 f90a | 0200 0041 | 8b90 cc00 | 0000 83c2 | 0241 8990 | cc00 0000 | 81e2 feff 
+  0x0000020ae20af900: 1f00 83fa | 000f 8401 
+
+  0x0000020ae20af908: ;   {metadata(method data for {method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20af908: 0800 0049 | b8b0 3436 | f90a 0200 | 004d 8d80 | 6001 0000 
+
+  0x0000020ae20af91c: ;   {oop(a 'java/lang/invoke/MemberName'{0x0000000704800158} = {method} {0x0000020af9a6e650} '<init>' '(Lcom/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager;)V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager$$Lambda+0x0000020a811e6dc8')}
+  0x0000020ae20af91c: 48ba 5801 | 8004 0700 | 0000 4885 | d275 0449 | 8308 0148 | 3b00 4c8b 
+
+  0x0000020ae20af934: ;   {metadata(method data for {method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20af934: c048 bab0 | 3436 f90a | 0200 0048 | 8382 a801 
+
+  0x0000020ae20af944: ;   {metadata(method data for {method} {0x0000020af9a6e650} '<init>' '(Lcom/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager;)V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager$$Lambda+0x0000020a811e6dc8')}
+  0x0000020ae20af944: 0000 0149 | b8c8 f93c | fa0a 0200 | 0041 8b90 | cc00 0000 | 83c2 0241 | 8990 cc00 | 0000 81e2 
+  0x0000020ae20af964: feff 1f00 | 83fa 000f | 84c1 0700 | 004c 8bc0 
+
+  0x0000020ae20af974: ;   {metadata(method data for {method} {0x0000020af9a6e650} '<init>' '(Lcom/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager;)V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager$$Lambda+0x0000020a811e6dc8')}
+  0x0000020ae20af974: 48ba c8f9 | 3cfa 0a02 | 0000 4883 | 8210 0100 
+
+  0x0000020ae20af984: ;   {metadata(method data for {method} {0x0000020a8047b210} '<init>' '()V' in 'java/lang/Object')}
+  0x0000020ae20af984: 0001 49b8 | 6067 00f9 | 0a02 0000 | 418b 90cc | 0000 0083 | c202 4189 | 90cc 0000 | 0081 e2fe 
+  0x0000020ae20af9a4: ff1f 0083 | fa00 0f84 | a307 0000 | 450f be47 | 4041 83f8 | 000f 85b5 | 0700 0048 | 8bb4 24d8 
+  0x0000020ae20af9c4: 0000 004c | 8bd6 49c1 | ea03 4489 | 500c 4c8b | c04c 33c6 | 49c1 e815 | 4983 f800 | 0f85 ae07 
+  0x0000020ae20af9e4: ;   {metadata(method data for {method} {0x0000020a800b0170} 'linkToTargetMethod' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20af9e4: 0000 49b8 | c83a 36f9 | 0a02 0000 | 4d8d 8090 | 0100 0048 | 8bd0 4885 | d275 0449 
+
+  0x0000020ae20afa00: ;   {metadata(method data for {method} {0x0000020af9a489c8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager')}
+  0x0000020ae20afa00: 8308 0149 | b8d8 f73c | fa0a 0200 | 004d 8d80 | 3001 0000 | 488b d048 | 85d2 7506 | 4983 0801 
+  0x0000020ae20afa20: eb25 8b52 | 0849 ba00 | 0000 800a | 0200 0049 | 03d2 4933 | 1048 f7c2 | fcff ffff | 7409 f6c2 
+  0x0000020ae20afa40: 0275 0449 | 8308 0248 | 8bbc 24e0 | 0000 0048 | 3b07 4c8b 
+
+  0x0000020ae20afa54: ;   {metadata(method data for {method} {0x0000020af9a489c8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager')}
+  0x0000020ae20afa54: c748 bad8 | f73c fa0a | 0200 0045 | 8b40 0849 | ba00 0000 | 800a 0200 | 004d 03c2 | 4c3b 8250 
+  0x0000020ae20afa74: 0100 0075 | 0d48 8382 | 5801 0000 | 01e9 6000 | 0000 4c3b | 8260 0100 | 0075 0d48 | 8382 6801 
+  0x0000020ae20afa94: 0000 01e9 | 4a00 0000 | 4883 ba50 | 0100 0000 | 7517 4c89 | 8250 0100 | 0048 c782 | 5801 0000 
+  0x0000020ae20afab4: 0100 0000 | e929 0000 | 0048 83ba | 6001 0000 | 0075 174c | 8982 6001 | 0000 48c7 | 8268 0100 
+  0x0000020ae20afad4: 0001 0000 | 00e9 0800 | 0000 4883 | 8240 0100 | 0001 4c8b | c048 8bd7 | 9048 b8a0 | e025 800a 
+  0x0000020ae20afaf4: ;   {virtual_call}
+  0x0000020ae20afaf4: 0200 00e8 
+
+  0x0000020ae20afaf8: ; ImmutableOopMap {[160]=Oop [216]=Oop }
+                      ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@10 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20afaf8: c4a9 6e07 
+
+  0x0000020ae20afafc: ;   {other}
+  0x0000020ae20afafc: 0f1f 8400 | 6c1b 0017 | 488b b424 | d800 0000 | 8b56 1448 | c1e2 0348 | 3b02 488b 
+
+  0x0000020ae20afb18: ;   {metadata(method data for {method} {0x0000020af9a489c8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager')}
+  0x0000020ae20afb18: f248 bfd8 | f73c fa0a | 0200 008b | 7608 49ba | 0000 0080 | 0a02 0000 | 4903 f248 | 3bb7 8801 
+  0x0000020ae20afb38: 0000 750d | 4883 8790 | 0100 0001 | e960 0000 | 0048 3bb7 | 9801 0000 | 750d 4883 | 87a0 0100 
+  0x0000020ae20afb58: 0001 e94a | 0000 0048 | 83bf 8801 | 0000 0075 | 1748 89b7 | 8801 0000 | 48c7 8790 | 0100 0001 
+  0x0000020ae20afb78: 0000 00e9 | 2900 0000 | 4883 bf98 | 0100 0000 | 7517 4889 | b798 0100 | 0048 c787 | a001 0000 
+  0x0000020ae20afb98: 0100 0000 | e908 0000 | 0048 8387 | 7801 0000 | 010f 1f40 | 0048 b8a0 | e025 800a 
+
+  0x0000020ae20afbb4: ;   {virtual_call}
+  0x0000020ae20afbb4: 0200 00e8 
+
+  0x0000020ae20afbb8: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokeinterface clear {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@19 (line 95)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20afbb8: e48c 7007 
+
+  0x0000020ae20afbbc: ;   {other}
+  0x0000020ae20afbbc: 0f1f 8400 | 2c1c 0018 | 488b 9424 | a000 0000 | 488b 7218 
+
+  0x0000020ae20afbd0: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20afbd0: 48bf 38b7 | 3dfa 0a02 | 0000 4883 | 8720 0400 | 0001 4889 | 9424 a000 | 0000 488b 
+
+  0x0000020ae20afbec: ;   {static_call}
+  0x0000020ae20afbec: d666 90e8 
+
+  0x0000020ae20afbf0: ; ImmutableOopMap {[160]=Oop }
+                      ;*invokestatic glfwSwapBuffers {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@142 (line 231)
+  0x0000020ae20afbf0: 2c93 7007 
+
+  0x0000020ae20afbf4: ;   {other}
+  0x0000020ae20afbf4: 0f1f 8400 | 641c 0019 
+
+  0x0000020ae20afbfc: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20afbfc: 48be 38b7 | 3dfa 0a02 | 0000 8bbe | d000 0000 | 83c7 0289 | bed0 0000 | 0081 e7fe | 3f00 0083 
+  0x0000020ae20afc1c: ff00 0f84 | 9205 0000 | 4d8b 9758 
+
+  0x0000020ae20afc28: ; ImmutableOopMap {[160]=Oop }
+                      ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@145 (line 234)
+                      ;   {poll}
+  0x0000020ae20afc28: 0400 0041 
+
+  0x0000020ae20afc2c: ;   {metadata(method data for {method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20afc2c: 8502 48be | 38b7 3dfa | 0a02 0000 | ff86 3004 | 0000 c5fb | 108c 2418 | 0100 00c5 | fb10 8424 
+  0x0000020ae20afc4c: 2001 0000 | 488b 9424 | a000 0000 | e993 e9ff | ff48 81c4 | 3001 0000 
+
+  0x0000020ae20afc64: ;   {poll_return}
+  0x0000020ae20afc64: 5d49 3ba7 | 5004 0000 | 0f87 6505 | 0000 c389 | 8424 0080 | ffff 5548 | 81ec 3001 | 0000 6690 
+  0x0000020ae20afc84: 4181 7f20 | 0000 0000 
+
+  0x0000020ae20afc8c: ;   {runtime_call StubRoutines (final stubs)}
+  0x0000020ae20afc8c: 7405 e86d | 6504 07b9 | 4000 0000 | 4863 c948 | 8b34 0ab9 | 3000 0000 | 4863 c9c5 | fb10 040a 
+  0x0000020ae20afcac: b920 0000 | 0048 63c9 | c5fb 100c | 0a48 8bca | 4889 b424 | b800 0000 | c5fb 1184 | 2410 0100 
+  0x0000020ae20afccc: 00c5 fb11 | 8c24 0801 
+
+  0x0000020ae20afcd4: ;   {runtime_call}
+  0x0000020ae20afcd4: 0000 48b8 | 10e3 6c29 | fa7f 0000 
+
+  0x0000020ae20afce0: ;   {other}
+  0x0000020ae20afce0: ffd0 0f1f | 8400 0000 | 0000 c5fb | 108c 2408 | 0100 00c5 | f928 d1c5 | fb10 8424 | 1001 0000 
+  0x0000020ae20afd00: 488b b424 | b800 0000 | 488b d6c5 | fb11 8424 | 2001 0000 | e9be f2ff 
+
+  0x0000020ae20afd18: ;   {metadata({method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20afd18: ff49 bab0 | d040 f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20afd30: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afd30: e84b cc13 
+
+  0x0000020ae20afd34: ; ImmutableOopMap {rdx=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@-1 (line 201)
+  0x0000020ae20afd34: 07e9 ede7 
+
+  0x0000020ae20afd38: ;   {metadata({method} {0x0000020afa3860e8} 'getRunTimeMiliSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20afd38: ffff 49ba | e060 38fa | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x0000020ae20afd50: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afd50: ffe8 2acc 
+
+  0x0000020ae20afd54: ; ImmutableOopMap {[152]=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeMiliSec@-1 (line 14)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@0 (line 201)
+  0x0000020ae20afd54: 1307 e90e 
+
+  0x0000020ae20afd58: ;   {metadata({method} {0x0000020afa386048} 'getRunTimeNanoSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20afd58: e8ff ff49 | ba40 6038 | fa0a 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x0000020ae20afd70: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afd70: ffff e809 
+
+  0x0000020ae20afd74: ; ImmutableOopMap {[152]=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeNanoSec@-1 (line 10)
+                      ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeMiliSec@0 (line 14)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@0 (line 201)
+  0x0000020ae20afd74: cc13 07e9 | 27e8 ffff 
+
+  0x0000020ae20afd7c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afd7c: e89f 5013 
+
+  0x0000020ae20afd80: ; ImmutableOopMap {rdx=Oop }
+                      ;*getfield windowAddress {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@7 (line 204)
+                      ;   {metadata({method} {0x0000020af97a2c40} 'glfwPollEvents' '()V' in 'org/lwjgl/glfw/GLFW')}
+  0x0000020ae20afd80: 0749 ba38 | 2c7a f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20afd98: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afd98: e8e3 cb13 
+
+  0x0000020ae20afd9c: ; ImmutableOopMap {[160]=Oop }
+                      ;*synchronization entry
+                      ; - org.lwjgl.glfw.GLFW::glfwPollEvents@-1 (line 3500)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@16 (line 206)
+  0x0000020ae20afd9c: 07e9 05e9 
+
+  0x0000020ae20afda0: ;   {metadata({method} {0x0000020afa3860e8} 'getRunTimeMiliSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20afda0: ffff 49ba | e060 38fa | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x0000020ae20afdb8: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afdb8: ffe8 c2cb 
+
+  0x0000020ae20afdbc: ; ImmutableOopMap {[160]=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeMiliSec@-1 (line 14)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@19 (line 207)
+  0x0000020ae20afdbc: 1307 e94b 
+
+  0x0000020ae20afdc0: ;   {metadata({method} {0x0000020afa386048} 'getRunTimeNanoSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
+  0x0000020ae20afdc0: e9ff ff49 | ba40 6038 | fa0a 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x0000020ae20afdd8: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afdd8: ffff e8a1 
+
+  0x0000020ae20afddc: ; ImmutableOopMap {[160]=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeNanoSec@-1 (line 10)
+                      ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeMiliSec@0 (line 14)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@19 (line 207)
+  0x0000020ae20afddc: cb13 07e9 | 64e9 ffff 
+
+  0x0000020ae20afde4: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afde4: e837 5013 
+
+  0x0000020ae20afde8: ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                      ;*invokevirtual newFrame {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ;   {metadata({method} {0x0000020af987d840} 'newFrame' '()V' in 'com/bedrye/bjge/GameEngine/BJEIMGUILayer')}
+  0x0000020ae20afde8: 0749 ba38 | d887 f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20afe00: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afe00: e87b cb13 
+
+  0x0000020ae20afe04: ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@-1 (line 36)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+  0x0000020ae20afe04: 07e9 05ea 
+
+  0x0000020ae20afe08: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe08: ffff e811 
+
+  0x0000020ae20afe0c: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop }
+                      ;*invokevirtual newFrame {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@4 (line 36)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe0c: 5013 07e8 
+
+  0x0000020ae20afe10: ; ImmutableOopMap {rdx=Oop [160]=Oop }
+                      ;*invokevirtual newFrame {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@11 (line 37)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+  0x0000020ae20afe10: 0c50 1307 
+
+  0x0000020ae20afe14: ;   {metadata({method} {0x0000020af98973a8} 'newFrame' '()V' in 'imgui/gl3/ImGuiImplGl3')}
+  0x0000020ae20afe14: 49ba a073 | 89f9 0a02 | 0000 4c89 | 5424 0848 | c704 24ff 
+
+  0x0000020ae20afe28: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afe28: ffff ffe8 
+
+  0x0000020ae20afe2c: ; ImmutableOopMap {rdx=Oop [160]=Oop }
+                      ;*synchronization entry
+                      ; - imgui.gl3.ImGuiImplGl3::newFrame@-1 (line 337)
+                      ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@11 (line 37)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+  0x0000020ae20afe2c: 50cb 1307 | e96e eaff 
+
+  0x0000020ae20afe34: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe34: ffe8 e64f 
+
+  0x0000020ae20afe38: ; ImmutableOopMap {rdx=Oop [160]=Oop }
+                      ;*getfield shaderHandle {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) imgui.gl3.ImGuiImplGl3::newFrame@4 (line 337)
+                      ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@11 (line 37)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ;   {metadata({method} {0x0000020af98ad010} 'newFrame' '()V' in 'imgui/ImGui')}
+  0x0000020ae20afe38: 1307 49ba | 08d0 8af9 | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x0000020ae20afe50: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afe50: ffe8 2acb 
+
+  0x0000020ae20afe54: ; ImmutableOopMap {[160]=Oop }
+                      ;*synchronization entry
+                      ; - imgui.ImGui::newFrame@-1 (line 248)
+                      ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@14 (line 38)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+  0x0000020ae20afe54: 1307 e9fb 
+
+  0x0000020ae20afe58: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe58: eaff ffe8 
+
+  0x0000020ae20afe5c: ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                      ;*invokevirtual setupDockspace {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@49 (line 212)
+  0x0000020ae20afe5c: c04f 1307 
+
+  0x0000020ae20afe60: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe60: e8bb 4f13 
+
+  0x0000020ae20afe64: ; ImmutableOopMap {rdx=Oop rsi=Oop [176]=Oop }
+                      ;*invokevirtual updateUILayer {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ;   {metadata({method} {0x0000020af941a0a8} 'updateUILayer' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20afe64: 0749 baa0 | a041 f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20afe7c: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afe7c: e8ff ca13 
+
+  0x0000020ae20afe80: ; ImmutableOopMap {rdx=Oop rsi=Oop [176]=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@-1 (line 62)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+  0x0000020ae20afe80: 07e9 aeeb 
+
+  0x0000020ae20afe84: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe84: ffff e895 
+
+  0x0000020ae20afe88: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop [176]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@4 (line 62)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe88: 4f13 07e8 
+
+  0x0000020ae20afe8c: ; ImmutableOopMap {rsi=Oop rdx=Oop [160]=Oop [176]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@11 (line 63)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+  0x0000020ae20afe8c: 904f 1307 
+
+  0x0000020ae20afe90: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe90: e88b 4f13 
+
+  0x0000020ae20afe94: ; ImmutableOopMap {rsi=Oop rdx=Oop [160]=Oop [176]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@18 (line 64)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe94: 07e8 864f 
+
+  0x0000020ae20afe98: ; ImmutableOopMap {rdx=Oop [160]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@25 (line 66)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe98: 1307 e881 
+
+  0x0000020ae20afe9c: ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                      ;*invokevirtual endFrame {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@63 (line 214)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afe9c: 4f13 07e8 
+
+  0x0000020ae20afea0: ; ImmutableOopMap {rdx=Oop r8=Oop }
+                      ;*invokevirtual bind {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@70 (line 216)
+  0x0000020ae20afea0: 7c4f 1307 
+
+  0x0000020ae20afea4: ;   {metadata({method} {0x0000020af9a09de8} 'bind' '()V' in 'com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
+  0x0000020ae20afea4: 49ba e09d | a0f9 0a02 | 0000 4c89 | 5424 0848 | c704 24ff 
+
+  0x0000020ae20afeb8: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afeb8: ffff ffe8 
+
+  0x0000020ae20afebc: ; ImmutableOopMap {rdx=Oop r8=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::bind@-1 (line 33)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@70 (line 216)
+  0x0000020ae20afebc: c0ca 1307 | e900 edff 
+
+  0x0000020ae20afec4: ;   {metadata({method} {0x0000020af99912e8} 'glBindFramebuffer' '(II)V' in 'org/lwjgl/opengl/GL30')}
+  0x0000020ae20afec4: ff49 bae0 | 1299 f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20afedc: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20afedc: e89f ca13 
+
+  0x0000020ae20afee0: ; ImmutableOopMap {rdx=Oop }
+                      ;*synchronization entry
+                      ; - org.lwjgl.opengl.GL30::glBindFramebuffer@-1 (line 1619)
+                      ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::bind@6 (line 33)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@70 (line 216)
+  0x0000020ae20afee0: 07e9 1ded 
+
+  0x0000020ae20afee4: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afee4: ffff e835 
+
+  0x0000020ae20afee8: ; ImmutableOopMap {rdx=Oop }
+                      ;*getfield activeScene {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@82 (line 218)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20afee8: 4f13 07e8 
+
+  0x0000020ae20afeec: ; ImmutableOopMap {rdx=Oop r8=Oop }
+                      ;*invokevirtual fixedUpdate {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+  0x0000020ae20afeec: 304f 1307 
+
+  0x0000020ae20afef0: ;   {metadata({method} {0x0000020af94190b0} 'fixedUpdate' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Scene')}
+  0x0000020ae20afef0: 49ba a890 | 41f9 0a02 | 0000 4c89 | 5424 0848 | c704 24ff 
+
+  0x0000020ae20aff04: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20aff04: ffff ffe8 
+
+  0x0000020ae20aff08: ; ImmutableOopMap {rdx=Oop r8=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@-1 (line 110)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+  0x0000020ae20aff08: 74ca 1307 | e915 eeff 
+
+  0x0000020ae20aff10: ;   {metadata({method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20aff10: ff49 ba48 | fd0a 800a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20aff28: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20aff28: e853 ca13 
+
+  0x0000020ae20aff2c: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop }
+                      ;*synchronization entry
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@-1
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@4 (line 110)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+  0x0000020ae20aff2c: 07e9 f2ee 
+
+  0x0000020ae20aff30: ;   {metadata({method} {0x0000020af9400a28} 'invoke' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/LambdaForm$MH+0x0000020a81000800')}
+  0x0000020ae20aff30: ffff 49ba | 200a 40f9 | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x0000020ae20aff48: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20aff48: ffe8 32ca 
+
+  0x0000020ae20aff4c: ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                      ;*synchronization entry
+                      ; - java.lang.invoke.LambdaForm$MH/0x0000020a81000800::invoke@-1
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@4
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@4 (line 110)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+  0x0000020ae20aff4c: 1307 e927 
+
+  0x0000020ae20aff50: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20aff50: efff ffe8 
+
+  0x0000020ae20aff54: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop }
+                      ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@9 (line 110)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+  0x0000020ae20aff54: c84e 1307 
+
+  0x0000020ae20aff58: ;   {metadata({method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20aff58: 49ba b0d0 | 40f9 0a02 | 0000 4c89 | 5424 0848 | c704 245e 
+
+  0x0000020ae20aff6c: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20aff6c: 0000 00e8 
+
+  0x0000020ae20aff70: ; ImmutableOopMap {[160]=Oop }
+                      ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@94 (line 219)
+  0x0000020ae20aff70: 0cca 1307 | e93c f0ff 
+
+  0x0000020ae20aff78: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20aff78: ffe8 a24e 
+
+  0x0000020ae20aff7c: ; ImmutableOopMap {rdx=Oop }
+                      ;*getfield activeScene {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@98 (line 221)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20aff7c: 1307 e89d 
+
+  0x0000020ae20aff80: ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ;   {metadata({method} {0x0000020af941a168} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
+  0x0000020ae20aff80: 4e13 0749 | ba60 a141 | f90a 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x0000020ae20aff98: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20aff98: ffff e8e1 
+
+  0x0000020ae20aff9c: ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@-1 (line 78)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+  0x0000020ae20aff9c: c913 07e9 | fbf0 ffff 
+
+  0x0000020ae20affa4: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20affa4: e877 4e13 
+
+  0x0000020ae20affa8: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ;   {metadata({method} {0x0000020afa0e1b48} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Camera')}
+  0x0000020ae20affa8: 0749 ba40 | 1b0e fa0a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20affc0: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20affc0: e8bb c913 
+
+  0x0000020ae20affc4: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@-1 (line 47)
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+  0x0000020ae20affc4: 07e9 aef1 
+
+  0x0000020ae20affc8: ;   {metadata({method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20affc8: ffff 49ba | 48fd 0a80 | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x0000020ae20affe0: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20affe0: ffe8 9ac9 
+
+  0x0000020ae20affe4: ; ImmutableOopMap {rdx=Oop rsi=Oop [160]=Oop }
+                      ;*synchronization entry
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@-1
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@11 (line 79)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+  0x0000020ae20affe4: 1307 e93b 
+
+  0x0000020ae20affe8: ;   {metadata({method} {0x0000020af9400a28} 'invoke' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/LambdaForm$MH+0x0000020a81000800')}
+  0x0000020ae20affe8: f3ff ff49 | ba20 0a40 | f90a 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x0000020ae20b0000: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b0000: ffff e879 
+
+  0x0000020ae20b0004: ; ImmutableOopMap {rdx=Oop [160]=Oop }
+                      ;*synchronization entry
+                      ; - java.lang.invoke.LambdaForm$MH/0x0000020a81000800::invoke@-1
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@4
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@11 (line 79)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+  0x0000020ae20b0004: c913 07e9 | 70f3 ffff 
+
+  0x0000020ae20b000c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20b000c: e80f 4e13 
+
+  0x0000020ae20b0010: ; ImmutableOopMap {rdx=Oop rsi=Oop [160]=Oop }
+                      ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@16 (line 79)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ;   {metadata({method} {0x0000020af99c90c0} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11')}
+  0x0000020ae20b0010: 0749 bab8 | 909c f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20b0028: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b0028: e853 c913 
+
+  0x0000020ae20b002c: ; ImmutableOopMap {[160]=Oop }
+                      ;*synchronization entry
+                      ; - org.lwjgl.opengl.GL11::glClear@-1 (line 992)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@107 (line 222)
+  0x0000020ae20b002c: 07e9 7cf4 
+
+  0x0000020ae20b0030: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20b0030: ffff e8e9 
+
+  0x0000020ae20b0034: ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                      ;*invokevirtual preRender {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@114 (line 223)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20b0034: 4d13 07e8 
+
+  0x0000020ae20b0038: ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                      ;*invokevirtual render {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@121 (line 224)
+  0x0000020ae20b0038: e44d 1307 
+
+  0x0000020ae20b003c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20b003c: e8df 4d13 
+
+  0x0000020ae20b0040: ; ImmutableOopMap {rdx=Oop r8=Oop }
+                      ;*invokevirtual unbind {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@128 (line 226)
+                      ;   {metadata({method} {0x0000020af9a09e98} 'unbind' '()V' in 'com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
+  0x0000020ae20b0040: 0749 ba90 | 9ea0 f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20b0058: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b0058: e823 c913 
+
+  0x0000020ae20b005c: ; ImmutableOopMap {rdx=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::unbind@-1 (line 37)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@128 (line 226)
+  0x0000020ae20b005c: 07e9 e2f5 
+
+  0x0000020ae20b0060: ;   {metadata({method} {0x0000020af99912e8} 'glBindFramebuffer' '(II)V' in 'org/lwjgl/opengl/GL30')}
+  0x0000020ae20b0060: ffff 49ba | e012 99f9 | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x0000020ae20b0078: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b0078: ffe8 02c9 
+
+  0x0000020ae20b007c: ; ImmutableOopMap {rdx=Oop }
+                      ;*synchronization entry
+                      ; - org.lwjgl.opengl.GL30::glBindFramebuffer@-1 (line 1619)
+                      ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::unbind@3 (line 37)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@128 (line 226)
+  0x0000020ae20b007c: 1307 e9fd 
+
+  0x0000020ae20b0080: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20b0080: f5ff ffe8 
+
+  0x0000020ae20b0084: ; ImmutableOopMap {rdx=Oop rsi=Oop [216]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20b0084: 984d 1307 
+
+  0x0000020ae20b0088: ;   {metadata({method} {0x0000020af9a489c8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager')}
+  0x0000020ae20b0088: 49ba c089 | a4f9 0a02 | 0000 4c89 | 5424 0848 | c704 24ff 
+
+  0x0000020ae20b009c: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b009c: ffff ffe8 
+
+  0x0000020ae20b00a0: ; ImmutableOopMap {rdx=Oop rsi=Oop [216]=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@-1 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20b00a0: dcc8 1307 | e975 f6ff 
+
+  0x0000020ae20b00a8: ;   {metadata({method} {0x0000020a800b0170} 'linkToTargetMethod' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
+  0x0000020ae20b00a8: ff49 ba68 | 010b 800a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x0000020ae20b00c0: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b00c0: e8bb c813 
+
+  0x0000020ae20b00c4: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop rbx=Oop [216]=Oop }
+                      ;*synchronization entry
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@-1
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20b00c4: 07e9 bef6 
+
+  0x0000020ae20b00c8: ;   {metadata({method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
+  0x0000020ae20b00c8: ffff 49ba | 8063 0b80 | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x0000020ae20b00e0: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b00e0: ffe8 9ac8 
+
+  0x0000020ae20b00e4: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop rbx=Oop [216]=Oop }
+                      ;*synchronization entry
+                      ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@-1
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20b00e4: 1307 e9f5 
+
+  0x0000020ae20b00e8: ;   {metadata({method} {0x0000020a800a2c70} 'allocateInstance' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle')}
+  0x0000020ae20b00e8: f6ff ff49 | ba68 2c0a | 800a 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x0000020ae20b0100: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b0100: ffff e879 
+
+  0x0000020ae20b0104: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop rbx=Oop [216]=Oop }
+                      ;*synchronization entry
+                      ; - java.lang.invoke.DirectMethodHandle::allocateInstance@-1 (line 500)
+                      ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@1
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20b0104: c813 07e9 | 2df7 ffff 
+
+  0x0000020ae20b010c: ;   {metadata({method} {0x0000020a800a3718} 'constructorMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle')}
+  0x0000020ae20b010c: 49ba 1037 | 0a80 0a02 | 0000 4c89 | 5424 0848 | c704 24ff 
+
+  0x0000020ae20b0120: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b0120: ffff ffe8 
+
+  0x0000020ae20b0124: ; ImmutableOopMap {rax=Oop [160]=Oop [216]=Oop [224]=Oop }
+                      ;*synchronization entry
+                      ; - java.lang.invoke.DirectMethodHandle::constructorMethod@-1 (line 494)
+                      ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@6
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20b0124: 58c8 1307 | e9de f7ff 
+
+  0x0000020ae20b012c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20b012c: ffe8 ee4c 
+
+  0x0000020ae20b0130: ; ImmutableOopMap {rax=Oop [160]=Oop [216]=Oop [224]=Oop }
+                      ;*invokestatic linkToSpecial {reexecute=0 rethrow=0 return_oop=0}
+                      ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@16
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ;   {metadata({method} {0x0000020af9a6e650} '<init>' '(Lcom/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager;)V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager$$Lambda+0x0000020a811e6dc8')}
+  0x0000020ae20b0130: 1307 49ba | 48e6 a6f9 | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x0000020ae20b0148: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b0148: ffe8 32c8 
+
+  0x0000020ae20b014c: ; ImmutableOopMap {rax=Oop [160]=Oop [216]=Oop [224]=Oop }
+                      ;*synchronization entry
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager$$Lambda/0x0000020a811e6dc8::<init>@-1
+                      ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@16
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20b014c: 1307 e91e 
+
+  0x0000020ae20b0150: ;   {metadata({method} {0x0000020a8047b210} '<init>' '()V' in 'java/lang/Object')}
+  0x0000020ae20b0150: f8ff ff49 | ba08 b247 | 800a 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x0000020ae20b0168: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b0168: ffff e811 
+
+  0x0000020ae20b016c: ; ImmutableOopMap {rax=Oop [160]=Oop [216]=Oop [224]=Oop }
+                      ;*synchronization entry
+                      ; - java.lang.Object::<init>@-1 (line 45)
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager$$Lambda/0x0000020a811e6dc8::<init>@1
+                      ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@16
+                      ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+  0x0000020ae20b016c: c813 07e9 | 3cf8 ffff | 448b 400c | 49c1 e003 | 4983 f800 | 0f84 39f8 | ffff 4c89 
+
+  0x0000020ae20b0188: ;   {runtime_call g1_pre_barrier_slow}
+  0x0000020ae20b0188: 0424 e8f1 | ce13 07e9 | 2bf8 ffff | 4883 fe00 | 0f84 48f8 | ffff 4889 
+
+  0x0000020ae20b01a0: ;   {runtime_call g1_post_barrier_slow}
+  0x0000020ae20b01a0: 0424 e859 | d213 07e9 | 3af8 ffff 
+
+  0x0000020ae20b01ac: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20b01ac: e86f 4c13 
+
+  0x0000020ae20b01b0: ; ImmutableOopMap {rax=Oop rsi=Oop rdi=Oop [160]=Oop [216]=Oop }
+                      ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@10 (line 94)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x0000020ae20b01b0: 07e8 6a4c 
+
+  0x0000020ae20b01b4: ; ImmutableOopMap {rdx=Oop [160]=Oop }
+                      ;*invokeinterface clear {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@19 (line 95)
+                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ;   {metadata({method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
+  0x0000020ae20b01b4: 1307 49ba | b0d0 40f9 | 0a02 0000 | 4c89 5424 | 0848 c704 | 2491 0000 
+
+  0x0000020ae20b01cc: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x0000020ae20b01cc: 00e8 aec7 
+
+  0x0000020ae20b01d0: ; ImmutableOopMap {[160]=Oop }
+                      ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@145 (line 234)
+  0x0000020ae20b01d0: 1307 e94d 
+
+  0x0000020ae20b01d4: ;   {internal_word}
+  0x0000020ae20b01d4: faff ff49 | ba65 fc0a | e20a 0200 | 004d 8997 | 6804 0000 
+
+  0x0000020ae20b01e8: ;   {runtime_call SafepointBlob}
+  0x0000020ae20b01e8: e993 6906 | 0749 8b87 | 0005 0000 | 49c7 8700 | 0500 0000 | 0000 0049 | c787 0805 | 0000 0000 
+  0x0000020ae20b0208: 0000 4881 | c430 0100 
+
+  0x0000020ae20b0210: ;   {runtime_call unwind_exception Runtime1 stub}
+  0x0000020ae20b0210: 005d e9e9 | 2a13 07f4 
+[Stub Code]
+  0x0000020ae20b0218: ;   {no_reloc}
+  0x0000020ae20b0218: 0f1f 4400 
+
+  0x0000020ae20b021c: ;   {static_stub}
+  0x0000020ae20b021c: 0048 bb00 | 0000 0000 
+
+  0x0000020ae20b0224: ;   {runtime_call}
+  0x0000020ae20b0224: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b022c: ;   {static_stub}
+  0x0000020ae20b022c: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b0234: ;   {runtime_call}
+  0x0000020ae20b0234: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b023c: ;   {static_stub}
+  0x0000020ae20b023c: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b0244: ;   {runtime_call}
+  0x0000020ae20b0244: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b024c: ;   {static_stub}
+  0x0000020ae20b024c: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b0254: ;   {runtime_call}
+  0x0000020ae20b0254: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b025c: ;   {static_stub}
+  0x0000020ae20b025c: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b0264: ;   {runtime_call}
+  0x0000020ae20b0264: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b026c: ;   {static_stub}
+  0x0000020ae20b026c: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b0274: ;   {runtime_call}
+  0x0000020ae20b0274: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b027c: ;   {static_stub}
+  0x0000020ae20b027c: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b0284: ;   {runtime_call}
+  0x0000020ae20b0284: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b028c: ;   {static_stub}
+  0x0000020ae20b028c: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b0294: ;   {runtime_call}
+  0x0000020ae20b0294: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b029c: ;   {static_stub}
+  0x0000020ae20b029c: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b02a4: ;   {runtime_call}
+  0x0000020ae20b02a4: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b02ac: ;   {static_stub}
+  0x0000020ae20b02ac: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b02b4: ;   {runtime_call}
+  0x0000020ae20b02b4: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b02bc: ;   {static_stub}
+  0x0000020ae20b02bc: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b02c4: ;   {runtime_call}
+  0x0000020ae20b02c4: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b02cc: ;   {static_stub}
+  0x0000020ae20b02cc: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b02d4: ;   {runtime_call}
+  0x0000020ae20b02d4: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b02dc: ;   {static_stub}
+  0x0000020ae20b02dc: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b02e4: ;   {runtime_call}
+  0x0000020ae20b02e4: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b02ec: ;   {static_stub}
+  0x0000020ae20b02ec: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b02f4: ;   {runtime_call}
+  0x0000020ae20b02f4: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b02fc: ;   {static_stub}
+  0x0000020ae20b02fc: 9048 bb00 | 0000 0000 
+
+  0x0000020ae20b0304: ;   {runtime_call}
+  0x0000020ae20b0304: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b030c: ;   {static_stub}
+  0x0000020ae20b030c: 48bb 0000 | 0000 0000 
+
+  0x0000020ae20b0314: ;   {runtime_call}
+  0x0000020ae20b0314: 0000 e9fb 
+
+  0x0000020ae20b0318: ;   {static_stub}
+  0x0000020ae20b0318: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x0000020ae20b0324: ;   {runtime_call}
+  0x0000020ae20b0324: 00e9 fbff 
+
+  0x0000020ae20b0328: ;   {static_stub}
+  0x0000020ae20b0328: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x0000020ae20b0334: ;   {runtime_call}
+  0x0000020ae20b0334: e9fb ffff 
+
+  0x0000020ae20b0338: ;   {static_stub}
+  0x0000020ae20b0338: ff48 bb00 | 0000 0000 
+
+  0x0000020ae20b0340: ;   {runtime_call}
+  0x0000020ae20b0340: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b0348: ;   {static_stub}
+  0x0000020ae20b0348: 48bb 0000 | 0000 0000 
+
+  0x0000020ae20b0350: ;   {runtime_call}
+  0x0000020ae20b0350: 0000 e9fb 
+
+  0x0000020ae20b0354: ;   {static_stub}
+  0x0000020ae20b0354: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x0000020ae20b0360: ;   {runtime_call}
+  0x0000020ae20b0360: 00e9 fbff 
+
+  0x0000020ae20b0364: ;   {static_stub}
+  0x0000020ae20b0364: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x0000020ae20b0370: ;   {runtime_call}
+  0x0000020ae20b0370: e9fb ffff 
+
+  0x0000020ae20b0374: ;   {static_stub}
+  0x0000020ae20b0374: ff48 bb00 | 0000 0000 
+
+  0x0000020ae20b037c: ;   {runtime_call}
+  0x0000020ae20b037c: 0000 00e9 | fbff ffff 
+
+  0x0000020ae20b0384: ;   {static_stub}
+  0x0000020ae20b0384: 48bb 0000 | 0000 0000 
+
+  0x0000020ae20b038c: ;   {runtime_call}
+  0x0000020ae20b038c: 0000 e9fb 
+
+  0x0000020ae20b0390: ;   {runtime_call handle_exception_from_callee Runtime1 stub}
+  0x0000020ae20b0390: ffff ffe8 | 6876 1307 
+
+  0x0000020ae20b0398: ;   {external_word}
+  0x0000020ae20b0398: 48b9 e027 | cd29 fa7f | 0000 4883 
+
+  0x0000020ae20b03a4: ;   {runtime_call}
+  0x0000020ae20b03a4: e4f0 48b8 | e00f 9529 | fa7f 0000 
+
+  0x0000020ae20b03b0: ;   {section_word}
+  0x0000020ae20b03b0: ffd0 f449 | bab3 030b | e20a 0200 
+
+  0x0000020ae20b03bc: ;   {runtime_call DeoptimizationBlob}
+  0x0000020ae20b03bc: 0041 52e9 | 5c7c 0607 | f4f4 f4f4 
+[/MachCode]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x0000020afe9fd960, length=14, elements={
+0x0000020ad73dbef0, 0x0000020af8c64d00, 0x0000020af8c65960, 0x0000020af8c6a080,
+0x0000020af8c6e150, 0x0000020af8c6d430, 0x0000020af8c6ee70, 0x0000020af8c80b10,
+0x0000020af8c86c70, 0x0000020af8c6fb90, 0x0000020af8c70220, 0x0000020af8c6dac0,
+0x0000020afe293f00, 0x0000020afe7f5440
+}
+
+Java Threads: ( => current thread )
+=>0x0000020ad73dbef0 JavaThread "main"                              [_thread_in_native, id=30092, stack(0x0000007d70200000,0x0000007d70300000) (1024K)]
+  0x0000020af8c64d00 JavaThread "Reference Handler"          daemon [_thread_blocked, id=28464, stack(0x0000007d70a00000,0x0000007d70b00000) (1024K)]
+  0x0000020af8c65960 JavaThread "Finalizer"                  daemon [_thread_blocked, id=17708, stack(0x0000007d70b00000,0x0000007d70c00000) (1024K)]
+  0x0000020af8c6a080 JavaThread "Signal Dispatcher"          daemon [_thread_blocked, id=10276, stack(0x0000007d70c00000,0x0000007d70d00000) (1024K)]
+  0x0000020af8c6e150 JavaThread "Attach Listener"            daemon [_thread_blocked, id=24008, stack(0x0000007d70d00000,0x0000007d70e00000) (1024K)]
+  0x0000020af8c6d430 JavaThread "Service Thread"             daemon [_thread_blocked, id=25688, stack(0x0000007d70e00000,0x0000007d70f00000) (1024K)]
+  0x0000020af8c6ee70 JavaThread "Monitor Deflation Thread"   daemon [_thread_blocked, id=19620, stack(0x0000007d70f00000,0x0000007d71000000) (1024K)]
+  0x0000020af8c80b10 JavaThread "C2 CompilerThread0"         daemon [_thread_blocked, id=18944, stack(0x0000007d71000000,0x0000007d71100000) (1024K)]
+  0x0000020af8c86c70 JavaThread "C1 CompilerThread0"         daemon [_thread_blocked, id=25796, stack(0x0000007d71100000,0x0000007d71200000) (1024K)]
+  0x0000020af8c6fb90 JavaThread "Common-Cleaner"             daemon [_thread_blocked, id=25612, stack(0x0000007d71200000,0x0000007d71300000) (1024K)]
+  0x0000020af8c70220 JavaThread "Monitor Ctrl-Break"         daemon [_thread_in_native, id=16712, stack(0x0000007d71500000,0x0000007d71600000) (1024K)]
+  0x0000020af8c6dac0 JavaThread "Notification Thread"        daemon [_thread_blocked, id=24440, stack(0x0000007d71600000,0x0000007d71700000) (1024K)]
+  0x0000020afe293f00 JavaThread "FileSystemWatchService"     daemon [_thread_in_native, id=6716, stack(0x0000007d71300000,0x0000007d71400000) (1024K)]
+  0x0000020afe7f5440 JavaThread "BJE-Asset-Watcher"          daemon [_thread_blocked, id=23216, stack(0x0000007d72200000,0x0000007d72300000) (1024K)]
+Total: 14
+
+Other Threads:
+  0x0000020af8c42fb0 VMThread "VM Thread"                           [id=26584, stack(0x0000007d70900000,0x0000007d70a00000) (1024K)]
+  0x0000020af8c2b030 WatcherThread "VM Periodic Task Thread"        [id=18848, stack(0x0000007d70800000,0x0000007d70900000) (1024K)]
+  0x0000020ad97bac50 WorkerThread "GC Thread#0"                     [id=21960, stack(0x0000007d70300000,0x0000007d70400000) (1024K)]
+  0x0000020afd9f75c0 WorkerThread "GC Thread#1"                     [id=23188, stack(0x0000007d71700000,0x0000007d71800000) (1024K)]
+  0x0000020afd8fa550 WorkerThread "GC Thread#2"                     [id=8736, stack(0x0000007d71800000,0x0000007d71900000) (1024K)]
+  0x0000020afd8fa8f0 WorkerThread "GC Thread#3"                     [id=26024, stack(0x0000007d71900000,0x0000007d71a00000) (1024K)]
+  0x0000020afd913b80 WorkerThread "GC Thread#4"                     [id=28120, stack(0x0000007d71a00000,0x0000007d71b00000) (1024K)]
+  0x0000020afd913f20 WorkerThread "GC Thread#5"                     [id=28164, stack(0x0000007d71b00000,0x0000007d71c00000) (1024K)]
+  0x0000020afe2eb110 WorkerThread "GC Thread#6"                     [id=20096, stack(0x0000007d72300000,0x0000007d72400000) (1024K)]
+  0x0000020afe2ea630 WorkerThread "GC Thread#7"                     [id=28932, stack(0x0000007d72400000,0x0000007d72500000) (1024K)]
+  0x0000020afe2e9b50 WorkerThread "GC Thread#8"                     [id=24212, stack(0x0000007d72500000,0x0000007d72600000) (1024K)]
+  0x0000020afe2ead70 WorkerThread "GC Thread#9"                     [id=29496, stack(0x0000007d72600000,0x0000007d72700000) (1024K)]
+  0x0000020ad97cbae0 ConcurrentGCThread "G1 Main Marker"            [id=25656, stack(0x0000007d70400000,0x0000007d70500000) (1024K)]
+  0x0000020ad749d770 WorkerThread "G1 Conc#0"                       [id=26896, stack(0x0000007d70500000,0x0000007d70600000) (1024K)]
+  0x0000020afe2ea290 WorkerThread "G1 Conc#1"                       [id=25712, stack(0x0000007d72000000,0x0000007d72100000) (1024K)]
+  0x0000020afe2ea9d0 WorkerThread "G1 Conc#2"                       [id=20652, stack(0x0000007d72100000,0x0000007d72200000) (1024K)]
+  0x0000020af8afcdc0 ConcurrentGCThread "G1 Refine#0"               [id=25332, stack(0x0000007d70600000,0x0000007d70700000) (1024K)]
+  0x0000020af8afd840 ConcurrentGCThread "G1 Service"                [id=29368, stack(0x0000007d70700000,0x0000007d70800000) (1024K)]
+Total: 18
+
+Threads with active compile tasks:
+Total: 0
+
+VM state: not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap address: 0x0000000703600000, size: 4042 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000020a80000000-0x0000020a80c90000-0x0000020a80c90000), size 13172736, SharedBaseAddress: 0x0000020a80000000, ArchiveRelocationMode: 1.
+Compressed class space mapped at: 0x0000020a81000000-0x0000020ac1000000, reserved size: 1073741824
+Narrow klass base: 0x0000020a80000000, Narrow klass shift: 0, Narrow klass range: 0x100000000
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 4 size 8 Array Of Cards #cards 16 size 48 Howl #buckets 8 coarsen threshold 3686 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 4096
+ CPUs: 12 total, 12 available
+ Memory: 16163M
+ Large Page Support: Disabled
+ NUMA Support: Disabled
+ Compressed Oops: Enabled (Zero based)
+ Heap Region Size: 2M
+ Heap Min Capacity: 8M
+ Heap Initial Capacity: 254M
+ Heap Max Capacity: 4042M
+ Pre-touch: Disabled
+ Parallel Workers: 10
+ Concurrent Workers: 3
+ Concurrent Refinement Workers: 10
+ Periodic GC: Disabled
+
+Heap:
+ garbage-first heap   total 49152K, used 11180K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 4 young (8192K), 1 survivors (2048K)
+ Metaspace       used 21524K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, TAMS=top-at-mark-start, PB=parsable bottom
+|   0|0x0000000703600000, 0x0000000703600000, 0x0000000703800000|  0%| F|  |TAMS 0x0000000703600000| PB 0x0000000703600000| Untracked 
+|   1|0x0000000703800000, 0x0000000703a00000, 0x0000000703a00000|100%| O|  |TAMS 0x0000000703800000| PB 0x0000000703800000| Untracked 
+|   2|0x0000000703a00000, 0x0000000703c00000, 0x0000000703c00000|100%| O|  |TAMS 0x0000000703a00000| PB 0x0000000703a00000| Untracked 
+|   3|0x0000000703c00000, 0x0000000703de3c00, 0x0000000703e00000| 94%| O|  |TAMS 0x0000000703c00000| PB 0x0000000703c00000| Untracked 
+|   4|0x0000000703e00000, 0x0000000703e00000, 0x0000000704000000|  0%| F|  |TAMS 0x0000000703e00000| PB 0x0000000703e00000| Untracked 
+|   5|0x0000000704000000, 0x0000000704000000, 0x0000000704200000|  0%| F|  |TAMS 0x0000000704000000| PB 0x0000000704000000| Untracked 
+|   6|0x0000000704200000, 0x0000000704200000, 0x0000000704400000|  0%| F|  |TAMS 0x0000000704200000| PB 0x0000000704200000| Untracked 
+|   7|0x0000000704400000, 0x0000000704400000, 0x0000000704600000|  0%| F|  |TAMS 0x0000000704400000| PB 0x0000000704400000| Untracked 
+|   8|0x0000000704600000, 0x0000000704600000, 0x0000000704800000|  0%| F|  |TAMS 0x0000000704600000| PB 0x0000000704600000| Untracked 
+|   9|0x0000000704800000, 0x0000000704907660, 0x0000000704a00000| 51%| S|CS|TAMS 0x0000000704800000| PB 0x0000000704800000| Complete 
+|  10|0x0000000704a00000, 0x0000000704a00000, 0x0000000704c00000|  0%| F|  |TAMS 0x0000000704a00000| PB 0x0000000704a00000| Untracked 
+|  11|0x0000000704c00000, 0x0000000704c00000, 0x0000000704e00000|  0%| F|  |TAMS 0x0000000704c00000| PB 0x0000000704c00000| Untracked 
+|  12|0x0000000704e00000, 0x0000000704e00000, 0x0000000705000000|  0%| F|  |TAMS 0x0000000704e00000| PB 0x0000000704e00000| Untracked 
+|  13|0x0000000705000000, 0x0000000705000000, 0x0000000705200000|  0%| F|  |TAMS 0x0000000705000000| PB 0x0000000705000000| Untracked 
+|  14|0x0000000705200000, 0x0000000705200000, 0x0000000705400000|  0%| F|  |TAMS 0x0000000705200000| PB 0x0000000705200000| Untracked 
+|  15|0x0000000705400000, 0x0000000705400000, 0x0000000705600000|  0%| F|  |TAMS 0x0000000705400000| PB 0x0000000705400000| Untracked 
+|  16|0x0000000705600000, 0x0000000705600000, 0x0000000705800000|  0%| F|  |TAMS 0x0000000705600000| PB 0x0000000705600000| Untracked 
+|  17|0x0000000705800000, 0x0000000705800000, 0x0000000705a00000|  0%| F|  |TAMS 0x0000000705800000| PB 0x0000000705800000| Untracked 
+|  18|0x0000000705a00000, 0x0000000705a00000, 0x0000000705c00000|  0%| F|  |TAMS 0x0000000705a00000| PB 0x0000000705a00000| Untracked 
+| 121|0x0000000712800000, 0x0000000712800000, 0x0000000712a00000|  0%| F|  |TAMS 0x0000000712800000| PB 0x0000000712800000| Untracked 
+| 122|0x0000000712a00000, 0x0000000712a00000, 0x0000000712c00000|  0%| F|  |TAMS 0x0000000712a00000| PB 0x0000000712a00000| Untracked 
+| 123|0x0000000712c00000, 0x0000000712c83fc0, 0x0000000712e00000| 25%| E|  |TAMS 0x0000000712c00000| PB 0x0000000712c00000| Complete 
+| 124|0x0000000712e00000, 0x0000000713000000, 0x0000000713000000|100%| E|CS|TAMS 0x0000000712e00000| PB 0x0000000712e00000| Complete 
+| 126|0x0000000713200000, 0x0000000713400000, 0x0000000713400000|100%| E|CS|TAMS 0x0000000713200000| PB 0x0000000713200000| Complete 
+
+Card table byte_map: [0x0000020af18d0000,0x0000020af20c0000] _byte_map_base: 0x0000020aee0b5000
+
+Marking Bits: (CMBitMap*) 0x0000020ad97bb260
+ Bits: [0x0000020af20c0000, 0x0000020af5fe8000)
+
+Polling page: 0x0000020ad76b0000
+
+Metaspace:
+
+Usage:
+  Non-class:     19.14 MB used.
+      Class:      1.88 MB used.
+       Both:     21.02 MB used.
+
+Virtual space:
+  Non-class space:       64.00 MB reserved,      19.25 MB ( 30%) committed,  1 nodes.
+      Class space:        1.00 GB reserved,       2.00 MB ( <1%) committed,  1 nodes.
+             Both:        1.06 GB reserved,      21.25 MB (  2%) committed. 
+
+Chunk freelists:
+   Non-Class:  12.14 MB
+       Class:  14.03 MB
+        Both:  26.17 MB
+
+MaxMetaspaceSize: unlimited
+CompressedClassSpaceSize: 1.00 GB
+Initial GC threshold: 21.00 MB
+Current GC threshold: 35.12 MB
+CDS: on
+ - commit_granule_bytes: 65536.
+ - commit_granule_words: 8192.
+ - virtual_space_node_default_size: 8388608.
+ - enlarge_chunks_in_place: 1.
+ - use_allocation_guard: 0.
+
+
+Internal statistics:
+
+num_allocs_failed_limit: 3.
+num_arena_births: 166.
+num_arena_deaths: 0.
+num_vsnodes_births: 2.
+num_vsnodes_deaths: 0.
+num_space_committed: 338.
+num_space_uncommitted: 0.
+num_chunks_returned_to_freelist: 3.
+num_chunks_taken_from_freelist: 808.
+num_chunk_merges: 3.
+num_chunk_splits: 618.
+num_chunks_enlarged: 504.
+num_inconsistent_stats: 0.
+
+CodeHeap 'non-profiled nmethods': size=120000Kb used=1404Kb max_used=1404Kb free=118595Kb
+ bounds [0x0000020ae9660000, 0x0000020ae98d0000, 0x0000020af0b90000]
+CodeHeap 'profiled nmethods': size=120000Kb used=5268Kb max_used=5268Kb free=114731Kb
+ bounds [0x0000020ae1b90000, 0x0000020ae20c0000, 0x0000020ae90c0000]
+CodeHeap 'non-nmethods': size=5760Kb used=2968Kb max_used=2996Kb free=2791Kb
+ bounds [0x0000020ae90c0000, 0x0000020ae93c0000, 0x0000020ae9660000]
+ total_blobs=4559 nmethods=3128 adapters=1335
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+Compilation events (20 events):
+Event: 62.278 Thread 0x0000020afe52cb30 nmethod 3119 0x0000020ae97b8d90 code [0x0000020ae97b8f20, 0x0000020ae97b8ff0]
+Event: 62.279 Thread 0x0000020af8c80b10 nmethod 3116 0x0000020ae97b9110 code [0x0000020ae97b92e0, 0x0000020ae97b9540]
+Event: 177.888 Thread 0x0000020af8c86c70 3120 %     3       com.bedrye.bjge.GameEngine.EngineWindowManager::update @ 73 (149 bytes)
+Event: 177.892 Thread 0x0000020af8c86c70 nmethod 3120% 0x0000020ae20adf90 code [0x0000020ae20ae4c0, 0x0000020ae20b03c8]
+Event: 180.868 Thread 0x0000020af8c86c70 3121       3       com.bedrye.bjge.GameEngine.EngineWindowManager::update (149 bytes)
+Event: 180.871 Thread 0x0000020af8c86c70 nmethod 3121 0x0000020ae20b1110 code [0x0000020ae20b1620, 0x0000020ae20b33d8]
+Event: 181.748 Thread 0x0000020af8c80b10 3122       4       org.lwjgl.glfw.GLFW::glfwGetWindowSize (35 bytes)
+Event: 181.748 Thread 0x0000020af8c80b10 nmethod 3122 0x0000020ae97b9910 code [0x0000020ae97b9ac0, 0x0000020ae97b9c38]
+Event: 181.749 Thread 0x0000020af8c80b10 3123       4       imgui.glfw.ImGuiImplGlfw::updateMouseCursor (142 bytes)
+Event: 181.751 Thread 0x0000020af8c80b10 nmethod 3123 0x0000020ae97b9e10 code [0x0000020ae97ba080, 0x0000020ae97ba550]
+Event: 186.173 Thread 0x0000020af8c80b10 3124       4       com.bedrye.bjge.GameEngine.Objects.Object3DAbstract::update (63 bytes)
+Event: 186.182 Thread 0x0000020af8c80b10 nmethod 3124 0x0000020ae97bab90 code [0x0000020ae97bade0, 0x0000020ae97bb620]
+Event: 187.942 Thread 0x0000020af8c80b10 3125   !   4       com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIInspector::update (86 bytes)
+Event: 187.943 Thread 0x0000020af8c80b10 nmethod 3125 0x0000020ae97bc090 code [0x0000020ae97bc220, 0x0000020ae97bc2c8]
+Event: 187.943 Thread 0x0000020af8c80b10 3126       4       com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEAssetHierarchy::update (38 bytes)
+Event: 187.952 Thread 0x0000020af8c80b10 nmethod 3126 0x0000020ae97bc390 code [0x0000020ae97bc5c0, 0x0000020ae97bcdb0]
+Event: 187.970 Thread 0x0000020af8c80b10 3127       4       imgui.glfw.ImGuiImplGlfw::newFrame (244 bytes)
+Event: 187.977 Thread 0x0000020af8c80b10 nmethod 3127 0x0000020ae97bd590 code [0x0000020ae97bd920, 0x0000020ae97be540]
+Event: 230.480 Thread 0x0000020af8c86c70 3128 % !   3       java.lang.ref.Reference::processPendingReferences @ 27 (118 bytes)
+Event: 230.481 Thread 0x0000020af8c86c70 nmethod 3128% 0x0000020ae20b4090 code [0x0000020ae20b4300, 0x0000020ae20b4d50]
+
+GC Heap History (18 events):
+Event: 0.325 GC heap before
+{Heap before GC invocations=0 (full 0):
+ garbage-first heap   total 260096K, used 20480K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 11 young (22528K), 0 survivors (0K)
+ Metaspace       used 3868K, committed 4032K, reserved 1114112K
+  class space    used 329K, committed 448K, reserved 1048576K
+}
+Event: 0.327 GC heap after
+{Heap after GC invocations=1 (full 0):
+ garbage-first heap   total 260096K, used 2581K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 2 young (4096K), 2 survivors (4096K)
+ Metaspace       used 3868K, committed 4032K, reserved 1114112K
+  class space    used 329K, committed 448K, reserved 1048576K
+}
+Event: 1.571 GC heap before
+{Heap before GC invocations=1 (full 0):
+ garbage-first heap   total 260096K, used 41493K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 21 young (43008K), 2 survivors (4096K)
+ Metaspace       used 19543K, committed 19712K, reserved 1114112K
+  class space    used 1835K, committed 1920K, reserved 1048576K
+}
+Event: 1.576 GC heap after
+{Heap after GC invocations=2 (full 0):
+ garbage-first heap   total 260096K, used 6263K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 3 young (6144K), 3 survivors (6144K)
+ Metaspace       used 19543K, committed 19712K, reserved 1114112K
+  class space    used 1835K, committed 1920K, reserved 1048576K
+}
+Event: 1.726 GC heap before
+{Heap before GC invocations=2 (full 0):
+ garbage-first heap   total 260096K, used 8311K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 5 young (10240K), 3 survivors (6144K)
+ Metaspace       used 21289K, committed 21504K, reserved 1114112K
+  class space    used 1922K, committed 2048K, reserved 1048576K
+}
+Event: 1.729 GC heap after
+{Heap after GC invocations=3 (full 0):
+ garbage-first heap   total 260096K, used 6575K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 4 young (8192K), 4 survivors (8192K)
+ Metaspace       used 21289K, committed 21504K, reserved 1114112K
+  class space    used 1922K, committed 2048K, reserved 1048576K
+}
+Event: 42.728 GC heap before
+{Heap before GC invocations=4 (full 0):
+ garbage-first heap   total 40960K, used 37295K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 19 young (38912K), 4 survivors (8192K)
+ Metaspace       used 21521K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 42.734 GC heap after
+{Heap after GC invocations=5 (full 0):
+ garbage-first heap   total 49152K, used 7857K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 4 young (8192K), 4 survivors (8192K)
+ Metaspace       used 21521K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 71.477 GC heap before
+{Heap before GC invocations=5 (full 0):
+ garbage-first heap   total 49152K, used 28337K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 14 young (28672K), 4 survivors (8192K)
+ Metaspace       used 21522K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 71.482 GC heap after
+{Heap after GC invocations=6 (full 0):
+ garbage-first heap   total 49152K, used 7683K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 1 young (2048K), 1 survivors (2048K)
+ Metaspace       used 21522K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 112.088 GC heap before
+{Heap before GC invocations=6 (full 0):
+ garbage-first heap   total 49152K, used 34307K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 14 young (28672K), 1 survivors (2048K)
+ Metaspace       used 21522K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 112.092 GC heap after
+{Heap after GC invocations=7 (full 0):
+ garbage-first heap   total 49152K, used 7076K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 1 young (2048K), 1 survivors (2048K)
+ Metaspace       used 21522K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 151.671 GC heap before
+{Heap before GC invocations=7 (full 0):
+ garbage-first heap   total 49152K, used 33700K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 14 young (28672K), 1 survivors (2048K)
+ Metaspace       used 21522K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 151.674 GC heap after
+{Heap after GC invocations=8 (full 0):
+ garbage-first heap   total 49152K, used 7135K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 1 young (2048K), 1 survivors (2048K)
+ Metaspace       used 21522K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 191.095 GC heap before
+{Heap before GC invocations=8 (full 0):
+ garbage-first heap   total 49152K, used 33759K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 14 young (28672K), 1 survivors (2048K)
+ Metaspace       used 21523K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 191.098 GC heap after
+{Heap after GC invocations=9 (full 0):
+ garbage-first heap   total 49152K, used 7044K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 1 young (2048K), 1 survivors (2048K)
+ Metaspace       used 21523K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 230.477 GC heap before
+{Heap before GC invocations=9 (full 0):
+ garbage-first heap   total 49152K, used 33668K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 14 young (28672K), 1 survivors (2048K)
+ Metaspace       used 21523K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+Event: 230.479 GC heap after
+{Heap after GC invocations=10 (full 0):
+ garbage-first heap   total 49152K, used 7084K [0x0000000703600000, 0x0000000800000000)
+  region size 2048K, 1 young (2048K), 1 survivors (2048K)
+ Metaspace       used 21523K, committed 21760K, reserved 1114112K
+  class space    used 1929K, committed 2048K, reserved 1048576K
+}
+
+Dll operation events (14 events):
+Event: 0.009 Loaded shared library C:\Users\stas2\.jdks\openjdk-21.0.1\bin\java.dll
+Event: 0.036 Loaded shared library C:\Users\stas2\.jdks\openjdk-21.0.1\bin\jsvml.dll
+Event: 0.063 Loaded shared library C:\Users\stas2\.jdks\openjdk-21.0.1\bin\net.dll
+Event: 0.065 Loaded shared library C:\Users\stas2\.jdks\openjdk-21.0.1\bin\nio.dll
+Event: 0.069 Loaded shared library C:\Users\stas2\.jdks\openjdk-21.0.1\bin\zip.dll
+Event: 0.167 Loaded shared library C:\Users\stas2\.jdks\openjdk-21.0.1\bin\zip.dll
+Event: 0.172 Loaded shared library C:\Users\stas2\.jdks\openjdk-21.0.1\bin\instrument.dll
+Event: 0.196 Loaded shared library C:\IntelliJ IDEA Community Edition 2021.3.2\IntelliJ IDEA Community Edition 2023.2.1\bin\breakgen64.dll
+Event: 0.274 Loaded shared library C:\Users\stas2\.jdks\openjdk-21.0.1\bin\jimage.dll
+Event: 0.404 Loaded shared library C:\Users\stas2\AppData\Local\Temp\lwjgl_stas2\3.3.4+7\x64\lwjgl.dll
+Event: 0.674 Loaded shared library C:\Users\stas2\AppData\Local\Temp\lwjgl_stas2\3.3.4+7\x64\lwjgl_opengl.dll
+Event: 0.884 Loaded shared library C:\Users\stas2\AppData\Local\Temp\imgui-java-natives\1.89.0\imgui-java64.dll
+Event: 0.927 Loaded shared library C:\Users\stas2\.jdks\openjdk-21.0.1\bin\verify.dll
+Event: 0.942 Loaded shared library C:\Users\stas2\AppData\Local\Temp\lwjgl_stas2\3.3.4+7\x64\lwjgl_stb.dll
+
+Deoptimization events (20 events):
+Event: 1.723 Thread 0x0000020ad73dbef0 DEOPT PACKING pc=0x0000020ae9715184 sp=0x0000007d702fef30
+Event: 1.723 Thread 0x0000020ad73dbef0 DEOPT UNPACKING pc=0x0000020ae9117da2 sp=0x0000007d702fee68 mode 2
+Event: 1.723 Thread 0x0000020ad73dbef0 Uncommon trap: trap_request=0xffffffde fr.pc=0x0000020ae9715184 relative=0x0000000000000944
+Event: 1.723 Thread 0x0000020ad73dbef0 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000020ae9715184 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 253 c2
+Event: 1.723 Thread 0x0000020ad73dbef0 DEOPT PACKING pc=0x0000020ae9715184 sp=0x0000007d702fef30
+Event: 1.723 Thread 0x0000020ad73dbef0 DEOPT UNPACKING pc=0x0000020ae9117da2 sp=0x0000007d702fee68 mode 2
+Event: 1.723 Thread 0x0000020ad73dbef0 Uncommon trap: trap_request=0xffffff45 fr.pc=0x0000020ae9707b3c relative=0x0000000000000c3c
+Event: 1.723 Thread 0x0000020ad73dbef0 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000020ae9707b3c method=jdk.internal.org.objectweb.asm.SymbolTable.put(Ljdk/internal/org/objectweb/asm/SymbolTable$Entry;)Ljdk/internal/org/objectweb/asm/SymbolTable$Entry; @ 13 c2
+Event: 1.723 Thread 0x0000020ad73dbef0 DEOPT PACKING pc=0x0000020ae9707b3c sp=0x0000007d702fe640
+Event: 1.724 Thread 0x0000020ad73dbef0 DEOPT UNPACKING pc=0x0000020ae9117da2 sp=0x0000007d702fe578 mode 2
+Event: 1.732 Thread 0x0000020ad73dbef0 Uncommon trap: trap_request=0xffffff54 fr.pc=0x0000020ae96d290c relative=0x000000000000006c
+Event: 1.732 Thread 0x0000020ad73dbef0 Uncommon trap: reason=speculate_null_assert action=make_not_entrant pc=0x0000020ae96d290c method=sun.misc.Unsafe.getLong(Ljava/lang/Object;J)J @ 5 c2
+Event: 1.732 Thread 0x0000020ad73dbef0 DEOPT PACKING pc=0x0000020ae96d290c sp=0x0000007d702ff400
+Event: 1.732 Thread 0x0000020ad73dbef0 DEOPT UNPACKING pc=0x0000020ae9117da2 sp=0x0000007d702ff388 mode 2
+Event: 7.513 Thread 0x0000020ad73dbef0 DEOPT PACKING pc=0x0000020ae2031fe9 sp=0x0000007d702ff4e0
+Event: 7.513 Thread 0x0000020ad73dbef0 DEOPT UNPACKING pc=0x0000020ae91188e2 sp=0x0000007d702fe9b0 mode 0
+Event: 8.631 Thread 0x0000020ad73dbef0 Uncommon trap: trap_request=0xffffff45 fr.pc=0x0000020ae9786df4 relative=0x0000000000001fb4
+Event: 8.631 Thread 0x0000020ad73dbef0 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000020ae9786df4 method=imgui.gl3.ImGuiImplGl3.renderDrawData(Limgui/ImDrawData;)V @ 23 c2
+Event: 8.631 Thread 0x0000020ad73dbef0 DEOPT PACKING pc=0x0000020ae9786df4 sp=0x0000007d702ff590
+Event: 8.631 Thread 0x0000020ad73dbef0 DEOPT UNPACKING pc=0x0000020ae9117da2 sp=0x0000007d702ff4b8 mode 2
+
+Classes loaded (20 events):
+Event: 1.717 Loading class java/lang/reflect/ProxyGenerator$ProxyMethod
+Event: 1.717 Loading class java/lang/reflect/ProxyGenerator$ProxyMethod done
+Event: 1.718 Loading class java/lang/reflect/ProxyGenerator$PrimitiveTypeInfo
+Event: 1.718 Loading class java/lang/reflect/ProxyGenerator$PrimitiveTypeInfo done
+Event: 1.718 Loading class jdk/internal/org/objectweb/asm/Edge
+Event: 1.718 Loading class jdk/internal/org/objectweb/asm/Edge done
+Event: 1.719 Loading class java/lang/reflect/Proxy$ProxyBuilder$1
+Event: 1.719 Loading class java/lang/reflect/Proxy$ProxyBuilder$1 done
+Event: 1.720 Loading class java/lang/annotation/Target
+Event: 1.720 Loading class java/lang/annotation/Target done
+Event: 1.721 Loading class java/lang/reflect/UndeclaredThrowableException
+Event: 1.721 Loading class java/lang/reflect/UndeclaredThrowableException done
+Event: 1.726 Loading class java/lang/Class$AnnotationData
+Event: 1.726 Loading class java/lang/Class$AnnotationData done
+Event: 1.733 Loading class java/util/concurrent/ConcurrentSkipListMap$KeySet
+Event: 1.733 Loading class java/util/concurrent/ConcurrentSkipListMap$KeySet done
+Event: 1.733 Loading class java/util/concurrent/ConcurrentSkipListMap$KeyIterator
+Event: 1.733 Loading class java/util/concurrent/ConcurrentSkipListMap$Iter
+Event: 1.733 Loading class java/util/concurrent/ConcurrentSkipListMap$Iter done
+Event: 1.733 Loading class java/util/concurrent/ConcurrentSkipListMap$KeyIterator done
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (20 events):
+Event: 0.940 Thread 0x0000020ad73dbef0 Exception <a 'sun/nio/fs/WindowsException'{0x0000000712209e50}> (0x0000000712209e50) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.942 Thread 0x0000020ad73dbef0 Exception <a 'sun/nio/fs/WindowsException'{0x000000071220c1b0}> (0x000000071220c1b0) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.073 Thread 0x0000020af8c6e150 Exception <a 'sun/nio/fs/WindowsException'{0x000000071230b058}> (0x000000071230b058) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.080 Thread 0x0000020af8c6e150 Exception <a 'java/lang/NoSuchMethodError'{0x000000071233dfd8}: 'java.lang.Object java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x000000071233dfd8) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.135 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000712049538}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x0000000712049538) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.135 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x000000071204f020}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeInterface(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x000000071204f020) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.179 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x00000007121536d8}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, java.lang.Object)'> (0x00000007121536d8) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.226 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000711e08d30}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object)'> (0x0000000711e08d30) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.229 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000711e2a580}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x0000000711e2a580) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.230 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000711e36fc8}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x0000000711e36fc8) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.243 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000711e82ac0}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeInterface(java.lang.Object, java.lang.Object)'> (0x0000000711e82ac0) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.244 Thread 0x0000020ad73dbef0 Exception <a 'sun/nio/fs/WindowsException'{0x0000000711e88618}> (0x0000000711e88618) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.246 Thread 0x0000020ad73dbef0 Exception <a 'sun/nio/fs/WindowsException'{0x0000000711e901d0}> (0x0000000711e901d0) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.273 Thread 0x0000020ad73dbef0 Exception <a 'sun/nio/fs/WindowsException'{0x0000000711f44b90}> (0x0000000711f44b90) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.282 Thread 0x0000020ad73dbef0 Exception <a 'sun/nio/fs/WindowsException'{0x0000000711f9a4f8}> (0x0000000711f9a4f8) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.309 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000711871d00}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, int, int)'> (0x0000000711871d00) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.310 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000711877de0}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object, int)'> (0x0000000711877de0) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.339 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x00000007119da098}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, int, java.lang.Object)'> (0x00000007119da098) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.454 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000710eb2d80}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object, java.lang.Object, int, int)'> (0x0000000710eb2d80) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+Event: 1.473 Thread 0x0000020ad73dbef0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000710c25388}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x0000000710c25388) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 773]
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (20 events):
+Event: 112.088 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause)
+Event: 112.092 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause) done
+Event: 120.290 Executing VM operation: HandshakeAllThreads (HandshakeForDeflation)
+Event: 120.290 Executing VM operation: HandshakeAllThreads (HandshakeForDeflation) done
+Event: 120.290 Executing VM operation: RendezvousGCThreads
+Event: 120.290 Executing VM operation: RendezvousGCThreads done
+Event: 151.671 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause)
+Event: 151.674 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause) done
+Event: 180.383 Executing VM operation: HandshakeAllThreads (HandshakeForDeflation)
+Event: 180.383 Executing VM operation: HandshakeAllThreads (HandshakeForDeflation) done
+Event: 180.383 Executing VM operation: RendezvousGCThreads
+Event: 180.383 Executing VM operation: RendezvousGCThreads done
+Event: 181.383 Executing VM operation: Cleanup
+Event: 181.383 Executing VM operation: Cleanup done
+Event: 188.471 Executing VM operation: Cleanup
+Event: 188.471 Executing VM operation: Cleanup done
+Event: 191.095 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause)
+Event: 191.098 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause) done
+Event: 230.477 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause)
+Event: 230.479 Executing VM operation: G1CollectForAllocation (G1 Evacuation Pause) done
+
+Events (20 events):
+Event: 0.100 Thread 0x0000020afd1e8bd0 Thread added: 0x0000020afd1e8bd0
+Event: 0.106 Thread 0x0000020afd202f70 Thread added: 0x0000020afd202f70
+Event: 0.196 Thread 0x0000020af8c70220 Thread added: 0x0000020af8c70220
+Event: 0.196 Thread 0x0000020af8c6dac0 Thread added: 0x0000020af8c6dac0
+Event: 0.423 Thread 0x0000020afd202f70 Thread exited: 0x0000020afd202f70
+Event: 0.616 Thread 0x0000020afd1e8bd0 Thread exited: 0x0000020afd1e8bd0
+Event: 0.979 Thread 0x0000020afe293f00 Thread added: 0x0000020afe293f00
+Event: 1.072 Thread 0x0000020afe30d2d0 Thread added: 0x0000020afe30d2d0
+Event: 1.403 Thread 0x0000020afd43af00 Thread added: 0x0000020afd43af00
+Event: 1.534 Thread 0x0000020afe7f5440 Thread added: 0x0000020afe7f5440
+Event: 1.681 Thread 0x0000020afd43af00 Thread exited: 0x0000020afd43af00
+Event: 1.704 Thread 0x0000020afe30d2d0 Thread exited: 0x0000020afe30d2d0
+Event: 3.500 Thread 0x0000020afe9e8830 Thread added: 0x0000020afe9e8830
+Event: 3.500 Thread 0x0000020afe9e8ee0 Thread added: 0x0000020afe9e8ee0
+Event: 3.945 Thread 0x0000020afe9e8ee0 Thread exited: 0x0000020afe9e8ee0
+Event: 3.945 Thread 0x0000020afe9e8830 Thread exited: 0x0000020afe9e8830
+Event: 55.167 Thread 0x0000020afe52cb30 Thread added: 0x0000020afe52cb30
+Event: 60.196 Thread 0x0000020afe52cb30 Thread exited: 0x0000020afe52cb30
+Event: 62.276 Thread 0x0000020afe52cb30 Thread added: 0x0000020afe52cb30
+Event: 67.281 Thread 0x0000020afe52cb30 Thread exited: 0x0000020afe52cb30
+
+
+Dynamic libraries:
+0x00007ff7a7fe0000 - 0x00007ff7a7fee000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\java.exe
+0x00007ffaf71e0000 - 0x00007ffaf7448000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffaf5480000 - 0x00007ffaf5549000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffaf4610000 - 0x00007ffaf4a02000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffaf44c0000 - 0x00007ffaf460b000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffacde00000 - 0x00007ffacde18000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\jli.dll
+0x00007ffacdde0000 - 0x00007ffacddfb000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\VCRUNTIME140.dll
+0x00007ffaf6150000 - 0x00007ffaf6315000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffaf4e00000 - 0x00007ffaf4e27000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffadd150000 - 0x00007ffadd3e3000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.6899_none_3e0efeeae32e88c1\COMCTL32.dll
+0x00007ffaf5dc0000 - 0x00007ffaf5deb000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffaf6f40000 - 0x00007ffaf6fe9000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffaf4a10000 - 0x00007ffaf4b3d000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffaf4be0000 - 0x00007ffaf4c83000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffaf5440000 - 0x00007ffaf546f000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffad1fe0000 - 0x00007ffad1fec000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\vcruntime140_1.dll
+0x00007ffaa3230000 - 0x00007ffaa32be000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\msvcp140.dll
+0x00007ffa29330000 - 0x00007ffa2a045000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\server\jvm.dll
+0x00007ffaf6d50000 - 0x00007ffaf6e04000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffaf6320000 - 0x00007ffaf63c6000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffaf6ff0000 - 0x00007ffaf7108000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffaf6c60000 - 0x00007ffaf6cd4000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffaf2f70000 - 0x00007ffaf2fce000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ffae1570000 - 0x00007ffae15a5000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffaea8b0000 - 0x00007ffaea8bb000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffaf2f50000 - 0x00007ffaf2f64000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ffaf3230000 - 0x00007ffaf324b000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffacfa20000 - 0x00007ffacfa2a000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\jimage.dll
+0x00007ffaf1ae0000 - 0x00007ffaf1d22000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffaf68e0000 - 0x00007ffaf6c5b000 	C:\WINDOWS\System32\combase.dll
+0x00007ffaf63d0000 - 0x00007ffaf64a7000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffad4fb0000 - 0x00007ffad4fec000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffaf4b40000 - 0x00007ffaf4bd8000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffacc440000 - 0x00007ffacc44f000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\instrument.dll
+0x00007ffacc420000 - 0x00007ffacc43f000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\java.dll
+0x00007ffaf5560000 - 0x00007ffaf5cad000 	C:\WINDOWS\System32\SHELL32.dll
+0x00007ffaf4c90000 - 0x00007ffaf4dfb000 	C:\WINDOWS\System32\wintypes.dll
+0x00007ffaf1fc0000 - 0x00007ffaf281d000 	C:\WINDOWS\SYSTEM32\windows.storage.dll
+0x00007ffaf5e70000 - 0x00007ffaf5f62000 	C:\WINDOWS\System32\SHCORE.dll
+0x00007ffaf6870000 - 0x00007ffaf68d2000 	C:\WINDOWS\System32\shlwapi.dll
+0x00007ffaf4290000 - 0x00007ffaf42b9000 	C:\WINDOWS\SYSTEM32\profapi.dll
+0x00007ffa9bf30000 - 0x00007ffa9c007000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\jsvml.dll
+0x00007ffacaa30000 - 0x00007ffacaa40000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\net.dll
+0x00007ffaeb340000 - 0x00007ffaeb45f000 	C:\WINDOWS\SYSTEM32\WINHTTP.dll
+0x00007ffaf37d0000 - 0x00007ffaf383b000 	C:\WINDOWS\system32\mswsock.dll
+0x00007ffac4ea0000 - 0x00007ffac4eb6000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\nio.dll
+0x00007ffabf520000 - 0x00007ffabf538000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\zip.dll
+0x00007ffabd7f0000 - 0x00007ffabd80a000 	C:\IntelliJ IDEA Community Edition 2021.3.2\IntelliJ IDEA Community Edition 2023.2.1\bin\breakgen64.dll
+0x00007ffa1f990000 - 0x00007ffa1fa0b000 	C:\Users\stas2\AppData\Local\Temp\lwjgl_stas2\3.3.4+7\x64\lwjgl.dll
+0x00007ff9efa30000 - 0x00007ff9efab5000 	C:\Users\stas2\AppData\Local\Temp\lwjgl_stas2\3.3.4+7\x64\glfw.dll
+0x00007ffa9f220000 - 0x00007ffa9f26b000 	C:\WINDOWS\SYSTEM32\dinput8.dll
+0x00007ffaa7100000 - 0x00007ffaa711c000 	C:\WINDOWS\SYSTEM32\xinput1_4.dll
+0x00007ffaf4010000 - 0x00007ffaf4067000 	C:\WINDOWS\SYSTEM32\cfgmgr32.dll
+0x00007ffaf3fe0000 - 0x00007ffaf400d000 	C:\WINDOWS\SYSTEM32\DEVOBJ.dll
+0x00007ffaeecb0000 - 0x00007ffaeecdd000 	C:\WINDOWS\SYSTEM32\dwmapi.dll
+0x00007ffab5190000 - 0x00007ffab536e000 	C:\WINDOWS\SYSTEM32\inputhost.dll
+0x00007ffaee310000 - 0x00007ffaee435000 	C:\WINDOWS\SYSTEM32\CoreMessaging.dll
+0x00007ffaee8a0000 - 0x00007ffaee94a000 	C:\WINDOWS\system32\uxtheme.dll
+0x00007ffaf66e0000 - 0x00007ffaf683b000 	C:\WINDOWS\System32\MSCTF.dll
+0x00007ffaf3aa0000 - 0x00007ffaf3aac000 	C:\WINDOWS\SYSTEM32\CRYPTBASE.DLL
+0x00007ffabd8a0000 - 0x00007ffabd9ac000 	C:\WINDOWS\SYSTEM32\opengl32.dll
+0x00007ffacdd30000 - 0x00007ffacdd5d000 	C:\WINDOWS\SYSTEM32\GLU32.dll
+0x00007ffaf12f0000 - 0x00007ffaf1334000 	C:\WINDOWS\SYSTEM32\dxcore.dll
+0x00007ffaeae00000 - 0x00007ffaeae63000 	C:\WINDOWS\SYSTEM32\directxdatabasehelper.dll
+0x00007ffae0c10000 - 0x00007ffae0c2a000 	C:\WINDOWS\SYSTEM32\windows.staterepositorycore.dll
+0x00007ffa47cb0000 - 0x00007ffa48ca3000 	C:\WINDOWS\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_5802b1615520e41c\igxelpicd64.dll
+0x00007ffaf64b0000 - 0x00007ffaf6648000 	C:\WINDOWS\System32\ole32.dll
+0x00007ffaeeb50000 - 0x00007ffaeec8b000 	C:\WINDOWS\system32\dxgi.dll
+0x00007ffa479c0000 - 0x00007ffa47ca7000 	C:\WINDOWS\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_5802b1615520e41c\igdml64.dll
+0x00007ffae6a70000 - 0x00007ffae6e37000 	C:\WINDOWS\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_5802b1615520e41c\igdgmm64.dll
+0x00007ffae33e0000 - 0x00007ffae69f1000 	C:\WINDOWS\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_5802b1615520e41c\igc64.dll
+0x00007ffac0770000 - 0x00007ffac08ba000 	C:\WINDOWS\SYSTEM32\textinputframework.dll
+0x00007ffae93b0000 - 0x00007ffae9693000 	C:\WINDOWS\SYSTEM32\CoreUIComponents.dll
+0x00007ff9ef9c0000 - 0x00007ff9efa21000 	C:\Users\stas2\AppData\Local\Temp\lwjgl_stas2\3.3.4+7\x64\lwjgl_opengl.dll
+0x00007ffa2a380000 - 0x00007ffa2ab74000 	C:\Users\stas2\AppData\Local\Temp\imgui-java-natives\1.89.0\imgui-java64.dll
+0x00007ffabf3c0000 - 0x00007ffabf3d0000 	C:\Users\stas2\.jdks\openjdk-21.0.1\bin\verify.dll
+0x00007ff9ef920000 - 0x00007ff9ef9c0000 	C:\Users\stas2\AppData\Local\Temp\lwjgl_stas2\3.3.4+7\x64\lwjgl_stb.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Users\stas2\.jdks\openjdk-21.0.1\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.6899_none_3e0efeeae32e88c1;C:\Users\stas2\.jdks\openjdk-21.0.1\bin\server;C:\IntelliJ IDEA Community Edition 2021.3.2\IntelliJ IDEA Community Edition 2023.2.1\bin;C:\Users\stas2\AppData\Local\Temp\lwjgl_stas2\3.3.4+7\x64;C:\WINDOWS\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_5802b1615520e41c;C:\Users\stas2\AppData\Local\Temp\imgui-java-natives\1.89.0
+
+VM Arguments:
+jvm_args: -javaagent:C:\IntelliJ IDEA Community Edition 2021.3.2\IntelliJ IDEA Community Edition 2023.2.1\lib\idea_rt.jar=58008:C:\IntelliJ IDEA Community Edition 2021.3.2\IntelliJ IDEA Community Edition 2023.2.1\bin -Dfile.encoding=windows-1252 -Dsun.stdout.encoding=windows-1252 -Dsun.stderr.encoding=windows-1252 --module-path=C:\Users\stas2\.m2\repository\io\github\spair\imgui-java-binding\1.89.0\imgui-java-binding-1.89.0.jar;C:\Users\stas2\.m2\repository\io\github\spair\imgui-java-lwjgl3\1.89.0\imgui-java-lwjgl3-1.89.0.jar;C:\Users\stas2\.m2\repository\org\joml\joml-primitives\1.10.0\joml-primitives-1.10.0.jar;C:\Users\stas2\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.2\jackson-databind-2.17.2.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl\3.3.4\lwjgl-3.3.4.jar;C:\Users\stas2\.m2\repository\org\joml\joml\1.10.7\joml-1.10.7.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-opengl\3.3.4\lwjgl-opengl-3.3.4.jar;O:\GIt\MultiplayerShooter\target\classes;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-vulkan\3.3.4\lwjgl-vulkan-3.3.4.jar;C:\Users\stas2\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.2\jackson-annotations-2.17.2.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-stb\3.3.4\lwjgl-stb-3.3.4.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-glfw\3.3.4\lwjgl-glfw-3.3.4.jar;C:\Users\stas2\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.2\jackson-core-2.17.2.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-assimp\3.3.4\lwjgl-assimp-3.3.4.jar -Djdk.module.main=com.bedrye.bjge 
+java_command: com.bedrye.bjge/com.bedrye.bjge.TestMain
+java_class_path (initial): C:\Users\stas2\.m2\repository\io\github\spair\imgui-java-natives-windows\1.89.0\imgui-java-natives-windows-1.89.0.jar;C:\Users\stas2\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\stas2\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\stas2\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\stas2\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\stas2\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\stas2\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-bgfx\3.3.4\lwjgl-bgfx-3.3.4.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-nanovg\3.3.4\lwjgl-nanovg-3.3.4.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-nuklear\3.3.4\lwjgl-nuklear-3.3.4.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-openal\3.3.4\lwjgl-openal-3.3.4.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-par\3.3.4\lwjgl-par-3.3.4.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl\3.3.4\lwjgl-3.3.4-natives-windows.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-assimp\3.3.4\lwjgl-assimp-3.3.4-natives-windows.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-bgfx\3.3.4\lwjgl-bgfx-3.3.4-natives-windows.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-glfw\3.3.4\lwjgl-glfw-3.3.4-natives-windows.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-nanovg\3.3.4\lwjgl-nanovg-3.3.4-natives-windows.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-nuklear\3.3.4\lwjgl-nuklear-3.3.4-natives-windows.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-openal\3.3.4\lwjgl-openal-3.3.4-natives-windows.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-opengl\3.3.4\lwjgl-opengl-3.3.4-natives-windows.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-par\3.3.4\lwjgl-par-3.3.4-natives-windows.jar;C:\Users\stas2\.m2\repository\org\lwjgl\lwjgl-stb\3.3.4\lwjgl-stb-3.3.4-natives-windows.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 10                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 2097152                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 266338304                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4238344192                                {product} {ergonomic}
+   size_t MaxNewSize                               = 2541748224                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 2097152                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5839372                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122909434                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122909434                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 4238344192                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-21
+PATH=C:\Program Files\PlasticSCM5\server;C:\Program Files\PlasticSCM5\client;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\libnvvp;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Program Files\Java\jdk-11.0.2\bin;C:\Windows\System32\Wbem;C:\ORacleDatabase\dbhomeXE\bin;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git LFS;C:\Program Files\Git\cmd;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\bin\win64;C:\Users\stas2\AppData\Local\Programs\Python\Python311;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\NVIDIA Corporation\Nsight Compute 2024.3.2\;C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\160\DTS\Binn\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Docker\Docker\resources\bin;O:\npdejs\;C:\Users\stas2\AppData\Local\Programs\Python\Python312\Scripts;C:\Users\stas2\AppData\Local\Microsoft\WindowsApps;C:\Users\stas2\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\stas2\AppData\Local\GitHubDesktop\bin;C:\Users\stas2\AppData\Local\Programs\Python\Python311;C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\bin\win64;C:\Users\stas2\.dotnet\tools;C:\Users\stas2\AppData\Local\Muse Hub\lib;C:\Users\stas2\AppData\Roaming\npm;C:\Users\stas2\AppData\Local\Programs\Python\Python312\Scripts;
+USERNAME=stas2
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 141 Stepping 1, GenuineIntel
+TMP=C:\Users\stas2\AppData\Local\Temp
+TEMP=C:\Users\stas2\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 26100 (10.0.26100.6725)
+OS uptime: 0 days 14:59 hours
+Hyper-V role detected
+
+CPU: total 12 (initial active 12) (6 cores per cpu, 2 threads per core) family 6 model 141 stepping 1 microcode 0x3c, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, avx512f, avx512dq, avx512cd, avx512bw, avx512vl, sha, fma, vzeroupper, avx512_vpopcntdq, avx512_vpclmulqdq, avx512_vaes, avx512_vnni, clflush, clflushopt, clwb, avx512_vbmi2, avx512_vbmi, hv, rdtscp, rdpid, fsrm, gfni, avx512_bitalg, f16c, cet_ibt, cet_ss, avx512_ifma
+Processor Information for all 12 processors :
+  Max Mhz: 2688, Current Mhz: 2688, Mhz Limit: 2688
+
+Memory: 4k page, system-wide physical 16163M (1229M free)
+TotalPageFile size 42787M (AvailPageFile size 11946M)
+current process WorkingSet (physical memory assigned to process): 288M, peak: 309M
+current process commit charge ("private bytes"): 242M, peak: 474M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.1+12-29) for windows-amd64 JRE (21.0.1+12-29), built on 2023-10-05T13:27:09Z by "mach5one" with MS VC++ 17.1 (VS2022)
+
+END.

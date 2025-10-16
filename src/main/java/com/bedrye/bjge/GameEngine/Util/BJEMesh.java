@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.joml.*;
 import org.lwjgl.BufferUtils;
 
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import org.lwjgl.assimp.*;
@@ -176,7 +178,17 @@ public class BJEMesh {
     public BJEMesh(BJEResource resource){
         //super(resource.path,resource.getName());
         this.resource = resource;
-        AIScene scene = Assimp.aiImportFile(resource.getPath(),Assimp.aiProcess_JoinIdenticalVertices|Assimp.aiProcess_Triangulate);
+        AIScene scene;
+        if(resource.getPath().equals("INTERNAL")) {
+            String s = InternalFileDecoder.readInternal("/Internal/" + resource.getName());
+            ByteBuffer buffer = MemoryUtil.memAlloc(s.length());
+            buffer.put(s.getBytes(StandardCharsets.UTF_8));
+            buffer.flip();
+            scene = Assimp.aiImportFileFromMemory(buffer,Assimp.aiProcess_JoinIdenticalVertices|Assimp.aiProcess_Triangulate,"obj");
+            MemoryUtil.memFree(buffer);
+        }
+        else
+            scene = Assimp.aiImportFile(resource.getPath(),Assimp.aiProcess_JoinIdenticalVertices|Assimp.aiProcess_Triangulate);
         assert scene!=null;
         AIMesh mesh = AIMesh.create(scene.mMeshes().get(0));
         AIVector3D.Buffer vertecies = mesh.mVertices();

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 
+import static com.bedrye.bjge.GameEngine.Util.InternalFileDecoder.readInternal;
 import static java.lang.System.in;
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 
@@ -79,18 +80,6 @@ public class BasicProgramShader extends ShaderProgram {
         glUseProgram(0);
     }
 
-    private String readInternal(String internalPath) {
-        try (InputStream in = getClass().getResourceAsStream(internalPath)) {
-            if (in == null) {
-                throw new FileNotFoundException("Internal resource not found: " + internalPath);
-            }
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
-                return reader.lines().collect(Collectors.joining("\r\n"));
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load internal resource: " + internalPath, e);
-        }
 
-    }
 
 }

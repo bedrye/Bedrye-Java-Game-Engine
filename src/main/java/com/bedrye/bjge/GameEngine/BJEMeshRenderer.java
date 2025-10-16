@@ -89,7 +89,8 @@ public class BJEMeshRenderer extends MainBehaviour {
 
     @Override
     public void onTransformChange() {
-        mesh.setVertexesPosition(getGameObject().getModelViewMatrix());
+        if (mesh!=null)
+            mesh.setVertexesPosition(getGameObject().getModelViewMatrix());
     }
 
 }

@@ -68,6 +68,10 @@ public class BJEResourceManager {
         resources.put("INTERNAL\\scenebutton.png",new BJETexture("INTERNAL","scenebutton.png"));
         resources.put("INTERNAL\\SimpleGizmoShader.glsl",new BasicProgramShader("INTERNAL","SimpleGizmoShader.glsl"));
         resources.put("INTERNAL\\SimpleBuiltInShader.glsl",new BasicProgramShader("INTERNAL","SimpleBuiltInShader.glsl"));
+        resources.put("INTERNAL\\sphere.obj",new BJEObjFile("INTERNAL","sphere.obj"));
+        resources.put("INTERNAL\\cube.obj",new BJEObjFile("INTERNAL","cube.obj"));
+        resources.put("INTERNAL\\cylinder.obj",new BJEObjFile("INTERNAL","cylinder.obj"));
+        resources.put("INTERNAL\\plane.obj",new BJEObjFile("INTERNAL","plane.obj"));
         this.assetsPath = Paths.get(assetDir);
 
         if (!Files.exists(assetsPath)) {
