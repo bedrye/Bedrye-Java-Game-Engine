@@ -49,6 +49,9 @@ public class DirectionalLight extends Light {
 
         direction = new Vector3f((float)Math.sin((float) Math.toRadians(getRotationY())),(float)Math.cos((float) Math.toRadians(getRotationY())),0);
 
+    }
+    @Override
+    public void preRender(){
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().createDirectionalLightUniform(this);
     }
 }

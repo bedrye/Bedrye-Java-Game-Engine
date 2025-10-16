@@ -35,7 +35,6 @@ public class BasicProgramShader extends ShaderProgram {
             Path path = Path.of(string);
             try {
             text= new String(Files.readAllBytes(path));
-                System.out.println(text);
                 ArrayList<Shader> shaders = ShaderReader.getShadersFromString(text);
                 vertexShader = (VertexShader) shaders.get(0);
                 fragmentShader = (FragmentShader) shaders.get(1);

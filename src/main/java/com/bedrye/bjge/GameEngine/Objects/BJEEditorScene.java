@@ -26,7 +26,9 @@ public class BJEEditorScene extends Scene {
     public BJEUISceneHierarchy sceneHierarchy = new BJEUISceneHierarchy();
     @JsonIgnore
     public BJEEditorViewport bjeEditorViewport = new BJEEditorViewport();
+    @JsonIgnore
     BJEGizmo bjeGizmo = new BJEGizmo();
+    @JsonIgnore
     BasicProgramShader gizmoshader;
     @JsonIgnore
     public BJEAssetHierarchy bjeAssetHierarchy;
@@ -69,17 +71,14 @@ public class BJEEditorScene extends Scene {
 
     @Override
     public void update() {
-        glClearColor(0.8f,0.8f,0.8f,1.0f);
 
-        glClear(GL_COLOR_BUFFER_BIT);
-        getShaderProgram().Run();
 
-        glActiveTexture(GL_TEXTURE0);
+
+
         getCamera().update();
-        getShaderProgram().uploadFloat(10f,"specularPower");
         getChildList().forEach(Object3DAbstract::update);
 
-        getShaderProgram().Clear();
+
 
 
 
@@ -87,11 +86,8 @@ public class BJEEditorScene extends Scene {
 
     @Override
     public void render(){
-        glClearColor(0.8f,0.8f,0.8f,1.0f);
 
-        glClear(GL_COLOR_BUFFER_BIT);
-        getShaderProgram().Run();
-
+        getCamera().render();
         glActiveTexture(GL_TEXTURE0);
         getShaderProgram().uploadFloat(10f,"specularPower");
         getChildList().forEach(Object3DAbstract::render);

@@ -216,9 +216,11 @@ public class EngineWindowManager {
             }
             activeScene.update();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+            activeScene.preRender();
             activeScene.render();
+            
             bjeFrameBuffer.unbind();
+
 
 
             bjeResourceManager.update();

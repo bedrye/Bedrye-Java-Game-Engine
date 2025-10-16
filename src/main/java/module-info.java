@@ -26,7 +26,7 @@ module com.bedrye.bjge {
     exports com.bedrye.bjge.GameEngine;
     exports com.bedrye.bjge.GameEngine.Util;
     exports com.bedrye.bjge.GameEngine.Objects.Editor.UI;
-
+    exports com.bedrye.bjge.GameEngine.Objects.Editor.UI.Fields;
 
 
 }

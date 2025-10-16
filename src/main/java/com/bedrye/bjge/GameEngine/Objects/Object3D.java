@@ -13,33 +13,6 @@ public class Object3D extends Object3DAbstract {
     }
 
     @Override
-    public void initialize(){
-        getChildList().forEach(Object3DAbstract::initialize);
-        for (MainBehaviour mainBeh:getScriptList())
-            if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
-                getScriptList().forEach(MainBehaviour::start);
-    }
-
-    @Override
-    public void initialize(Vector3f position) {
-
-        getChildList().forEach(Object3DAbstract::initialize);
-        for (MainBehaviour mainBeh:getScriptList())
-            if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
-                getScriptList().forEach(MainBehaviour::start);
-    }
-
-    @Override
-    public void update() {
-        for (MainBehaviour mainBeh:getScriptList()) {
-            if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
-                mainBeh.update();
-
-        }
-        getChildList().forEach(Object3DAbstract::update);
-
-    }
-    @Override
     public void gameUpdate(){
         getScriptList().forEach(MainBehaviour::update);
         getChildList().forEach(Object3DAbstract::gameUpdate);

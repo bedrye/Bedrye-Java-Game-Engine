@@ -5,6 +5,7 @@ package com.bedrye.bjge.GameEngine.Objects;
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.GameEngineMain;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
+import com.bedrye.bjge.GameEngine.Util.Annotation.EditorBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -49,9 +50,32 @@ public abstract class Object3DAbstract implements IGameSpace {
     private List<Object3DAbstract> childList =new ArrayList<>();
 
     private List<MainBehaviour> scripts =new ArrayList<>();
-    public abstract void initialize();
-    public abstract void initialize(Vector3f position);
-    public abstract void update();
+    public void initialize(){
+        getChildList().forEach(Object3DAbstract::initialize);
+        for (MainBehaviour mainBeh:getScriptList())
+            if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
+                getScriptList().forEach(MainBehaviour::start);
+    }
+
+
+    public void initialize(Vector3f position) {
+
+        getChildList().forEach(Object3DAbstract::initialize);
+        for (MainBehaviour mainBeh:getScriptList())
+            if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
+                getScriptList().forEach(MainBehaviour::start);
+    }
+
+
+    public void update() {
+        for (MainBehaviour mainBeh:getScriptList()) {
+            if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
+                mainBeh.update();
+
+        }
+        getChildList().forEach(Object3DAbstract::update);
+
+    }
 
     public Object3DAbstract(){
         this(EngineWindowManager.getInstance().getActiveScene());
@@ -252,11 +276,15 @@ public abstract class Object3DAbstract implements IGameSpace {
     }
     public void render(){
         scripts.forEach(MainBehaviour::render);
-
+        getChildList().forEach(Object3DAbstract::render);
     }
     public void fixedUpdate(){
         scripts.forEach(MainBehaviour::fixedUpdate);
-
+        getChildList().forEach(Object3DAbstract::fixedUpdate);
+    }
+    public void preRender(){
+        scripts.forEach(MainBehaviour::preRender);
+        getChildList().forEach(Object3DAbstract::preRender);
     }
 }
 

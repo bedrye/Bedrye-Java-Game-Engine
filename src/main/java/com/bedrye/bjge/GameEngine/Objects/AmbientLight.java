@@ -40,18 +40,7 @@ public class AmbientLight extends Light {
 
 
     @Override
-    public void initialize() {
-
-
-    }
-
-    @Override
-    public void initialize(Vector3f position) {
-
-    }
-
-    @Override
-    public void update() {
+    public void preRender() {
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(getColor(),"ambientLight");
     }
     public static class Attenuation {

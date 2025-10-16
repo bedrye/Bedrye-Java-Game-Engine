@@ -1,6 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
 import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.Fields.BJEUIField;
 import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
@@ -27,7 +28,7 @@ public class BJEUIInspector extends BJEUIWindow  {
     int floatcount = 0;
     int doublecount = 0;
     int stringcount = 0;
-
+    private ArrayList<BJEUIField> fields = new ArrayList<>();
     private ArrayList<ImBoolean> booleans = new ArrayList<>();
     private ArrayList<ImInt> ints = new ArrayList<>();
     private ArrayList<ImFloat> floats = new ArrayList<>();
@@ -116,6 +117,7 @@ public class BJEUIInspector extends BJEUIWindow  {
 
                 }
                 if (ImGui.beginDragDropTarget()) {
+
                     acceptPayload(field,o,"Resource");
 
 

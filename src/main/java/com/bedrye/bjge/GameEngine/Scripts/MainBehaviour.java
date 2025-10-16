@@ -31,5 +31,6 @@ public abstract class MainBehaviour {
         this.gameObject = gameObject;
     }
     public void fixedUpdate(){}
+    public void preRender(){}
 
 }

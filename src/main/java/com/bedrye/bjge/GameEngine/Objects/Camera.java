@@ -41,28 +41,20 @@ public class Camera extends Object3DAbstract {
 
     }
 
-    public void initialize(){
-
-
-    }
-
-    @Override
-    public void initialize(Vector3f position) {
-
-
-    }
 
     @Override
     public void update() {
         changeProjection();
         compViewMatrix();
+
+        super.update();
+    }
+
+    @Override
+    public void render() {
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(getPosition(),"camera_pos");
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getProjectionMatrix(),"projectionMatrix");
         EngineWindowManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getViewMatrix(),"viewMatrix");
-        for (MainBehaviour beh: getScriptList()
-             ) {
-            beh.update();
-        }
     }
 
     private void changeProjection(){

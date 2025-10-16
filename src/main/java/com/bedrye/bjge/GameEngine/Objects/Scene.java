@@ -6,9 +6,14 @@ import com.bedrye.bjge.GameEngine.EngineWindowManager;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;
 import com.fasterxml.jackson.annotation.*;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.CLASS, // store actual subclass type
@@ -107,5 +112,14 @@ public abstract class Scene implements IGameSpace {
     public void renderGizmos(){
 
     }
+    public void preRender(){
+        glClearColor(0.8f,0.8f,0.8f,1.0f);
 
+        glClear(GL_COLOR_BUFFER_BIT);
+        getShaderProgram().Run();
+        getShaderProgram().uploadFloat( 0f, "directionalLight.intensity" );
+        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(new Vector3f(),"ambientLight");
+        glActiveTexture(GL_TEXTURE0);
+        getChildList().forEach(Object3DAbstract::preRender);
+    }
 }
