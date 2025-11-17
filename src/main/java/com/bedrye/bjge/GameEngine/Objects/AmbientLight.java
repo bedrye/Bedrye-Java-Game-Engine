@@ -1,7 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects;
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.joml.Vector3f;
@@ -41,7 +41,7 @@ public class AmbientLight extends Light {
 
     @Override
     public void preRender() {
-        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(getColor(),"ambientLight");
+        EngineManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(getColor(),"ambientLight");
     }
     public static class Attenuation {
 

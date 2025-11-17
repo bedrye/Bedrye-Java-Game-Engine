@@ -45,7 +45,6 @@ public class BJEResourceManager {
     public void setCurrentPath(BJEFolder currentPath) {
         this.currentPath = currentPath;
     }
-
     private BJEFolder currentPath;
     private final Path assetsPath;
     private final ExecutorService watchThread;
@@ -59,6 +58,7 @@ public class BJEResourceManager {
         scripts.put(TestBehaviour.class.getName(),new TestBehaviour());
         scripts.put(Box3DCollider.class.getName(),new Box3DCollider());
         scripts.put(BJERigidBody.class.getName(),new BJERigidBody());
+        scripts.put(SimpleGameScript.class.getName(),new SimpleGameScript());
         resources.put("INTERNAL\\folderbutton.png",new BJETexture("INTERNAL","folderbutton.png"));
         resources.put("INTERNAL\\runbutton.png",new BJETexture("INTERNAL","runbutton.png"));
         resources.put("INTERNAL\\stopbutton.png",new BJETexture("INTERNAL","stopbutton.png"));
@@ -72,6 +72,7 @@ public class BJEResourceManager {
         resources.put("INTERNAL\\cube.obj",new BJEObjFile("INTERNAL","cube.obj"));
         resources.put("INTERNAL\\cylinder.obj",new BJEObjFile("INTERNAL","cylinder.obj"));
         resources.put("INTERNAL\\plane.obj",new BJEObjFile("INTERNAL","plane.obj"));
+
         this.assetsPath = Paths.get(assetDir);
 
         if (!Files.exists(assetsPath)) {
@@ -97,6 +98,8 @@ public class BJEResourceManager {
     public void update(){
         listToAdd.forEach(this::loadResource);
         listToAdd.clear();
+
+
 
 
     }
@@ -164,8 +167,10 @@ public class BJEResourceManager {
 
                     } else if (kind == StandardWatchEventKinds.ENTRY_MODIFY) {
                         reloadResource(fullPath);
+
                     } else if (kind == StandardWatchEventKinds.ENTRY_DELETE) {
                         removeResource(fullPath);
+
                     }
 
                 }

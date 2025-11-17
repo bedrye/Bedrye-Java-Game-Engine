@@ -5,13 +5,12 @@ import com.bedrye.bjge.GameEngine.Util.BJETexture;
 
 public class TestBehaviour extends MainBehaviour{
 
-    public String publicString ="22222222222";
+    public String publicString ="test";
     @InspectorVisible
-    private float reflectance=3;
-    private double  privateAndNotVisible = 11;
-    public BJETexture texture;
+    private String visibleString="test2";
+    private String invisibleString="test3";
     @Override
-    public void start(){
+    public void init(){
         System.out.println("I launched");
 
 

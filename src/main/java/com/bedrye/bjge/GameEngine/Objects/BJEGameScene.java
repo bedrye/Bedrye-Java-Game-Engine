@@ -2,14 +2,11 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEEditorViewport;
+import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
 import com.bedrye.bjge.GameEngine.Util.Shaders.BasicProgramShader;
-import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;
 
-import java.nio.file.Paths;
-
-import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 
@@ -25,11 +22,10 @@ public final class BJEGameScene extends Scene{
 
 
 
-        setShaderProgram((BasicProgramShader) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\SimpleBuiltInShader.glsl"));
+        setShaderProgram((BasicProgramShader) EngineManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\SimpleBuiltInShader.glsl"));
         getShaderProgram().Compile();
-
-        getChildList().forEach(Object3DAbstract::gameInitialize);
         if(getCamera()==null) setCamera(new Camera(null));
+        getChildList().forEach(Object3DAbstract::gameInitialize);
     }
 
     @Override
@@ -43,7 +39,7 @@ public final class BJEGameScene extends Scene{
 
 
 
-
+        tasks.forEach(ICommand::exec);
         getCamera().gameUpdate();
         getChildList().forEach(Object3DAbstract::gameUpdate);
 

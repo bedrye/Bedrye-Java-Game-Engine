@@ -1,6 +1,7 @@
 package com.bedrye.bjge.GameEngine.Scripts;
 
 import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
+import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -17,9 +18,20 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public abstract class MainBehaviour {
     private Object3DAbstract gameObject;
 
-    public void start(){};
-    public void update(){};
+    public final boolean isActive() {
+        return active;
+    }
+
+    public final void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @InspectorVisible
+    private boolean active;
+
+
     public void init(){};
+    public void update(){};
     public void render(){};
     public void onTransformChange(){};
 

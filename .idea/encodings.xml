@@ -3,18 +3,11 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/3dobjectIcon.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/SimpleBuiltInShader.glsl" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/SimpleGizmoShader.glsl" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/cube.obj" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/cylinder.obj" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/folderbutton.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/plane.obj" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/runbutton.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/scenebutton.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/sphere.obj" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/stopbutton.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/textbutton.png" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/whitetexture.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/SimpleBuiltInShader.glsl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/SimpleGizmoShader.glsl" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/cube.obj" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/cylinder.obj" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/plane.obj" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/Internal/sphere.obj" charset="UTF-8" />
   </component>
 </project>

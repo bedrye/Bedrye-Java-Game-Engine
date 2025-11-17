@@ -1,6 +1,6 @@
 package com.bedrye.bjge.GameEngine.Scripts;
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import org.joml.Vector3f;
 
@@ -57,7 +57,7 @@ public class BJERigidBody extends MainBehaviour {
     @Override
     public void fixedUpdate(){
         if (!isStatic()) {
-            integrate((float)EngineWindowManager.getInstance().getFixedTimeStamp());
+            integrate((float) EngineManager.getInstance().getFixedTimeStamp());
         }
     }
 }

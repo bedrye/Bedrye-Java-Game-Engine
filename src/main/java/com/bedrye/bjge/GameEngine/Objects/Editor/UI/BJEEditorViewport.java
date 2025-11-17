@@ -1,6 +1,6 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import imgui.ImGui;
 import imgui.ImVec2;
@@ -26,7 +26,7 @@ public class BJEEditorViewport  extends BJEUIWindow {
             setPosition(topLeft.x, topLeft.y);
             setSize(windowSize.x,windowSize.y);
 
-            int textureId = EngineWindowManager.getInstance().getBjeFrameBuffer().getTextureId();
+            int textureId = EngineManager.getInstance().getBjeFrameBuffer().getTextureId();
             ImGui.image(textureId, windowSize.x, windowSize.y, 0, 1, 1, 0);
 
 
@@ -38,57 +38,57 @@ public class BJEEditorViewport  extends BJEUIWindow {
             if (ImGui.beginMainMenuBar()) {
                 if (ImGui.beginMenu("Project")) {
                     if (ImGui.menuItem("New" )) {
-                        EngineWindowManager.getInstance().createWorkSpace();
+                        EngineManager.getInstance().createWorkSpace();
                     }
                     if (ImGui.menuItem("Load" )) {
-                        EngineWindowManager.getInstance().loadWorkSpace();
+                        EngineManager.getInstance().loadWorkSpace();
                     }
                     ImGui.separator();
-                    if (ImGui.menuItem("Undo", null,null, EngineWindowManager.getInstance().getBjeCommandManager().canUndo())) {
-                        EngineWindowManager.getInstance().getBjeCommandManager().undo();
+                    if (ImGui.menuItem("Undo", "CTRL+Z",null, EngineManager.getInstance().getBjeCommandManager().canUndo())) {
+                        EngineManager.getInstance().getBjeCommandManager().undo();
                     }
-                    if (ImGui.menuItem("Redo",null,null, EngineWindowManager.getInstance().getBjeCommandManager().canRedo())) {
-                        EngineWindowManager.getInstance().getBjeCommandManager().redo();
+                    if (ImGui.menuItem("Redo","CTRL+Y",null, EngineManager.getInstance().getBjeCommandManager().canRedo())) {
+                        EngineManager.getInstance().getBjeCommandManager().redo();
                     }
                     ImGui.endMenu();
                 }
-                if (ImGui.beginMenu("Scene",EngineWindowManager.getInstance().hasProject())) {
+                if (ImGui.beginMenu("Scene", EngineManager.getInstance().hasProject())) {
                     if (ImGui.menuItem("Open", "Ctrl+O")) {
-                        EngineWindowManager.getInstance().loadSceneFromFile();
+                        EngineManager.getInstance().loadSceneFromFile();
                     }
-                    if (ImGui.menuItem("Save", "Ctrl+S")) {
-                        EngineWindowManager.getInstance().saveScene();
+                    if (ImGui.menuItem("Save", "Ctrl+S",null, EngineManager.getInstance().isInSavedScene())) {
+                        EngineManager.getInstance().saveScene();
                     }
                     if (ImGui.menuItem("Save as..")) {
-                        EngineWindowManager.getInstance().saveSceneAs();
+                        EngineManager.getInstance().saveSceneAs();
                     }
                     ImGui.endMenu();
                 }
 
-                if(EngineWindowManager.getInstance().isInEditMode()) {
-                    if (ImGui.menuItem("  Run",null,null,EngineWindowManager.getInstance().hasProject())) {
+                if(EngineManager.getInstance().isInEditMode()) {
+                    if (ImGui.menuItem("  Run",null,null, EngineManager.getInstance().hasProject())) {
 
-                        EngineWindowManager.getInstance().InEngineRun();
+                        EngineManager.getInstance().InEngineRun();
 
                     }
 
                     ImGui.sameLine(ImGui.getCursorPosX() - ImGui.getFontSize() * 2-32);
                     float origin =ImGui.getCursorPosY();
                     ImGui.setCursorPosY(origin + 3);
-                    ImGui.image(((BJETexture)EngineWindowManager.getInstance().getBjeResourceManager().getByName("runbutton.png")).getTextureID(),12,12);
+                    ImGui.image(((BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("runbutton.png")).getTextureID(),12,12);
                     ImGui.setCursorPosY(origin );
                     ImGui.newLine();
                 }
                 else {
                     if (ImGui.menuItem(" Stop")) {
 
-                        EngineWindowManager.getInstance().InEngineStop();
+                        EngineManager.getInstance().InEngineStop();
 
                     }
                     ImGui.sameLine(ImGui.getCursorPosX() - ImGui.getFontSize() * 2-34);
                     float origin =ImGui.getCursorPosY();
                     ImGui.setCursorPosY(origin + 3);
-                    ImGui.image(((BJETexture)EngineWindowManager.getInstance().getBjeResourceManager().getByName("stopbutton.png")).getTextureID(),12,12);
+                    ImGui.image(((BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("stopbutton.png")).getTextureID(),12,12);
                     ImGui.setCursorPosY(origin );
                     ImGui.newLine();
                     }
@@ -106,10 +106,10 @@ public class BJEEditorViewport  extends BJEUIWindow {
             windowSize.y -= ImGui.getScrollY();
 
             float aspectWidth = windowSize.x;
-            float aspectHeight = aspectWidth / EngineWindowManager.getInstance().getTargetAspectRatio();
+            float aspectHeight = aspectWidth / EngineManager.getInstance().getTargetAspectRatio();
             if (aspectHeight > windowSize.y) {
                 aspectHeight = windowSize.y;
-                aspectWidth = aspectHeight * EngineWindowManager.getInstance().getTargetAspectRatio();
+                aspectWidth = aspectHeight * EngineManager.getInstance().getTargetAspectRatio();
             }
 
             return new ImVec2(aspectWidth, aspectHeight);

@@ -2,7 +2,8 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
+import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;
 import com.fasterxml.jackson.annotation.*;
@@ -27,6 +28,10 @@ import static org.lwjgl.opengl.GL13.glActiveTexture;
 })
 
 public abstract class Scene implements IGameSpace {
+     List<ICommand> tasks = new ArrayList<>();
+     public void addTask(ICommand command){
+         tasks.add(command);
+     }
     private Camera camera;
     private boolean initialized = false;
     private List<Object3DAbstract> gameObjects= new ArrayList<>();
@@ -46,7 +51,7 @@ public abstract class Scene implements IGameSpace {
     public abstract void update();
 
     public void setGameObjects(List<Object3DAbstract> gameObjects) {
-        this.gameObjects = gameObjects;
+        this.gameObjects = new ArrayList<>(gameObjects);
     }
 
     public void setInitialized(boolean initialized) {
@@ -118,7 +123,7 @@ public abstract class Scene implements IGameSpace {
         glClear(GL_COLOR_BUFFER_BIT);
         getShaderProgram().Run();
         getShaderProgram().uploadFloat( 0f, "directionalLight.intensity" );
-        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(new Vector3f(),"ambientLight");
+        EngineManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(new Vector3f(),"ambientLight");
         glActiveTexture(GL_TEXTURE0);
         getChildList().forEach(Object3DAbstract::preRender);
 

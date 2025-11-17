@@ -42,8 +42,8 @@ j  com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy.createSphere
 J 2968 c1 com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy.showContextMenu(Lcom/bedrye/bjge/GameEngine/Util/Interfaces/IGameSpace;)V com.bedrye.bjge@1.0-SNAPSHOT (166 bytes) @ 0x000001fb08871304 [0x000001fb08870fa0+0x0000000000000364]
 J 2965 c1 com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy.update()V com.bedrye.bjge@1.0-SNAPSHOT (134 bytes) @ 0x000001fb0886ef64 [0x000001fb0886ec40+0x0000000000000324]
 J 2964 c1 com.bedrye.bjge.GameEngine.Objects.BJEEditorScene.updateUILayer()V com.bedrye.bjge@1.0-SNAPSHOT (29 bytes) @ 0x000001fb0886e514 [0x000001fb0886e480+0x0000000000000094]
-j  com.bedrye.bjge.GameEngine.EngineWindowManager.update()V+56 com.bedrye.bjge@1.0-SNAPSHOT
-j  com.bedrye.bjge.GameEngine.EngineWindowManager.run()V+5 com.bedrye.bjge@1.0-SNAPSHOT
+j  com.bedrye.bjge.GameEngine.EngineManager.update()V+56 com.bedrye.bjge@1.0-SNAPSHOT
+j  com.bedrye.bjge.GameEngine.EngineManager.run()V+5 com.bedrye.bjge@1.0-SNAPSHOT
 j  com.bedrye.bjge.TestMain.main([Ljava/lang/String;)V+3 com.bedrye.bjge@1.0-SNAPSHOT
 v  ~StubRoutines::call_stub 0x000001fb0f8b10e7
 
@@ -1224,7 +1224,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886eec8: ; ImmutableOopMap {[80]=Oop [88]=Oop }
                       ;*invokespecial <init> {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@10 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@10 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@19 (line 32)
   0x000001fb0886eec8: b4ff 0807 
 
@@ -1364,7 +1364,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886f2f8: ; ImmutableOopMap {[80]=Oop [96]=Oop [104]=Oop }
                       ;*invokespecial <init> {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@10 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@10 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@47 (line 37)
   0x000001fb0886f2f8: 84fb 0807 
 
@@ -1456,7 +1456,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886f598: ; ImmutableOopMap {[80]=Oop [112]=Oop }
                       ;*invokespecial <init> {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@10 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@10 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@60 (line 45)
   0x000001fb0886f598: e4f8 0807 
 
@@ -1663,7 +1663,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886fc80: ; ImmutableOopMap {[80]=Oop [128]=Oop }
                       ;*invokespecial <init> {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@10 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@10 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@115 (line 55)
   0x000001fb0886fc80: fcf1 0807 
 
@@ -1747,7 +1747,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886fe00: ; ImmutableOopMap {[80]=Oop }
                       ;*synchronization entry
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@-1 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@-1 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@19 (line 32)
   0x000001fb0886fe00: c416 07e9 | f2ef ffff 
 
@@ -1756,7 +1756,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886fe0c: ; ImmutableOopMap {[80]=Oop }
                       ;*new {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@6 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@6 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@19 (line 32)
   0x000001fb0886fe0c: f05a 1607 | e990 f0ff | ff41 8b50 | 7048 c1e2 | 0348 83fa | 000f 84c5 | f0ff ff48 
 
@@ -1823,7 +1823,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886fed8: ; ImmutableOopMap {rbx=Oop [80]=Oop }
                       ;*synchronization entry
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@-1 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@-1 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@47 (line 37)
   0x000001fb0886fed8: 1607 e945 | f3ff ff48 
 
@@ -1832,7 +1832,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886fee4: ; ImmutableOopMap {[80]=Oop [104]=Oop }
                       ;*new {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@6 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@6 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@47 (line 37)
   0x000001fb0886fee4: 5a16 07e9 | e8f3 ffff | 418b 5070 | 48c1 e203 | 4883 fa00 | 0f84 1ef4 | ffff 4889 
 
@@ -1874,7 +1874,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886ff68: ; ImmutableOopMap {[80]=Oop }
                       ;*synchronization entry
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@-1 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@-1 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@60 (line 45)
   0x000001fb0886ff68: c316 07e9 | 5ef5 ffff 
 
@@ -1883,7 +1883,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0886ff74: ; ImmutableOopMap {[80]=Oop }
                       ;*new {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@6 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@6 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@60 (line 45)
   0x000001fb0886ff74: 8859 1607 | e9fc f5ff | ff8b 7270 | 48c1 e603 | 4883 fe00 | 0f84 2ef6 | ffff 4889 
 
@@ -1970,7 +1970,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0887004c: ; ImmutableOopMap {rdx=Oop [80]=Oop }
                       ;*synchronization entry
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@-1 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@-1 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@115 (line 55)
   0x000001fb0887004c: b0c2 1607 | e95f fbff | ff48 8bd2 
 
@@ -1979,7 +1979,7 @@ Compiled method (c1)    8463 2965       3       com.bedrye.bjge.GameEngine.Objec
 
   0x000001fb0887005c: ; ImmutableOopMap {[80]=Oop }
                       ;*new {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@6 (line 106)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::getInstance@6 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUISceneHierarchy::update@115 (line 55)
   0x000001fb0887005c: 07e9 fdfb | ffff 418b | 5070 48c1 | e203 4883 | fa00 0f84 | 30fc ffff | 4889 1424 
 

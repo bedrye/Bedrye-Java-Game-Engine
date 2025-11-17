@@ -52,8 +52,8 @@ j  java.util.stream.AbstractPipeline.evaluate(Ljava/util/stream/TerminalOp;)Ljav
 j  java.util.stream.ReferencePipeline.forEach(Ljava/util/function/Consumer;)V+6 java.base@21.0.1
 j  com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager.loadAllResources()V+27 com.bedrye.bjge@1.0-SNAPSHOT
 j  com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager.<init>(Ljava/lang/String;)V+172 com.bedrye.bjge@1.0-SNAPSHOT
-j  com.bedrye.bjge.GameEngine.EngineWindowManager.init()V+7 com.bedrye.bjge@1.0-SNAPSHOT
-j  com.bedrye.bjge.GameEngine.EngineWindowManager.run()V+1 com.bedrye.bjge@1.0-SNAPSHOT
+j  com.bedrye.bjge.GameEngine.EngineManager.init()V+7 com.bedrye.bjge@1.0-SNAPSHOT
+j  com.bedrye.bjge.GameEngine.EngineManager.run()V+1 com.bedrye.bjge@1.0-SNAPSHOT
 j  com.bedrye.bjge.TestMain.main([Ljava/lang/String;)V+3 com.bedrye.bjge@1.0-SNAPSHOT
 v  ~StubRoutines::call_stub 0x0000024e875310e7
 

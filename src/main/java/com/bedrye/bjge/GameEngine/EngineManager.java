@@ -37,7 +37,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-public class EngineWindowManager {
+public class EngineManager {
 
     private int height,width;
     private final double fixedTimeStamp = 5;
@@ -97,13 +97,14 @@ public class EngineWindowManager {
             return project.getName();
         else return  "No Project Selected";
     }
+    private BJESceneFile sceneFile;
     private Scene activeScene;
     private BJEEditorScene editorScene;
     private BJEProject project;
 
-    private static EngineWindowManager init;
-    public static EngineWindowManager getInstance(){
-        if(init==null) init= new EngineWindowManager();
+    private static EngineManager init;
+    public static EngineManager getInstance(){
+        if(init==null) init= new EngineManager();
         return init;
 
     }
@@ -111,7 +112,7 @@ public class EngineWindowManager {
         return  project!=null;
 
     }
-    private EngineWindowManager(){
+    private EngineManager(){
         height = 1080;
         width=1920;
     }
@@ -212,7 +213,6 @@ public class EngineWindowManager {
             bjeimguiLayer.setupDockspace();
             activeScene.updateUILayer();
             bjeimguiLayer.endFrame();
-
             bjeFrameBuffer.bind();
             KeyListener.getInstance().goThrough();
             while (lag >= fixedTimeStamp) {
@@ -223,11 +223,8 @@ public class EngineWindowManager {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             activeScene.preRender();
             activeScene.render();
-            
+            activeScene.renderGizmos();
             bjeFrameBuffer.unbind();
-
-
-
             bjeResourceManager.update();
             glfwSwapBuffers(windowAddress);
 
@@ -239,13 +236,18 @@ public class EngineWindowManager {
     public float getTargetAspectRatio() {
         return (float)width / height;
     }
+    public boolean isInSavedScene(){
+        return         sceneFile!=null;
+    }
 
     public void saveScene(){
-        File file = new File("Assets\\game.bjes");
-        try {
-            mapper.writeValue(file, editorScene);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(isInSavedScene()) {
+            File file = new File(sceneFile.getPath());
+            try {
+                mapper.writeValue(file, editorScene);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     public void loadSceneFromFile(){
@@ -262,6 +264,16 @@ public class EngineWindowManager {
         }
 
 
+    }
+    public void loadScene(BJESceneFile file){
+
+        try {
+
+            setEditorScene((BJEEditorScene) mapper.readValue(new File(file.getPath()), Scene.class));
+            setActiveScene(editorScene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void loadScene(File file){
 
@@ -372,7 +384,10 @@ public class EngineWindowManager {
 
     public void InEngineRun(){
         isInEditMode=false;
-        setActiveScene(new BJEGameScene(editorScene));
+        Scene scene = new BJEGameScene(editorScene);
+
+        setActiveScene(scene);
+
     }
     public void InEngineStop(){
         isInEditMode=true;

@@ -1,6 +1,6 @@
 package com.bedrye.bjge.GameEngine.Scripts;
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import org.joml.Vector3f;
@@ -18,7 +18,7 @@ public class Box3DCollider extends MainBehaviour{
         public void update() {
             Object3DAbstract self = getGameObject();
             if (self == null) return;
-            for (Object3DAbstract other : EngineWindowManager.getInstance().getActiveScene().getChildList()) {
+            for (Object3DAbstract other : EngineManager.getInstance().getActiveScene().getChildList()) {
                 if (other == self) continue;
 
                 Box3DCollider otherCollider = other.getScript(Box3DCollider.class);

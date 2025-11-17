@@ -34,8 +34,8 @@ C  [igxelpicd64.dll+0x16fa6]
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 J 2785  org.lwjgl.opengl.GL11C.glClear(I)V org.lwjgl.opengl@3.3.4+7 (0 bytes) @ 0x0000020ae9764899 [0x0000020ae9764840+0x0000000000000059]
 J 3104 c2 com.bedrye.bjge.GameEngine.Objects.Scene.preRender()V com.bedrye.bjge (77 bytes) @ 0x0000020ae97aecf8 [0x0000020ae97aec80+0x0000000000000078]
-J 3120% c1 com.bedrye.bjge.GameEngine.EngineWindowManager.update()V com.bedrye.bjge (149 bytes) @ 0x0000020ae20af58c [0x0000020ae20ae4c0+0x00000000000010cc]
-j  com.bedrye.bjge.GameEngine.EngineWindowManager.run()V+5 com.bedrye.bjge
+J 3120% c1 com.bedrye.bjge.GameEngine.EngineManager.update()V com.bedrye.bjge (149 bytes) @ 0x0000020ae20af58c [0x0000020ae20ae4c0+0x00000000000010cc]
+j  com.bedrye.bjge.GameEngine.EngineManager.run()V+5 com.bedrye.bjge
 j  com.bedrye.bjge.TestMain.main([Ljava/lang/String;)V+3 com.bedrye.bjge
 v  ~StubRoutines::call_stub 0x0000020ae90c10e7
 
@@ -528,7 +528,7 @@ Compiled method (c2)  237125 3104       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000020ae97aef7c: ; ImmutableOopMap {rbp=NarrowOop [0]=Oop }
                       ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@3 (line 106)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::getInstance@3 (line 106)
                       ; - com.bedrye.bjge.GameEngine.Objects.Scene::preRender@36 (line 121)
   0x0000020ae97aef7c: 808d 96ff 
 
@@ -617,7 +617,7 @@ Compiled method (c2)  237125 3104       4       com.bedrye.bjge.GameEngine.Objec
 [/MachCode]
 
 
-Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.EngineWindowManager::update @ 73 (149 bytes)
+Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.EngineManager::update @ 73 (149 bytes)
  total in heap  [0x0000020ae20adf90,0x0000020ae20b1088] = 12536
  relocation     [0x0000020ae20ae0f0,0x0000020ae20ae470] = 896
  constants      [0x0000020ae20ae480,0x0000020ae20ae4c0] = 64
@@ -706,7 +706,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20ae628: ; ImmutableOopMap {[160]=Oop }
                       ;*invokestatic glfwWindowShouldClose {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@10 (line 204)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@10 (line 204)
   0x0000020ae20ae628: f4d1 6e07 
 
   0x0000020ae20ae62c: ;   {other}
@@ -731,7 +731,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20ae6c8: ; ImmutableOopMap {[160]=Oop }
                       ;*invokestatic invokeV {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.glfw.GLFW::glfwPollEvents@5 (line 3501)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@16 (line 206)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@16 (line 206)
   0x0000020ae20ae6c8: 949c 6b07 
 
   0x0000020ae20ae6cc: ;   {other}
@@ -788,7 +788,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20ae848: ; ImmutableOopMap {[160]=Oop [168]=Oop }
                       ;*invokevirtual newFrame {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@4 (line 36)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
   0x0000020ae20ae848: f4f0 7007 
 
   0x0000020ae20ae84c: ;   {other}
@@ -818,7 +818,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*invokevirtual createDeviceObjects {reexecute=0 rethrow=0 return_oop=0}
                       ; - imgui.gl3.ImGuiImplGl3::newFrame@11 (line 338)
                       ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@11 (line 37)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
   0x0000020ae20ae910: 6c05 0607 
 
   0x0000020ae20ae914: ;   {other}
@@ -841,7 +841,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*invokestatic nNewFrame {reexecute=0 rethrow=0 return_oop=0}
                       ; - imgui.ImGui::newFrame@0 (line 248)
                       ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@14 (line 38)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
   0x0000020ae20ae970: ecae 6c07 
 
   0x0000020ae20ae974: ;   {other}
@@ -859,7 +859,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20ae9c0: ; ImmutableOopMap {[160]=Oop }
                       ;*invokevirtual setupDockspace {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@49 (line 212)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@49 (line 212)
   0x0000020ae20ae9c0: fc27 6f07 
 
   0x0000020ae20ae9c4: ;   {other}
@@ -885,7 +885,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20aea60: ; ImmutableOopMap {[160]=Oop [176]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@4 (line 62)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
   0x0000020ae20aea60: dcf2 6f07 
 
   0x0000020ae20aea64: ;   {other}
@@ -900,7 +900,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20aea98: ; ImmutableOopMap {[160]=Oop [176]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@11 (line 63)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
   0x0000020ae20aea98: a4d7 7007 
 
   0x0000020ae20aea9c: ;   {other}
@@ -915,7 +915,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20aead0: ; ImmutableOopMap {[160]=Oop [176]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@18 (line 64)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
   0x0000020ae20aead0: ac3e 7007 
 
   0x0000020ae20aead4: ;   {other}
@@ -930,7 +930,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20aeb08: ; ImmutableOopMap {[160]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@25 (line 66)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
   0x0000020ae20aeb08: d4da 7007 
 
   0x0000020ae20aeb0c: ;   {other}
@@ -948,7 +948,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20aeb58: ; ImmutableOopMap {[160]=Oop }
                       ;*invokevirtual endFrame {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@63 (line 214)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@63 (line 214)
   0x0000020ae20aeb58: 4417 7007 
 
   0x0000020ae20aeb5c: ;   {other}
@@ -985,7 +985,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*invokestatic glBindFramebuffer {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL30::glBindFramebuffer@2 (line 1619)
                       ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::bind@6 (line 33)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@70 (line 216)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@70 (line 216)
   0x0000020ae20aec28: 349f 6b07 
 
   0x0000020ae20aec2c: ;   {other}
@@ -1063,7 +1063,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20aef70: ; ImmutableOopMap {[160]=Oop }
                       ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@9 (line 110)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@85 (line 218)
   0x0000020ae20aef70: cc25 6e07 
 
   0x0000020ae20aef74: ;   {other}
@@ -1078,7 +1078,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20aefb8: ; ImmutableOopMap {[160]=Oop }
                       ;*goto {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@94 (line 219)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::update@94 (line 219)
   0x0000020ae20aefb8: 5804 0000 
 
   0x0000020ae20aefbc: ;   {poll}
@@ -1128,7 +1128,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*invokevirtual changeProjection {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@1 (line 47)
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
   0x0000020ae20af1b0: ccbf 6e07 
 
   0x0000020ae20af1b4: ;   {other}
@@ -1144,7 +1144,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*invokevirtual compViewMatrix {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@5 (line 48)
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
   0x0000020ae20af1e0: 1cf1 6e07 
 
   0x0000020ae20af1e4: ;   {other}
@@ -1160,7 +1160,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*invokespecial update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@9 (line 50)
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
   0x0000020ae20af210: ecbb 7007 
 
   0x0000020ae20af214: ;   {other}
@@ -1219,7 +1219,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20af468: ; ImmutableOopMap {[160]=Oop }
                       ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@16 (line 79)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
   0x0000020ae20af468: d420 6e07 
 
   0x0000020ae20af46c: ;   {other}
@@ -1241,7 +1241,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20af4c8: ; ImmutableOopMap {[160]=Oop }
                       ;*invokestatic glClear {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL11::glClear@1 (line 992)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@107 (line 222)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@107 (line 222)
   0x0000020ae20af4c8: 9453 6b07 
 
   0x0000020ae20af4cc: ;   {other}
@@ -1259,7 +1259,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20af588: ; ImmutableOopMap {[160]=Oop }
                       ;*invokevirtual preRender {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@114 (line 223)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@114 (line 223)
   0x0000020ae20af588: 14f7 6f07 
 
   0x0000020ae20af58c: ;   {other}
@@ -1277,7 +1277,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20af5d8: ; ImmutableOopMap {[160]=Oop }
                       ;*invokevirtual render {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@121 (line 224)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@121 (line 224)
   0x0000020ae20af5d8: e473 7007 
 
   0x0000020ae20af5dc: ;   {other}
@@ -1312,7 +1312,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*invokestatic glBindFramebuffer {reexecute=0 rethrow=0 return_oop=0}
                       ; - org.lwjgl.opengl.GL30::glBindFramebuffer@2 (line 1619)
                       ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::unbind@3 (line 37)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@128 (line 226)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@128 (line 226)
   0x0000020ae20af6a8: b494 6b07 
 
   0x0000020ae20af6ac: ;   {other}
@@ -1381,7 +1381,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@1
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20af880: 5c77 6107 
 
   0x0000020ae20af884: ;   {other}
@@ -1441,7 +1441,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afaf8: ; ImmutableOopMap {[160]=Oop [216]=Oop }
                       ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@10 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20afaf8: c4a9 6e07 
 
   0x0000020ae20afafc: ;   {other}
@@ -1460,7 +1460,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afbb8: ; ImmutableOopMap {[160]=Oop }
                       ;*invokeinterface clear {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@19 (line 95)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20afbb8: e48c 7007 
 
   0x0000020ae20afbbc: ;   {other}
@@ -1474,7 +1474,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20afbf0: ; ImmutableOopMap {[160]=Oop }
                       ;*invokestatic glfwSwapBuffers {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@142 (line 231)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@142 (line 231)
   0x0000020ae20afbf0: 2c93 7007 
 
   0x0000020ae20afbf4: ;   {other}
@@ -1486,7 +1486,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20afc28: ; ImmutableOopMap {[160]=Oop }
                       ;*goto {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@145 (line 234)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::update@145 (line 234)
                       ;   {poll}
   0x0000020ae20afc28: 0400 0041 
 
@@ -1518,7 +1518,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20afd34: ; ImmutableOopMap {rdx=Oop }
                       ;*synchronization entry
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@-1 (line 201)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@-1 (line 201)
   0x0000020ae20afd34: 07e9 ede7 
 
   0x0000020ae20afd38: ;   {metadata({method} {0x0000020afa3860e8} 'getRunTimeMiliSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
@@ -1530,7 +1530,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afd54: ; ImmutableOopMap {[152]=Oop }
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeMiliSec@-1 (line 14)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@0 (line 201)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@0 (line 201)
   0x0000020ae20afd54: 1307 e90e 
 
   0x0000020ae20afd58: ;   {metadata({method} {0x0000020afa386048} 'getRunTimeNanoSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
@@ -1543,7 +1543,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeNanoSec@-1 (line 10)
                       ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeMiliSec@0 (line 14)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@0 (line 201)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@0 (line 201)
   0x0000020ae20afd74: cc13 07e9 | 27e8 ffff 
 
   0x0000020ae20afd7c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1551,7 +1551,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20afd80: ; ImmutableOopMap {rdx=Oop }
                       ;*getfield windowAddress {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@7 (line 204)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::update@7 (line 204)
                       ;   {metadata({method} {0x0000020af97a2c40} 'glfwPollEvents' '()V' in 'org/lwjgl/glfw/GLFW')}
   0x0000020ae20afd80: 0749 ba38 | 2c7a f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
 
@@ -1561,7 +1561,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afd9c: ; ImmutableOopMap {[160]=Oop }
                       ;*synchronization entry
                       ; - org.lwjgl.glfw.GLFW::glfwPollEvents@-1 (line 3500)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@16 (line 206)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@16 (line 206)
   0x0000020ae20afd9c: 07e9 05e9 
 
   0x0000020ae20afda0: ;   {metadata({method} {0x0000020afa3860e8} 'getRunTimeMiliSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
@@ -1573,7 +1573,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afdbc: ; ImmutableOopMap {[160]=Oop }
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeMiliSec@-1 (line 14)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@19 (line 207)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@19 (line 207)
   0x0000020ae20afdbc: 1307 e94b 
 
   0x0000020ae20afdc0: ;   {metadata({method} {0x0000020afa386048} 'getRunTimeNanoSec' '()D' in 'com/bedrye/bjge/GameEngine/Util/TimeCounter')}
@@ -1586,7 +1586,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeNanoSec@-1 (line 10)
                       ; - com.bedrye.bjge.GameEngine.Util.TimeCounter::getRunTimeMiliSec@0 (line 14)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@19 (line 207)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@19 (line 207)
   0x0000020ae20afddc: cb13 07e9 | 64e9 ffff 
 
   0x0000020ae20afde4: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1594,7 +1594,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20afde8: ; ImmutableOopMap {rdx=Oop rsi=Oop }
                       ;*invokevirtual newFrame {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
                       ;   {metadata({method} {0x0000020af987d840} 'newFrame' '()V' in 'com/bedrye/bjge/GameEngine/BJEIMGUILayer')}
   0x0000020ae20afde8: 0749 ba38 | d887 f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
 
@@ -1604,7 +1604,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afe04: ; ImmutableOopMap {rdx=Oop rsi=Oop }
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@-1 (line 36)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
   0x0000020ae20afe04: 07e9 05ea 
 
   0x0000020ae20afe08: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1613,14 +1613,14 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afe0c: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop }
                       ;*invokevirtual newFrame {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@4 (line 36)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
                       ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
   0x0000020ae20afe0c: 5013 07e8 
 
   0x0000020ae20afe10: ; ImmutableOopMap {rdx=Oop [160]=Oop }
                       ;*invokevirtual newFrame {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@11 (line 37)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
   0x0000020ae20afe10: 0c50 1307 
 
   0x0000020ae20afe14: ;   {metadata({method} {0x0000020af98973a8} 'newFrame' '()V' in 'imgui/gl3/ImGuiImplGl3')}
@@ -1633,7 +1633,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - imgui.gl3.ImGuiImplGl3::newFrame@-1 (line 337)
                       ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@11 (line 37)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
   0x0000020ae20afe2c: 50cb 1307 | e96e eaff 
 
   0x0000020ae20afe34: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1643,7 +1643,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*getfield shaderHandle {reexecute=1 rethrow=0 return_oop=0}
                       ; - (reexecute) imgui.gl3.ImGuiImplGl3::newFrame@4 (line 337)
                       ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@11 (line 37)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
                       ;   {metadata({method} {0x0000020af98ad010} 'newFrame' '()V' in 'imgui/ImGui')}
   0x0000020ae20afe38: 1307 49ba | 08d0 8af9 | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
 
@@ -1654,7 +1654,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - imgui.ImGui::newFrame@-1 (line 248)
                       ; - com.bedrye.bjge.GameEngine.BJEIMGUILayer::newFrame@14 (line 38)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@42 (line 211)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@42 (line 211)
   0x0000020ae20afe54: 1307 e9fb 
 
   0x0000020ae20afe58: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1662,7 +1662,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20afe5c: ; ImmutableOopMap {rdx=Oop rsi=Oop }
                       ;*invokevirtual setupDockspace {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@49 (line 212)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@49 (line 212)
   0x0000020ae20afe5c: c04f 1307 
 
   0x0000020ae20afe60: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1670,7 +1670,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20afe64: ; ImmutableOopMap {rdx=Oop rsi=Oop [176]=Oop }
                       ;*invokevirtual updateUILayer {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
                       ;   {metadata({method} {0x0000020af941a0a8} 'updateUILayer' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
   0x0000020ae20afe64: 0749 baa0 | a041 f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
 
@@ -1680,7 +1680,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afe80: ; ImmutableOopMap {rdx=Oop rsi=Oop [176]=Oop }
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@-1 (line 62)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
   0x0000020ae20afe80: 07e9 aeeb 
 
   0x0000020ae20afe84: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1689,14 +1689,14 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afe88: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop [176]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@4 (line 62)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
                       ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
   0x0000020ae20afe88: 4f13 07e8 
 
   0x0000020ae20afe8c: ; ImmutableOopMap {rsi=Oop rdx=Oop [160]=Oop [176]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@11 (line 63)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
   0x0000020ae20afe8c: 904f 1307 
 
   0x0000020ae20afe90: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1705,26 +1705,26 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afe94: ; ImmutableOopMap {rsi=Oop rdx=Oop [160]=Oop [176]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@18 (line 64)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
                       ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
   0x0000020ae20afe94: 07e8 864f 
 
   0x0000020ae20afe98: ; ImmutableOopMap {rdx=Oop [160]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::updateUILayer@25 (line 66)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@56 (line 213)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@56 (line 213)
                       ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
   0x0000020ae20afe98: 1307 e881 
 
   0x0000020ae20afe9c: ; ImmutableOopMap {rdx=Oop rsi=Oop }
                       ;*invokevirtual endFrame {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@63 (line 214)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@63 (line 214)
                       ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
   0x0000020ae20afe9c: 4f13 07e8 
 
   0x0000020ae20afea0: ; ImmutableOopMap {rdx=Oop r8=Oop }
                       ;*invokevirtual bind {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@70 (line 216)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@70 (line 216)
   0x0000020ae20afea0: 7c4f 1307 
 
   0x0000020ae20afea4: ;   {metadata({method} {0x0000020af9a09de8} 'bind' '()V' in 'com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
@@ -1736,7 +1736,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20afebc: ; ImmutableOopMap {rdx=Oop r8=Oop }
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::bind@-1 (line 33)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@70 (line 216)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@70 (line 216)
   0x0000020ae20afebc: c0ca 1307 | e900 edff 
 
   0x0000020ae20afec4: ;   {metadata({method} {0x0000020af99912e8} 'glBindFramebuffer' '(II)V' in 'org/lwjgl/opengl/GL30')}
@@ -1749,7 +1749,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - org.lwjgl.opengl.GL30::glBindFramebuffer@-1 (line 1619)
                       ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::bind@6 (line 33)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@70 (line 216)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@70 (line 216)
   0x0000020ae20afee0: 07e9 1ded 
 
   0x0000020ae20afee4: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1757,13 +1757,13 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20afee8: ; ImmutableOopMap {rdx=Oop }
                       ;*getfield activeScene {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@82 (line 218)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::update@82 (line 218)
                       ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
   0x0000020ae20afee8: 4f13 07e8 
 
   0x0000020ae20afeec: ; ImmutableOopMap {rdx=Oop r8=Oop }
                       ;*invokevirtual fixedUpdate {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@85 (line 218)
   0x0000020ae20afeec: 304f 1307 
 
   0x0000020ae20afef0: ;   {metadata({method} {0x0000020af94190b0} 'fixedUpdate' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Scene')}
@@ -1775,7 +1775,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20aff08: ; ImmutableOopMap {rdx=Oop r8=Oop }
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@-1 (line 110)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@85 (line 218)
   0x0000020ae20aff08: 74ca 1307 | e915 eeff 
 
   0x0000020ae20aff10: ;   {metadata({method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
@@ -1788,7 +1788,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@-1
                       ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@4 (line 110)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@85 (line 218)
   0x0000020ae20aff2c: 07e9 f2ee 
 
   0x0000020ae20aff30: ;   {metadata({method} {0x0000020af9400a28} 'invoke' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/LambdaForm$MH+0x0000020a81000800')}
@@ -1802,7 +1802,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ; - java.lang.invoke.LambdaForm$MH/0x0000020a81000800::invoke@-1
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@4
                       ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@4 (line 110)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@85 (line 218)
   0x0000020ae20aff4c: 1307 e927 
 
   0x0000020ae20aff50: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1811,7 +1811,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20aff54: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop }
                       ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.Scene::fixedUpdate@9 (line 110)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@85 (line 218)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@85 (line 218)
   0x0000020ae20aff54: c84e 1307 
 
   0x0000020ae20aff58: ;   {metadata({method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
@@ -1822,7 +1822,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20aff70: ; ImmutableOopMap {[160]=Oop }
                       ;*goto {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@94 (line 219)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::update@94 (line 219)
   0x0000020ae20aff70: 0cca 1307 | e93c f0ff 
 
   0x0000020ae20aff78: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1830,13 +1830,13 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20aff7c: ; ImmutableOopMap {rdx=Oop }
                       ;*getfield activeScene {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@98 (line 221)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::update@98 (line 221)
                       ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
   0x0000020ae20aff7c: 1307 e89d 
 
   0x0000020ae20aff80: ; ImmutableOopMap {rdx=Oop rsi=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
                       ;   {metadata({method} {0x0000020af941a168} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/BJEEditorScene')}
   0x0000020ae20aff80: 4e13 0749 | ba60 a141 | f90a 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
 
@@ -1846,7 +1846,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20aff9c: ; ImmutableOopMap {rdx=Oop rsi=Oop }
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@-1 (line 78)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
   0x0000020ae20aff9c: c913 07e9 | fbf0 ffff 
 
   0x0000020ae20affa4: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1855,7 +1855,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20affa8: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
                       ;   {metadata({method} {0x0000020afa0e1b48} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Camera')}
   0x0000020ae20affa8: 0749 ba40 | 1b0e fa0a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
 
@@ -1866,7 +1866,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@-1 (line 47)
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@4 (line 78)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
   0x0000020ae20affc4: 07e9 aef1 
 
   0x0000020ae20affc8: ;   {metadata({method} {0x0000020a800afd50} 'linkToTargetMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
@@ -1879,7 +1879,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@-1
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@11 (line 79)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
   0x0000020ae20affe4: 1307 e93b 
 
   0x0000020ae20affe8: ;   {metadata({method} {0x0000020af9400a28} 'invoke' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/LambdaForm$MH+0x0000020a81000800')}
@@ -1893,7 +1893,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ; - java.lang.invoke.LambdaForm$MH/0x0000020a81000800::invoke@-1
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@4
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@11 (line 79)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
   0x0000020ae20b0004: c913 07e9 | 70f3 ffff 
 
   0x0000020ae20b000c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1902,7 +1902,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20b0010: ; ImmutableOopMap {rdx=Oop rsi=Oop [160]=Oop }
                       ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@16 (line 79)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@101 (line 221)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@101 (line 221)
                       ;   {metadata({method} {0x0000020af99c90c0} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11')}
   0x0000020ae20b0010: 0749 bab8 | 909c f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
 
@@ -1912,7 +1912,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20b002c: ; ImmutableOopMap {[160]=Oop }
                       ;*synchronization entry
                       ; - org.lwjgl.opengl.GL11::glClear@-1 (line 992)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@107 (line 222)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@107 (line 222)
   0x0000020ae20b002c: 07e9 7cf4 
 
   0x0000020ae20b0030: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1920,13 +1920,13 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20b0034: ; ImmutableOopMap {rdx=Oop rsi=Oop }
                       ;*invokevirtual preRender {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@114 (line 223)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@114 (line 223)
                       ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
   0x0000020ae20b0034: 4d13 07e8 
 
   0x0000020ae20b0038: ; ImmutableOopMap {rdx=Oop rsi=Oop }
                       ;*invokevirtual render {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@121 (line 224)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@121 (line 224)
   0x0000020ae20b0038: e44d 1307 
 
   0x0000020ae20b003c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1934,7 +1934,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20b0040: ; ImmutableOopMap {rdx=Oop r8=Oop }
                       ;*invokevirtual unbind {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@128 (line 226)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@128 (line 226)
                       ;   {metadata({method} {0x0000020af9a09e98} 'unbind' '()V' in 'com/bedrye/bjge/GameEngine/Util/BJEFrameBuffer')}
   0x0000020ae20b0040: 0749 ba90 | 9ea0 f90a | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
 
@@ -1944,7 +1944,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20b005c: ; ImmutableOopMap {rdx=Oop }
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::unbind@-1 (line 37)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@128 (line 226)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@128 (line 226)
   0x0000020ae20b005c: 07e9 e2f5 
 
   0x0000020ae20b0060: ;   {metadata({method} {0x0000020af99912e8} 'glBindFramebuffer' '(II)V' in 'org/lwjgl/opengl/GL30')}
@@ -1957,7 +1957,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - org.lwjgl.opengl.GL30::glBindFramebuffer@-1 (line 1619)
                       ; - com.bedrye.bjge.GameEngine.Util.BJEFrameBuffer::unbind@3 (line 37)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@128 (line 226)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@128 (line 226)
   0x0000020ae20b007c: 1307 e9fd 
 
   0x0000020ae20b0080: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -1965,7 +1965,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20b0084: ; ImmutableOopMap {rdx=Oop rsi=Oop [216]=Oop }
                       ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20b0084: 984d 1307 
 
   0x0000020ae20b0088: ;   {metadata({method} {0x0000020af9a489c8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager')}
@@ -1977,7 +1977,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20b00a0: ; ImmutableOopMap {rdx=Oop rsi=Oop [216]=Oop }
                       ;*synchronization entry
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@-1 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20b00a0: dcc8 1307 | e975 f6ff 
 
   0x0000020ae20b00a8: ;   {metadata({method} {0x0000020a800b0170} 'linkToTargetMethod' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/Invokers$Holder')}
@@ -1990,7 +1990,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ;*synchronization entry
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@-1
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20b00c4: 07e9 bef6 
 
   0x0000020ae20b00c8: ;   {metadata({method} {0x0000020a800b6388} 'newInvokeSpecial' '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle$Holder')}
@@ -2004,7 +2004,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@-1
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20b00e4: 1307 e9f5 
 
   0x0000020ae20b00e8: ;   {metadata({method} {0x0000020a800a2c70} 'allocateInstance' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle')}
@@ -2019,7 +2019,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@1
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20b0104: c813 07e9 | 2df7 ffff 
 
   0x0000020ae20b010c: ;   {metadata({method} {0x0000020a800a3718} 'constructorMethod' '(Ljava/lang/Object;)Ljava/lang/Object;' in 'java/lang/invoke/DirectMethodHandle')}
@@ -2034,7 +2034,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@6
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20b0124: 58c8 1307 | e9de f7ff 
 
   0x0000020ae20b012c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
@@ -2045,7 +2045,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@16
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
                       ;   {metadata({method} {0x0000020af9a6e650} '<init>' '(Lcom/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager;)V' in 'com/bedrye/bjge/GameEngine/Objects/Editor/BJEResourceManager$$Lambda+0x0000020a811e6dc8')}
   0x0000020ae20b0130: 1307 49ba | 48e6 a6f9 | 0a02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
 
@@ -2058,7 +2058,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@16
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20b014c: 1307 e91e 
 
   0x0000020ae20b0150: ;   {metadata({method} {0x0000020a8047b210} '<init>' '()V' in 'java/lang/Object')}
@@ -2074,7 +2074,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
                       ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@16
                       ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@5
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@5 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
   0x0000020ae20b016c: c813 07e9 | 3cf8 ffff | 448b 400c | 49c1 e003 | 4983 f800 | 0f84 39f8 | ffff 4c89 
 
   0x0000020ae20b0188: ;   {runtime_call g1_pre_barrier_slow}
@@ -2089,14 +2089,14 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
   0x0000020ae20b01b0: ; ImmutableOopMap {rax=Oop rsi=Oop rdi=Oop [160]=Oop [216]=Oop }
                       ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@10 (line 94)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
                       ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
   0x0000020ae20b01b0: 07e8 6a4c 
 
   0x0000020ae20b01b4: ; ImmutableOopMap {rdx=Oop [160]=Oop }
                       ;*invokeinterface clear {reexecute=0 rethrow=0 return_oop=0}
                       ; - com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager::update@19 (line 95)
-                      ; - com.bedrye.bjge.GameEngine.EngineWindowManager::update@135 (line 230)
+                      ; - com.bedrye.bjge.GameEngine.EngineManager::update@135 (line 230)
                       ;   {metadata({method} {0x0000020af940d0b8} 'update' '()V' in 'com/bedrye/bjge/GameEngine/EngineWindowManager')}
   0x0000020ae20b01b4: 1307 49ba | b0d0 40f9 | 0a02 0000 | 4c89 5424 | 0848 c704 | 2491 0000 
 
@@ -2105,7 +2105,7 @@ Compiled method (c1)  237137 3120 %     3       com.bedrye.bjge.GameEngine.Engin
 
   0x0000020ae20b01d0: ; ImmutableOopMap {[160]=Oop }
                       ;*goto {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::update@145 (line 234)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::update@145 (line 234)
   0x0000020ae20b01d0: 1307 e94d 
 
   0x0000020ae20b01d4: ;   {internal_word}
@@ -2459,9 +2459,9 @@ CodeHeap 'non-nmethods': size=5760Kb used=2968Kb max_used=2996Kb free=2791Kb
 Compilation events (20 events):
 Event: 62.278 Thread 0x0000020afe52cb30 nmethod 3119 0x0000020ae97b8d90 code [0x0000020ae97b8f20, 0x0000020ae97b8ff0]
 Event: 62.279 Thread 0x0000020af8c80b10 nmethod 3116 0x0000020ae97b9110 code [0x0000020ae97b92e0, 0x0000020ae97b9540]
-Event: 177.888 Thread 0x0000020af8c86c70 3120 %     3       com.bedrye.bjge.GameEngine.EngineWindowManager::update @ 73 (149 bytes)
+Event: 177.888 Thread 0x0000020af8c86c70 3120 %     3       com.bedrye.bjge.GameEngine.EngineManager::update @ 73 (149 bytes)
 Event: 177.892 Thread 0x0000020af8c86c70 nmethod 3120% 0x0000020ae20adf90 code [0x0000020ae20ae4c0, 0x0000020ae20b03c8]
-Event: 180.868 Thread 0x0000020af8c86c70 3121       3       com.bedrye.bjge.GameEngine.EngineWindowManager::update (149 bytes)
+Event: 180.868 Thread 0x0000020af8c86c70 3121       3       com.bedrye.bjge.GameEngine.EngineManager::update (149 bytes)
 Event: 180.871 Thread 0x0000020af8c86c70 nmethod 3121 0x0000020ae20b1110 code [0x0000020ae20b1620, 0x0000020ae20b33d8]
 Event: 181.748 Thread 0x0000020af8c80b10 3122       4       org.lwjgl.glfw.GLFW::glfwGetWindowSize (35 bytes)
 Event: 181.748 Thread 0x0000020af8c80b10 nmethod 3122 0x0000020ae97b9910 code [0x0000020ae97b9ac0, 0x0000020ae97b9c38]

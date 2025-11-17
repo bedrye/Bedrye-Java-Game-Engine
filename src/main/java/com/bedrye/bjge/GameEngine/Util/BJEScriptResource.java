@@ -1,7 +1,6 @@
 package com.bedrye.bjge.GameEngine.Util;
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.Objects.Editor.BJEResourceManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -32,7 +31,7 @@ public class BJEScriptResource extends  BJEResource{
             }
 
 
-            URL[] urls = {Paths.get(EngineWindowManager.getInstance().getBjeResourceManager().getAssetsPath()+"/scripts").toUri().toURL()};
+            URL[] urls = {Paths.get(EngineManager.getInstance().getBjeResourceManager().getAssetsPath()+"/scripts").toUri().toURL()};
             try (URLClassLoader loader = new URLClassLoader(urls, MainBehaviour.class.getClassLoader())) {
                 String className = javaFile.getName().replace(".java", "");
                 Class<?> clazz = Class.forName(className, true, loader);
@@ -44,7 +43,7 @@ public class BJEScriptResource extends  BJEResource{
 
                 Constructor<?> ctor = clazz.getDeclaredConstructor();
                 MainBehaviour script = (MainBehaviour) ctor.newInstance();
-                EngineWindowManager.getInstance().getBjeResourceManager().addScript(script);
+                EngineManager.getInstance().getBjeResourceManager().addScript(script);
                 System.out.println("[BJE] Loaded script: " + script.getClass().getName());
 
 

@@ -2,8 +2,7 @@ package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.GameEngineMain;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Objects.Editor.BJEFolder;
 import imgui.ImGui;
 
@@ -12,9 +11,9 @@ public class BJEAssetHierarchy extends BJEUIWindow {
 
 
     public void goBack(){
-        BJEFolder selectedFolder = EngineWindowManager.getInstance().getBjeResourceManager().getCurrentPath();
+        BJEFolder selectedFolder = EngineManager.getInstance().getBjeResourceManager().getCurrentPath();
         if(selectedFolder.getParent() !=null)
-            EngineWindowManager.getInstance().getBjeResourceManager().setCurrentPath(selectedFolder.getParent());
+            EngineManager.getInstance().getBjeResourceManager().setCurrentPath(selectedFolder.getParent());
 
 
     }
@@ -27,7 +26,7 @@ public class BJEAssetHierarchy extends BJEUIWindow {
         {
             goBack();
         }
-        EngineWindowManager.getInstance().getBjeResourceManager().getCurrentPath().showContents();
+        EngineManager.getInstance().getBjeResourceManager().getCurrentPath().showContents();
         ImGui.end();
 
     }

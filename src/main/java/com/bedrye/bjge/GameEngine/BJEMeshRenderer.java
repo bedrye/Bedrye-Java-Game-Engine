@@ -1,20 +1,16 @@
 package com.bedrye.bjge.GameEngine;
 
 
+import com.bedrye.bjge.GameEngine.Util.*;
 import com.bedrye.bjge.GameEngine.Util.Annotation.EditorBehaviour;
-import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
-import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
-import com.bedrye.bjge.GameEngine.Util.BJEMesh;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
-import com.bedrye.bjge.GameEngine.Util.BJEResource;
-import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @EditorBehaviour
 public class BJEMeshRenderer extends MainBehaviour {
 
-    public BJEResource meshRes;
+    public BJEObjFile meshRes;
 
     public BJETexture texture;
     @JsonIgnore
@@ -24,6 +20,7 @@ public class BJEMeshRenderer extends MainBehaviour {
 
     public BJEMeshRenderer(){
         super();
+
 
 
     }
@@ -37,7 +34,7 @@ public class BJEMeshRenderer extends MainBehaviour {
         mesh.setup();
     }
     @JsonCreator
-    public BJEMeshRenderer(@JsonProperty("meshRes") BJEResource meshRes,@JsonProperty("texture") BJETexture texture){
+    public BJEMeshRenderer(@JsonProperty("meshRes") BJEObjFile meshRes,@JsonProperty("texture") BJETexture texture){
         super();
         this.texture=texture;
         this.meshRes=meshRes;
@@ -53,8 +50,8 @@ public class BJEMeshRenderer extends MainBehaviour {
         if(mesh.getResource()!=meshRes)
             setMesh(meshRes);
         texture.Bind();
-        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().createMaterialUniform(material);
-        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getGameObject().getTransformMatrix(),"modelMatrix");
+        EngineManager.getInstance().getActiveScene().getShaderProgram().createMaterialUniform(material);
+        EngineManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getGameObject().getTransformMatrix(),"modelMatrix");
         mesh.Draw();
         mesh.Clear();
         texture.Unbind();
@@ -82,7 +79,7 @@ public class BJEMeshRenderer extends MainBehaviour {
     public BJEMesh getMesh() {
         return mesh;
     }
-    public void setMesh(BJEResource resource) {
+    public void setMesh(BJEObjFile resource) {
         mesh = new BJEMesh(resource);
         mesh.setup();
     }

@@ -1,7 +1,6 @@
 package com.bedrye.bjge.GameEngine.Util.Commands;
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.GameEngineMain;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Objects.BJEEditorScene;
 import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
@@ -17,12 +16,12 @@ public class ObjectSelectCommand implements ICommand {
 
     @Override
     public void exec() {
-        oldSelectedObject =((BJEEditorScene)EngineWindowManager.getInstance().getActiveScene()).inspector.getObject3DAbstract();
-        ((BJEEditorScene)EngineWindowManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(newSelectedObject);
+        oldSelectedObject =((BJEEditorScene) EngineManager.getInstance().getActiveScene()).inspector.getObject3DAbstract();
+        ((BJEEditorScene) EngineManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(newSelectedObject);
     }
 
     @Override
     public void undo() {
-        ((BJEEditorScene)EngineWindowManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(oldSelectedObject);
+        ((BJEEditorScene) EngineManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(oldSelectedObject);
     }
 }

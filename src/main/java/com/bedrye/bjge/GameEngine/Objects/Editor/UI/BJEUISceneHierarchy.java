@@ -2,10 +2,8 @@ package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
 
 import com.bedrye.bjge.GameEngine.BJEMeshRenderer;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Objects.*;
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.Util.BJEMaterial;
-import com.bedrye.bjge.GameEngine.Util.BJEMesh;
 import com.bedrye.bjge.GameEngine.Util.BJEObjFile;
 import com.bedrye.bjge.GameEngine.Util.BJETexture;
 import com.bedrye.bjge.GameEngine.Util.Commands.ObjectChangeParentCommand;
@@ -17,8 +15,6 @@ import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 import imgui.ImGui;
 import imgui.flag.ImGuiTreeNodeFlags;
 
-import java.util.HashMap;
-
 public class BJEUISceneHierarchy extends BJEUIWindow{
 
 
@@ -29,12 +25,12 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         if (ImGui.treeNodeEx("root", flag))
         {
 
-            showContextMenu(EngineWindowManager.getInstance().getActiveScene());
+            showContextMenu(EngineManager.getInstance().getActiveScene());
             if (ImGui.beginDragDropTarget()) {
                 Object3DAbstract object3DAbstract1 = ImGui.acceptDragDropPayload("SceneHierarchy");
 
                 if (object3DAbstract1 != null)
-                    EngineWindowManager.getInstance().getActiveScene().setAsParent(object3DAbstract1);
+                    EngineManager.getInstance().getActiveScene().setAsParent(object3DAbstract1);
 
 
                 ImGui.endDragDropTarget();
@@ -42,7 +38,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
 
 
             }
-            for (Object3DAbstract object3DAbstract : EngineWindowManager.getInstance().getActiveScene().getChildList())
+            for (Object3DAbstract object3DAbstract : EngineManager.getInstance().getActiveScene().getChildList())
                 addTreeNode(object3DAbstract);
 
 
@@ -52,7 +48,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         }
         ImGui.end();
         if(command!=null) {
-            EngineWindowManager.getInstance().getBjeCommandManager().executeCommand(command);
+            EngineManager.getInstance().getBjeCommandManager().executeCommand(command);
             command=null;
         }
 
@@ -65,7 +61,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         {
             flag |= ImGuiTreeNodeFlags.Leaf;
         }
-        if (object3DAbstract==((BJEEditorScene)EngineWindowManager.getInstance().getActiveScene()).inspector.getObject3DAbstract())
+        if (object3DAbstract==((BJEEditorScene) EngineManager.getInstance().getActiveScene()).inspector.getObject3DAbstract())
         {
             flag |= ImGuiTreeNodeFlags.Selected;
         }
@@ -110,8 +106,8 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         Object3D ob = new Object3D();
         ob.setName("Cube");
         ob.addScript(new BJEMeshRenderer(
-                (BJEObjFile) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\cube.obj"),
-                (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
+                (BJEObjFile) EngineManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\cube.obj"),
+                (BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
         return  ob;
 
 
@@ -120,8 +116,8 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         Object3D ob = new Object3D();
         ob.setName("Plane");
         ob.addScript(new BJEMeshRenderer(
-                (BJEObjFile) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\plane.obj"),
-                (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
+                (BJEObjFile) EngineManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\plane.obj"),
+                (BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
         return  ob;
 
 
@@ -131,8 +127,8 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         Object3D ob = new Object3D();
         ob.setName("Cylinder");
         ob.addScript(new BJEMeshRenderer(
-                (BJEObjFile) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\cylinder.obj"),
-                (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
+                (BJEObjFile) EngineManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\cylinder.obj"),
+                (BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
         return  ob;
 
 
@@ -142,8 +138,8 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         Object3D ob = new Object3D();
         ob.setName("Sphere");
         ob.addScript(new BJEMeshRenderer(
-                (BJEObjFile) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\sphere.obj"),
-                (BJETexture) EngineWindowManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
+                (BJEObjFile) EngineManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\sphere.obj"),
+                (BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
 
         return ob;
     }

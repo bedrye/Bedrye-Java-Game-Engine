@@ -34,8 +34,8 @@ C  [igxelpicd64.dll+0x16fa6]
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 J 2718  org.lwjgl.opengl.GL11C.glClear(I)V org.lwjgl.opengl@3.3.4+7 (0 bytes) @ 0x0000026660ce9719 [0x0000026660ce96c0+0x0000000000000059]
 J 3033 c2 com.bedrye.bjge.GameEngine.Objects.BJEEditorScene.update()V com.bedrye.bjge@1.0-SNAPSHOT (69 bytes) @ 0x0000026660d2f478 [0x0000026660d2f400+0x0000000000000078]
-j  com.bedrye.bjge.GameEngine.EngineWindowManager.update()V+58 com.bedrye.bjge@1.0-SNAPSHOT
-j  com.bedrye.bjge.GameEngine.EngineWindowManager.run()V+5 com.bedrye.bjge@1.0-SNAPSHOT
+j  com.bedrye.bjge.GameEngine.EngineManager.update()V+58 com.bedrye.bjge@1.0-SNAPSHOT
+j  com.bedrye.bjge.GameEngine.EngineManager.run()V+5 com.bedrye.bjge@1.0-SNAPSHOT
 j  com.bedrye.bjge.TestMain.main([Ljava/lang/String;)V+3 com.bedrye.bjge@1.0-SNAPSHOT
 v  ~StubRoutines::call_stub 0x00000266606510e7
 
@@ -1155,7 +1155,7 @@ Compiled method (c2)  308984 3033       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000026660d300fc: ; ImmutableOopMap {rbp=Oop [32]=NarrowOop [36]=NarrowOop [40]=NarrowOop }
                       ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@3 (line 83)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::getInstance@3 (line 83)
                       ; - com.bedrye.bjge.GameEngine.Objects.Camera::changeProjection@19 (line 64)
                       ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@1 (line 51)
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@32 (line 73)
@@ -1169,7 +1169,7 @@ Compiled method (c2)  308984 3033       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000026660d30114: ; ImmutableOopMap {rbp=Oop [36]=NarrowOop [48]=NarrowOop }
                       ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@3 (line 83)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::getInstance@3 (line 83)
                       ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@8 (line 53)
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@32 (line 73)
   0x0000026660d30114: e87b 97ff 
@@ -1182,7 +1182,7 @@ Compiled method (c2)  308984 3033       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000026660d30130: ; ImmutableOopMap {rbp=Oop [36]=NarrowOop [48]=NarrowOop }
                       ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@3 (line 83)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::getInstance@3 (line 83)
                       ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@26 (line 54)
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@32 (line 73)
   0x0000026660d30130: cc7b 97ff 
@@ -1195,7 +1195,7 @@ Compiled method (c2)  308984 3033       4       com.bedrye.bjge.GameEngine.Objec
 
   0x0000026660d3014c: ; ImmutableOopMap {rbp=Oop [36]=NarrowOop [48]=NarrowOop }
                       ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
-                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineWindowManager::getInstance@3 (line 83)
+                      ; - (reexecute) com.bedrye.bjge.GameEngine.EngineManager::getInstance@3 (line 83)
                       ; - com.bedrye.bjge.GameEngine.Objects.Camera::update@44 (line 55)
                       ; - com.bedrye.bjge.GameEngine.Objects.BJEEditorScene::update@32 (line 73)
   0x0000026660d3014c: b07b 97ff 

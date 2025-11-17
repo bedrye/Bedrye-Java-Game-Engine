@@ -1,6 +1,6 @@
 package com.bedrye.bjge.GameEngine.Listeners;
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Util.Input.BJEKeyInput;
 import com.bedrye.bjge.GameEngine.Util.Input.KeyInputType;
 
@@ -26,7 +26,7 @@ public final class KeyListener {
         while (!inputsQueue.isEmpty()) {
 
             bjeKeyInput = inputsQueue.remove();
-            EngineWindowManager.getInstance().getBjeShortcutManager().onKeyPress(bjeKeyInput);
+            EngineManager.getInstance().getBjeShortcutManager().onKeyPress(bjeKeyInput);
         }
 
     }

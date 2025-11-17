@@ -132,6 +132,12 @@ public class BJETexture extends  BJEResource{
 
 
     }
+    @JsonIgnore
+    @Override
+    public String getPayloadName(){
+        return "BJETexture";
+    }
+
     @Override
     public void DragStart() {
         if (ImGui.beginDragDropSource())

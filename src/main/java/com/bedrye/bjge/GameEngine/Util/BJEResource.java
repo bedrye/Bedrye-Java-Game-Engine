@@ -3,6 +3,7 @@ package com.bedrye.bjge.GameEngine.Util;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIDragSource;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIVisible;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import imgui.ImGui;
@@ -80,6 +81,7 @@ public abstract class BJEResource implements Serializable, BJEUIVisible, BJEUIDr
         ImGui.popID();
     }
 
+    @JsonIgnore
     @Override
     public String getPayloadName(){
         return getClass().getSimpleName();

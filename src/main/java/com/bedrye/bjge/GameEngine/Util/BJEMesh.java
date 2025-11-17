@@ -23,7 +23,7 @@ import static org.lwjgl.system.MemoryUtil.memFree;
 
 //TODO BATCHING
 public class BJEMesh {
-    private BJEResource resource;
+    private BJEObjFile resource;
     @JsonIgnore
     private ArrayList<BJEVertex> BJEVerteciesList = new ArrayList<>();
     @JsonIgnore
@@ -175,7 +175,7 @@ public class BJEMesh {
 
         }
     }
-    public BJEMesh(BJEResource resource){
+    public BJEMesh(BJEObjFile resource){
         //super(resource.path,resource.getName());
         this.resource = resource;
         AIScene scene;
@@ -262,11 +262,11 @@ public class BJEMesh {
     }
 
 
-    public BJEResource getResource() {
+    public BJEObjFile getResource() {
         return resource;
     }
 
-    public void setResource(BJEResource resource) {
+    public void setResource(BJEObjFile resource) {
         this.resource = resource;
     }
 }

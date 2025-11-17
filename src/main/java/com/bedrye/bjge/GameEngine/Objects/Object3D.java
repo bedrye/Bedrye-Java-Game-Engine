@@ -1,11 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects;
 
 
-import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
-
-import com.bedrye.bjge.GameEngine.Util.Annotation.EditorBehaviour;
-import org.joml.Vector3f;
 
 public class Object3D extends Object3DAbstract {
     public Object3D(){
@@ -19,7 +15,7 @@ public class Object3D extends Object3DAbstract {
     }
     @Override
     public void gameInitialize(){
-        getScriptList().forEach(MainBehaviour::start);
+        getScriptList().forEach(MainBehaviour::init);
         getChildList().forEach(Object3DAbstract::gameInitialize);
     }
 

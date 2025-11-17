@@ -1,8 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor;
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.Objects.BJEEditorScene;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Util.*;
 import imgui.ImGui;
 
@@ -23,6 +22,7 @@ public class BJEFolder extends BJEResource {
 
     private BJEFolder parent;
     public void init(BJEFolder parent){
+        structure.clear();
         this.parent =parent;
         File a =  new File(getPath());
         for (File file: a.listFiles()) {
@@ -37,9 +37,9 @@ public class BJEFolder extends BJEResource {
                     continue;
                 }
 
-                if(EngineWindowManager.getInstance().getBjeResourceManager().getByName(file.getName())==null)
+                if(EngineManager.getInstance().getBjeResourceManager().getByName(file.getName())==null)
                     bjeResource = new BJETextFile(file.getPath(),file.getName());
-                    else bjeResource = EngineWindowManager.getInstance().getBjeResourceManager().getByName(file.getName());
+                    else bjeResource = EngineManager.getInstance().getBjeResourceManager().getByName(file.getName());
                 structure.put(bjeResource.getPath(), bjeResource);
 
             }
@@ -48,16 +48,8 @@ public class BJEFolder extends BJEResource {
 
 
     }
-    private String getExtention(File file){
-        String fileName = file.getName();
-        int index = fileName.lastIndexOf('.');
-        String ext= "";
-        if(index > 0) {
-            ext = fileName.substring(index + 1);
-        }
-        return ext;
 
-    }
+
  public void showContents(){
         for (var resource: structure.values()) {
             resource.show();
@@ -73,14 +65,14 @@ public class BJEFolder extends BJEResource {
     public void show(){
 
         ImGui.pushID(getName());
-        ImGui.image(((BJETexture)EngineWindowManager.getInstance().getBjeResourceManager().getByName("folderbutton.png")).getTextureID(),12,12);
+        ImGui.image(((BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("folderbutton.png")).getTextureID(),12,12);
         ImGui.sameLine();
         ImGui.selectable(getName());
 
 
         if (ImGui.isItemClicked())
         {
-            EngineWindowManager.getInstance().getBjeResourceManager().setCurrentPath(this);
+            EngineManager.getInstance().getBjeResourceManager().setCurrentPath(this);
         }
 
 

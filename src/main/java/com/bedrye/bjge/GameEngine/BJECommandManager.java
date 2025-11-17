@@ -1,4 +1,4 @@
-package com.bedrye.bjge.GameEngine.Util;
+package com.bedrye.bjge.GameEngine;
 
 import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
 
@@ -26,6 +26,7 @@ public class BJECommandManager {
 
 
     public void undo() {
+        if(!EngineManager.getInstance().isInEditMode())return;
         if (undoStack.isEmpty()) return;
         ICommand command = undoStack.pop();
         command.undo();
@@ -38,6 +39,7 @@ public class BJECommandManager {
 
 
     public void redo() {
+        if(!EngineManager.getInstance().isInEditMode())return;
         if (redoStack.isEmpty()) return;
 
         ICommand command = redoStack.pop();

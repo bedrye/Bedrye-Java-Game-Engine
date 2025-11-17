@@ -1,6 +1,6 @@
 package com.bedrye.bjge.GameEngine.Objects;
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 
 import org.joml.Vector3f;
 
@@ -8,7 +8,7 @@ public class BJECameraStart extends Object3DAbstract{
     @Override
     public void gameInitialize() {
         Camera camera = new Camera(getParent());
-        EngineWindowManager.getInstance().getActiveScene().setCamera(camera);
+        EngineManager.getInstance().getActiveScene().setCamera(camera);
         camera.setLocalPos(getPosition());
         getScriptList().forEach(camera::addScript);
 

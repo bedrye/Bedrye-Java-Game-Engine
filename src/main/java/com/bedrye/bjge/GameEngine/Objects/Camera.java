@@ -1,9 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects;
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
-import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.joml.Matrix4f;
@@ -52,14 +50,15 @@ public class Camera extends Object3DAbstract {
 
     @Override
     public void render() {
-        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(getPosition(),"camera_pos");
-        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getProjectionMatrix(),"projectionMatrix");
-        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getViewMatrix(),"viewMatrix");
+        EngineManager.getInstance().getActiveScene().getShaderProgram().uploadVec3f(getPosition(),"camera_pos");
+        EngineManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getProjectionMatrix(),"projectionMatrix");
+        EngineManager.getInstance().getActiveScene().getShaderProgram().UploadMatrix(getViewMatrix(),"viewMatrix");
     }
 
     private void changeProjection(){
         projectionMatrix.identity();
-        projectionMatrix.setPerspective((float) Math.toRadians(60.0f), (float)EngineWindowManager.getInstance().getWidth()/EngineWindowManager.getInstance().getHeight(),1f,1000.0f);
+        //projectionMatrix.setOrtho(0, EngineManager.getInstance().getWidth(),0, EngineManager.getInstance().getHeight(),1f,1000.0f);
+        projectionMatrix.setPerspective((float) Math.toRadians(60.0f), (float) EngineManager.getInstance().getWidth()/ EngineManager.getInstance().getHeight(),1f,1000.0f);
 
 
 

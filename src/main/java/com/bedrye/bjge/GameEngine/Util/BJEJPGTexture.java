@@ -1,5 +1,8 @@
 package com.bedrye.bjge.GameEngine.Util;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.lwjgl.BufferUtils;
 
 import java.nio.ByteBuffer;
@@ -10,7 +13,8 @@ import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
 public class BJEJPGTexture extends BJETexture{
-    public BJEJPGTexture(String path, String name) {
+    @JsonCreator
+    public BJEJPGTexture(@JsonProperty("path") String path, @JsonProperty("name")String name) {
         super(path, name);
     }
 
@@ -41,5 +45,10 @@ public class BJEJPGTexture extends BJETexture{
 
         }
         stbi_image_free(image);
+    }
+    @JsonIgnore
+    @Override
+    public String getPayloadName(){
+        return "BJETexture";
     }
 }

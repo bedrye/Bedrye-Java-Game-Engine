@@ -34,8 +34,8 @@ C  [igxelpicd64.dll+0x16fa6]
 Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 J 2716  org.lwjgl.opengl.GL11C.glClear(I)V org.lwjgl.opengl@3.3.4+7 (0 bytes) @ 0x00000174c7df1499 [0x00000174c7df1440+0x0000000000000059]
 J 3011 c2 com.bedrye.bjge.GameEngine.Objects.BJEEditorScene.render()V com.bedrye.bjge (64 bytes) @ 0x00000174c7e34538 [0x00000174c7e344c0+0x0000000000000078]
-j  com.bedrye.bjge.GameEngine.EngineWindowManager.update()V+72 com.bedrye.bjge
-j  com.bedrye.bjge.GameEngine.EngineWindowManager.run()V+5 com.bedrye.bjge
+j  com.bedrye.bjge.GameEngine.EngineManager.update()V+72 com.bedrye.bjge
+j  com.bedrye.bjge.GameEngine.EngineManager.run()V+5 com.bedrye.bjge
 j  com.bedrye.bjge.TestMain.main([Ljava/lang/String;)V+3 com.bedrye.bjge
 v  ~StubRoutines::call_stub 0x00000174c77510e7
 

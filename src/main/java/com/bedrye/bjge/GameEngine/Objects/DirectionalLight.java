@@ -1,7 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects;
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 
 import org.joml.Vector3f;
@@ -35,7 +35,7 @@ public class DirectionalLight extends Light {
     }
     @Override
     public void initialize() {
-        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().createDirectionalLightUniform(this);
+        EngineManager.getInstance().getActiveScene().getShaderProgram().createDirectionalLightUniform(this);
     }
 
     @Override
@@ -52,6 +52,6 @@ public class DirectionalLight extends Light {
     }
     @Override
     public void preRender(){
-        EngineWindowManager.getInstance().getActiveScene().getShaderProgram().createDirectionalLightUniform(this);
+        EngineManager.getInstance().getActiveScene().getShaderProgram().createDirectionalLightUniform(this);
     }
 }

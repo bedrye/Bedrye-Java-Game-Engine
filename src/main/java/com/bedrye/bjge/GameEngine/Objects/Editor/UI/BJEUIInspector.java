@@ -1,9 +1,8 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.Fields.BJEUIField;
 import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
-import com.bedrye.bjge.GameEngine.Listeners.KeyListener;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import com.bedrye.bjge.GameEngine.Util.BJEResource;
@@ -19,8 +18,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.*;
-
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_DELETE;
 
 public class BJEUIInspector extends BJEUIWindow  {
     int boolcount = 0;
@@ -73,7 +70,7 @@ public class BJEUIInspector extends BJEUIWindow  {
             ImGui.end();
 
             if(command!=null) {
-                EngineWindowManager.getInstance().getBjeCommandManager().executeCommand(command);
+                EngineManager.getInstance().getBjeCommandManager().executeCommand(command);
                 command = null;
             }
             }
@@ -113,8 +110,10 @@ public class BJEUIInspector extends BJEUIWindow  {
 
                 }
                 if (ImGui.beginDragDropTarget()) {
-
-                    acceptPayload(field,o,((BJEResource) field.get(o)).getPayloadName());
+                    if (field.get(o)==null)
+                        acceptPayload(field,o,field.getType().getSimpleName());
+                    else
+                        acceptPayload(field,o,((BJEResource) field.get(o)).getPayloadName());
 
 
                     ImGui.endDragDropTarget();
@@ -306,7 +305,7 @@ public class BJEUIInspector extends BJEUIWindow  {
 
         }
         if (ImGui.beginPopup("addPopup")){
-            for (MainBehaviour beh: EngineWindowManager.getInstance().getBjeResourceManager().getScripts().values()
+            for (MainBehaviour beh: EngineManager.getInstance().getBjeResourceManager().getScripts().values()
             ) {
                 if (ImGui.button(beh.getClass().getSimpleName())) {
                     try {

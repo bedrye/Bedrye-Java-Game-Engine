@@ -1,5 +1,4 @@
 package com.bedrye.bjge.GameEngine;
-import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEEditorViewport;
 import imgui.*;
 
 
@@ -59,7 +58,7 @@ public class BJEIMGUILayer {
         int windowFlags = ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoDocking;
 
         ImGui.setNextWindowPos(0.0f, 0.0f, ImGuiCond.Always);
-        ImGui.setNextWindowSize(EngineWindowManager.getInstance().getWidth(), EngineWindowManager.getInstance().getHeight()-80);
+        ImGui.setNextWindowSize(EngineManager.getInstance().getWidth(), EngineManager.getInstance().getHeight()-80);
         ImGui.pushStyleVar(ImGuiStyleVar.WindowRounding, 0.0f);
         ImGui.pushStyleVar(ImGuiStyleVar.WindowBorderSize, 0.0f);
         windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse |

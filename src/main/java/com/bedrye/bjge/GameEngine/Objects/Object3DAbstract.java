@@ -2,8 +2,7 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
-import com.bedrye.bjge.GameEngine.GameEngineMain;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.EditorBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
@@ -54,7 +53,7 @@ public abstract class Object3DAbstract implements IGameSpace {
         getChildList().forEach(Object3DAbstract::initialize);
         for (MainBehaviour mainBeh:getScriptList())
             if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
-                getScriptList().forEach(MainBehaviour::start);
+                getScriptList().forEach(MainBehaviour::init);
     }
 
 
@@ -63,7 +62,7 @@ public abstract class Object3DAbstract implements IGameSpace {
         getChildList().forEach(Object3DAbstract::initialize);
         for (MainBehaviour mainBeh:getScriptList())
             if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
-                getScriptList().forEach(MainBehaviour::start);
+                getScriptList().forEach(MainBehaviour::init);
     }
 
 
@@ -78,7 +77,7 @@ public abstract class Object3DAbstract implements IGameSpace {
     }
 
     public Object3DAbstract(){
-        this(EngineWindowManager.getInstance().getActiveScene());
+        this(EngineManager.getInstance().getActiveScene());
 
 
     }
@@ -244,7 +243,7 @@ public abstract class Object3DAbstract implements IGameSpace {
     }
     @JsonIgnore
     public Matrix4f getModelViewMatrix(){
-        return  new Matrix4f(EngineWindowManager.getInstance().getActiveScene().getCamera().getViewMatrix()).mul(transform);
+        return  new Matrix4f(EngineManager.getInstance().getActiveScene().getCamera().getViewMatrix()).mul(transform);
     }
     public boolean hasChildren(){
         return !childList.isEmpty();
@@ -257,9 +256,9 @@ public abstract class Object3DAbstract implements IGameSpace {
                 getParent().removeChildObject(this);
             }
             else
-                EngineWindowManager.getInstance().getActiveScene().getChildList().remove(this);
+                EngineManager.getInstance().getActiveScene().getChildList().remove(this);
 
-        ((BJEEditorScene)EngineWindowManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(null);
+        ((BJEEditorScene) EngineManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(null);
 
 
         }

@@ -2,18 +2,15 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 
-import com.bedrye.bjge.GameEngine.EngineWindowManager;
+import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Objects.Editor.UI.*;
 
 import com.bedrye.bjge.GameEngine.Scripts.SimpleCameraControl;
 import com.bedrye.bjge.GameEngine.Util.BJEGizmo;
+import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
 import com.bedrye.bjge.GameEngine.Util.Shaders.BasicProgramShader;
-import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.joml.Matrix4f;
 
-
-import java.nio.file.Paths;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
@@ -46,8 +43,8 @@ public class BJEEditorScene extends Scene {
 
         camera.addScript(new SimpleCameraControl());
 
-        gizmoshader = (BasicProgramShader) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\SimpleGizmoShader.glsl");
-        setShaderProgram((BasicProgramShader) EngineWindowManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\SimpleBuiltInShader.glsl"));
+        gizmoshader = (BasicProgramShader) EngineManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\SimpleGizmoShader.glsl");
+        setShaderProgram((BasicProgramShader) EngineManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\SimpleBuiltInShader.glsl"));
         getShaderProgram().Compile();
         gizmoshader.Compile();
         getChildList().forEach(Object3DAbstract::initialize);
@@ -74,7 +71,7 @@ public class BJEEditorScene extends Scene {
 
 
 
-
+        tasks.forEach(ICommand::exec);
         getCamera().update();
         getChildList().forEach(Object3DAbstract::update);
 
@@ -93,7 +90,6 @@ public class BJEEditorScene extends Scene {
         getChildList().forEach(Object3DAbstract::render);
 
         getShaderProgram().Clear();
-        renderGizmos();
     }
     @Override
     public void renderGizmos() {
