@@ -26,8 +26,7 @@ public abstract class MainBehaviour {
         this.active = active;
     }
 
-    @InspectorVisible
-    private boolean active;
+    private boolean active = true;
 
 
     public void init(){};

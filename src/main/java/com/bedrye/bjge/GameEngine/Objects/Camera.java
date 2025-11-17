@@ -14,6 +14,9 @@ public class Camera extends Object3DAbstract {
     public Matrix4f getProjectionMatrix() {
         return projectionMatrix;
     }
+    private boolean isPerspectiveProjection = true;
+    private float zNear = 1.0f;
+    private float zFar = 1000.0f;
     @JsonIgnore
     public Matrix4f getViewMatrix() {
 
@@ -57,9 +60,10 @@ public class Camera extends Object3DAbstract {
 
     private void changeProjection(){
         projectionMatrix.identity();
-        //projectionMatrix.setOrtho(0, EngineManager.getInstance().getWidth(),0, EngineManager.getInstance().getHeight(),1f,1000.0f);
-        projectionMatrix.setPerspective((float) Math.toRadians(60.0f), (float) EngineManager.getInstance().getWidth()/ EngineManager.getInstance().getHeight(),1f,1000.0f);
-
+        if(isPerspectiveProjection)
+            projectionMatrix.setPerspective((float) Math.toRadians(60.0f), (float) EngineManager.getInstance().getWidth()/ EngineManager.getInstance().getHeight(),zNear,zFar);
+        else
+            projectionMatrix.ortho(-8, 8, -5, 5, zNear, zFar);
 
 
     }
@@ -69,13 +73,35 @@ public class Camera extends Object3DAbstract {
         Vector3f rotation = getRotation();
 
         viewMatrix.identity();
-        // First do the rotation so camera rotates over its position
         viewMatrix.rotate((float)Math.toRadians(rotation.x), new Vector3f(1, 0, 0))
                 .rotate((float)Math.toRadians(rotation.y), new Vector3f(0, 1, 0))
                 .rotate((float)Math.toRadians(rotation.z), new Vector3f(0, 0, 1));
-        // Then do the translation
+
         viewMatrix.translate(-cameraPos.x, -cameraPos.y, -cameraPos.z);
     }
 
+
+    public boolean isPerspectiveProjection() {
+        return isPerspectiveProjection;
+    }
+
+    public void setPerspectiveProjection(boolean perspectiveProjection) {
+        isPerspectiveProjection = perspectiveProjection;
+    }
+    public float getzFar() {
+        return zFar;
+    }
+
+    public void setzFar(float zFar) {
+        this.zFar = zFar;
+    }
+
+    public float getzNear() {
+        return zNear;
+    }
+
+    public void setzNear(float zNear) {
+        this.zNear = zNear;
+    }
 
 }

@@ -74,4 +74,7 @@ public class BJEIMGUILayer {
     protected void disposeImGui() {
         ImGui.destroyContext();
     }
+    public void updateUILayer(){
+        EngineManager.getInstance().getActiveScene().updateUILayer();
+    }
 }

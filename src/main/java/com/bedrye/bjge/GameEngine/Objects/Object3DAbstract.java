@@ -36,7 +36,6 @@ public abstract class Object3DAbstract implements IGameSpace {
     @JsonIgnore
     private Matrix4f transform = new Matrix4f();
 
-
     public Object3DAbstract(IGameSpace parent){
         position= new Vector3f(0,0,0);
         rotation= new Vector3f(0,0,0);
@@ -50,25 +49,27 @@ public abstract class Object3DAbstract implements IGameSpace {
 
     private List<MainBehaviour> scripts =new ArrayList<>();
     public void initialize(){
-        getChildList().forEach(Object3DAbstract::initialize);
+
         for (MainBehaviour mainBeh:getScriptList())
             if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
                 getScriptList().forEach(MainBehaviour::init);
+        getChildList().forEach(Object3DAbstract::initialize);
     }
 
 
     public void initialize(Vector3f position) {
 
-        getChildList().forEach(Object3DAbstract::initialize);
+
         for (MainBehaviour mainBeh:getScriptList())
-            if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
-                getScriptList().forEach(MainBehaviour::init);
+            if(isActive(mainBeh))
+                mainBeh.init();
+        getChildList().forEach(Object3DAbstract::initialize);
     }
 
 
     public void update() {
         for (MainBehaviour mainBeh:getScriptList()) {
-            if(mainBeh.getClass().isAnnotationPresent(EditorBehaviour.class))
+            if(isActive(mainBeh))
                 mainBeh.update();
 
         }
@@ -274,17 +275,32 @@ public abstract class Object3DAbstract implements IGameSpace {
         return false;
     }
     public void render(){
-        scripts.forEach(MainBehaviour::render);
+        for (MainBehaviour mainBeh:getScriptList())
+            if(isActive(mainBeh))
+                mainBeh.render();
         getChildList().forEach(Object3DAbstract::render);
     }
     public void fixedUpdate(){
-        scripts.forEach(MainBehaviour::fixedUpdate);
+        for (MainBehaviour mainBeh:getScriptList())
+            if(isActive(mainBeh))
+                mainBeh.fixedUpdate();
         getChildList().forEach(Object3DAbstract::fixedUpdate);
     }
     public void preRender(){
-        scripts.forEach(MainBehaviour::preRender);
+        for (MainBehaviour mainBeh:getScriptList())
+            if(isActive(mainBeh))
+                mainBeh.fixedUpdate();
         getChildList().forEach(Object3DAbstract::preRender);
+
     }
+
+    private boolean isActive(MainBehaviour mainBehaviour){
+        return mainBehaviour.isActive()&&(
+                (EngineManager.getInstance().isInEditMode()&& mainBehaviour.getClass().isAnnotationPresent(EditorBehaviour.class))
+                        ||!EngineManager.getInstance().isInEditMode());
+
+    }
+
 }
 
 

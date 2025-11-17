@@ -58,13 +58,12 @@ public class EngineManager {
     }
 
     private long windowAddress;
-    private BJEIMGUILayer bjeimguiLayer;
     private BJEFrameBuffer bjeFrameBuffer;
+
+    private BJEIMGUILayer bjeimguiLayer;
     private BJEResourceManager bjeResourceManager;
-
+    private BJEGameLogic bjeGameLogic;
     private BJECommandManager bjeCommandManager;
-
-
     private BJEShortcutManager bjeShortcutManager;
 
     private boolean isInEditMode=true;
@@ -84,12 +83,11 @@ public class EngineManager {
     }
 
     public Scene getActiveScene() {
-        return activeScene;
+        return  bjeGameLogic.getActiveScene();
     }
 
     public void setActiveScene(Scene activeScene) {
-        this.activeScene = activeScene;
-        activeScene.initialize();
+        bjeGameLogic.setActiveScene(activeScene);
     }
     private String getProjectName(){
 
@@ -98,7 +96,6 @@ public class EngineManager {
         else return  "No Project Selected";
     }
     private BJESceneFile sceneFile;
-    private Scene activeScene;
     private BJEEditorScene editorScene;
     private BJEProject project;
 
@@ -187,6 +184,7 @@ public class EngineManager {
         }
         bjeCommandManager = new BJECommandManager(10);
         bjeShortcutManager= new BJEShortcutManager();
+        bjeGameLogic = new BJEGameLogic();
         editorScene = new BJEEditorScene();
 
         setActiveScene(editorScene);
@@ -211,19 +209,19 @@ public class EngineManager {
             lag += elapsed;
             bjeimguiLayer.newFrame();
             bjeimguiLayer.setupDockspace();
-            activeScene.updateUILayer();
+            bjeimguiLayer.updateUILayer();
             bjeimguiLayer.endFrame();
             bjeFrameBuffer.bind();
             KeyListener.getInstance().goThrough();
             while (lag >= fixedTimeStamp) {
-                activeScene.fixedUpdate();
+                bjeGameLogic.fixedUpdate();
                 lag -= fixedTimeStamp;
             }
-            activeScene.update();
+            bjeGameLogic.update();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            activeScene.preRender();
-            activeScene.render();
-            activeScene.renderGizmos();
+            bjeGameLogic.preRender();
+            bjeGameLogic.render();
+            bjeGameLogic.renderGizmos();
             bjeFrameBuffer.unbind();
             bjeResourceManager.update();
             glfwSwapBuffers(windowAddress);
