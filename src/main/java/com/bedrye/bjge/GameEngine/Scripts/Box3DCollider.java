@@ -33,7 +33,7 @@ public class Box3DCollider extends MainBehaviour{
             }
         }
 
-        private boolean isColliding(Object3DAbstract a, Object3DAbstract b,
+        public boolean isColliding(Object3DAbstract a, Object3DAbstract b,
                                     Box3DCollider colA, Box3DCollider colB) {
             Vector3f aPos = a.getPosition();
             Vector3f bPos = b.getPosition();
@@ -47,14 +47,14 @@ public class Box3DCollider extends MainBehaviour{
         }
 
         private void resolveCollision(Object3DAbstract self, Object3DAbstract other) {
-            Vector3f direction = new Vector3f(self.getPosition()).sub(other.getPosition());
-            direction.normalize();
+            self.getScript(BJERigidBody.class).setVelocity(new Vector3f(0));
+            other.getScript(BJERigidBody.class).setVelocity(new Vector3f(0));
 
-            self.setLocalPos(self.getPosition().add(direction.mul(0.05f)));
+            //self.setLocalPos(self.getPosition().add(direction.mul(0.05f)));
         }
 
         public void onCollision(Object3DAbstract other) {
-            //System.out.println(getGameObject().getName() + " collided with " + other.getName());
+            System.out.println(getGameObject().getName() + " collided with " + other.getName());
         }
 
         public Vector3f getSize() {

@@ -1,9 +1,10 @@
 package com.bedrye.bjge.GameEngine.Scripts;
 
 import com.bedrye.bjge.GameEngine.EngineManager;
+import com.bedrye.bjge.GameEngine.Util.Annotation.EditorBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
 import org.joml.Vector3f;
-
+@EditorBehaviour
 public class BJERigidBody extends MainBehaviour {
     @InspectorVisible
     private final Vector3f velocity = new Vector3f();
@@ -16,6 +17,8 @@ public class BJERigidBody extends MainBehaviour {
     private float mass = 1.0f;
     @InspectorVisible
     private boolean isStatic = false;
+    @InspectorVisible
+    private static float gravity = 10;
 
     public void addForce(Vector3f force) {
         forces.add(force);
@@ -25,7 +28,7 @@ public class BJERigidBody extends MainBehaviour {
         if (isStatic) return;
 
         acceleration.set(forces).div(mass);
-
+        acceleration.y+=gravity;
         velocity.fma(dt, acceleration);
 
         getGameObject().getLocalPos().fma(dt, velocity);
@@ -57,7 +60,7 @@ public class BJERigidBody extends MainBehaviour {
     @Override
     public void fixedUpdate(){
         if (!isStatic()) {
-            integrate((float) EngineManager.getInstance().getFixedTimeStamp());
+            integrate((float) EngineManager.getInstance().getFixedTimeStamp()/1000f);
         }
     }
 }

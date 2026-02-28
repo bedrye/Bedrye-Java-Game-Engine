@@ -17,47 +17,48 @@ import java.util.Random;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class SimpleGameScript extends MainBehaviour{
-    private Object3DAbstract object3D ;
-    private ArrayList<Object3DAbstract> Coins = new ArrayList<>();
+
+    private ArrayList<Object3DAbstract> donuts = new ArrayList<>();
     Random r= new Random();
+    public int maxDonuts = 10;
 
     @Override
     public void init(){
 
-        object3D = new Object3D();
-        object3D.addScript( new BJEMeshRenderer((BJEObjFile) EngineManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\sphere.obj"),
-                (BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
-
-        EngineManager.getInstance().getActiveScene().addTask(new ObjectCreateCommand(EngineManager.getInstance().getActiveScene(),object3D));
-        for (int i=0;i<5;i++){
+        for (int i=0;i<maxDonuts;i++){
             Object3DAbstract o = new Object3D();
-
-            o.addScript( new BJEMeshRenderer((BJEObjFile) EngineManager.getInstance().getBjeResourceManager().getByPath("INTERNAL\\sphere.obj"),
-                    (BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("whitetexture.png")));
-
+            o.setRotationX(-90f);
+            o.setRotationZ( r.nextInt()%180);
+            o.addScript( new BJEMeshRenderer((BJEObjFile) EngineManager.getInstance().getBjeResourceManager().getByName("donut.obj"),
+                    (BJETexture) EngineManager.getInstance().getBjeResourceManager().getByName("donut.png")));
             EngineManager.getInstance().getActiveScene().addTask(new ObjectCreateCommand(EngineManager.getInstance().getActiveScene(),o));
-            o.setLocalPos(new Vector3f(r.nextInt()%3,r.nextInt()%3,0));
+            o.addScript(new SimpleGameScript());
+            o.setLocalPos(new Vector3f(r.nextInt()%5,r.nextInt()%5,0));
             o.setScale(new Vector3f(0.3f));
-            Coins.add(o);
+            donuts.add(o);
         }
     }
-    public void update(){
+    public void fixedUpdate(){
 
         if (KeyListener.getInstance().isKeyPressed(GLFW_KEY_W)) {
-            object3D.setLocalPosY(object3D.getLocalPosY() + 0.1f);
+            getGameObject().setLocalPosY(getGameObject().getLocalPosY() + 0.1f);
+            getGameObject().setRotationZ(getGameObject().getRotationZ() - 2f);
         } else if (KeyListener.getInstance().isKeyPressed(GLFW_KEY_S)) {
-            object3D.setLocalPosY(object3D.getLocalPosY() - 0.1f);
+            getGameObject().setLocalPosY(  getGameObject().getLocalPosY() - 0.1f);
+            getGameObject().setRotationZ(getGameObject().getRotationZ() + 2f);
         }
         if (KeyListener.getInstance().isKeyPressed(GLFW_KEY_D)) {
-            object3D.setLocalPosX(object3D.getLocalPosX() + 0.1f);
+            getGameObject().setLocalPosX(  getGameObject().getLocalPosX() + 0.1f);
+            getGameObject().setRotationY(getGameObject().getRotationY() + 2f);
         } else if (KeyListener.getInstance().isKeyPressed(GLFW_KEY_A)) {
-            object3D.setLocalPosX(object3D.getLocalPosX() - 0.1f);
+            getGameObject().setLocalPosX(  getGameObject().getLocalPosX() - 0.1f);
+            getGameObject().setRotationY(getGameObject().getRotationY() - 2f);
         }
-        float size =0.3f*object3D.getScale().x;
-        for (Object3DAbstract o: Coins) {
+        float size =0.3f*  getGameObject().getScale().x;
+        for (Object3DAbstract o: donuts) {
 
-            if(o.getLocalPosX()>object3D.getLocalPosX()-size&&o.getLocalPosX()<object3D.getLocalPosX()+size&&o.getLocalPosY()>object3D.getLocalPosY()-size&&o.getLocalPosY()<object3D.getLocalPosY()+size) {
-                object3D.setScale(object3D.getScale().mul(1.01f));
+            if(o.getLocalPosX()>  getGameObject().getLocalPosX()-size&&o.getLocalPosX()<  getGameObject().getLocalPosX()+size&&o.getLocalPosY()>  getGameObject().getLocalPosY()-size&&o.getLocalPosY()<  getGameObject().getLocalPosY()+size) {
+                getGameObject().setScale(  getGameObject().getScale().mul(1.01f));
                 o.setLocalPos(new Vector3f(r.nextInt()%12,r.nextInt()%12,0));
             }
 

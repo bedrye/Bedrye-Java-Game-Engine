@@ -396,5 +396,9 @@ public class EngineManager {
         this.editorScene = bjeEditorScene;
 
     }
+
+    public BJEEditorScene getEditorScene() {
+        return editorScene;
+    }
 }
 

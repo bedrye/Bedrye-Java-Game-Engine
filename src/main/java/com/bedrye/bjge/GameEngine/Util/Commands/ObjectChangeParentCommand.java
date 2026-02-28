@@ -14,19 +14,15 @@ public class ObjectChangeParentCommand implements ICommand {
         this.selectedObject = selectedObject;
         this.oldParent = selectedObject.getParent();
         this.newParent = parent;
-
-
     }
 
     @Override
     public void exec() {
-
         newParent.addChildObject(selectedObject);
     }
 
     @Override
     public void undo() {
-
         oldParent.addChildObject(selectedObject);
     }
 }
