@@ -58,7 +58,7 @@ public class BJEUIResourceField implements BJEUIField,BJEUISettableField {
 
         if (payload != null) {
 
-            //EngineManager.getInstance().getBjeCommandManager().executeCommand(new ObjectFieldChangeCommand<>(field,o,payload,this));
+            EngineManager.getInstance().getBjeCommandManager().executeCommand(new ObjectFieldChangeCommand<>(field,o,payload));
         }
 
     }

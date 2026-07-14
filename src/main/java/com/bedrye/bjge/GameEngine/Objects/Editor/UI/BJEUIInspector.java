@@ -1,7 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI;
 
 import com.bedrye.bjge.GameEngine.EngineManager;
-import com.bedrye.bjge.GameEngine.Objects.Editor.UI.Fields.BJEUIField;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.Fields.*;
 import com.bedrye.bjge.GameEngine.Objects.Object3DAbstract;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.InspectorVisible;
@@ -40,14 +40,8 @@ public class BJEUIInspector extends BJEUIWindow  {
 
     public void setObject3DAbstract(Object3DAbstract object3DAbstract) {
         this.object3DAbstract = object3DAbstract;
-        booleans.clear();
-        ints.clear();
-        floats.clear();
-        boolcount = 0;
-        intcount = 0;
-        floatcount = 0;
-        doublecount = 0;
-        stringcount = 0;
+        fields.clear();
+        inspectTransformation(object3DAbstract);
 
     }
 
@@ -57,7 +51,7 @@ public class BJEUIInspector extends BJEUIWindow  {
             ImGui.begin("Inspector");
             try {
 
-                inspectTransform(object3DAbstract);
+                showFields();
 
                 openPopup();
 
@@ -91,6 +85,30 @@ public class BJEUIInspector extends BJEUIWindow  {
             }
             Collections.addAll(n,f1);
             return n;
+        }
+        public void initialInspection(Object o){
+            try {
+                List<Field> fields = joinArrays(o.getClass().getFields(), o.getClass().getDeclaredFields());
+                //inspectTransformation(object3DAbstract);
+                for (Field field : fields) {
+                    fieldCheck(field, o);
+
+                }
+            }
+             catch (Exception e) {
+            throw new RuntimeException(e);
+            }
+
+
+        }
+        public void showFields(){
+            ImGui.pushID(object3DAbstract.getClass().getSimpleName());
+            for (BJEUIField field : fields) {
+            field.showField();
+            }
+            ImGui.popID();
+
+
         }
     public void inspectObject(Object o) throws IllegalAccessException {
         List<Field> fields = joinArrays(o.getClass().getFields(), o.getClass().getDeclaredFields());
@@ -135,89 +153,65 @@ public class BJEUIInspector extends BJEUIWindow  {
 
     public void fieldCheck(Field field,Object object) throws IllegalAccessException {
 
-
+        if (BJEResource.class.isAssignableFrom(field.getType())){
+            fields.add(new BJEUIResourceField(field,object));
+            return;
+        }
         switch (field.getType().getSimpleName()) {
             case "boolean":
-                boolcount++;
-                if (boolcount > booleans.size())
-                    booleans.add(new ImBoolean(field.getBoolean(object)));
-
-                ImGui.checkbox(field.getType().getSimpleName() + " " + field.getName(), booleans.get(boolcount - 1));
-                if(field.getBoolean(object)!= booleans.get(boolcount - 1).get() ){
-                    command = new ObjectFieldChangeCommand<>(field, object, booleans.get(boolcount - 1).get());
-                }
-
+                fields.add(new BJEUIBoolField(field,object));
                 break;
 
             case "int":
-                intcount++;
-                if (intcount > ints.size())
-                    ints.add(new ImInt(field.getInt(object)));
-
-                ImGui.inputInt(field.getType().getSimpleName() + " " + field.getName(), ints.get(intcount - 1));
-                if(field.getInt(object)!= ints.get(intcount - 1).get() ){
-                    command = new ObjectFieldChangeCommand<>(field, object, ints.get(intcount - 1).get());
-                }
+                fields.add(new BJEUIIntField(field,object));
 
                 break;
 
             case "float":
-                floatcount++;
-                if (floatcount > floats.size())
-                    floats.add(new ImFloat(field.getFloat(object)));
-
-                ImGui.inputFloat(field.getType().getSimpleName() + " " + field.getName(), floats.get(floatcount - 1));
-                if(field.getFloat(object)!= floats.get(floatcount - 1).get() ){
-                    command = new ObjectFieldChangeCommand<>(field,object,floats.get(floatcount - 1).get());
-                }
-                //field.setFloat(object, floats.get(floatcount - 1).get());
+                fields.add(new BJEUIFloatField(field,object));
 
                 break;
             case "double":
-                doublecount++;
-                if (doublecount > doubles.size())
-                    doubles.add(new ImDouble(field.getDouble(object)));
-
-                ImGui.inputDouble(field.getType().getSimpleName() + " " + field.getName(), doubles.get(doublecount - 1));
-                if(field.getDouble(object)!= doubles.get(doublecount - 1).get() ){
-                    command = new ObjectFieldChangeCommand<>(field, object, doubles.get(doublecount - 1).get());
-                }
+                fields.add(new BJEUIDoubleField(field,object));
 
                 break;
             case "String":
-                stringcount++;
-                if (stringcount > strings.size())
-                    strings.add(new ImString((String) field.get(object)));
-
-                ImGui.inputText(field.getType().getSimpleName() + " " + field.getName(), strings.get(stringcount - 1));
-                if(!field.get(object).equals(strings.get(stringcount - 1).get()) ){
-                    command = new ObjectFieldChangeCommand<>(field, object, strings.get(stringcount - 1).get());
-                }
+                fields.add(new BJEUIStringField(field,object));
                 break;
             case "Vector3f":
-                ImGui.pushID(field.getName());
-                ImGui.text(field.getType().getSimpleName() + " " + field.getName());
-                Vector3f vector3f = (Vector3f) field.get(object);
-                    floatcount+=3;
-                    if (floatcount > floats.size()) {
-                        floats.add(new ImFloat(vector3f.x));
-                        floats.add(new ImFloat(vector3f.y));
-                        floats.add(new ImFloat(vector3f.z));
-                    }
-                    ImGui.inputFloat("x", floats.get(floatcount - 3));
-                    ImGui.inputFloat("y", floats.get(floatcount - 2));
-                    ImGui.inputFloat("z", floats.get(floatcount - 1));
-                    if(vector3f.x != floats.get(floatcount - 3).get()||vector3f.y!=floats.get(floatcount - 2).get()||vector3f.z!=floats.get(floatcount - 1).get()){
-                        Vector3f newVec = new Vector3f( floats.get(floatcount - 3).get(),floats.get(floatcount - 2).get(),floats.get(floatcount - 1).get()) ;
-                        command = new ObjectFieldChangeCommand<>(field,object,newVec);
-                    }
-                ImGui.popID();
+                fields.add(new BJEUIVector3fField(field,object));
 
             break;
             default:
                 ImGui.text(field.getType().getSimpleName() + " " + field.getName());
                 break;
         }
+    }
+    public void inspectTransformation(Object3DAbstract object){
+
+        fields.add(new BJEUITransformPositionField(object,"Position"));
+        fields.add(new BJEUITransformRotationField(object,"Rotation"));
+        fields.add(new BJEUITransformScaleField(object,"Scale"));
+        initialInspection(object3DAbstract);
+
+        fields.add(new BJEUITextField("Scripts"));
+        Iterator<MainBehaviour> i = object.getScriptList().iterator();
+        int count = 0;
+        while (i.hasNext())
+        {
+             MainBehaviour main = i.next();
+
+                fields.add(new BJEUIPush(count+""));
+                count++;
+                fields.add(new BJEUISeparatorField());
+                fields.add(new BJEUITextField(main.getClass().getSimpleName()));
+                initialInspection(main);
+                fields.add(new BJEUIButtonField(new ObjectRemoveScriptCommand(main,object),"-"));
+                fields.add(new BJEUIPop());
+
+
+        }
+
     }
     public void inspectTransform(Object3DAbstract object){
         ImGui.text("Position");
@@ -332,5 +326,7 @@ public class BJEUIInspector extends BJEUIWindow  {
         }
 
     }
+
+
 }
 

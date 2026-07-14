@@ -27,7 +27,7 @@ public class BJEUIBoolField implements BJEUIField,BJEUISettableField {
     @Override
     public void showField(){ImGui.checkbox(prefix, imBoolean);
         if(isChanged()){
-          //  EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imBoolean.get(),this));
+          EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imBoolean.get()));
         }
     }
 

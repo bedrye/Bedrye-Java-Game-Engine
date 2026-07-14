@@ -25,7 +25,7 @@ public class BJEUIDoubleField implements BJEUIField,BJEUISettableField {
     public void showField() {
         ImGui.inputDouble(prefix, imDouble);
         if(isChanged()){
-           // EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imDouble.get(),this::setField));
+           EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imDouble.get()));
         }
     }
 

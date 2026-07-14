@@ -34,7 +34,7 @@ public class BJEUIVector3fField implements BJEUIField,BJEUISettableField {
         ImGui.popID();
         if(isChanged()){
             Vector3f newVec = new Vector3f( imFloatx.get(),imFloaty.get(),imFloatz.get()) ;
-            //EngineManager.getInstance().getBjeCommandManager().executeCommand(  new ObjectFieldChangeCommand<>(field,o,newVec,this));
+            EngineManager.getInstance().getBjeCommandManager().executeCommand(  new ObjectFieldChangeCommand<>(field,o,newVec));
         }
     }
 

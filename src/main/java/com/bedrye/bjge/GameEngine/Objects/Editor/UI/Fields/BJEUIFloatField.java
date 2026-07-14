@@ -25,7 +25,7 @@ public class BJEUIFloatField implements BJEUIField,BJEUISettableField {
     public void showField() {
         ImGui.inputFloat(prefix, imFloat);
         if(isChanged()){
-           // EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imFloat.get(),this::setField));
+           EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imFloat.get()));
         }
     }
 

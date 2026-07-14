@@ -25,7 +25,7 @@ public class BJEUIStringField implements BJEUIField,BJEUISettableField {
     public void showField() {
         ImGui.inputText(prefix, imString);
         if(isChanged()){
-            //EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imString.get(),this));
+            EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imString.get()));
         }
     }
 
