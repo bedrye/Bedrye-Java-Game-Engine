@@ -2,6 +2,7 @@ package com.bedrye.bjge.GameEngine.Objects.Editor.UI.Fields;
 
 import com.bedrye.bjge.GameEngine.EngineManager;
 import com.bedrye.bjge.GameEngine.Util.Commands.ObjectFieldChangeCommand;
+import com.bedrye.bjge.GameEngine.Util.Commands.ObjectStringFieldChangeCommand;
 import imgui.ImGui;
 import imgui.type.ImDouble;
 import imgui.type.ImString;
@@ -25,7 +26,7 @@ public class BJEUIStringField implements BJEUIField,BJEUISettableField {
     public void showField() {
         ImGui.inputText(prefix, imString);
         if(isChanged()){
-            EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imString.get()));
+            EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectStringFieldChangeCommand(field, o, imString.get(),imString));
         }
     }
 

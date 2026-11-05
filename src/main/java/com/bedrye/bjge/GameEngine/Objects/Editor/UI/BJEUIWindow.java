@@ -6,7 +6,7 @@ import org.joml.Vector4f;
 public abstract class BJEUIWindow {
     private Vector2f position = new Vector2f();
     private Vector2f size = new Vector2f();
-
+    public String getName(){ return this.getClass().getSimpleName(); }
     public Vector2f getPosition() {
         return position;
     }
@@ -37,4 +37,5 @@ public abstract class BJEUIWindow {
     }
 
     public abstract void update();
+
 }

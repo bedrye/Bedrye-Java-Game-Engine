@@ -20,17 +20,8 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 public class BJEUIInspector extends BJEUIWindow  {
-    int boolcount = 0;
-    int intcount = 0;
-    int floatcount = 0;
-    int doublecount = 0;
-    int stringcount = 0;
+
     private ArrayList<BJEUIField> fields = new ArrayList<>();
-    private ArrayList<ImBoolean> booleans = new ArrayList<>();
-    private ArrayList<ImInt> ints = new ArrayList<>();
-    private ArrayList<ImFloat> floats = new ArrayList<>();
-    private ArrayList<ImDouble> doubles = new ArrayList<>();
-    private ArrayList<ImString> strings = new ArrayList<>();
     private Object3DAbstract object3DAbstract;
     private ICommand command;
 
@@ -41,7 +32,9 @@ public class BJEUIInspector extends BJEUIWindow  {
     public void setObject3DAbstract(Object3DAbstract object3DAbstract) {
         this.object3DAbstract = object3DAbstract;
         fields.clear();
-        inspectTransformation(object3DAbstract);
+        if (object3DAbstract!=null) {
+            inspectTransformation(object3DAbstract);
+        }
 
     }
 
@@ -50,6 +43,7 @@ public class BJEUIInspector extends BJEUIWindow  {
         if(object3DAbstract !=null) {
             ImGui.begin("Inspector");
             try {
+
 
                 showFields();
 
@@ -213,83 +207,7 @@ public class BJEUIInspector extends BJEUIWindow  {
         }
 
     }
-    public void inspectTransform(Object3DAbstract object){
-        ImGui.text("Position");
 
-        floatcount+=3;
-        if (floatcount > floats.size()) {
-            floats.add(new ImFloat(object.getLocalPosX()));
-            floats.add(new ImFloat(object.getLocalPosY()));
-            floats.add(new ImFloat(object.getLocalPosZ()));
-        }
-        ImGui.inputFloat("Xp", floats.get(floatcount - 3));
-        ImGui.inputFloat("Yp", floats.get(floatcount - 2));
-        ImGui.inputFloat("Zp", floats.get(floatcount - 1));
-        object.setLocalPosX(floats.get(floatcount - 3).get());
-        object.setLocalPosY(floats.get(floatcount - 2).get());
-        object.setLocalPosZ(floats.get(floatcount - 1).get());
-
-        ImGui.text("Rotation");
-
-        floatcount+=3;
-        if (floatcount > floats.size()) {
-            floats.add(new ImFloat(object.getRotationX()));
-            floats.add(new ImFloat(object.getRotationY()));
-            floats.add(new ImFloat(object.getRotationZ()));
-        }
-        ImGui.inputFloat("Xr", floats.get(floatcount - 3));
-        ImGui.inputFloat("Yr", floats.get(floatcount - 2));
-        ImGui.inputFloat("Zr", floats.get(floatcount - 1));
-        object.setRotationX(floats.get(floatcount - 3).get());
-        object.setRotationY(floats.get(floatcount - 2).get());
-        object.setRotationZ(floats.get(floatcount - 1).get());
-
-        ImGui.text("Scale");
-
-        floatcount+=3;
-        if (floatcount > floats.size()) {
-            floats.add(new ImFloat(object.getScale().x));
-            floats.add(new ImFloat(object.getScale().y));
-            floats.add(new ImFloat(object.getScale().z));
-        }
-        ImGui.inputFloat("Xs", floats.get(floatcount - 3));
-        ImGui.inputFloat("Ys", floats.get(floatcount - 2));
-        ImGui.inputFloat("Zs", floats.get(floatcount - 1));
-        object.setScale(new Vector3f(floats.get(floatcount - 3).get(),floats.get(floatcount - 2).get(),floats.get(floatcount - 1).get()));
-        try {
-            inspectObject(object3DAbstract);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-        ImGui.text("Scripts");
-        Iterator<MainBehaviour> i = object.getScriptList().iterator();
-        int count = 0;
-        while (i.hasNext())
-             {
-                 MainBehaviour main = i.next();
-            try {
-                ImGui.pushID(main.getClass().getSimpleName()+count);
-                count++;
-                ImGui.separator();
-                ImGui.text(main.getClass().getSimpleName());
-                inspectObject(main);
-
-                if(ImGui.button("-")) {
-                    command = new ObjectRemoveScriptCommand(main,object);
-                }
-
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-            finally {
-                ImGui.popID();
-
-            }
-        }
-
-
-
-    }
 
     private void openPopup(){
         if (ImGui.button("+",40,20)){

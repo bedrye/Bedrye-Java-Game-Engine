@@ -17,27 +17,28 @@ import static org.lwjgl.opengl.GL20.*;
 
 
 public class BJEEditorScene extends Scene {
-    @JsonIgnore
-    public BJEUIInspector inspector = new BJEUIInspector();
-    @JsonIgnore
-    public BJEUISceneHierarchy sceneHierarchy = new BJEUISceneHierarchy();
-    @JsonIgnore
-    public BJEEditorViewport bjeEditorViewport = new BJEEditorViewport();
+
+    //@JsonIgnore
+    // public BJEUIInspector inspector = new BJEUIInspector();
+    //@JsonIgnore
+    //public BJEUISceneHierarchy sceneHierarchy = new BJEUISceneHierarchy();
+    //@JsonIgnore
+    //public BJEEditorViewport bjeEditorViewport = new BJEEditorViewport();
     @JsonIgnore
     BJEGizmo bjeGizmo = new BJEGizmo();
     @JsonIgnore
     BasicProgramShader gizmoshader;
-    @JsonIgnore
-    public BJEAssetHierarchy bjeAssetHierarchy;
-
+    //@JsonIgnore
+    //public BJEAssetHierarchy bjeAssetHierarchy;
 
     @Override
     public void initialize() {
 
         System.out.println("[BJE] Editor");
-
-
-        bjeAssetHierarchy= new BJEAssetHierarchy();
+        bjeuiWindows.add(new BJEUIInspector());
+        bjeuiWindows.add(new BJEUISceneHierarchy());
+        bjeuiWindows.add(new BJEEditorViewport());
+        bjeuiWindows.add(new BJEAssetHierarchy());
         Camera camera = new Camera();
         setCamera(camera);
 
@@ -56,11 +57,11 @@ public class BJEEditorScene extends Scene {
 
     @Override
     public void updateUILayer() {
-        sceneHierarchy.update();
-        inspector.update();
-        bjeEditorViewport.update();
+        for (BJEUIWindow window: bjeuiWindows
+             ) {
+            window.update();
+        }
 
-        bjeAssetHierarchy.update();
 
 
     }
@@ -95,9 +96,10 @@ public class BJEEditorScene extends Scene {
     public void renderGizmos() {
         glDisable(GL_DEPTH_TEST);
         gizmoshader.Run();
-        if(inspector.getObject3DAbstract()!=null) {
-            float dist = getCamera().getLocalPos().distance(inspector.getObject3DAbstract().getLocalPos());
-            bjeGizmo.draw(getCamera().getProjectionMatrix(), getCamera().getViewMatrix(), inspector.getObject3DAbstract().getTransformMatrix(), gizmoshader);
+
+        if(((BJEUIInspector)findWindowByName("BJEUIInspector")).getObject3DAbstract()!=null) {
+            float dist = getCamera().getLocalPos().distance(((BJEUIInspector)findWindowByName("BJEUIInspector")).getObject3DAbstract().getLocalPos());
+            bjeGizmo.draw(getCamera().getProjectionMatrix(), getCamera().getViewMatrix(), ((BJEUIInspector)findWindowByName("BJEUIInspector")).getObject3DAbstract().getTransformMatrix(), gizmoshader);
         }
             gizmoshader.Clear();
         glEnable(GL_DEPTH_TEST);

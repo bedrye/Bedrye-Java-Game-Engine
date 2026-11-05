@@ -1,6 +1,7 @@
 package com.bedrye.bjge.GameEngine.Objects.Editor.UI.Fields;
 
 import com.bedrye.bjge.GameEngine.EngineManager;
+import com.bedrye.bjge.GameEngine.Util.Commands.ObjectBoolFieldChangeCommand;
 import com.bedrye.bjge.GameEngine.Util.Commands.ObjectFieldChangeCommand;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
 import imgui.ImGui;
@@ -27,7 +28,7 @@ public class BJEUIBoolField implements BJEUIField,BJEUISettableField {
     @Override
     public void showField(){ImGui.checkbox(prefix, imBoolean);
         if(isChanged()){
-          EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectFieldChangeCommand<>(field, o, imBoolean.get()));
+          EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectBoolFieldChangeCommand(field, o, imBoolean.get(),imBoolean));
         }
     }
 

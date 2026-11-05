@@ -27,7 +27,7 @@ public class BJEUITransformPositionField extends  BJEUITransformVectorField{
         vector3f = object.getPosition();
         if(isChanged()){
             Vector3f newVec = new Vector3f( imFloatx.get(),imFloaty.get(),imFloatz.get()) ;
-            EngineManager.getInstance().getBjeCommandManager().executeCommand(  new ObjectTransformPositionChangeCommand(object,vector3f,newVec,this) );
+            EngineManager.getInstance().getBjeCommandManager().executeCommand(  new ObjectTransformPositionChangeCommand(object,vector3f,newVec,imFloatx,imFloaty, imFloatz, this) );
         }
     }
 }

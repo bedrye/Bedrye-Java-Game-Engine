@@ -28,7 +28,7 @@ public class BJEUITransformScaleField extends  BJEUITransformVectorField{
         vector3f = object.getScale();
         if(isChanged()){
             Vector3f newVec = new Vector3f( imFloatx.get(),imFloaty.get(),imFloatz.get()) ;
-            EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectTransformScaleChangeCommand(object,vector3f,newVec,this) );
+            EngineManager.getInstance().getBjeCommandManager().executeCommand( new ObjectTransformScaleChangeCommand(object,vector3f,newVec,imFloatx,imFloaty,imFloatz,this) );
         }
     }
 }

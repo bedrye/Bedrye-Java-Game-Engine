@@ -1,6 +1,7 @@
 package com.bedrye.bjge.GameEngine.Util.Commands;
 
 import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
+import imgui.type.ImBoolean;
 
 import java.lang.reflect.Field;
 
@@ -11,6 +12,7 @@ public class ObjectFieldChangeCommand<T> implements ICommand {
     private Field field;
     private Object o;
     public ObjectFieldChangeCommand(Field field, Object o, T newValue){
+
         this.field=field;
         try {
             oldValue = (T) this.field.get(o);
@@ -19,7 +21,7 @@ public class ObjectFieldChangeCommand<T> implements ICommand {
         }
         this.newValue = newValue;
         this.o=o;
-
+        System.out.println("o: "+oldValue+" n: "+ newValue);
     }
     @Override
     public void exec() {

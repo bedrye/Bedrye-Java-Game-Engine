@@ -12,7 +12,7 @@ import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 public final class BJEGameScene extends Scene{
 
-    public BJEEditorViewport bjeEditorViewport = new BJEEditorViewport();
+    //public BJEEditorViewport bjeEditorViewport = new BJEEditorViewport();
     public BJEGameScene(BJEEditorScene scene){
         setGameObjects(scene.getChildList());
     }
@@ -28,10 +28,6 @@ public final class BJEGameScene extends Scene{
         getChildList().forEach(Object3DAbstract::gameInitialize);
     }
 
-    @Override
-    public void updateUILayer() {
-        bjeEditorViewport.update();
-    }
 
 
     @Override

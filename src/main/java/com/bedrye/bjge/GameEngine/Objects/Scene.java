@@ -3,6 +3,7 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 import com.bedrye.bjge.GameEngine.EngineManager;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIWindow;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.ICommand;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
 import com.bedrye.bjge.GameEngine.Util.Shaders.ShaderProgram;
@@ -35,6 +36,11 @@ public abstract class Scene implements IGameSpace {
     private Camera camera;
     private boolean initialized = false;
     private List<Object3DAbstract> gameObjects= new ArrayList<>();
+    @JsonIgnore
+    protected List<BJEUIWindow> bjeuiWindows = new ArrayList<>();
+    public BJEUIWindow findWindowByName(String name){
+        return bjeuiWindows.stream().filter(x -> x.getName().equals(name) ).findFirst().get();
+    }
 
     @JsonIgnore
     private ShaderProgram shaderProgram;
@@ -101,7 +107,12 @@ public abstract class Scene implements IGameSpace {
         gameObjects.remove(gameObject);
 
     }
-    public abstract void updateUILayer();
+    public void updateUILayer() {
+        for (BJEUIWindow window: bjeuiWindows
+        ) {
+            window.update();
+        }
+    }
     @JsonIgnore
     public final boolean isFinal(){
         return true;

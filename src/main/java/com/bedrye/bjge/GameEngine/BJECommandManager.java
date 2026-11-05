@@ -31,7 +31,7 @@ public class BJECommandManager {
         ICommand command = undoStack.pop();
         command.undo();
         redoStack.push(command);
-
+        //System.out.println("undone" + command.getClass().getSimpleName());
         if (redoStack.size() > capacity) {
             redoStack.remove(0);
         }

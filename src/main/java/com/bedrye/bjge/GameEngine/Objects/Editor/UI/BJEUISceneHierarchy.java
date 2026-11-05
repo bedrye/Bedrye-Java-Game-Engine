@@ -61,7 +61,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
         {
             flag |= ImGuiTreeNodeFlags.Leaf;
         }
-        if (object3DAbstract==((BJEEditorScene) EngineManager.getInstance().getActiveScene()).inspector.getObject3DAbstract())
+        if (object3DAbstract== ((BJEUIInspector)EngineManager.getInstance().getActiveScene().findWindowByName("BJEUIInspector")).getObject3DAbstract())
         {
             flag |= ImGuiTreeNodeFlags.Selected;
         }
@@ -196,6 +196,7 @@ public class BJEUISceneHierarchy extends BJEUIWindow{
             if (ImGui.menuItem("Delete",null,false,!object3DAbstract.isFinal()))
             {
                 command = new ObjectDeleteCommand((Object3DAbstract) object3DAbstract);
+                ((BJEUIInspector) EngineManager.getInstance().getActiveScene().findWindowByName("BJEUIInspector")).setObject3DAbstract(null);
             }
             ImGui.endPopup();
         }

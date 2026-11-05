@@ -3,6 +3,7 @@ package com.bedrye.bjge.GameEngine.Objects;
 
 
 import com.bedrye.bjge.GameEngine.EngineManager;
+import com.bedrye.bjge.GameEngine.Objects.Editor.UI.BJEUIInspector;
 import com.bedrye.bjge.GameEngine.Scripts.MainBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Annotation.EditorBehaviour;
 import com.bedrye.bjge.GameEngine.Util.Interfaces.IGameSpace;
@@ -259,7 +260,7 @@ public abstract class Object3DAbstract implements IGameSpace {
             else
                 EngineManager.getInstance().getActiveScene().getChildList().remove(this);
 
-        ((BJEEditorScene) EngineManager.getInstance().getActiveScene()).inspector.setObject3DAbstract(null);
+        ((BJEUIInspector)EngineManager.getInstance().getActiveScene().findWindowByName("BJEUIInspector")).setObject3DAbstract(null);
 
 
         }
